@@ -339,7 +339,6 @@ void find_tcp_ipx() {
 BOOL FAR PASCAL EnumSPNEW(LPGUID lpGd, LPSTR lpDesc, DWORD dwMajorVersion,
 	DWORD dwMinorVersion, LPVOID lpv)
 {
-	LONG iIndex;
 	HWND hWnd = (HWND)lpv;
 
 	char a[50];
@@ -460,9 +459,6 @@ BOOL CALLBACK DlgRegister(HWND hDlg, UINT msg, WPARAM wParam, LPARAM lParam)
 	CRegistry Registry;
 	CString Path;
 	CString DefaultTitle;
-	char* p;
-	char keyresult[100];
-	char work[100];
 	char buffer[100];
 	int result;
 	static  HWND hWndCtl;
@@ -618,30 +614,21 @@ void RegCrypt(char* user, char* key, char* result) {
 	strcpy(encstring2, "KMaWXYefghuDEvwxyzAJbcNOPQkmnopqdrst02ZF34ST9RUVBC5678jGH");
 	strcpy(encstring2, "QRSWXYZabcdef023NOPghjkmnopq456789ATUVBCDEFGHJKMrstuvwxyz");
 
-
-
-
-
-
-
-
-
-
 	encstringlen = strlen(encstring);
 
 	strcpy(resultstring, "               ");
 	d = 0;
 	strcpy(string1, user);
 	strcpy(string2, key);
-	for (i = 0; i < strlen(string1); i++)
+	for (i = 0; i < (long int)strlen(string1); i++)
 		d = d + string1[i];
-	for (i = 0; i < strlen(string2); i++)
+	for (i = 0; i < (long int)strlen(string2); i++)
 		d = d + string2[i];
 	for (i = 0; i < 16; i++) {
 		c = encstring[i] + d;
-		if (i < strlen(string1))
+		if (i < (long int)strlen(string1))
 			c = c + string1[i];
-		if (i < strlen(string2))
+		if (i < (long int)strlen(string2))
 			c = c + string2[i];
 		resultstring[i] = encstring[(c % encstringlen)];
 		d = c;
@@ -692,7 +679,7 @@ bool WriteMurkReg() {
 	HKEY	hkey;
 	DWORD	dwDisposition;
 	long hresult;
-	DWORD dwType, dwSize;
+
 	strcpy(junk, "test");
 
 	if (RegOpenKeyEx(HKEY_LOCAL_MACHINE, TEXT("Software\\Calamity\\Murk"), 0, KEY_ALL_ACCESS, &hkey) == ERROR_SUCCESS) {
@@ -735,7 +722,7 @@ bool SaveMurkReg() {
 	HKEY	hkey;
 	DWORD	dwDisposition;
 	long hresult;
-	DWORD dwType, dwSize;
+
 	strcpy(junk, "test");
 
 
@@ -763,9 +750,8 @@ bool SaveMurkReg() {
 
 bool ReadMurkReg() {
 
-	char szKey[1024], junk[4255];
+	char junk[4255];
 	HKEY hkey;
-	DWORD dwdisp;
 	DWORD dwType;
 	DWORD dwSize;
 

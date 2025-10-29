@@ -41,6 +41,7 @@ void debug_me(char* u, char* s, int a, int b) {
 	}
 
 	fprintf(fp, "%s %-21s %-34s %-4d %-4d\n", t.Format("%m/%d %H:%M"), u, s, a, b);
+
 	fclose(fp);
 }
 

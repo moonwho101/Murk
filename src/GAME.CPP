@@ -752,7 +752,6 @@ void DPEventMsg2() {
 	LPMISSLE lpMissle;
 	LPCHATMSG lpChat;
 	LPMSGINT lpMsgInt;
-	LPMSGCHAR lpMsgChar;
 	LPDEATH lpDeath;
 
 
@@ -2294,12 +2293,8 @@ void send_pingserver() {
 
 void serversettings(int go) {
 
-	HDC hDC;
-	PAINTSTRUCT paintStruct;
-
 	int result;
 	int lvlnum, x, y;
-	LPGUID lpGuid2;
 	m_pGame = new CGame;
 
 	//	lpGuid = (LPGUID) Globalid;	

@@ -112,17 +112,14 @@ void OnCharDown(WPARAM wParam)
 void OnKeyDown(WPARAM wParam)
 {
 
-
 	int result;
-	int lvlnum, x, y;
-	BOOL dowhat;
 
 	cancelmove = 0;
 
 	int ring;
 	int ability;
 	int skill;
-	int disk;
+
 	int image;
 	int armr;
 
@@ -565,11 +562,6 @@ void OnLButtonDown(LPARAM lParam) {
 
 	UINT x1 = LOWORD(lParam);
 	UINT y1 = HIWORD(lParam);
-	int x, y;
-
-
-
-
 
 	if (showmission == 1 || showmission == 0 || showmission == 2) {
 
@@ -587,8 +579,6 @@ void OnLButtonDown(LPARAM lParam) {
 		return;
 
 	}
-
-
 
 	if (y1 > 600 && x1 < 240) {
 		if (PlayerLocation[1].ring > 0 && x1 > 166 && y1 > 575

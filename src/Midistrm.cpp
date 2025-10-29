@@ -69,7 +69,7 @@ CMIDIStream::Create(const CString& sFileName)
         return FALSE;
 
     // Get the stream image length
-    DWORD dwImageLen = fileMIDI.GetLength();
+    DWORD dwImageLen = (DWORD) fileMIDI.GetLength();
 
     // Allocate and lock memory for the image data
     HGLOBAL hgImageData = ::GlobalAlloc(GMEM_MOVEABLE | GMEM_SHARE,

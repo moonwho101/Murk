@@ -27,7 +27,6 @@ void showsplash() {
 	int ring;
 	int ability;
 	int skill;
-	int disk;
 	int image;
 	int armr;
 
@@ -360,12 +359,10 @@ void sendtext(char p1[900]) {
 	int whichone;
 	int playergrid = 0;
 	int stop;
-	int i;
 	char c;
 	char p2[600];
 	char result2[600];
 
-	int newwarrior2;
 	stop = 0;
 	//	penx = 150;
 

@@ -52,7 +52,7 @@ void computermove() {
 	int counter;
 	int subcounter;
 	//	int shortestroute;
-	int lastdir;
+	int lastdir=0;
 	char response[50];
 	int saveroute;
 
@@ -471,7 +471,6 @@ int attack_player() {
 	int savecopx;
 	int savecopy;
 	int savecoplvl;
-	int loop;
 	int savemaxmove;
 	int saveit;
 	int char2;
@@ -778,7 +777,6 @@ int attack_player() {
 void destination() {
 
 	int i;
-	int savep;
 	int saveit;
 	//	int junk;
 	//aaa
@@ -786,8 +784,6 @@ void destination() {
 	int level;
 	char work[100], work2[100];
 	int image;
-	int randn;
-
 
 	saveit = CurrentPlayer;
 	if (PlayerLocation[CurrentPlayer].character == 2 ||

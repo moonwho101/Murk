@@ -90,7 +90,6 @@ int load_game() {
 
 int is_shareware() {
 
-
 	CRegistry Registry;
 	CString Path;
 	CString DefaultTitle;
@@ -100,9 +99,6 @@ int is_shareware() {
 	char buffer[100];
 	char buffer2[100];
 	char work[80];
-	int result;
-
-
 
 	Path = "SOFTWARE\\Murk\\";
 
@@ -113,19 +109,7 @@ int is_shareware() {
 	Registry.Read2("Name", DefaultTitle); // Read the default title
 	sprintf(buffer, "%s", DefaultTitle);
 
-
-	//			if (strcmp(buffer,"Jerry Cooper")==0) {
-
-	//				UINT resultclick = MessageBox(hWindow,"You are using a PIRATE key.\nPlease REGISTER MURK!!!","Murk Shareware",MB_OK);
-	//				PostMessage(hWindow, WM_CLOSE, 0, 0L);		
-
-	//			}
-
 	Registry.Read2("Key", DefaultTitle); // Read the default title
-
-
-
-
 
 	sprintf(buffer2, "%s", DefaultTitle);
 
@@ -154,15 +138,10 @@ int is_shareware() {
 		usejstick = 0;
 	}
 
-
 	Registry.Close();
-
 
 	p = &keyresult[0];
 	RegCrypt(buffer, "Murk", p);
-
-	//			debug_me("KEY",keyresult,0,0);
-
 
 	if (strcmp(buffer2, keyresult) == 0) {
 
