@@ -34,6 +34,9 @@ void clear_log() {
 
 void debug_me(char* u, char* s, int a, int b) {
 
+	//Turn off logging for release version
+	return;
+
 	FILE* fp;
 	CTime t;
 	t = CTime::GetCurrentTime();
