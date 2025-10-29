@@ -12,6 +12,8 @@ Murk is a 2D isometric dungeon game written in 1998 by Mark Longo, using Microso
 * Use mouse left button to move character
 * Right click to fire.
 * Double click to move up and down ladder
+* Press R to put on Ring of Protection
+* Press T to drop treasure
 * Press F3 to Save game, Press F4 to Load game 
 * Press F1 for game details
 
