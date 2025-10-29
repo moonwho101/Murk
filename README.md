@@ -23,7 +23,7 @@ Murk is a 2D isometric dungeon game written in 1998 by Mark Longo, using Microso
 
 ## Compiling
 
-Compile using Microsoft Visual Studio 2022 Community Edition. 
-Microsoft Visual Studio 2022 Installer Individual components = C++ v14.42 (17.12) MFC for v143 build tools (x86 & x64)
-Compile in 'Release' mode.
+* Compile using Microsoft Visual Studio 2022 Community Edition. 
+* Microsoft Visual Studio 2022 Installer Individual components = C++ v14.42 (17.12) MFC for v143 build tools (x86 & x64)
+* Compile in 'Release' mode.
 
