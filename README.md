@@ -8,19 +8,18 @@ Murk is a 2D isometric dungeon game written in 1998, using Microsoft DirectX 1.0
 
 ## Mouse Controls
 
-* run Murk.exe from the bin directory to try the game.
-* Use mouse to move character
+* Run Murk.exe from the bin directory to try the game. (will run under Windows 10 & 11)
+* Use mouse left button to move character
+* Right click to fire.
 * Double click to move up and down ladder
-* Left click to fire.
-* Press F5 to Load game, F6 to Save game
+* Press F3 to Save game, Press F4 to Load game 
+* Press F1 for game details
 
 ## Keyboard Controls
  
 * Cursor keys to move
 * CTRL to FIRE
 * SHIFT to go up and down ladder
-* F1 for game details
-* F2 for episode details
 
 ## Compiling
 
