@@ -1,0 +1,74 @@
+Murk Ver 1.12
+Copyright 1998-1999, Calamity Software
+All Rights Reserved
+
+
+License Agreement
+
+You should carefully read the following terms and conditions
+before using this software.  Unless you have a different license
+agreement signed by Industrial Code and Logic, Inc. your use of this
+software indicates your acceptance of this license agreement and
+warranty.
+
+Registered Version
+
+One registered copy of Murk may either be used by a single
+person who uses the software personally on one or more computers,
+or installed on a single workstation used nonsimultaneously by
+multiple people, but not both.
+
+No registered user may alter or modify Murk.  You cannot give anyone
+else permission to modify Murk.
+
+The Murk Shareware Version must be redistributed with it's
+original form intacted.  
+
+Governing Law
+
+This agreement shall be governed by the laws of the Province of
+Ontario.
+
+Disclaimer of Warranty
+
+THIS SOFTWARE AND THE ACCOMPANYING FILES ARE SOLD "AS IS" AND
+WITHOUT WARRANTIES AS TO PERFORMANCE OR MERCHANTABILITY OR ANY
+OTHER WARRANTIES WHETHER EXPRESSED OR IMPLIED.   Because of the
+various hardware and software environments into which Murk may
+be put, NO WARRANTY OF FITNESS FOR A PARTICULAR PURPOSE IS
+OFFERED.
+
+The user must assume the entire risk of using the program.  ANY
+LIABILITY OF THE SELLER WILL BE LIMITED EXCLUSIVELY TO PRODUCT
+REPLACEMENT OR REFUND OF PURCHASE PRICE.
+
+Evaluation Version
+
+Evaluation and Registration
+
+This is not free software.  Subject to the terms below, you are
+hereby licensed to use this software for evaluation purposes
+without charge for a period of 30 days.  If you use this software
+after the 30 day evaluation period a registration fee of $5.00 is
+required.  Payments must be in US dollars.  Credit card ordering and quantity
+discounts are available, via www.murk.on.ca   When payment is received you will be sent
+a registered key.
+
+
+Unregistered use of Murk after the 30-day evaluation period is in violation of U.S., Canada
+and international copyright laws.
+
+Distribution
+
+Provided that you verify that you are distributing the evaluation
+version  you are hereby licensed to make as many copies of the
+evaluation version of this software and documentation as you wish;
+give exact copies of the original evaluation version to anyone;
+and distribute the evaluation version of the software and
+documentation in its unmodified form via electronic means.
+There is no charge for any of the above.
+
+You are specifically prohibited from charging, or requesting
+donations, for any such copies, however made; and from
+distributing the software and/or documentation with other products
+(commercial or otherwise) without prior written permission.

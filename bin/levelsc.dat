@@ -1,0 +1,4230 @@
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+0 ; Beholder
+0 ; Beholder Speed
+0 ; Death Orb
+0 ; Death Orb Speed
+5 ; Skeleton
+2 ; Skeleton Speed
+3 ; Mouther
+2 ; Mouther Speed
+0 ; Brute
+0 ; Brute Speed
+0 ; Fighter
+0 ; Fighter Team
+0 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+10 ; dungeonx
+10 ; dungeony
+3  ; dungeonlvl
+0  ; pits (0=off 1=on)
+10 ; Max Pits
+The -a   is your friend.
+Title
+1 ; GameType
+1 ; Beholder
+4 ; Beholder Speed
+0 ; Death Orb
+0 ; Death Orb Speed
+6 ; Skeleton
+2 ; Skeleton Speed
+3 ; Mouther
+1 ; Mouther Speed
+2 ; Brute
+3 ; Brute Speed
+1 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+14 ; dungeonx
+14 ; dungeony
+3  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find -p   and return it to -k   .~~Protect -u   from your enemies ( -c).
+Episode 1
+2 ; GameType
+1 ; Beholder
+5 ; Beholder Speed
+0 ; Death Orb
+0 ; Death Orb Speed
+5 ; Skeleton
+2 ; Skeleton Speed
+3 ; Mouther
+1 ; Mouther Speed
+1 ; Brute
+3 ; Brute Speed
+0 ; Fighter
+0 ; Fighter Team
+0 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+1 ; Thief
+2 ; Thief Team
+1 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+15 ; dungeonx
+15 ; dungeony
+4  ; dungeonlvl
+0  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+1 ; Beholder
+4 ; Beholder Speed
+1 ; Death Orb
+5 ; Death Orb Speed
+7 ; Skeleton
+2 ; Skeleton Speed
+4 ; Mouther
+1 ; Mouther Speed
+2 ; Brute
+3 ; Brute Speed
+0 ; Fighter
+0 ; Fighter Team
+0 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+14 ; dungeonx
+14 ; dungeony
+4  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+0 ; Beholder
+0 ; Beholder Speed
+0 ; Death Orb
+0 ; Death Orb Speed
+5 ; Skeleton
+1 ; Skeleton Speed
+5 ; Mouther
+2 ; Mouther Speed
+0 ; Brute
+0 ; Brute Speed
+0 ; Fighter
+0 ; Fighter Team
+0 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+15 ; dungeonx
+16 ; dungeony
+5  ; dungeonlvl
+0  ; pits (0=off 1=on)
+10 ; Max Pits
+The -a   are your friends.~~Gather -s   -t.
+Title
+1 ; GameType
+0 ; Beholder
+0 ; Beholder Speed
+0 ; Death Orb
+0 ; Death Orb Speed
+0 ; Skeleton
+0 ; Skeleton Speed
+0 ; Mouther
+0 ; Mouther Speed
+0 ; Brute
+0 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+16 ; dungeonx
+16 ; dungeony
+4  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find -p   and return it to -k   .~~Protect -u   from your enemies ( -c  -d).
+Episode 1
+2 ; GameType
+2 ; Beholder
+3 ; Beholder Speed
+1 ; Death Orb
+5 ; Death Orb Speed
+6 ; Skeleton
+2 ; Skeleton Speed
+6 ; Mouther
+1 ; Mouther Speed
+3 ; Brute
+2 ; Brute Speed
+1 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+1 ; Thief
+2 ; Thief Team
+1 ; Thief Speed
+1 ; Wizard
+2 ; Wizard Team
+1 ; Wizard Speed
+18 ; dungeonx
+18 ; dungeony
+5  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+The -a   is your friend.
+Title
+1 ; GameType
+2 ; Beholder
+2 ; Beholder Speed
+2 ; Death Orb
+5 ; Death Orb Speed
+9 ; Skeleton
+2 ; Skeleton Speed
+8 ; Mouther
+1 ; Mouther Speed
+3 ; Brute
+3 ; Brute Speed
+2 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+17 ; dungeonx
+16 ; dungeony
+4  ; dungeonlvl
+0  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+2 ; Beholder
+2 ; Beholder Speed
+0 ; Death Orb
+0 ; Death Orb Speed
+7 ; Skeleton
+2 ; Skeleton Speed
+8 ; Mouther
+1 ; Mouther Speed
+3 ; Brute
+2 ; Brute Speed
+0 ; Fighter
+0 ; Fighter Team
+0 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+15 ; dungeonx
+18 ; dungeony
+5  ; dungeonlvl
+0  ; pits (0=off 1=on)
+10 ; Max Pits
+Find -p   and return it to -k   .~~Protect -u   from your enemies ( -c).
+Episode 1
+2 ; GameType
+3 ; Beholder
+2 ; Beholder Speed
+2 ; Death Orb
+4 ; Death Orb Speed
+9 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+3 ; Brute
+2 ; Brute Speed
+0 ; Fighter
+0 ; Fighter Team
+0 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+1 ; Thief
+2 ; Thief Team
+1 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+16 ; dungeonx
+9 ; dungeony
+6  ; dungeonlvl
+0  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+1 ; Beholder
+2 ; Beholder Speed
+1 ; Death Orb
+1 ; Death Orb Speed
+9 ; Skeleton
+2 ; Skeleton Speed
+8 ; Mouther
+1 ; Mouther Speed
+3 ; Brute
+2 ; Brute Speed
+0 ; Fighter
+0 ; Fighter Team
+0 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+9 ; dungeonx
+18 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+The -a   are your friends.~~Gather -s   -t.
+Title
+1 ; GameType
+0 ; Beholder
+0 ; Beholder Speed
+0 ; Death Orb
+0 ; Death Orb Speed
+0 ; Skeleton
+0 ; Skeleton Speed
+0 ; Mouther
+0 ; Mouther Speed
+0 ; Brute
+0 ; Brute Speed
+5 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+17 ; dungeonx
+10 ; dungeony
+5  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+1 ; Beholder
+1 ; Beholder Speed
+1 ; Death Orb
+1 ; Death Orb Speed
+7 ; Skeleton
+2 ; Skeleton Speed
+8 ; Mouther
+1 ; Mouther Speed
+3 ; Brute
+2 ; Brute Speed
+0 ; Fighter
+0 ; Fighter Team
+0 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+15 ; dungeonx
+9 ; dungeony
+4  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find -p   and return it to -k   .~~Protect -u   from your enemies ( -c  -d).
+Episode 1
+2 ; GameType
+3 ; Beholder
+2 ; Beholder Speed
+2 ; Death Orb
+3 ; Death Orb Speed
+6 ; Skeleton
+2 ; Skeleton Speed
+6 ; Mouther
+1 ; Mouther Speed
+3 ; Brute
+2 ; Brute Speed
+1 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+1 ; Thief
+2 ; Thief Team
+1 ; Thief Speed
+1 ; Wizard
+2 ; Wizard Team
+1 ; Wizard Speed
+18 ; dungeonx
+18 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+2 ; Beholder Speed
+1 ; Death Orb
+1 ; Death Orb Speed
+10 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+2 ; Mouther Speed
+3 ; Brute
+2 ; Brute Speed
+0 ; Fighter
+0 ; Fighter Team
+0 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+15 ; dungeonx
+18 ; dungeony
+5  ; dungeonlvl
+0  ; pits (0=off 1=on)
+10 ; Max Pits
+The -a   is your friend.
+Title
+1 ; GameType
+0 ; Beholder
+0 ; Beholder Speed
+2 ; Death Orb
+1 ; Death Orb Speed
+8 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+3 ; Brute
+2 ; Brute Speed
+3 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+16 ; dungeonx
+14 ; dungeony
+5  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+2 ; Beholder
+1 ; Beholder Speed
+1 ; Death Orb
+1 ; Death Orb Speed
+15 ; Skeleton
+1 ; Skeleton Speed
+0 ; Mouther
+0 ; Mouther Speed
+3 ; Brute
+2 ; Brute Speed
+0 ; Fighter
+0 ; Fighter Team
+0 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+18 ; dungeonx
+10 ; dungeony
+5  ; dungeonlvl
+0  ; pits (0=off 1=on)
+10 ; Max Pits
+Find -p   and return it to -k   .~~Protect -u   from your enemies ( -c).
+Episode 1
+2 ; GameType
+2 ; Beholder
+1 ; Beholder Speed
+2 ; Death Orb
+1 ; Death Orb Speed
+9 ; Skeleton
+1 ; Skeleton Speed
+8 ; Mouther
+2 ; Mouther Speed
+3 ; Brute
+2 ; Brute Speed
+0 ; Fighter
+0 ; Fighter Team
+0 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+3 ; Thief
+2 ; Thief Team
+1 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+19 ; dungeony
+6  ; dungeonlvl
+0  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+2 ; Beholder Speed
+2 ; Death Orb
+1 ; Death Orb Speed
+7 ; Skeleton
+2 ; Skeleton Speed
+8 ; Mouther
+1 ; Mouther Speed
+3 ; Brute
+2 ; Brute Speed
+0 ; Fighter
+0 ; Fighter Team
+0 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+17 ; dungeonx
+17 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+2 ; Beholder
+1 ; Beholder Speed
+2 ; Death Orb
+1 ; Death Orb Speed
+7 ; Skeleton
+2 ; Skeleton Speed
+8 ; Mouther
+1 ; Mouther Speed
+6 ; Brute
+2 ; Brute Speed
+0 ; Fighter
+0 ; Fighter Team
+0 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+17 ; dungeonx
+17 ; dungeony
+6  ; dungeonlvl
+0  ; pits (0=off 1=on)
+10 ; Max Pits
+The -a   are your friends.~~Gather -s   -t.
+Title
+1 ; GameType
+0 ; Beholder
+0 ; Beholder Speed
+0 ; Death Orb
+0 ; Death Orb Speed
+0 ; Skeleton
+0 ; Skeleton Speed
+0 ; Mouther
+0 ; Mouther Speed
+0 ; Brute
+0 ; Brute Speed
+8 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+19 ; dungeony
+8  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+3 ; Death Orb
+1 ; Death Orb Speed
+9 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+0 ; Fighter
+0 ; Fighter Team
+0 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+0  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+7 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+0 ; Fighter
+0 ; Fighter Team
+0 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+0  ; pits (0=off 1=on)
+10 ; Max Pits
+The -a   is your friend.
+Title
+1 ; GameType
+0 ; Beholder
+0 ; Beholder Speed
+2 ; Death Orb
+1 ; Death Orb Speed
+8 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+3 ; Brute
+2 ; Brute Speed
+3 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+16 ; dungeonx
+14 ; dungeony
+5  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+2 ; Beholder
+1 ; Beholder Speed
+1 ; Death Orb
+1 ; Death Orb Speed
+15 ; Skeleton
+1 ; Skeleton Speed
+0 ; Mouther
+0 ; Mouther Speed
+3 ; Brute
+2 ; Brute Speed
+0 ; Fighter
+0 ; Fighter Team
+0 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+18 ; dungeonx
+10 ; dungeony
+5  ; dungeonlvl
+0  ; pits (0=off 1=on)
+10 ; Max Pits
+Find -p   and return it to -k   .~~Protect -u   from your enemies ( -c).
+Episode 1
+2 ; GameType
+2 ; Beholder
+1 ; Beholder Speed
+2 ; Death Orb
+1 ; Death Orb Speed
+9 ; Skeleton
+1 ; Skeleton Speed
+8 ; Mouther
+2 ; Mouther Speed
+3 ; Brute
+2 ; Brute Speed
+0 ; Fighter
+0 ; Fighter Team
+0 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+3 ; Thief
+2 ; Thief Team
+1 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+19 ; dungeony
+6  ; dungeonlvl
+0  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+2 ; Beholder Speed
+2 ; Death Orb
+1 ; Death Orb Speed
+7 ; Skeleton
+2 ; Skeleton Speed
+8 ; Mouther
+1 ; Mouther Speed
+3 ; Brute
+2 ; Brute Speed
+0 ; Fighter
+0 ; Fighter Team
+0 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+17 ; dungeonx
+17 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+2 ; Beholder
+1 ; Beholder Speed
+2 ; Death Orb
+1 ; Death Orb Speed
+7 ; Skeleton
+2 ; Skeleton Speed
+8 ; Mouther
+1 ; Mouther Speed
+6 ; Brute
+2 ; Brute Speed
+0 ; Fighter
+0 ; Fighter Team
+0 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+17 ; dungeonx
+17 ; dungeony
+6  ; dungeonlvl
+0  ; pits (0=off 1=on)
+10 ; Max Pits
+The -a   are your friends.~~Gather -s   -t.
+Title
+1 ; GameType
+0 ; Beholder
+0 ; Beholder Speed
+0 ; Death Orb
+0 ; Death Orb Speed
+0 ; Skeleton
+0 ; Skeleton Speed
+0 ; Mouther
+0 ; Mouther Speed
+0 ; Brute
+0 ; Brute Speed
+8 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+19 ; dungeony
+8  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+3 ; Death Orb
+1 ; Death Orb Speed
+9 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+0 ; Fighter
+0 ; Fighter Team
+0 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+0  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+7 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+0 ; Fighter
+0 ; Fighter Team
+0 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+0  ; pits (0=off 1=on)
+10 ; Max Pits
+The -a   is your friend.
+Title
+1 ; GameType
+0 ; Beholder
+0 ; Beholder Speed
+2 ; Death Orb
+1 ; Death Orb Speed
+8 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+3 ; Brute
+2 ; Brute Speed
+3 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+16 ; dungeonx
+14 ; dungeony
+5  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+2 ; Beholder
+1 ; Beholder Speed
+1 ; Death Orb
+1 ; Death Orb Speed
+15 ; Skeleton
+1 ; Skeleton Speed
+0 ; Mouther
+0 ; Mouther Speed
+3 ; Brute
+2 ; Brute Speed
+0 ; Fighter
+0 ; Fighter Team
+0 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+18 ; dungeonx
+10 ; dungeony
+5  ; dungeonlvl
+0  ; pits (0=off 1=on)
+10 ; Max Pits
+Find -p   and return it to -k   .~~Protect -u   from your enemies ( -c).
+Episode 1
+2 ; GameType
+2 ; Beholder
+1 ; Beholder Speed
+2 ; Death Orb
+1 ; Death Orb Speed
+9 ; Skeleton
+1 ; Skeleton Speed
+8 ; Mouther
+2 ; Mouther Speed
+3 ; Brute
+2 ; Brute Speed
+0 ; Fighter
+0 ; Fighter Team
+0 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+3 ; Thief
+2 ; Thief Team
+1 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+19 ; dungeony
+6  ; dungeonlvl
+0  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+2 ; Beholder Speed
+2 ; Death Orb
+1 ; Death Orb Speed
+7 ; Skeleton
+2 ; Skeleton Speed
+8 ; Mouther
+1 ; Mouther Speed
+3 ; Brute
+2 ; Brute Speed
+0 ; Fighter
+0 ; Fighter Team
+0 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+17 ; dungeonx
+17 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+2 ; Beholder
+1 ; Beholder Speed
+2 ; Death Orb
+1 ; Death Orb Speed
+7 ; Skeleton
+2 ; Skeleton Speed
+8 ; Mouther
+1 ; Mouther Speed
+6 ; Brute
+2 ; Brute Speed
+0 ; Fighter
+0 ; Fighter Team
+0 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+17 ; dungeonx
+17 ; dungeony
+6  ; dungeonlvl
+0  ; pits (0=off 1=on)
+10 ; Max Pits
+The -a   are your friends.~~Gather -s   -t.
+Title
+1 ; GameType
+0 ; Beholder
+0 ; Beholder Speed
+0 ; Death Orb
+0 ; Death Orb Speed
+0 ; Skeleton
+0 ; Skeleton Speed
+0 ; Mouther
+0 ; Mouther Speed
+0 ; Brute
+0 ; Brute Speed
+8 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+19 ; dungeony
+8  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+3 ; Death Orb
+1 ; Death Orb Speed
+9 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+0 ; Fighter
+0 ; Fighter Team
+0 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+0  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits
+Find the -p   and return it to -k   .~~Collect -s   and -t   .
+Episode 1
+1 ; GameType
+3 ; Beholder
+1 ; Beholder Speed
+4 ; Death Orb
+1 ; Death Orb Speed
+14 ; Skeleton
+2 ; Skeleton Speed
+9 ; Mouther
+1 ; Mouther Speed
+7 ; Brute
+2 ; Brute Speed
+4 ; Fighter
+1 ; Fighter Team
+1 ; Fighter Speed
+0 ; Cleric
+0 ; CLeric Team
+0 ; Cleric Speed
+0 ; Thief
+0 ; Thief Team
+0 ; Thief Speed
+0 ; Wizard
+0 ; Wizard Team
+0 ; Wizard Speed
+19 ; dungeonx
+15 ; dungeony
+6  ; dungeonlvl
+1  ; pits (0=off 1=on)
+10 ; Max Pits

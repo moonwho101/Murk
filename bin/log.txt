@@ -1,0 +1,407 @@
+10/28 20:36 DEBUG                 1                                  0    0   
+10/28 20:36 DEBUG                 2                                  0    0   
+10/28 20:36 DEBUG                 3                                  0    0   
+10/28 20:36 DEBUG                 4                                  0    0   
+10/28 20:36 DEBUG                 5                                  0    0   
+10/28 20:36 DEBUG                 6                                  0    0   
+10/28 20:36 DEBUG                 7                                  0    0   
+10/28 20:36 found floor                                              0    0   
+10/28 20:36 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:36 found floor                                              0    1   
+10/28 20:36 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:36 found floor                                              0    2   
+10/28 20:36 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:36 found floor                                              0    3   
+10/28 20:36 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:36 found floor                                              0    4   
+10/28 20:36 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:36 found floor                                              0    0   
+10/28 20:36 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:36 found floor                                              0    1   
+10/28 20:36 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:36 found floor                                              0    2   
+10/28 20:36 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:36 found floor                                              0    3   
+10/28 20:36 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:36 found floor                                              0    4   
+10/28 20:36 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:36 found floor                                              0    5   
+10/28 20:36 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:36 found floor                                              0    6   
+10/28 20:36 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:36 found floor                                              0    0   
+10/28 20:36 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:36 found floor                                              0    1   
+10/28 20:36 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:36 found floor                                              0    2   
+10/28 20:36 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:36 found floor                                              0    3   
+10/28 20:36 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:36 found floor                                              0    4   
+10/28 20:36 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:36 found floor                                              0    0   
+10/28 20:36 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:36 found floor                                              0    1   
+10/28 20:36 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:36 found floor                                              0    2   
+10/28 20:36 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:36 found floor                                              0    3   
+10/28 20:36 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:36 found floor                                              0    4   
+10/28 20:36 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:36 found floor                                              0    5   
+10/28 20:36 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:36 key                   key                                27   0   
+10/28 20:36 key                   key                                27   0   
+10/28 20:36 kill_dplay                                               0    0   
+10/28 20:36 kill_dplay            Finished kill_dplay                0    0   
+10/28 20:39 DEBUG                 1                                  0    0   
+10/28 20:39 DEBUG                 2                                  0    0   
+10/28 20:39 DEBUG                 3                                  0    0   
+10/28 20:39 DEBUG                 4                                  0    0   
+10/28 20:39 DEBUG                 5                                  0    0   
+10/28 20:39 DEBUG                 6                                  0    0   
+10/28 20:39 DEBUG                 7                                  0    0   
+10/28 20:39 found floor                                              0    0   
+10/28 20:39 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:39 found floor                                              0    1   
+10/28 20:39 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:39 found floor                                              0    2   
+10/28 20:39 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:39 found floor                                              0    3   
+10/28 20:39 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:39 found floor                                              0    4   
+10/28 20:39 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:39 found floor                                              0    0   
+10/28 20:39 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:39 found floor                                              0    1   
+10/28 20:39 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:39 found floor                                              0    2   
+10/28 20:39 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:39 found floor                                              0    0   
+10/28 20:39 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:39 found floor                                              0    1   
+10/28 20:39 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:39 found floor                                              0    2   
+10/28 20:39 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:39 found floor                                              0    3   
+10/28 20:39 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:39 found floor                                              0    0   
+10/28 20:39 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:39 found floor                                              0    1   
+10/28 20:39 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:39 found floor                                              0    2   
+10/28 20:39 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:39 found floor                                              0    3   
+10/28 20:39 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:39 found floor                                              0    4   
+10/28 20:39 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:39 found floor                                              0    5   
+10/28 20:39 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:39 found floor                                              0    6   
+10/28 20:39 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:39 found floor                                              0    7   
+10/28 20:39 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:39 found floor                                              0    8   
+10/28 20:39 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:39 found floor                                              0    9   
+10/28 20:39 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:39 kill_dplay                                               0    0   
+10/28 20:39 kill_dplay            Finished kill_dplay                0    0   
+10/28 20:42 DEBUG                 1                                  0    0   
+10/28 20:42 DEBUG                 2                                  0    0   
+10/28 20:43 DEBUG                 3                                  0    0   
+10/28 20:43 DEBUG                 4                                  0    0   
+10/28 20:43 DEBUG                 5                                  0    0   
+10/28 20:43 DEBUG                 6                                  0    0   
+10/28 20:43 DEBUG                 7                                  0    0   
+10/28 20:43 found floor                                              0    0   
+10/28 20:43 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:43 found floor                                              0    1   
+10/28 20:43 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:43 found floor                                              0    2   
+10/28 20:43 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:43 found floor                                              0    3   
+10/28 20:43 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:43 found floor                                              0    0   
+10/28 20:43 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:43 found floor                                              0    1   
+10/28 20:43 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:43 found floor                                              0    2   
+10/28 20:43 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:43 found floor                                              0    3   
+10/28 20:43 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:43 found floor                                              0    0   
+10/28 20:43 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:43 found floor                                              0    1   
+10/28 20:43 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:43 found floor                                              0    2   
+10/28 20:43 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:43 found floor                                              0    3   
+10/28 20:43 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:43 found floor                                              0    0   
+10/28 20:43 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:43 found floor                                              0    1   
+10/28 20:43 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:43 found floor                                              0    2   
+10/28 20:43 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:43 found floor                                              0    3   
+10/28 20:43 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:43 found floor                                              0    4   
+10/28 20:43 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:43 kill_dplay                                               0    0   
+10/28 20:43 kill_dplay            Finished kill_dplay                0    0   
+10/28 20:44 DEBUG                 1                                  0    0   
+10/28 20:44 DEBUG                 2                                  0    0   
+10/28 20:44 DEBUG                 3                                  0    0   
+10/28 20:44 DEBUG                 4                                  0    0   
+10/28 20:44 DEBUG                 5                                  0    0   
+10/28 20:44 DEBUG                 6                                  0    0   
+10/28 20:44 DEBUG                 7                                  0    0   
+10/28 20:44 found floor                                              0    0   
+10/28 20:44 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:44 found floor                                              0    1   
+10/28 20:44 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:44 found floor                                              0    2   
+10/28 20:44 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:44 found floor                                              0    3   
+10/28 20:44 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:44 found floor                                              0    0   
+10/28 20:44 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:44 found floor                                              0    1   
+10/28 20:44 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:44 found floor                                              0    2   
+10/28 20:44 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:44 found floor                                              0    3   
+10/28 20:44 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:44 found floor                                              0    4   
+10/28 20:44 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:44 found floor                                              0    0   
+10/28 20:44 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:44 found floor                                              0    1   
+10/28 20:44 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:44 found floor                                              0    2   
+10/28 20:44 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:44 found floor                                              0    3   
+10/28 20:44 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:44 found floor                                              0    4   
+10/28 20:44 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:44 found floor                                              0    5   
+10/28 20:44 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:44 found floor                                              0    0   
+10/28 20:44 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:44 found floor                                              0    1   
+10/28 20:44 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:44 found floor                                              0    2   
+10/28 20:44 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:44 found floor                                              0    3   
+10/28 20:44 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:44 found floor                                              0    4   
+10/28 20:44 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:44 found floor                                              0    5   
+10/28 20:44 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:44 key                   key                                27   0   
+10/28 20:44 kill_dplay                                               0    0   
+10/28 20:44 kill_dplay            Finished kill_dplay                0    0   
+10/28 20:49 DEBUG                 1                                  0    0   
+10/28 20:49 DEBUG                 2                                  0    0   
+10/28 20:49 DEBUG                 3                                  0    0   
+10/28 20:49 DEBUG                 4                                  0    0   
+10/28 20:49 DEBUG                 5                                  0    0   
+10/28 20:49 DEBUG                 6                                  0    0   
+10/28 20:49 DEBUG                 7                                  0    0   
+10/28 20:49 found floor                                              0    0   
+10/28 20:49 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:49 found floor                                              0    1   
+10/28 20:49 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:49 found floor                                              0    2   
+10/28 20:49 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:49 found floor                                              0    3   
+10/28 20:49 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:49 found floor                                              0    0   
+10/28 20:49 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:49 found floor                                              0    1   
+10/28 20:49 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:49 found floor                                              0    2   
+10/28 20:49 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:49 found floor                                              0    3   
+10/28 20:49 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:49 found floor                                              0    4   
+10/28 20:49 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:49 found floor                                              0    5   
+10/28 20:49 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:49 found floor                                              0    6   
+10/28 20:49 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:49 key                   key                                91   0   
+10/28 20:49 key                   key                                91   0   
+10/28 20:49 key                   key                                91   0   
+10/28 20:49 key                   key                                91   0   
+10/28 20:49 key                   key                                91   0   
+10/28 20:49 key                   key                                91   0   
+10/28 20:49 key                   key                                91   0   
+10/28 20:49 key                   key                                91   0   
+10/28 20:49 key                   key                                91   0   
+10/28 20:49 key                   key                                91   0   
+10/28 20:49 key                   key                                91   0   
+10/28 20:49 key                   key                                91   0   
+10/28 20:49 key                   key                                91   0   
+10/28 20:49 key                   key                                91   0   
+10/28 20:50 key                   key                                27   0   
+10/28 20:50 kill_dplay                                               0    0   
+10/28 20:50 kill_dplay            Finished kill_dplay                0    0   
+10/28 20:51 DEBUG                 1                                  0    0   
+10/28 20:51 DEBUG                 2                                  0    0   
+10/28 20:51 DEBUG                 3                                  0    0   
+10/28 20:51 DEBUG                 4                                  0    0   
+10/28 20:51 DEBUG                 5                                  0    0   
+10/28 20:51 DEBUG                 6                                  0    0   
+10/28 20:51 DEBUG                 7                                  0    0   
+10/28 20:51 found floor                                              0    0   
+10/28 20:51 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:51 found floor                                              0    1   
+10/28 20:51 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:51 found floor                                              0    2   
+10/28 20:51 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:51 found floor                                              0    3   
+10/28 20:51 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:51 found floor                                              0    0   
+10/28 20:51 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:51 found floor                                              0    1   
+10/28 20:51 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:51 found floor                                              0    2   
+10/28 20:51 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:51 found floor                                              0    0   
+10/28 20:51 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:51 found floor                                              0    1   
+10/28 20:51 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:51 found floor                                              0    2   
+10/28 20:51 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:51 found floor                                              0    3   
+10/28 20:51 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:51 found floor                                              0    4   
+10/28 20:51 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:51 found floor                                              0    0   
+10/28 20:51 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:51 found floor                                              0    1   
+10/28 20:51 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:51 found floor                                              0    2   
+10/28 20:51 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:51 found floor                                              0    3   
+10/28 20:51 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:51 found floor                                              0    4   
+10/28 20:51 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:51 found floor                                              0    5   
+10/28 20:51 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:51 found floor                                              0    6   
+10/28 20:51 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:51 found floor                                              0    7   
+10/28 20:51 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:52 key                   key                                27   0   
+10/28 20:52 kill_dplay                                               0    0   
+10/28 20:52 kill_dplay            Finished kill_dplay                0    0   
+10/28 20:53 DEBUG                 1                                  0    0   
+10/28 20:53 DEBUG                 2                                  0    0   
+10/28 20:53 DEBUG                 3                                  0    0   
+10/28 20:53 DEBUG                 4                                  0    0   
+10/28 20:53 DEBUG                 5                                  0    0   
+10/28 20:53 DEBUG                 6                                  0    0   
+10/28 20:53 DEBUG                 7                                  0    0   
+10/28 20:53 found floor                                              0    0   
+10/28 20:53 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:53 found floor                                              0    1   
+10/28 20:53 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:53 found floor                                              0    2   
+10/28 20:53 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:53 found floor                                              0    3   
+10/28 20:53 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:53 found floor                                              0    4   
+10/28 20:53 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:53 found floor                                              0    0   
+10/28 20:53 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:53 found floor                                              0    1   
+10/28 20:53 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:53 found floor                                              0    2   
+10/28 20:53 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:53 found floor                                              0    3   
+10/28 20:53 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:53 found floor                                              0    4   
+10/28 20:53 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:53 found floor                                              0    5   
+10/28 20:53 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:53 found floor                                              0    6   
+10/28 20:53 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:53 found floor                                              0    7   
+10/28 20:53 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:53 found floor                                              0    0   
+10/28 20:53 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:53 found floor                                              0    1   
+10/28 20:53 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:53 found floor                                              0    2   
+10/28 20:53 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:53 found floor                                              0    0   
+10/28 20:53 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:53 found floor                                              0    1   
+10/28 20:53 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:53 found floor                                              0    2   
+10/28 20:53 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:53 found floor                                              0    3   
+10/28 20:53 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:53 key                   key                                27   0   
+10/28 20:53 kill_dplay                                               0    0   
+10/28 20:53 kill_dplay            Finished kill_dplay                0    0   
+10/28 20:58 found floor                                              0    0   
+10/28 20:58 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:58 found floor                                              0    1   
+10/28 20:58 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:58 found floor                                              0    2   
+10/28 20:58 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:58 found floor                                              0    0   
+10/28 20:58 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:58 found floor                                              0    1   
+10/28 20:58 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:58 found floor                                              0    2   
+10/28 20:58 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:58 found floor                                              0    3   
+10/28 20:58 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:58 found floor                                              0    4   
+10/28 20:58 generate_dungeon      NO STAIRS!                         0    0   
+10/28 20:58 kill_dplay                                               0    0   
+10/28 20:58 kill_dplay            Finished kill_dplay                0    0   
+10/28 21:03 found floor                                              0    0   
+10/28 21:03 generate_dungeon      NO STAIRS!                         0    0   
+10/28 21:03 found floor                                              0    1   
+10/28 21:03 generate_dungeon      NO STAIRS!                         0    0   
+10/28 21:03 found floor                                              0    2   
+10/28 21:03 generate_dungeon      NO STAIRS!                         0    0   
+10/28 21:03 found floor                                              0    3   
+10/28 21:03 generate_dungeon      NO STAIRS!                         0    0   
+10/28 21:03 found floor                                              0    4   
+10/28 21:03 generate_dungeon      NO STAIRS!                         0    0   
+10/28 21:03 found floor                                              0    0   
+10/28 21:03 generate_dungeon      NO STAIRS!                         0    0   
+10/28 21:03 found floor                                              0    1   
+10/28 21:03 generate_dungeon      NO STAIRS!                         0    0   
+10/28 21:03 found floor                                              0    2   
+10/28 21:03 generate_dungeon      NO STAIRS!                         0    0   
+10/28 21:03 found floor                                              0    0   
+10/28 21:03 generate_dungeon      NO STAIRS!                         0    0   
+10/28 21:03 found floor                                              0    1   
+10/28 21:03 generate_dungeon      NO STAIRS!                         0    0   
+10/28 21:03 found floor                                              0    2   
+10/28 21:03 generate_dungeon      NO STAIRS!                         0    0   
+10/28 21:03 found floor                                              0    0   
+10/28 21:03 generate_dungeon      NO STAIRS!                         0    0   
+10/28 21:03 found floor                                              0    1   
+10/28 21:03 generate_dungeon      NO STAIRS!                         0    0   
+10/28 21:03 found floor                                              0    2   
+10/28 21:03 generate_dungeon      NO STAIRS!                         0    0   
+10/28 21:03 found floor                                              0    3   
+10/28 21:03 generate_dungeon      NO STAIRS!                         0    0   
+10/28 21:03 found floor                                              0    4   
+10/28 21:03 generate_dungeon      NO STAIRS!                         0    0   
+10/28 21:03 found floor                                              0    5   
+10/28 21:03 generate_dungeon      NO STAIRS!                         0    0   
+10/28 21:03 key                   key                                27   0   
+10/28 21:03 key                   key                                27   0   
+10/28 21:03 kill_dplay                                               0    0   
+10/28 21:03 kill_dplay            Finished kill_dplay                0    0   
