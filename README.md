@@ -4,7 +4,7 @@ Murk is a 2D isometric dungeon game written in 1998 by Mark Longo, using Microso
 
 ![Dungeon Stomp](../main/artwork/murk256.jpg)
 
-![Dungeon Stomp](../main/artwork/Murk01.jpg)
+<img src="https://github.com/moonwho101/Murk/blob/main/artwork/Murk01.jpg" width="800" height="600">
 
 ## Mouse Controls
 
@@ -28,4 +28,12 @@ Murk is a 2D isometric dungeon game written in 1998 by Mark Longo, using Microso
 * Compile using Microsoft Visual Studio 2022 Community Edition. 
 * Installer Individual components C++ v14.42 (17.12) MFC for v143 build tools (x86 & x64)
 * Compile in 'Release' mode.
+
+## Windows95 Game SDK (DirectX 1.0)
+
+<p align="center">
+<img src="https://github.com/moonwho101/Murk/blob/main/artwork/Windows95GameSDK.jpg" width="300" height="300" align="center">
+</p>
+
+![Dungeon Stomp](../main/artwork/DirectX.jpg)
 
