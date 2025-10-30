@@ -35,5 +35,7 @@ Murk is a 2D isometric dungeon game written in 1998 by Mark Longo, using Microso
 <img src="https://github.com/moonwho101/Murk/blob/main/artwork/Windows95GameSDK.jpg" width="300" height="300" align="center">
 </p>
 
-![Dungeon Stomp](../main/artwork/DirectX.jpg)
+<p align="center">
+<img src="https://github.com/moonwho101/Murk/blob/main/artwork/DirectX.jpg" width="800" height="600" align="center">
+</p>
 
