@@ -1,9 +1,8 @@
-//Murk Function Declares
+// Murk Function Declares
 
-
-//#include <afx.h>
-//#include <winsock2.h>
-//#include <windows.h>
+// #include <afx.h>
+// #include <winsock2.h>
+// #include <windows.h>
 #include <string.h>
 #include <winuser.h>
 #include "resource.h"
@@ -13,7 +12,7 @@
 #include "cmydd.h"
 
 LRESULT APIENTRY WndProc(HWND hWnd, UINT message,
-	WPARAM wParam, LPARAM lParam);
+                         WPARAM wParam, LPARAM lParam);
 void read_levels(void);
 // Function prototypes.
 BOOL CALLBACK DlgProcQCreate(HWND hDlg, UINT msg, WPARAM wParam, LPARAM lParam);
@@ -44,7 +43,7 @@ void wakeup_sleepy_heads(void);
 void generate_dungeon(void);
 void OnKeyDown(WPARAM wParam);
 void OnDestroy();
-void LoadFloorDibs(char* p);
+void LoadFloorDibs(char *p);
 void LoadDudeDibs(UINT floor);
 void ShowPlayer(int animate);
 void animate_player(int startpos);
@@ -53,7 +52,7 @@ void OnTimer(void);
 void init_dungeon(void);
 void display_dungeon(int player);
 
-void debug_me(char* u, char* s, int a, int b);
+void debug_me(char *u, char *s, int a, int b);
 void clear_log();
 void check_dungeon(void);
 void make_your_move(void);
@@ -78,13 +77,12 @@ int monster_shoot(void);
 void movedown();
 void computermove();
 void checkmovenum();
-void player_found_something(char* item);
+void player_found_something(char *item);
 void destination();
 void check_dead();
 void assign_elixir(int length);
 void kill_current(int loser, int dropit, int die);
 void kill_notcurrent(int loser, int dropit, int die);
-
 
 void handle_mouse(int x, int y);
 int findstairs(char way);
@@ -102,8 +100,6 @@ void show_missle(void);
 void start_missle(int x, int y, int dir, int lvl, int sx, int sy, int owner);
 void monster_cop();
 void message(void);
-
-
 
 void send_chat(int client);
 void send_dungeon_square(int x, int y, int lvl, int forsure);
@@ -129,14 +125,9 @@ void send_deleteme();
 void reset_networkserver();
 void send_new_level();
 
-
-
 void send_stoptimer(int slot);
 void send_settimer(int slot);
 void init_chat();
-
-
-
 
 void make_thread2();
 void createthread();
@@ -147,7 +138,6 @@ void clear_dungeon();
 void swap_players();
 void apply_body_damage(int loser, int winner);
 void went_up_level();
-
 
 LRESULT PerformMenuCommand(HWND hWnd, WPARAM wParam);
 int save_server_settings();

@@ -18,88 +18,72 @@
 static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
-
 //-----------------------------------------------------------------
 // CServerSelDlg Message Map & Runtime Support
 //-----------------------------------------------------------------
 BEGIN_MESSAGE_MAP(CServerSelDlg, CDialog)
-  ON_LBN_DBLCLK(IDC_LB_SERVERS, OnDblClkList)
+ON_LBN_DBLCLK(IDC_LB_SERVERS, OnDblClkList)
 END_MESSAGE_MAP()
 
 //-----------------------------------------------------------------
 // CServerSelDlg Public Constructor(s)/Destructor
 //-----------------------------------------------------------------
-CServerSelDlg::CServerSelDlg(CWnd* pParent)
-  : CDialog(CServerSelDlg::IDD, pParent), m_pguidSelServer(NULL)
-{
+CServerSelDlg::CServerSelDlg(CWnd *pParent)
+    : CDialog(CServerSelDlg::IDD, pParent), m_pguidSelServer(NULL) {
 }
 
-CServerSelDlg::~CServerSelDlg()
-{
+CServerSelDlg::~CServerSelDlg() {
 }
 
 //-----------------------------------------------------------------
 // CServerSelDlg Protected Methods
 //-----------------------------------------------------------------
-BOOL
-CServerSelDlg::OnInitDialog() 
-{
-  CDialog::OnInitDialog();
+BOOL CServerSelDlg::OnInitDialog() {
+	CDialog::OnInitDialog();
 
-  // Enumerate DP servers
-  if (::DirectPlayEnumerate(EnumServers, (LPVOID)this) == DP_OK)
-    m_lbServers.SetCurSel(0);
-  else
-    EndDialog(FALSE);
+	// Enumerate DP servers
+	if (::DirectPlayEnumerate(EnumServers, (LPVOID)this) == DP_OK)
+		m_lbServers.SetCurSel(0);
+	else
+		EndDialog(FALSE);
 
-  return TRUE;
+	return TRUE;
 }
 
-void
-CServerSelDlg::DoDataExchange(CDataExchange* pDX)
-{
-  CDialog::DoDataExchange(pDX);
+void CServerSelDlg::DoDataExchange(CDataExchange *pDX) {
+	CDialog::DoDataExchange(pDX);
 
-  // Initialize listbox member variable
-  DDX_Control(pDX, IDC_LB_SERVERS, m_lbServers);
+	// Initialize listbox member variable
+	DDX_Control(pDX, IDC_LB_SERVERS, m_lbServers);
 }
 
-void
-CServerSelDlg::OnOK()
-{
-  // Get current listbox selection
-  int iIndex = m_lbServers.GetCurSel();
-  if (iIndex != LB_ERR)
-  {
-    m_pguidSelServer = (LPGUID)m_lbServers.GetItemData(iIndex);
-    CDialog::OnOK();
-  }
+void CServerSelDlg::OnOK() {
+	// Get current listbox selection
+	int iIndex = m_lbServers.GetCurSel();
+	if (iIndex != LB_ERR) {
+		m_pguidSelServer = (LPGUID)m_lbServers.GetItemData(iIndex);
+		CDialog::OnOK();
+	}
 }
 
 BOOL FAR PASCAL
-CServerSelDlg::EnumServers(LPGUID pguidID, LPSTR pszName, DWORD
-  dwMajorVersion, DWORD dwMinorVersion, LPVOID pData)
-{
-  // Call non-static EnumServers with server ID and name
-  ASSERT((CServerSelDlg*)pData);
-  ((CServerSelDlg*)pData)->EnumServers((DWORD)pguidID, pszName);
+CServerSelDlg::EnumServers(LPGUID pguidID, LPSTR pszName, DWORD dwMajorVersion, DWORD dwMinorVersion, LPVOID pData) {
+	// Call non-static EnumServers with server ID and name
+	ASSERT((CServerSelDlg *)pData);
+	((CServerSelDlg *)pData)->EnumServers((DWORD)pguidID, pszName);
 
-  return TRUE;
+	return TRUE;
 }
 
-void
-CServerSelDlg::EnumServers(DWORD dwID, const CString& sName)
-{
-  // Add name to listbox and set item data to ID
-  int iIndex = m_lbServers.AddString(sName);
-  m_lbServers.SetItemData(iIndex, dwID);
+void CServerSelDlg::EnumServers(DWORD dwID, const CString &sName) {
+	// Add name to listbox and set item data to ID
+	int iIndex = m_lbServers.AddString(sName);
+	m_lbServers.SetItemData(iIndex, dwID);
 }
 
 //-----------------------------------------------------------------
 // CServerSelDlg Message Handler Methods
 //-----------------------------------------------------------------
-void
-CServerSelDlg::OnDblClkList()
-{
-  OnOK();
+void CServerSelDlg::OnDblClkList() {
+	OnOK();
 }

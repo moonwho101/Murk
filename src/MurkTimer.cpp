@@ -1,5 +1,5 @@
 
-//  Murk Ver 1.12 By Mark Longo 
+//  Murk Ver 1.12 By Mark Longo
 //  Copyright 1999  , All Rights Reserver.
 #include "stdafx.h"
 
@@ -7,7 +7,7 @@
 #include "murkcommon.h"
 
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 extern void check_mouse();
 extern void play_random_music();
@@ -34,8 +34,7 @@ void CALLBACK EXPORT TimerProc(HWND hWnd, UINT nMsg, UINT nIDEvent, DWORD dwTime
 			//		assign_pit();
 			//			assign_elixir(2+maxlevel);
 		}
-	}
-	else if (nIDEvent == 1) {
+	} else if (nIDEvent == 1) {
 		if (hitanykey == 1) {
 			showmission++;
 			hitanykey = 0;
@@ -49,52 +48,42 @@ void CALLBACK EXPORT TimerProc(HWND hWnd, UINT nMsg, UINT nIDEvent, DWORD dwTime
 					//					if (m_directSoundOK)
 					//						stop_song() ;
 
-					//					if (m_directSoundOK) 
+					//					if (m_directSoundOK)
 					//					play_random_music();
 					SetTimer(hWindow, 3, timerlength, TimerProc);
 				}
-
 			}
-		}
-		else {
+		} else {
 			if (showmission == 0) {
 				if (!networkserver) {
 					countlevels = 0;
 					levelcounter = 1;
 					setability = 1;
 					showsplash();
-
 				}
-			}
-			else if (showmission == 1) {
+			} else if (showmission == 1) {
 				if (!networkserver) {
 					pDirDraw->ClearSurface(BACKBUFFERNUM);
 					showselect();
 					resultok = pDirDraw->FlipSurfaces();
-
 				}
-			}
-			else if (showmission == 2) {
+			} else if (showmission == 2) {
 				if (!networkserver) {
 					pDirDraw->ClearSurface(BACKBUFFERNUM);
 					showscroll();
 					sendtext("test");
 					resultok = pDirDraw->FlipSurfaces();
-
 				}
-			}
-			else if (showmission == 4) {
+			} else if (showmission == 4) {
 				if (!networkserver) {
 					pDirDraw->ClearSurface(BACKBUFFERNUM);
 					showscroll();
 					sendtext("test");
 					resultok = pDirDraw->FlipSurfaces();
-
 				}
 			}
 		}
-	}
-	else if (nIDEvent == 3) {
+	} else if (nIDEvent == 3) {
 		if (framemove == 0) {
 			framemove = 1;
 
@@ -104,9 +93,5 @@ void CALLBACK EXPORT TimerProc(HWND hWnd, UINT nMsg, UINT nIDEvent, DWORD dwTime
 				check_input();
 			framemove = 0;
 		}
-
-
 	}
 }
-
-

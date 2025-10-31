@@ -2,68 +2,68 @@
 // Microsoft Developer Studio generated include file.
 // Used by aztec.rc
 //
-#define IDI_ICON1                       101
-#define IDD_REMCONNABORTDLG             106
-#define IDI_ICON2                       106
-#define IDD_NETWORK                     107
-#define IDD_Q_CREATE                    108
-#define IDD_REG                         109
-#define IDD_DIALOG1                     110
-#define IDD_CHOOSEPROVIDER              129
-#define IDD_SELSESSION                  130
-#define IDR_MIDS1                       140
-#define IDR_MIDS2                       141
-#define IDR_MIDS3                       142
-#define IDR_MIDS4                       143
-#define IDI_TICTACTOE                   1000
-#define IDC_RADIO1                      1000
-#define IDC_RADIO2                      1001
-#define IDC_OK                          1002
-#define IDC_CANCEL                      1003
-#define IDC_EDIT1                       1004
-#define IDC_CREATE                      1005
-#define IDC_CONNECT                     1006
-#define IDC_EDIT2                       1006
-#define IDC_EDIT3                       1008
-#define IDC_LIST1                       1021
-#define IDC_LB_SESSION                  1024
-#define IDB_GRID                        3000
-#define IDB_EMPTY                       3001
-#define IDB_X                           3002
-#define IDB_O                           3003
-#define IDW_X                           4000
-#define IDW_O                           4001
-#define IDW_ERROR                       4002
-#define IDW_WIN                         4003
-#define IDW_LOSE                        4004
-#define IDW_DRAW                        4005
-#define IDT_DPCOMM                      5000
-#define IDMS_GONEOUT                    5000
-#define IDM_MAIN                        6000
-#define IDM_GAME_CREATE                 6001
-#define IDM_GAME_CONNECT                6002
-#define IDM_GAME_END                    6003
-#define IDM_GAME_EXIT                   6004
-#define IDD_SERVERSEL                   7000
-#define IDC_LB_SERVERS                  7001
-#define IDD_SESSIONSEL                  7010
-#define IDC_LB_SESSIONS                 7011
-#define IDD_PLAYERSEL                   7020
-#define IDC_LB_PLAYERS                  7021
-#define IDD_GAMETYPE                    7022
-#define IDD_PLAYERINFO                  7030
-#define IDC_EB_FRIENDLYNAME             7031
-#define IDC_EB_FORMALNAME               7032
-#define IDD_SESSIONINFO                 7040
-#define IDC_EB_NAME                     7041
+#define IDI_ICON1 101
+#define IDD_REMCONNABORTDLG 106
+#define IDI_ICON2 106
+#define IDD_NETWORK 107
+#define IDD_Q_CREATE 108
+#define IDD_REG 109
+#define IDD_DIALOG1 110
+#define IDD_CHOOSEPROVIDER 129
+#define IDD_SELSESSION 130
+#define IDR_MIDS1 140
+#define IDR_MIDS2 141
+#define IDR_MIDS3 142
+#define IDR_MIDS4 143
+#define IDI_TICTACTOE 1000
+#define IDC_RADIO1 1000
+#define IDC_RADIO2 1001
+#define IDC_OK 1002
+#define IDC_CANCEL 1003
+#define IDC_EDIT1 1004
+#define IDC_CREATE 1005
+#define IDC_CONNECT 1006
+#define IDC_EDIT2 1006
+#define IDC_EDIT3 1008
+#define IDC_LIST1 1021
+#define IDC_LB_SESSION 1024
+#define IDB_GRID 3000
+#define IDB_EMPTY 3001
+#define IDB_X 3002
+#define IDB_O 3003
+#define IDW_X 4000
+#define IDW_O 4001
+#define IDW_ERROR 4002
+#define IDW_WIN 4003
+#define IDW_LOSE 4004
+#define IDW_DRAW 4005
+#define IDT_DPCOMM 5000
+#define IDMS_GONEOUT 5000
+#define IDM_MAIN 6000
+#define IDM_GAME_CREATE 6001
+#define IDM_GAME_CONNECT 6002
+#define IDM_GAME_END 6003
+#define IDM_GAME_EXIT 6004
+#define IDD_SERVERSEL 7000
+#define IDC_LB_SERVERS 7001
+#define IDD_SESSIONSEL 7010
+#define IDC_LB_SESSIONS 7011
+#define IDD_PLAYERSEL 7020
+#define IDC_LB_PLAYERS 7021
+#define IDD_GAMETYPE 7022
+#define IDD_PLAYERINFO 7030
+#define IDC_EB_FRIENDLYNAME 7031
+#define IDC_EB_FORMALNAME 7032
+#define IDD_SESSIONINFO 7040
+#define IDC_EB_NAME 7041
 
 // Next default values for new objects
-// 
+//
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        144
-#define _APS_NEXT_COMMAND_VALUE         40001
-#define _APS_NEXT_CONTROL_VALUE         1011
-#define _APS_NEXT_SYMED_VALUE           101
+#define _APS_NEXT_RESOURCE_VALUE 144
+#define _APS_NEXT_COMMAND_VALUE 40001
+#define _APS_NEXT_CONTROL_VALUE 1011
+#define _APS_NEXT_SYMED_VALUE 101
 #endif
 #endif

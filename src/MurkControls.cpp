@@ -1,4 +1,4 @@
-//  Murk Ver 1.12 By Mark Longo 
+//  Murk Ver 1.12 By Mark Longo
 //  Copyright 1999  , All Rights Reserver.
 #include "stdafx.h"
 
@@ -12,7 +12,7 @@
 extern BOOL CALLBACK DlgProcChooseProvider(HWND hDlg, UINT msg, WPARAM wParam, LPARAM lParam);
 
 extern BOOL FAR PASCAL EnumSession(LPDPSESSIONDESC lpDPGameDesc, LPVOID lpContext,
-	LPDWORD lpdwTimeOut, DWORD dwFlags);
+                                   LPDWORD lpdwTimeOut, DWORD dwFlags);
 extern BOOL CALLBACK DlgProcSelSession(HWND hDlg, UINT msg, WPARAM wParam, LPARAM lParam);
 extern void serversettings(int go);
 void send_drop_treasure(int treasure);
@@ -26,13 +26,11 @@ extern int save_game();
 extern int load_game();
 
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 int backgroundcolour = 0;
 
-
-void OnCharDown(WPARAM wParam)
-{
+void OnCharDown(WPARAM wParam) {
 
 	char junk[512];
 
@@ -70,7 +68,6 @@ void OnCharDown(WPARAM wParam)
 		return;
 	}
 
-
 	if (chaton == 1 && wParam == 8) {
 
 		x = strlen(networkresponse) - 2;
@@ -80,7 +77,6 @@ void OnCharDown(WPARAM wParam)
 		networkresponse[x] = '>';
 		networkresponse[x + 1] = '\0';
 	}
-
 
 	if (chaton == 1 && wParam >= 32 && wParam <= 122) {
 		if (strlen(networkresponse) <= 35) {
@@ -92,11 +88,9 @@ void OnCharDown(WPARAM wParam)
 	}
 
 	if (!chaton) {
-		if (wParam == 67 || wParam == 99)
-		{
+		if (wParam == 67 || wParam == 99) {
 			strcpy(networkresponse, ">");
 			chaton = 1;
-
 		}
 	}
 	if (chaton == 1 && wParam == VK_ESCAPE) {
@@ -105,12 +99,7 @@ void OnCharDown(WPARAM wParam)
 	}
 }
 
-
-
-
-
-void OnKeyDown(WPARAM wParam)
-{
+void OnKeyDown(WPARAM wParam) {
 
 	int result;
 
@@ -123,19 +112,17 @@ void OnKeyDown(WPARAM wParam)
 	int image;
 	int armr;
 
-	int	d1;
-	int	d2;
+	int d1;
+	int d2;
 	int mmissle;
-	int	frate;
+	int frate;
 
 	debug_me("key", "key", wParam, 0);
-
 
 	if (wParam == 32 && networkserver) {
 		find_tcp_ipx();
 		return;
 	}
-
 
 	if (wParam == VK_F5 && showmission == 3) {
 
@@ -146,69 +133,55 @@ void OnKeyDown(WPARAM wParam)
 				m_pDirSound->PlaySound(m_bufferProtection);
 
 			return;
-
 		}
-
-
 	}
 
-	if (wParam == VK_F1 && showmission == 3)
-	{
+	if (wParam == VK_F1 && showmission == 3) {
 		if (m_directSoundOK)
 			m_pDirSound->PlaySound(m_bufferProtection);
 
-
-		//		KillTimer(hWindow, 2);	
+		//		KillTimer(hWindow, 2);
 		KillTimer(hWindow, 3);
 		hitanykey = 0;
 		showmission = 2;
 		bdown = 0;
 		SetTimer(hWindow, 1, 50, TimerProc);
 		helpscreen = 1;
-		//		KillTimer(hWindow, 1);	
-
+		//		KillTimer(hWindow, 1);
 	}
 
-
-	if (wParam == VK_F2 && showmission == 3)
-	{
+	if (wParam == VK_F2 && showmission == 3) {
 
 		if (m_directSoundOK)
 			m_pDirSound->PlaySound(m_bufferProtection);
 		mousehitx = 0;
 		mousehity = 0;
 
-		//		KillTimer(hWindow, 2);	
+		//		KillTimer(hWindow, 2);
 		KillTimer(hWindow, 3);
 		hitanykey = 0;
 		showmission = 2;
 		bdown = 0;
 		SetTimer(hWindow, 1, 50, TimerProc);
 		//		helpscreen=2;
-		//		KillTimer(hWindow, 1);	
-
+		//		KillTimer(hWindow, 1);
 	}
 
-	if (wParam == VK_F11)
-	{
+	if (wParam == VK_F11) {
 
 		backgroundcolour++;
-
 	}
 
-	if (wParam == VK_F12)
-	{
+	if (wParam == VK_F12) {
 
 		backgroundcolour--;
 
-		//jump level
-	//	PlayerLocation[1].skill = advancelevel+1;		
-	//	went_up_level();
+		// jump level
+		//	PlayerLocation[1].skill = advancelevel+1;
+		//	went_up_level();
 	}
 
-
-	if (wParam == VK_F3 && showmission == 3)
-	{
+	if (wParam == VK_F3 && showmission == 3) {
 
 		mousehitx = 0;
 		mousehity = 0;
@@ -218,62 +191,45 @@ void OnKeyDown(WPARAM wParam)
 
 		hitanykey = 0;
 
-
 		if (networkgame) {
 
 			strcpy(chat[0].say, "Murk: Cannot save in network game");
 			chat[0].duration = 50;
 
-
-		}
-		else if (shareware) {
+		} else if (shareware) {
 			strcpy(chat[0].say, "Murk: Cannot save in SHAREWARE version");
 			chat[0].duration = 50;
 
-
-		}
-		else {
+		} else {
 			result = save_game();
 
 			if (result) {
 				strcpy(chat[0].say, "Murk: Game Saved...");
 				chat[0].duration = 50;
-			}
-			else {
+			} else {
 				strcpy(chat[0].say, "Murk: Could not save game...");
 				chat[0].duration = 50;
 			}
-
 		}
-
 	}
 
-
-	if (wParam == VK_F4 && showmission == 3)
-	{
+	if (wParam == VK_F4 && showmission == 3) {
 
 		if (m_directSoundOK)
 			m_pDirSound->PlaySound(m_bufferProtection);
 
 		hitanykey = 0;
 
-
 		if (networkgame) {
 			strcpy(chat[0].say, "Murk: Cannot load in network game");
 			chat[0].duration = 50;
 
-
-		}
-		else if (shareware) {
+		} else if (shareware) {
 
 			strcpy(chat[0].say, "Murk: Cannot load in SHAREWARE version");
 			chat[0].duration = 50;
 
-
-
-		}
-		else {
-
+		} else {
 
 			result = load_game();
 
@@ -289,11 +245,6 @@ void OnKeyDown(WPARAM wParam)
 			mmissle = PlayerLocation[1].maxmissle;
 			frate = PlayerLocation[1].firerate;
 
-
-
-
-
-
 			if (result) {
 				strcpy(chat[0].say, "Game Loaded...");
 
@@ -305,7 +256,6 @@ void OnKeyDown(WPARAM wParam)
 				new_level(0);
 				//		result=load_game() ;
 
-
 				PlayerLocation[1].ring = ring;
 				PlayerLocation[1].ability = ability;
 				PlayerLocation[1].skill = skill;
@@ -316,7 +266,6 @@ void OnKeyDown(WPARAM wParam)
 				PlayerLocation[1].damagemax = d2;
 				PlayerLocation[1].maxmissle = mmissle;
 				PlayerLocation[1].firerate = frate;
-
 
 				if (PlayerLocation[1].image == 3)
 					dungeon[PlayerLocation[1].copx][PlayerLocation[1].copy][PlayerLocation[1].coplvl].image = 1;
@@ -330,29 +279,20 @@ void OnKeyDown(WPARAM wParam)
 				if (PlayerLocation[1].image == 1)
 					dungeon[PlayerLocation[1].copx][PlayerLocation[1].copy][PlayerLocation[1].coplvl].image = 0;
 
-
-
-
-
 				//);
 				mousehit = 0;
 				hitanykey = 0;
 				showmission = 2;
 
 				SetTimer(hWindow, 1, 50, TimerProc);
-			}
-			else {
+			} else {
 				strcpy(chat[0].say, "Murk: There are no saved games...");
 				chat[0].duration = 50;
 			}
 		}
 	}
 
-
-
-
-	if (wParam == VK_ESCAPE && showmission == 0)
-	{
+	if (wParam == VK_ESCAPE && showmission == 0) {
 		if (showmission == 1 || showmission == 2) {
 			showmission = 0;
 			hitanykey = 0;
@@ -360,21 +300,15 @@ void OnKeyDown(WPARAM wParam)
 		PostMessage(hWindow, WM_CLOSE, 0, 0L);
 	}
 
-	if (wParam == VK_ESCAPE && showmission == 3)
-	{
+	if (wParam == VK_ESCAPE && showmission == 3) {
 
-		//		KillTimer(hWindow, 2);	
+		//		KillTimer(hWindow, 2);
 		KillTimer(hWindow, 3);
-
-
 
 		if (!networkserver) {
 
-
 			display_dungeon(1);
 			pDirDraw->FlipToGDISurface();
-
-
 		}
 
 		UINT resultclick = MessageBox(hWindow, "Leave Murk?", "Exit Murk", MB_ICONQUESTION | MB_YESNO);
@@ -395,74 +329,67 @@ void OnKeyDown(WPARAM wParam)
 			SetTimer(hWindow, 1, 50, TimerProc);
 
 			return;
-		}
-		else
-		{
-			//			SetTimer(hWindow, 2, 4000, TimerProc);		
+		} else {
+			//			SetTimer(hWindow, 2, 4000, TimerProc);
 			SetTimer(hWindow, 3, timerlength, TimerProc);
-
 		}
-
-
 
 		//		PostMessage(hWindow, WM_CLOSE, 0, 0L);
 	}
 
-
-
 	switch (wParam) {
 		/*
 		case VK_LEFT :
-			if (hitkeyboard == 0 &&	PlayerLocation[1].stairs ==0 &&	PlayerLocation[1].dead ==0)		{
-				handle_left();
-				if (cancelmove==0)
-					hitkeyboard=1;
-			}
-			break;
+		    if (hitkeyboard == 0 &&	PlayerLocation[1].stairs ==0 &&	PlayerLocation[1].dead ==0)		{
+		        handle_left();
+		        if (cancelmove==0)
+		            hitkeyboard=1;
+		    }
+		    break;
 		case VK_RIGHT:
-			if (hitkeyboard == 0 &&	PlayerLocation[1].stairs ==0 &&	PlayerLocation[1].dead ==0){
-				handle_right();
-				if (cancelmove==0)
-					hitkeyboard=1;
-			}
-			break;
+		    if (hitkeyboard == 0 &&	PlayerLocation[1].stairs ==0 &&	PlayerLocation[1].dead ==0){
+		        handle_right();
+		        if (cancelmove==0)
+		            hitkeyboard=1;
+		    }
+		    break;
 		case VK_UP :
-			if (hitkeyboard == 0 &&	PlayerLocation[1].stairs ==0 &&	PlayerLocation[1].dead ==0) {
-				handle_up();
-				if (cancelmove==0)
-					hitkeyboard=1;
-			}
-			break;
+		    if (hitkeyboard == 0 &&	PlayerLocation[1].stairs ==0 &&	PlayerLocation[1].dead ==0) {
+		        handle_up();
+		        if (cancelmove==0)
+		            hitkeyboard=1;
+		    }
+		    break;
 		case VK_DOWN :
-			if (hitkeyboard == 0 &&	PlayerLocation[1].stairs ==0 &&	PlayerLocation[1].dead ==0) {
-				handle_down();
-				if (cancelmove==0)
-					hitkeyboard=1;
-			}
-			break;
+		    if (hitkeyboard == 0 &&	PlayerLocation[1].stairs ==0 &&	PlayerLocation[1].dead ==0) {
+		        handle_down();
+		        if (cancelmove==0)
+		            hitkeyboard=1;
+		    }
+		    break;
 
 		case 16 :
-			if (hitkeyboard == 0 &&	PlayerLocation[1].stairs ==0) {
-				handle_stairs();
-				if (cancelmove==0)
-					hitkeyboard=1;
-			}
-			break;
+		    if (hitkeyboard == 0 &&	PlayerLocation[1].stairs ==0) {
+		        handle_stairs();
+		        if (cancelmove==0)
+		            hitkeyboard=1;
+		    }
+		    break;
 
 		case 17:
 
 
 		if (PlayerLocation[1].firecount==0) {
-			if (PlayerLocation[1].firecount==0){
-				PlayerLocation[1].firecount = PlayerLocation[1].firerate;
-			}
+		    if (PlayerLocation[1].firecount==0){
+		        PlayerLocation[1].firecount = PlayerLocation[1].firerate;
+		    }
 
-				start_missle  (PlayerLocation[1].mapx,PlayerLocation[1].mapy,PlayerLocation[1].direction,
-				PlayerLocation[1].level,
-				PlayerLocation[1].x,PlayerLocation[1].y,1);
+		        start_missle  (PlayerLocation[1].mapx,PlayerLocation[1].mapy,PlayerLocation[1].direction,
+		        PlayerLocation[1].level,
+		        PlayerLocation[1].x,PlayerLocation[1].y,1);
 		}
 
-			break;
+		    break;
 	*/
 	case 84:
 
@@ -476,7 +403,6 @@ void OnKeyDown(WPARAM wParam)
 				dropt = 0;
 				if (networkgame)
 					send_drop_treasure(1);
-
 			}
 
 			if (foundtreasure2 == 1) {
@@ -488,7 +414,6 @@ void OnKeyDown(WPARAM wParam)
 				dropt = 0;
 				if (networkgame)
 					send_drop_treasure(2);
-
 			}
 		}
 		break;
@@ -504,7 +429,6 @@ void OnKeyDown(WPARAM wParam)
 		}
 		break;
 
-
 	case 191:
 		if (hitkeyboard == 0 && PlayerLocation[1].stairs == 0) {
 			if (PlayerLocation[1].direction == 1)
@@ -518,22 +442,20 @@ void OnKeyDown(WPARAM wParam)
 
 			cancelmove = 1;
 			mousehit = 0;
-
 		}
 		break;
 	}
 }
 
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
 void movedown() {
 	if (dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy][PlayerLocation[CurrentPlayer].level].type == 's') {
 		if (dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy][PlayerLocation[CurrentPlayer].level].item == 1) {
 			PlayerLocation[CurrentPlayer].stairs = 2;
-		}
-		else {
+		} else {
 			PlayerLocation[CurrentPlayer].stairs = 1;
 		}
 		strcpy(PlayerLocation[CurrentPlayer].lastmove, "-");
@@ -542,7 +464,7 @@ void movedown() {
 }
 
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
 void OnLButtonUp(LPARAM lParam) {
@@ -554,9 +476,7 @@ void OnLButtonUp(LPARAM lParam) {
 		cancelmove = 1;
 		mousehit = 0;
 	}
-
 }
-
 
 void OnLButtonDown(LPARAM lParam) {
 
@@ -565,29 +485,24 @@ void OnLButtonDown(LPARAM lParam) {
 
 	if (showmission == 1 || showmission == 0 || showmission == 2) {
 
-
 		bdown = 1;
 		mousehitx = x1;
 		mousehity = y1;
 		return;
-
 	}
 	if (showmission == 4) {
 		bdown = 1;
 		mousehitx = 0;
 		mousehity = 0;
 		return;
-
 	}
 
 	if (y1 > 600 && x1 < 240) {
-		if (PlayerLocation[1].ring > 0 && x1 > 166 && y1 > 575
-			&& x1 < 220 && y1 < 613 && PlayerLocation[1].protection == 0) {
+		if (PlayerLocation[1].ring > 0 && x1 > 166 && y1 > 575 && x1 < 220 && y1 < 613 && PlayerLocation[1].protection == 0) {
 
 			bdown = 1;
 			mousehitx = x1;
 			mousehity = y1;
-
 
 			if (m_directSoundOK)
 				m_pDirSound->PlaySound(m_bufferButton);
@@ -599,7 +514,7 @@ void OnLButtonDown(LPARAM lParam) {
 			return;
 		}
 
-		if (x1 < 150 && y1>575 && x1 > 95 && y1 < 615) {
+		if (x1 < 150 && y1 > 575 && x1 > 95 && y1 < 615) {
 			bdown = 1;
 			mousehitx = x1;
 			mousehity = y1;
@@ -609,10 +524,7 @@ void OnLButtonDown(LPARAM lParam) {
 				if (m_directSoundOK)
 					m_pDirSound->PlaySound(m_bufferButton);
 
-
-
 				if (foundtreasure2 == 1) {
-
 
 					if (ishost) {
 						treasurex2 = PlayerLocation[1].mapx;
@@ -622,7 +534,6 @@ void OnLButtonDown(LPARAM lParam) {
 					}
 					if (networkgame)
 						send_drop_treasure(2);
-
 				}
 				if (foundtreasure == 1) {
 
@@ -634,18 +545,14 @@ void OnLButtonDown(LPARAM lParam) {
 					}
 					if (networkgame)
 						send_drop_treasure(1);
-
 				}
 
-
 				//			PlayerLocation[1].hit=10;
-
 			}
-			//sendplayer
+			// sendplayer
 			return;
 		}
 		return;
-
 	}
 	//	if (PlayerLocation[1].dead == 0) {
 	//		mousehit =1;
@@ -658,7 +565,7 @@ void OnLButtonDown(LPARAM lParam) {
 }
 
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
 void OnLButtonDblClk(LPARAM lParam) {
@@ -666,7 +573,7 @@ void OnLButtonDblClk(LPARAM lParam) {
 }
 
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
 void handle_mouse(int x, int y) {
@@ -685,7 +592,6 @@ void handle_mouse(int x, int y) {
 		mouse_adjust(x, y, PlayerLocation[1].x + 30, PlayerLocation[1].y + 54, 0);
 		movex = calcmousex;
 		movey = calcmousey;
-
 	}
 	if (x >= PlayerLocation[1].x + 30 && y >= PlayerLocation[1].y + 54) {
 		movex = x;
@@ -702,7 +608,6 @@ void handle_mouse(int x, int y) {
 		mouse_adjust(x, y, PlayerLocation[1].x + 30, PlayerLocation[1].y + 54, 1);
 		movex = calcmousex;
 		movey = calcmousey;
-
 	}
 	if (x <= PlayerLocation[1].x + 30 && y >= PlayerLocation[1].y + 54) {
 		movex = x;
@@ -711,24 +616,21 @@ void handle_mouse(int x, int y) {
 		mouse_adjust(x, y, PlayerLocation[1].x + 30, PlayerLocation[1].y + 54, 1);
 		movex = calcmousex;
 		movey = calcmousey;
-
 	}
 
 	if (PlayerLocation[1].frame == 0) {
 		mousehitx = movex;
 		mousehity = movey;
 		PlayerLocation[1].direction = playerdir;
-	}
-	else {
+	} else {
 		newmovex = movex;
 		newmovey = movey;
 		newmove = playerdir;
 	}
-
 }
 
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
 void mouse_adjust(int mx, int my, int px, int py, int type) {
@@ -743,30 +645,26 @@ void mouse_adjust(int mx, int my, int px, int py, int type) {
 	// find the intsersction of two lines to adjust the mouse
 	// to work on the 3d grid ... holy moly
 
-
 	newmx = mx - px;
 	newmy = my - py;
 	b = (int)(newmy + (.5 * newmx));
-	calcmousex = (b)+px;
+	calcmousex = (b) + px;
 	calcmousey = (b / 2) + py;
 
-
 	if (type == 1) {
-		//new one
+		// new one
 		b = (newmx / 2) - newmy;
-		calcmousex = (b)+px;
+		calcmousex = (b) + px;
 		calcmousey = (b / 2) + b + py;
-	}
-	else {
+	} else {
 		b = (int)(newmy + (.5 * newmx));
-		calcmousex = (b)+px;
+		calcmousex = (b) + px;
 		calcmousey = (b / 2) + py;
 	}
-
 }
 
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
 void OnRButtonDown(LPARAM lParam) {
@@ -780,18 +678,15 @@ void OnRButtonDown(LPARAM lParam) {
 	y = y1;
 	if (x <= PlayerLocation[1].x + 30 && y <= PlayerLocation[1].y + 54) {
 		playerdir = 1;
-
 	}
 	if (x >= PlayerLocation[1].x + 30 && y >= PlayerLocation[1].y + 54) {
 		playerdir = 4;
 	}
 	if (x >= PlayerLocation[1].x + 30 && y <= PlayerLocation[1].y + 54) {
 		playerdir = 2;
-
 	}
 	if (x <= PlayerLocation[1].x + 30 && y >= PlayerLocation[1].y + 54) {
 		playerdir = 3;
-
 	}
 	if (PlayerLocation[1].direction != playerdir)
 		mousehit = 0;
@@ -801,110 +696,93 @@ void OnRButtonDown(LPARAM lParam) {
 			PlayerLocation[1].firecount = PlayerLocation[1].firerate;
 		}
 		start_missle(PlayerLocation[1].mapx, PlayerLocation[1].mapy, PlayerLocation[1].direction,
-			PlayerLocation[1].level,
-			PlayerLocation[1].x, PlayerLocation[1].y, 1);
+		             PlayerLocation[1].level,
+		             PlayerLocation[1].x, PlayerLocation[1].y, 1);
 	}
 }
 
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
-
 
 void handle_left() {
 	if (PlayerLocation[1].tolx > 2) {
 		PlayerLocation[1].direction = 1;
 		calc_player_move();
-	}
-	else if (dungeon[PlayerLocation[1].mapx - 1][PlayerLocation[1].mapy][PlayerLocation[1].level].type == 'f'
-		||
-		dungeon[PlayerLocation[1].mapx - 1][PlayerLocation[1].mapy][PlayerLocation[1].level].type == 's') {
+	} else if (dungeon[PlayerLocation[1].mapx - 1][PlayerLocation[1].mapy][PlayerLocation[1].level].type == 'f' ||
+	           dungeon[PlayerLocation[1].mapx - 1][PlayerLocation[1].mapy][PlayerLocation[1].level].type == 's') {
 		PlayerLocation[1].direction = 1;
 		calc_player_move();
-	}
-	else {
+	} else {
 		cancelmove = 1;
 		mousehit = 0;
 	}
 }
 
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
 void handle_right() {
 	if (PlayerLocation[1].tolx < 5) {
 		PlayerLocation[1].direction = 4;
 		calc_player_move();
-	}
-	else if (dungeon[PlayerLocation[1].mapx + 1][PlayerLocation[1].mapy][PlayerLocation[1].level].type == 'f'
-		||
-		dungeon[PlayerLocation[1].mapx + 1][PlayerLocation[1].mapy][PlayerLocation[1].level].type == 's') {
+	} else if (dungeon[PlayerLocation[1].mapx + 1][PlayerLocation[1].mapy][PlayerLocation[1].level].type == 'f' ||
+	           dungeon[PlayerLocation[1].mapx + 1][PlayerLocation[1].mapy][PlayerLocation[1].level].type == 's') {
 		PlayerLocation[1].direction = 4;
 		calc_player_move();
-	}
-	else {
+	} else {
 		cancelmove = 1;
 		mousehit = 0;
 	}
-
 }
 
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
 void handle_up() {
 	if (PlayerLocation[1].toly > 2) {
 		PlayerLocation[1].direction = 2;
 		calc_player_move();
-	}
-	else if (dungeon[PlayerLocation[1].mapx][PlayerLocation[1].mapy - 1][PlayerLocation[1].level].type == 'f'
-		||
-		dungeon[PlayerLocation[1].mapx][PlayerLocation[1].mapy - 1][PlayerLocation[1].level].type == 's') {
+	} else if (dungeon[PlayerLocation[1].mapx][PlayerLocation[1].mapy - 1][PlayerLocation[1].level].type == 'f' ||
+	           dungeon[PlayerLocation[1].mapx][PlayerLocation[1].mapy - 1][PlayerLocation[1].level].type == 's') {
 		PlayerLocation[1].direction = 2;
 		calc_player_move();
-	}
-	else {
+	} else {
 		cancelmove = 1;
 		mousehit = 0;
 	}
 }
 
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
-
 
 void handle_down() {
 	if (PlayerLocation[1].toly < 5) {
 		PlayerLocation[1].direction = 3;
 		calc_player_move();
-	}
-	else if (dungeon[PlayerLocation[1].mapx][PlayerLocation[1].mapy + 1][PlayerLocation[1].level].type == 'f'
-		||
-		dungeon[PlayerLocation[1].mapx][PlayerLocation[1].mapy + 1][PlayerLocation[1].level].type == 's') {
+	} else if (dungeon[PlayerLocation[1].mapx][PlayerLocation[1].mapy + 1][PlayerLocation[1].level].type == 'f' ||
+	           dungeon[PlayerLocation[1].mapx][PlayerLocation[1].mapy + 1][PlayerLocation[1].level].type == 's') {
 		PlayerLocation[1].direction = 3;
 		calc_player_move();
-	}
-	else {
+	} else {
 		mousehit = 0;
 		cancelmove = 1;
 	}
 }
 
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
-
 
 void handle_stairs() {
 	if (dungeon[PlayerLocation[1].mapx][PlayerLocation[1].mapy][PlayerLocation[1].level].type == 's') {
 		if (dungeon[PlayerLocation[1].mapx][PlayerLocation[1].mapy][PlayerLocation[1].level].item == 1) {
 			PlayerLocation[1].stairs = 2;
 			PlayerLocation[1].staircounter = 6;
-		}
-		else {
+		} else {
 			PlayerLocation[1].stairs = 1;
 			PlayerLocation[1].staircounter = 6;
 		}
@@ -915,14 +793,11 @@ void handle_stairs() {
 		PlayerLocation[1].frame = 1;
 		PlayerLocation[1].framehuman = 1;
 		check_dungeon();
-	}
-	else
+	} else
 		cancelmove = 1;
 }
 
-
 void reset_game(int load) {
-
 
 	networkgame = 0;
 	receiveok = 0;
@@ -962,5 +837,4 @@ void reset_game(int load) {
 	hitanykey = 0;
 	oktosend = 1;
 	helpscreen = 0;
-
 }

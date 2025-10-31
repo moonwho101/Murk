@@ -1,8 +1,7 @@
-//Murk Common Variables
-
+// Murk Common Variables
 
 #include <afx.h>
-//#include <windows.h>
+// #include <windows.h>
 #include <string.h>
 #include <winuser.h>
 #include "resource.h"
@@ -21,9 +20,9 @@ struct thepits {
 	int frame;
 };
 
-extern CGame* m_pGame;
+extern CGame *m_pGame;
 extern struct thepits pits[50];
-extern LPGUID  lpGuid;
+extern LPGUID lpGuid;
 extern int oktosend;
 
 struct murkregistry {
@@ -124,7 +123,7 @@ struct dungeon_struct {
 
 extern struct dungeon_struct dungeon[140][140][40];
 
-typedef	struct {
+typedef struct {
 	int dir;
 	int x;
 	int y;
@@ -139,12 +138,8 @@ struct deathscene {
 	int counter;
 	int mapx;
 	int mapy;
-
 };
 extern struct deathscene dscene[100];
-
-
-
 
 extern DWORD dwsession;
 extern BOOL moveok;
@@ -155,14 +150,13 @@ extern int showmission;
 extern int calcmousex;
 extern int calcmousey;
 extern int levelcounter;
-extern  LPDIRECTPLAY  m_pDirectPlay;
-extern  DPID          m_dpidPlayer[10];
-extern  HANDLE        m_hDPEvent;
+extern LPDIRECTPLAY m_pDirectPlay;
+extern DPID m_dpidPlayer[10];
+extern HANDLE m_hDPEvent;
 
-//extern  TileState     m_tsGrid[3][3];
-extern  UINT          m_uiTurns;
-extern  BOOL          m_bMyTurn;
-
+// extern  TileState     m_tsGrid[3][3];
+extern UINT m_uiTurns;
+extern BOOL m_bMyTurn;
 
 extern int startthegame;
 extern BOOL bIsActive;
@@ -192,9 +186,7 @@ extern int moveityfin;
 extern int orderglobal;
 extern int saveshort;
 
-
 extern int select1, select2, select3, select4;
-
 
 extern int start_recursion;
 
@@ -228,7 +220,7 @@ extern int treasurey2;
 extern int treasurelvl2;
 extern int foundtreasure2;
 
-extern  int maxlevel;
+extern int maxlevel;
 extern int playerfx;
 extern int playerfy;
 extern int playerfx2;
@@ -243,8 +235,8 @@ extern int newmove;
 extern int newmovex;
 extern int newmovey;
 extern int dimage[100];
-extern  int DUNGEONX;
-extern  int DUNGEONY;
+extern int DUNGEONX;
+extern int DUNGEONY;
 extern int frame_num;
 extern int MoveNum;
 extern int savelastmove;
@@ -283,11 +275,9 @@ struct gamet {
 	int maxpit;
 };
 
-
-
 extern struct gamet gamedef;
 
-extern mazestack* stack;
+extern mazestack *stack;
 
 extern UINT partsASurfaceNum, partsBSurfaceNum, panelSurfaceNum;
 extern UINT murksplash;
@@ -299,106 +289,107 @@ extern UINT DungeonSurface3;
 
 extern int tile_type[40];
 
-extern CWave* m_pWave;
-extern CDirSound* m_pDirSound;
+extern CWave *m_pWave;
+extern CDirSound *m_pDirSound;
 
 extern UINT m_bufferNum;
 
-extern CWave* m_pMusic;
+extern CWave *m_pMusic;
 extern UINT m_bufferMusic;
 
-extern CWave* m_pDrip;
+extern CWave *m_pDrip;
 extern UINT m_bufferDrip;
 
-extern CWave* m_pScream;
+extern CWave *m_pScream;
 extern UINT m_bufferScream;
 
-//CWave* m_pBeholder;
-//UINT m_bufferBeholder;
+// CWave* m_pBeholder;
+// UINT m_bufferBeholder;
 
-extern CWave* m_pTreasure;
+extern CWave *m_pTreasure;
 extern UINT m_bufferTreasure;
 
-extern CWave* m_pDead;
+extern CWave *m_pDead;
 extern UINT m_bufferDead;
 
-extern CWave* m_pWin;
+extern CWave *m_pWin;
 extern UINT m_bufferWin;
 
-extern CWave* m_pReward;
+extern CWave *m_pReward;
 extern UINT m_bufferReward;
 
-extern CWave* m_pBow;
+extern CWave *m_pBow;
 extern UINT m_bufferBow;
 
-extern CWave* m_pSword;
+extern CWave *m_pSword;
 extern UINT m_bufferSword;
 
-extern CWave* m_pYell;
+extern CWave *m_pYell;
 extern UINT m_bufferYell;
 
-extern CWave* m_pHit;
+extern CWave *m_pHit;
 extern UINT m_bufferHit;
 
-extern CWave* m_pMonsterdie;
+extern CWave *m_pMonsterdie;
 extern UINT m_bufferMonsterdie;
 
-extern CWave* m_pMumble;
+extern CWave *m_pMumble;
 extern UINT m_bufferMumble;
 
-extern CWave* m_pDragon;
+extern CWave *m_pDragon;
 extern UINT m_bufferDragon;
 
-extern CWave* m_pRegen;
+extern CWave *m_pRegen;
 extern UINT m_bufferRegen;
 
-extern CWave* m_pSkeleton;
+extern CWave *m_pSkeleton;
 extern UINT m_bufferSkeleton;
 
-extern CWave* m_pDorb;
+extern CWave *m_pDorb;
 extern UINT m_bufferDorb;
 
-extern CWave* m_pFireball;
+extern CWave *m_pFireball;
 extern UINT m_bufferFireball;
 
-extern CWave* m_pOuch;
+extern CWave *m_pOuch;
 extern UINT m_bufferOuch;
 
-extern CWave* m_pButton;
+extern CWave *m_pButton;
 extern UINT m_bufferButton;
 
-extern CWave* m_pSwordThief;
+extern CWave *m_pSwordThief;
 extern UINT m_bufferSwordThief;
 
-extern CWave* m_pSwordBarb;
+extern CWave *m_pSwordBarb;
 extern UINT m_bufferSwordBarb;
 
-
-extern CWave* m_pEyeswizard;
+extern CWave *m_pEyeswizard;
 extern UINT m_bufferEyeswizard;
 
-extern CWave* m_pTadaCleric;
+extern CWave *m_pTadaCleric;
 extern UINT m_bufferTadaCleric;
 
-extern CWave* m_pProtection;
+extern CWave *m_pProtection;
 extern UINT m_bufferProtection;
-
-
 
 extern BOOL m_directSoundOK;
 
-//extern CONST MAXMOVE ;
+// extern CONST MAXMOVE ;
 extern HINSTANCE hInstance;
 
-//extern CDirDraw* pDirDraw;
+// extern CDirDraw* pDirDraw;
 
-
-extern CMyDirDraw* pDirDraw;
+extern CMyDirDraw *pDirDraw;
 extern BOOL ddok;
 extern BOOL setupOK;
 extern HWND hWindow;
 
-typedef enum { North, East, South, West } directionT;
+typedef enum {
+	North,
+	East,
+	South,
+	West
+} directionT;
 
 extern int ishost;
 
@@ -412,7 +403,6 @@ extern int items;
 
 extern int bdown;
 
-
 extern int dropt;
 
 extern char networkresponse[512];
@@ -421,7 +411,6 @@ struct chatit {
 	char say[300];
 	char duration;
 };
-
 
 extern struct chatit chat[10];
 
@@ -433,8 +422,6 @@ extern char chaton;
 extern int advancelevel;
 extern char advanceattrib;
 extern int countlevels;
-
-
 
 extern HANDLE mainthread;
 extern HANDLE globalthread;
@@ -451,12 +438,10 @@ extern BOOL receivedata;
 extern int initplayer;
 extern int istimerset;
 
-
 extern int receiveok;
 
 extern int pingplayer[10];
 extern int helpscreen;
-
 
 struct droptreasure {
 
@@ -470,12 +455,7 @@ extern struct droptreasure dtreasure[3];
 
 extern int gameerror;
 
-
 extern int shareware;
 extern int sharewarelevel;
 
-
 extern int abortgame;
-
-
-

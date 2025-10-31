@@ -1,24 +1,22 @@
-//  Murk Ver 1.12 By Mark Longo 
+//  Murk Ver 1.12 By Mark Longo
 //  Copyright 1999  , All Rights Reserver.
 #include "stdafx.h"
 
 #include "murkdecl.h"
 #include "murkcommon.h"
 #include "registry.h"
-extern void RegCrypt(char* user, char* key, char* result);
+extern void RegCrypt(char *user, char *key, char *result);
 int save_server_settings(int network);
 int read_server_settings();
 int save_game();
 int load_game();
 int is_shareware();
 
-
 int usejstick;
 int usesound;
 
-
 int save_server_settings(int network) {
-	FILE* fp;
+	FILE *fp;
 
 	if ((fp = fopen("server.cfg", "wb+")) == NULL) {
 	}
@@ -28,9 +26,8 @@ int save_server_settings(int network) {
 	return 1;
 }
 
-
 int read_server_settings() {
-	FILE* fp;
+	FILE *fp;
 	int network;
 
 	if ((fp = fopen("server.cfg", "rb")) == NULL) {
@@ -38,20 +35,16 @@ int read_server_settings() {
 	}
 	fread(&network, sizeof(int), 1, fp);
 
-
 	fclose(fp);
 	return network;
-
 }
 
-
 int save_game() {
-	FILE* fp;
+	FILE *fp;
 
 	if ((fp = fopen("murk.sav", "wb+")) == NULL) {
 		return 0;
 	}
-
 
 	fwrite(&countlevels, sizeof(int), 1, fp);
 	fwrite(&levelcounter, sizeof(int), 1, fp);
@@ -61,12 +54,11 @@ int save_game() {
 	fwrite(&PlayerLocation[1], sizeof(struct PlayerDat), 1, fp);
 	fclose(fp);
 
-
 	return 1;
 }
 
 int load_game() {
-	FILE* fp;
+	FILE *fp;
 
 	if ((fp = fopen("murk.sav", "rb")) == NULL) {
 		return 0;
@@ -78,22 +70,17 @@ int load_game() {
 	//   levelcounter--;
 	fread(&PlayerLocation[1], sizeof(struct PlayerDat), 1, fp);
 
-
-
 	fclose(fp);
-
 
 	return 1;
 }
-
-
 
 int is_shareware() {
 
 	CRegistry Registry;
 	CString Path;
 	CString DefaultTitle;
-	char* p;
+	char *p;
 	char keyresult[100];
 
 	char buffer[100];
@@ -102,27 +89,24 @@ int is_shareware() {
 
 	Path = "SOFTWARE\\Murk\\";
 
-	if (!Registry.VerifyKey(HKEY_LOCAL_MACHINE, Path))  // Check to see if the key exists
+	if (!Registry.VerifyKey(HKEY_LOCAL_MACHINE, Path)) // Check to see if the key exists
 		Registry.CreateKey(HKEY_LOCAL_MACHINE, Path);  // if it doesn’t then create it
 
-	Registry.Open(HKEY_LOCAL_MACHINE, Path);  // Open the Registry
-	Registry.Read2("Name", DefaultTitle); // Read the default title
+	Registry.Open(HKEY_LOCAL_MACHINE, Path); // Open the Registry
+	Registry.Read2("Name", DefaultTitle);    // Read the default title
 	sprintf(buffer, "%s", DefaultTitle);
 
 	Registry.Read2("Key", DefaultTitle); // Read the default title
 
 	sprintf(buffer2, "%s", DefaultTitle);
 
-
 	Registry.Read2("Sound", DefaultTitle); // Read the default title
 	sprintf(work, "%s", DefaultTitle);
-
 
 	if (strcmp(work, "1") == 0) {
 		m_directSoundOK = TRUE;
 		usesound = 1;
-	}
-	else {
+	} else {
 		usesound = 0;
 		m_directSoundOK = FALSE;
 	}
@@ -130,11 +114,9 @@ int is_shareware() {
 	Registry.Read2("Joystick", DefaultTitle); // Read the default title
 	sprintf(work, "%s", DefaultTitle);
 
-
 	if (strcmp(work, "1") == 0) {
 		usejstick = 1;
-	}
-	else {
+	} else {
 		usejstick = 0;
 	}
 

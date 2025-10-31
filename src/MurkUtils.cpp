@@ -1,5 +1,5 @@
 
-//  Murk Ver 1.12 By Mark Longo 
+//  Murk Ver 1.12 By Mark Longo
 //  Copyright 1999  , All Rights Reserver.
 
 #include "stdafx.h"
@@ -8,7 +8,7 @@
 #include "murkcommon.h"
 
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
 void delay_s(unsigned char seconds) {
@@ -21,23 +21,21 @@ void delay_s(unsigned char seconds) {
 	}
 }
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
 void clear_log() {
-
 
 	//	if (!networkserver)
 	//		remove("log");
 }
 
+void debug_me(char *u, char *s, int a, int b) {
 
-void debug_me(char* u, char* s, int a, int b) {
-
-	//Turn off logging for release version
+	// Turn off logging for release version
 	return;
 
-	FILE* fp;
+	FILE *fp;
 	CTime t;
 	t = CTime::GetCurrentTime();
 	if ((fp = fopen("log.txt", "a")) == NULL) {
@@ -49,7 +47,7 @@ void debug_me(char* u, char* s, int a, int b) {
 }
 
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
 int random_num(int num) {
@@ -60,20 +58,18 @@ int random_num(int num) {
 }
 
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
 void out_map(int sx, int sy, int dir, int shortestroute, int saveroute, int size) {
 
-	FILE* fp;
+	FILE *fp;
 
 	int x, y;
 	if ((fp = fopen("map", "a")) == NULL) {
 	}
 
-
-	for (y = 0; y < DUNGEONY; y++)
-	{
+	for (y = 0; y < DUNGEONY; y++) {
 		for (x = 0; x < DUNGEONX; x++) {
 
 			if (x == sx && y == sy)
@@ -84,8 +80,6 @@ void out_map(int sx, int sy, int dir, int shortestroute, int saveroute, int size
 				fputc('X', fp);
 			else
 				fputc(dungeon[x][y][1].type, fp);
-
-
 		}
 		fputc('\n', fp);
 	}
@@ -97,6 +91,4 @@ void out_map(int sx, int sy, int dir, int shortestroute, int saveroute, int size
 	fputc('\n', fp);
 
 	fclose(fp);
-
-
 }

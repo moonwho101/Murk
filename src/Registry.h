@@ -17,24 +17,22 @@
 /////////////////////////////////////////////////////////////////////////////
 #include <winreg.h>
 
-#define REG_RECT	0x0001
-#define REG_POINT	0x0002
+#define REG_RECT 0x0001
+#define REG_POINT 0x0002
 
-class CRegistry : public CObject
-{
+class CRegistry : public CObject {
 	// Construction
-public:
+  public:
 	CRegistry(HKEY hKeyRoot = HKEY_LOCAL_MACHINE);
 	virtual ~CRegistry();
 
-	struct REGINFO
-	{
+	struct REGINFO {
 		LONG lMessage;
 		DWORD dwType;
 		DWORD dwSize;
 	} m_Info;
 	// Operations
-public:
+  public:
 	BOOL VerifyKey(HKEY hKeyRoot, LPCTSTR pszPath);
 	BOOL VerifyKey(LPCTSTR pszPath);
 	BOOL VerifyValue(LPCTSTR pszValue);
@@ -47,8 +45,9 @@ public:
 
 	BOOL Write(LPCTSTR pszKey, LPCTSTR pszVal);
 
-	BOOL Read2(LPCTSTR pszKey, CString& sVal);
-protected:
-	HKEY 	m_hKey;
+	BOOL Read2(LPCTSTR pszKey, CString &sVal);
+
+  protected:
+	HKEY m_hKey;
 	CString m_sPath;
 };
