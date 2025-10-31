@@ -14,29 +14,24 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // Dialog dialog
 
-
-Dialog::Dialog(CWnd* pParent /*=NULL*/)
-	: CDialog(Dialog::IDD, pParent)
-{
+Dialog::Dialog(CWnd *pParent /*=NULL*/)
+    : CDialog(Dialog::IDD, pParent) {
 	//{{AFX_DATA_INIT(Dialog)
-		// NOTE: the ClassWizard will add member initialization here
+	// NOTE: the ClassWizard will add member initialization here
 	//}}AFX_DATA_INIT
 }
 
-
-void Dialog::DoDataExchange(CDataExchange* pDX)
-{
+void Dialog::DoDataExchange(CDataExchange *pDX) {
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(Dialog)
-		// NOTE: the ClassWizard will add DDX and DDV calls here
+	// NOTE: the ClassWizard will add DDX and DDV calls here
 	//}}AFX_DATA_MAP
 }
 
-
 BEGIN_MESSAGE_MAP(Dialog, CDialog)
-	//{{AFX_MSG_MAP(Dialog)
-		// NOTE: the ClassWizard will add message map macros here
-	//}}AFX_MSG_MAP
+//{{AFX_MSG_MAP(Dialog)
+// NOTE: the ClassWizard will add message map macros here
+//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////

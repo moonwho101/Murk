@@ -1,13 +1,13 @@
 
-//  Murk Ver 1.12 By Mark Longo 
-//  Copyright 1999  , All Rights Reserver.
+//  Murk Ver 1.12 By Mark Longo
+//  Copyright 1999, All Rights Reserved.
 #include "stdafx.h"
 
 #include "murkdecl.h"
 #include "murkcommon.h"
 
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 extern int play_again();
 extern void send_play_sound(int sound);
@@ -15,23 +15,13 @@ extern void send_reward(int slot, int reward);
 extern void play_random_music();
 extern void stop_song();
 
-
-
-
-
-
 extern int beholderability;
 extern int moutherability;
 extern int orcability;
 extern int skeletonability;
 extern int deathorbability;
 
-
-
-
-
-extern void send_death(int player, int x, int y, int lvl, int image, int
-	direction, int counter, int mapx, int mapy, int dead);
+extern void send_death(int player, int x, int y, int lvl, int image, int direction, int counter, int mapx, int mapy, int dead);
 
 void kill_monster(int t, int winner);
 
@@ -52,7 +42,7 @@ void computermove() {
 	int counter;
 	int subcounter;
 	//	int shortestroute;
-	int lastdir=0;
+	int lastdir = 0;
 	char response[50];
 	int saveroute;
 
@@ -62,7 +52,7 @@ void computermove() {
 	int COUNTMAX = 20;
 
 	int backatstart = 0;
-	char* pdest;
+	char *pdest;
 	int num;
 	int level;
 
@@ -74,7 +64,6 @@ void computermove() {
 	subcounter = 0;
 	px = PlayerLocation[CurrentPlayer].mapx;
 	py = PlayerLocation[CurrentPlayer].mapy;
-
 
 	shortestroute = 9999;
 
@@ -115,15 +104,13 @@ void computermove() {
 				strcat(mvx, "3");
 			else
 				strcat(mvx, "1");
-		}
-		else if (px < dx) {
+		} else if (px < dx) {
 			len = random_num(24);
 			if (len == 1)
 				strcat(mvx, "1");
 			else
 				strcat(mvx, "3");
-		}
-		else {
+		} else {
 			len = random_num(100);
 			if (len == 0)
 				strcat(mvx, "1");
@@ -138,15 +125,13 @@ void computermove() {
 				strcat(mvy, "4");
 			else
 				strcat(mvy, "2");
-		}
-		else if (py < dy) {
+		} else if (py < dy) {
 			len = random_num(24);
 			if (len == 1)
 				strcat(mvy, "2");
 			else
 				strcat(mvy, "4");
-		}
-		else {
+		} else {
 
 			len = random_num(100);
 			if (len == 0)
@@ -249,13 +234,10 @@ void computermove() {
 		if (counter == 0) {
 			//		if (counter ==0 || backatstart==0) {
 
-
-
 			gothere = slide;
 			lastdir = gothere;
 			saveroute = gothere;
 			backatstart = 1;
-
 		}
 		if (slide == 1) {
 			px = px - 1;
@@ -334,13 +316,12 @@ void computermove() {
 }
 
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
 void check_dungeon() {
 
-
-	//	if (CurrentPlayer==camera) 
+	//	if (CurrentPlayer==camera)
 	if (PlayerLocation[CurrentPlayer].asleep == 0 || CurrentPlayer <= newwarrior) {
 		if (dungeon[PlayerLocation[CurrentPlayer].mapx - 1][PlayerLocation[CurrentPlayer].mapy][PlayerLocation[CurrentPlayer].level].type == 'f' || dungeon[PlayerLocation[CurrentPlayer].mapx - 1][PlayerLocation[CurrentPlayer].mapy][PlayerLocation[CurrentPlayer].level].type == 's') {
 			dungeon[PlayerLocation[CurrentPlayer].mapx - 1][PlayerLocation[CurrentPlayer].mapy][PlayerLocation[CurrentPlayer].level].explored = 1;
@@ -359,7 +340,7 @@ void check_dungeon() {
 }
 
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
 void make_your_move() {
@@ -378,22 +359,17 @@ void make_your_move() {
 		PlayerLocation[CurrentPlayer].mapx = PlayerLocation[CurrentPlayer].mapx + 1;
 		break;
 	}
-
-
-
-
 }
 
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
-
 
 void wakeup_sleepy_heads() {
 
 	int i;
 	int j, k;
-	//	int rand;	
+	//	int rand;
 	int saveCurrent;
 
 	saveCurrent = CurrentPlayer;
@@ -419,10 +395,8 @@ void wakeup_sleepy_heads() {
 
 				if (PlayerLocation[i].character == 3 && PlayerLocation[i].image == 7)
 					m_pDirSound->PlaySound(m_bufferMumble);
-
 			}
-		}
-		else if (PlayerLocation[i].asleep == 1) {
+		} else if (PlayerLocation[i].asleep == 1) {
 			for (k = -3; k <= 3; k++) {
 				for (j = -3; j <= 3; j++) {
 					if (((PlayerLocation[i].mapx + j) >= 1) && ((PlayerLocation[i].mapx + j) <= DUNGEONX) && ((PlayerLocation[i].mapy + k) >= 1) && ((PlayerLocation[i].mapy + k) <= DUNGEONY)) {
@@ -458,7 +432,7 @@ void wakeup_sleepy_heads() {
 }
 
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
 int attack_player() {
@@ -475,8 +449,6 @@ int attack_player() {
 	int saveit;
 	int char2;
 	char type[20];
-
-
 
 	if (!PlayerLocation[CurrentPlayer].active)
 		return 0;
@@ -496,36 +468,27 @@ int attack_player() {
 
 	for (i = 1; i <= NumPlayers; i++) {
 		if (i != savecurrent) {
-			if (PlayerLocation[i].mapx == savex && PlayerLocation[i].mapy == savey
-				&& PlayerLocation[i].level == saveit
-				&& PlayerLocation[i].dead == 0 && PlayerLocation[i].active
-				) {
+			if (PlayerLocation[i].mapx == savex && PlayerLocation[i].mapy == savey && PlayerLocation[i].level == saveit && PlayerLocation[i].dead == 0 && PlayerLocation[i].active) {
 				if (char2 == 2) {
 					if (PlayerLocation[i].character == 3) {
-						//human on monster u lose
+						// human on monster u lose
 						apply_body_damage(savecurrent, i);
 						break;
-					}
-					else {
+					} else {
 						if (PlayerLocation[savecurrent].team == PlayerLocation[i].team) {
-						}
-						else {
+						} else {
 							apply_body_damage(savecurrent, i);
 							break;
 						}
 					}
-				}
-				else {
+				} else {
 					if (PlayerLocation[i].character == 2) {
-
 
 						if (PlayerLocation[i].protection > 0) {
 							kill_monster(savecurrent, i);
 
-						}
-						else {
+						} else {
 							apply_body_damage(i, savecurrent);
-
 						}
 						break;
 					}
@@ -536,25 +499,19 @@ int attack_player() {
 
 	CurrentPlayer = savecurrent;
 	if (PlayerLocation[CurrentPlayer].mapx == treasurex &&
-		PlayerLocation[CurrentPlayer].hit == 0 &&
-		dropt == 1 &&
-		PlayerLocation[CurrentPlayer].mapy == treasurey &&
-		PlayerLocation[CurrentPlayer].level == treasurelvl &&
-		PlayerLocation[CurrentPlayer].character == 2 && foundtreasure == 0
-		&& CurrentPlayer != foundtreasure2 &&
-		ishost) {
+	    PlayerLocation[CurrentPlayer].hit == 0 &&
+	    dropt == 1 &&
+	    PlayerLocation[CurrentPlayer].mapy == treasurey &&
+	    PlayerLocation[CurrentPlayer].level == treasurelvl &&
+	    PlayerLocation[CurrentPlayer].character == 2 && foundtreasure == 0 && CurrentPlayer != foundtreasure2 &&
+	    ishost) {
 
 		if (PlayerLocation[CurrentPlayer].team == 1 && PlayerLocation[CurrentPlayer].protecttreasure == 0 && CurrentPlayer != 1 && networkgame == 0) {
 
-
-		}
-		else {
-
+		} else {
 
 			if (m_directSoundOK)
 				m_pDirSound->PlaySound(m_bufferTreasure);
-
-
 
 			if (ishost) {
 				foundtreasure = CurrentPlayer;
@@ -566,27 +523,23 @@ int attack_player() {
 					send_treasure(0, 0);
 					send_play_sound(1);
 					strcpy(PlayerLocation[CurrentPlayer].lastmove, "-");
-				}
-				else {
+				} else {
 					foundtreasure = 0;
 				}
 			}
 			//			if (PlayerLocation[CurrentPlayer].ring > 0)
 			//				PlayerLocation[CurrentPlayer].protection=80;
-
 		}
 	}
 
 	if (PlayerLocation[CurrentPlayer].mapx == treasurex2 &&
-		dropt == 1 &&
-		PlayerLocation[CurrentPlayer].mapy == treasurey2 &&
-		PlayerLocation[CurrentPlayer].level == treasurelvl2 &&
-		PlayerLocation[CurrentPlayer].hit == 0 &&
-		PlayerLocation[CurrentPlayer].character == 2 && foundtreasure2 == 0
-		&& CurrentPlayer != foundtreasure && ishost) {
+	    dropt == 1 &&
+	    PlayerLocation[CurrentPlayer].mapy == treasurey2 &&
+	    PlayerLocation[CurrentPlayer].level == treasurelvl2 &&
+	    PlayerLocation[CurrentPlayer].hit == 0 &&
+	    PlayerLocation[CurrentPlayer].character == 2 && foundtreasure2 == 0 && CurrentPlayer != foundtreasure && ishost) {
 		if (PlayerLocation[CurrentPlayer].team == 2 && PlayerLocation[CurrentPlayer].protecttreasure == 0 && CurrentPlayer != 1 && networkgame == 0) {
-		}
-		else {
+		} else {
 
 			if (m_directSoundOK)
 				m_pDirSound->PlaySound(m_bufferTreasure);
@@ -599,26 +552,20 @@ int attack_player() {
 					send_treasure2(0, 0);
 					send_play_sound(1);
 					strcpy(PlayerLocation[CurrentPlayer].lastmove, "-");
-				}
-				else {
+				} else {
 					foundtreasure2 = 0;
 				}
 			}
 
-
 			//			if (PlayerLocation[CurrentPlayer].ring > 0)
 			//				PlayerLocation[CurrentPlayer].protection=80;
-
 		}
-
 	}
-
 
 	if (dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy][PlayerLocation[CurrentPlayer].level].item == 'e') {
 		if (ishost || CurrentPlayer == 1) {
 
 			PlayerLocation[CurrentPlayer].ability = PlayerLocation[CurrentPlayer].ability + 2;
-
 		}
 		dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy][PlayerLocation[CurrentPlayer].level].item = 0;
 
@@ -630,16 +577,13 @@ int attack_player() {
 	}
 
 	if (dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy][PlayerLocation[CurrentPlayer].level].item == 'a') {
-		if (PlayerLocation[CurrentPlayer].character == 2
-			&& PlayerLocation[CurrentPlayer].image == 1 ||
-			PlayerLocation[CurrentPlayer].character == 2
-			&& PlayerLocation[CurrentPlayer].image == 3) {
+		if (PlayerLocation[CurrentPlayer].character == 2 && PlayerLocation[CurrentPlayer].image == 1 ||
+		    PlayerLocation[CurrentPlayer].character == 2 && PlayerLocation[CurrentPlayer].image == 3) {
 			if (ishost)
 				items--;
 
 			if (ishost || CurrentPlayer == 1) {
 				PlayerLocation[CurrentPlayer].armour = PlayerLocation[CurrentPlayer].armour + 5;
-
 			}
 
 			dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy][PlayerLocation[CurrentPlayer].level].item = 0;
@@ -650,20 +594,16 @@ int attack_player() {
 	}
 
 	if (dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy][PlayerLocation[CurrentPlayer].level].item == 's') {
-		if (PlayerLocation[CurrentPlayer].character == 2
-			&& PlayerLocation[CurrentPlayer].image == 4 ||
-			PlayerLocation[CurrentPlayer].character == 2
-			&& PlayerLocation[CurrentPlayer].image == 5) {
+		if (PlayerLocation[CurrentPlayer].character == 2 && PlayerLocation[CurrentPlayer].image == 4 ||
+		    PlayerLocation[CurrentPlayer].character == 2 && PlayerLocation[CurrentPlayer].image == 5) {
 
 			if (ishost || CurrentPlayer == 1) {
 				PlayerLocation[CurrentPlayer].armour = PlayerLocation[CurrentPlayer].armour + 5;
-
 			}
 
 			dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy][PlayerLocation[CurrentPlayer].level].item = 0;
 			if (m_directSoundOK)
 				m_pDirSound->PlaySound(m_bufferReward);
-
 		}
 	}
 
@@ -675,15 +615,13 @@ int attack_player() {
 
 			if (ishost || CurrentPlayer == 1) {
 				PlayerLocation[CurrentPlayer].ring = PlayerLocation[CurrentPlayer].ring + 1;
-
 			}
 			dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy][PlayerLocation[CurrentPlayer].level].item = 0;
 			if (m_directSoundOK)
 				m_pDirSound->PlaySound(m_bufferReward);
-
 		}
 	}
-	//got treasure
+	// got treasure
 	if (CurrentPlayer == foundtreasure && PlayerLocation[CurrentPlayer].mapx == PlayerLocation[CurrentPlayer].copx && PlayerLocation[CurrentPlayer].mapy == PlayerLocation[CurrentPlayer].copy && PlayerLocation[CurrentPlayer].level == PlayerLocation[CurrentPlayer].coplvl) {
 
 		if (PlayerLocation[CurrentPlayer].team == 2 && ishost) {
@@ -696,12 +634,9 @@ int attack_player() {
 					send_reward(CurrentPlayer, 8);
 					send_play_sound(3);
 				}
-
 			}
 			return 1;
-		}
-		else if (CurrentPlayer != 1) {
-
+		} else if (CurrentPlayer != 1) {
 
 			if (ishost && !networkgame) {
 				treasurex = PlayerLocation[CurrentPlayer].mapx;
@@ -717,19 +652,15 @@ int attack_player() {
 						PlayerLocation[loop2].protecttreasure = 0;
 				}
 			}
-
 		}
 	}
-
 
 	if (CurrentPlayer == foundtreasure2 && PlayerLocation[CurrentPlayer].mapx == PlayerLocation[CurrentPlayer].copx && PlayerLocation[CurrentPlayer].mapy == PlayerLocation[CurrentPlayer].copy && PlayerLocation[CurrentPlayer].level == PlayerLocation[CurrentPlayer].coplvl) {
 
 		if (PlayerLocation[CurrentPlayer].team == 1 && ishost) {
 
-
 			if (m_directSoundOK)
 				m_pDirSound->PlaySound(m_bufferWin);
-
 
 			//			for (loop=1;loop<=NumPlayers;loop++) {
 			//				if (PlayerLocation[loop].team == PlayerLocation[CurrentPlayer].team)
@@ -741,14 +672,10 @@ int attack_player() {
 					send_reward(CurrentPlayer, 8);
 					send_play_sound(3);
 				}
-
 			}
 
-
 			return 1;
-		}
-		else if (CurrentPlayer != 1) {
-
+		} else if (CurrentPlayer != 1) {
 
 			if (ishost && !networkgame) {
 				treasurex2 = PlayerLocation[CurrentPlayer].mapx;
@@ -762,16 +689,14 @@ int attack_player() {
 					if (PlayerLocation[loop2].team == PlayerLocation[CurrentPlayer].team)
 						PlayerLocation[loop2].protecttreasure = 0;
 				}
-
 			}
-
 		}
 	}
 	return 0;
 }
 
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
 void destination() {
@@ -779,7 +704,7 @@ void destination() {
 	int i;
 	int saveit;
 	//	int junk;
-	//aaa
+	// aaa
 	//	int len;
 	int level;
 	char work[100], work2[100];
@@ -787,10 +712,10 @@ void destination() {
 
 	saveit = CurrentPlayer;
 	if (PlayerLocation[CurrentPlayer].character == 2 ||
-		PlayerLocation[CurrentPlayer].character == 3 &&
-		CurrentPlayer % 2 == 0) {
+	    PlayerLocation[CurrentPlayer].character == 3 &&
+	        CurrentPlayer % 2 == 0) {
 		if (PlayerLocation[CurrentPlayer].image == 1) {
-			//fighter
+			// fighter
 			i = findelixir(2);
 			if (i == 0)
 				i = findelixir(1);
@@ -799,47 +724,41 @@ void destination() {
 		}
 
 		else if (PlayerLocation[CurrentPlayer].image == 3) {
-			//thief
+			// thief
 			i = findelixir(2);
 			if (i == 0)
 				i = findelixir(1);
 			if (i == 0)
 				i = findelixir(4);
 
-		}
-		else if (PlayerLocation[CurrentPlayer].image == 4) {
-			//mage
+		} else if (PlayerLocation[CurrentPlayer].image == 4) {
+			// mage
 			i = findelixir(3);
 			if (i == 0)
 				i = findelixir(1);
 			if (i == 0)
 				i = findelixir(4);
-		}
-		else if (PlayerLocation[CurrentPlayer].image == 5) {
-			//cleric
+		} else if (PlayerLocation[CurrentPlayer].image == 5) {
+			// cleric
 			i = findelixir(3);
 			if (i == 0)
 				i = findelixir(1);
 			if (i == 0)
 				i = findelixir(4);
-		}
-		else {
+		} else {
 
 			i = random_num(2);
 
 			if (i == 1)
 				i = findelixir(1);
 		}
-	}
-	else {
+	} else {
 		i = 0;
 	}
 
-
 	if (PlayerLocation[CurrentPlayer].lasttarget != '-') {
 
-	}
-	else if (i == 1 && foundtreasure2 == 0 && foundtreasure == 0) {
+	} else if (i == 1 && foundtreasure2 == 0 && foundtreasure == 0) {
 		return;
 	}
 
@@ -849,50 +768,45 @@ void destination() {
 	if (PlayerLocation[CurrentPlayer].character == 3) {
 		strcpy(work, "");
 
-
-
 		for (i = 1; i <= newwarrior; i++) {
 			if (i != CurrentPlayer) {
-
 
 				//				if (PlayerLocation[i].level	== PlayerLocation[CurrentPlayer].level &&  PlayerLocation[i].active) {
 				//					sprintf(work2,"%d",i);
 				//					strcat (work,work2);
 				//				}
-
 			}
 		}
 		/*
-			if (strlen(work) == 0) {
-				savep=0;
-				for (i=1;i<=newwarrior;i++) {
-					if (i!=CurrentPlayer)
-						if (PlayerLocation[i].active) {
-							savep=i;
-						}
+		    if (strlen(work) == 0) {
+		        savep=0;
+		        for (i=1;i<=newwarrior;i++) {
+		            if (i!=CurrentPlayer)
+		                if (PlayerLocation[i].active) {
+		                    savep=i;
+		                }
 
-				}
-				if (savep==0)
-					i=1;
-				else
-					i=savep;
+		        }
+		        if (savep==0)
+		            i=1;
+		        else
+		            i=savep;
 
-			}
-			else {
-				i = random_num(strlen(work));
-				work2[0] = work[i];
-				work2[1] = '\0';
-				i = atoi(work2);
-				work2[0] =  PlayerLocation[CurrentPlayer].lasttarget;
-				work2[1] = '\0';
-				if (strstr(work,work2) != NULL) {
-					i  = atoi(work2);
-				}
-				sprintf(work2,"%d",i);
-				PlayerLocation[CurrentPlayer].lasttarget=work2[0];
-			}
+		    }
+		    else {
+		        i = random_num(strlen(work));
+		        work2[0] = work[i];
+		        work2[1] = '\0';
+		        i = atoi(work2);
+		        work2[0] =  PlayerLocation[CurrentPlayer].lasttarget;
+		        work2[1] = '\0';
+		        if (strstr(work,work2) != NULL) {
+		            i  = atoi(work2);
+		        }
+		        sprintf(work2,"%d",i);
+		        PlayerLocation[CurrentPlayer].lasttarget=work2[0];
+		    }
 	*/
-
 
 		if (PlayerLocation[CurrentPlayer].lasttarget != '-') {
 			work2[0] = PlayerLocation[CurrentPlayer].lasttarget;
@@ -900,11 +814,8 @@ void destination() {
 
 			i = atoi(work2);
 
-		}
-		else
+		} else
 			i = CurrentPlayer;
-
-
 
 		if (foundtreasure != 0 || foundtreasure2 != 0) {
 			i = 0;
@@ -918,41 +829,39 @@ void destination() {
 					i = foundtreasure;
 				else
 					i = foundtreasure2;
-			}
-			else {
+			} else {
 				if (foundtreasure)
 					i = foundtreasure;
 				if (foundtreasure2)
 					i = foundtreasure2;
 			}
-
 		}
-
 
 		saveit = PlayerLocation[i].level;
 		if (saveit > level) {
 			findstairs(0);
-			if (dx == PlayerLocation[CurrentPlayer].mapx
-				&& dy == PlayerLocation[CurrentPlayer].mapy ||
-				dungeon[PlayerLocation[CurrentPlayer].mapx]
-				[PlayerLocation[CurrentPlayer].mapy][PlayerLocation[CurrentPlayer].level].type == 's'
-				&& dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy]
-				[PlayerLocation[CurrentPlayer].level].item == 0) {
+			if (dx == PlayerLocation[CurrentPlayer].mapx && dy == PlayerLocation[CurrentPlayer].mapy ||
+			    dungeon[PlayerLocation[CurrentPlayer].mapx]
+			           [PlayerLocation[CurrentPlayer].mapy][PlayerLocation[CurrentPlayer].level]
+			                .type == 's' &&
+			        dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy]
+			               [PlayerLocation[CurrentPlayer].level]
+			                   .item == 0) {
 				movedown();
 			}
-		}
-		else if (saveit < level) {
+		} else if (saveit < level) {
 			findstairs(1);
 			if (dx == PlayerLocation[CurrentPlayer].mapx &&
-				dy == PlayerLocation[CurrentPlayer].mapy ||
-				dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy]
-				[PlayerLocation[CurrentPlayer].level].type == 's' &&
-				dungeon[PlayerLocation[CurrentPlayer].mapx]
-				[PlayerLocation[CurrentPlayer].mapy][PlayerLocation[CurrentPlayer].level].item == 1) {
+			        dy == PlayerLocation[CurrentPlayer].mapy ||
+			    dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy]
+			           [PlayerLocation[CurrentPlayer].level]
+			                .type == 's' &&
+			        dungeon[PlayerLocation[CurrentPlayer].mapx]
+			               [PlayerLocation[CurrentPlayer].mapy][PlayerLocation[CurrentPlayer].level]
+			                   .item == 1) {
 				movedown();
 			}
-		}
-		else {
+		} else {
 			dx = PlayerLocation[i].mapx;
 			dy = PlayerLocation[i].mapy;
 		}
@@ -965,31 +874,30 @@ void destination() {
 	if (PlayerLocation[CurrentPlayer].team == 2 && treasurelvl2 != maxlevel && foundtreasure != CurrentPlayer)
 		PlayerLocation[CurrentPlayer].protecttreasure = 2;
 
-
 	if (PlayerLocation[CurrentPlayer].team == 2 && PlayerLocation[CurrentPlayer].protecttreasure != 2 || PlayerLocation[CurrentPlayer].protecttreasure == 1) {
 		if (treasurelvl > level) {
 			findstairs(0);
-			if (dx == PlayerLocation[CurrentPlayer].mapx && dy == PlayerLocation[CurrentPlayer].mapy
-				|| dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy]
-				[PlayerLocation[CurrentPlayer].level].type == 's' &&
-				dungeon[PlayerLocation[CurrentPlayer].mapx]
-				[PlayerLocation[CurrentPlayer].mapy][PlayerLocation[CurrentPlayer].level].item == 0) {
+			if (dx == PlayerLocation[CurrentPlayer].mapx && dy == PlayerLocation[CurrentPlayer].mapy || dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy]
+			                                                                                                   [PlayerLocation[CurrentPlayer].level]
+			                                                                                                        .type == 's' &&
+			                                                                                                dungeon[PlayerLocation[CurrentPlayer].mapx]
+			                                                                                                       [PlayerLocation[CurrentPlayer].mapy][PlayerLocation[CurrentPlayer].level]
+			                                                                                                           .item == 0) {
 				movedown();
 			}
-		}
-		else if (treasurelvl < level) {
+		} else if (treasurelvl < level) {
 			findstairs(1);
 			if (dx == PlayerLocation[CurrentPlayer].mapx &&
-				dy == PlayerLocation[CurrentPlayer].mapy ||
-				dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy]
-				[PlayerLocation[CurrentPlayer].level].type == 's' &&
-				dungeon[PlayerLocation[CurrentPlayer].mapx]
-				[PlayerLocation[CurrentPlayer].mapy][PlayerLocation[CurrentPlayer].level].item == 1) {
+			        dy == PlayerLocation[CurrentPlayer].mapy ||
+			    dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy]
+			           [PlayerLocation[CurrentPlayer].level]
+			                .type == 's' &&
+			        dungeon[PlayerLocation[CurrentPlayer].mapx]
+			               [PlayerLocation[CurrentPlayer].mapy][PlayerLocation[CurrentPlayer].level]
+			                   .item == 1) {
 				movedown();
-
 			}
-		}
-		else {
+		} else {
 			dx = treasurex;
 			dy = treasurey;
 		}
@@ -998,25 +906,27 @@ void destination() {
 			if (treasurelvl > level) {
 				findstairs(0);
 				if (dx == PlayerLocation[CurrentPlayer].mapx && dy == PlayerLocation[CurrentPlayer].mapy ||
-					dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy]
-					[PlayerLocation[CurrentPlayer].level].type == 's' &&
-					dungeon[PlayerLocation[CurrentPlayer].mapx]
-					[PlayerLocation[CurrentPlayer].mapy][PlayerLocation[CurrentPlayer].level].item == 0) {
+				    dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy]
+				           [PlayerLocation[CurrentPlayer].level]
+				                .type == 's' &&
+				        dungeon[PlayerLocation[CurrentPlayer].mapx]
+				               [PlayerLocation[CurrentPlayer].mapy][PlayerLocation[CurrentPlayer].level]
+				                   .item == 0) {
 					movedown();
 				}
-			}
-			else if (treasurelvl < level) {
+			} else if (treasurelvl < level) {
 				findstairs(1);
 				if (dx == PlayerLocation[CurrentPlayer].mapx &&
-					dy == PlayerLocation[CurrentPlayer].mapy ||
-					dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy]
-					[PlayerLocation[CurrentPlayer].level].type == 's' &&
-					dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy]
-					[PlayerLocation[CurrentPlayer].level].item == 1) {
+				        dy == PlayerLocation[CurrentPlayer].mapy ||
+				    dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy]
+				           [PlayerLocation[CurrentPlayer].level]
+				                .type == 's' &&
+				        dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy]
+				               [PlayerLocation[CurrentPlayer].level]
+				                   .item == 1) {
 					movedown();
 				}
-			}
-			else {
+			} else {
 				dx = PlayerLocation[foundtreasure].mapx;
 				dy = PlayerLocation[foundtreasure].mapy;
 			}
@@ -1026,24 +936,26 @@ void destination() {
 			if (PlayerLocation[foundtreasure].coplvl > level) {
 				findstairs(0);
 				if (dx == PlayerLocation[CurrentPlayer].mapx && dy == PlayerLocation[CurrentPlayer].mapy ||
-					dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy]
-					[PlayerLocation[CurrentPlayer].level].type == 's' &&
-					dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy]
-					[PlayerLocation[CurrentPlayer].level].item == 0) {
+				    dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy]
+				           [PlayerLocation[CurrentPlayer].level]
+				                .type == 's' &&
+				        dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy]
+				               [PlayerLocation[CurrentPlayer].level]
+				                   .item == 0) {
 					movedown();
 				}
-			}
-			else if (PlayerLocation[foundtreasure].coplvl < level) {
+			} else if (PlayerLocation[foundtreasure].coplvl < level) {
 				findstairs(1);
 				if (dx == PlayerLocation[CurrentPlayer].mapx && dy == PlayerLocation[CurrentPlayer].mapy ||
-					dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy]
-					[PlayerLocation[CurrentPlayer].level].type == 's' &&
-					dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy]
-					[PlayerLocation[CurrentPlayer].level].item == 1) {
+				    dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy]
+				           [PlayerLocation[CurrentPlayer].level]
+				                .type == 's' &&
+				        dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy]
+				               [PlayerLocation[CurrentPlayer].level]
+				                   .item == 1) {
 					movedown();
 				}
-			}
-			else {
+			} else {
 				dx = PlayerLocation[foundtreasure].copx;
 				dy = PlayerLocation[foundtreasure].copy;
 			}
@@ -1052,30 +964,29 @@ void destination() {
 
 	if (PlayerLocation[CurrentPlayer].team == 1 && PlayerLocation[CurrentPlayer].protecttreasure != 1 || PlayerLocation[CurrentPlayer].protecttreasure == 2) {
 
-
 		if (treasurelvl2 > level) {
 			findstairs(0);
-			if (dx == PlayerLocation[CurrentPlayer].mapx && dy == PlayerLocation[CurrentPlayer].mapy
-				|| dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy]
-				[PlayerLocation[CurrentPlayer].level].type == 's' &&
-				dungeon[PlayerLocation[CurrentPlayer].mapx]
-				[PlayerLocation[CurrentPlayer].mapy][PlayerLocation[CurrentPlayer].level].item == 0) {
+			if (dx == PlayerLocation[CurrentPlayer].mapx && dy == PlayerLocation[CurrentPlayer].mapy || dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy]
+			                                                                                                   [PlayerLocation[CurrentPlayer].level]
+			                                                                                                        .type == 's' &&
+			                                                                                                dungeon[PlayerLocation[CurrentPlayer].mapx]
+			                                                                                                       [PlayerLocation[CurrentPlayer].mapy][PlayerLocation[CurrentPlayer].level]
+			                                                                                                           .item == 0) {
 				movedown();
 			}
-		}
-		else if (treasurelvl2 < level) {
+		} else if (treasurelvl2 < level) {
 			findstairs(1);
 			if (dx == PlayerLocation[CurrentPlayer].mapx &&
-				dy == PlayerLocation[CurrentPlayer].mapy ||
-				dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy]
-				[PlayerLocation[CurrentPlayer].level].type == 's' &&
-				dungeon[PlayerLocation[CurrentPlayer].mapx]
-				[PlayerLocation[CurrentPlayer].mapy][PlayerLocation[CurrentPlayer].level].item == 1) {
+			        dy == PlayerLocation[CurrentPlayer].mapy ||
+			    dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy]
+			           [PlayerLocation[CurrentPlayer].level]
+			                .type == 's' &&
+			        dungeon[PlayerLocation[CurrentPlayer].mapx]
+			               [PlayerLocation[CurrentPlayer].mapy][PlayerLocation[CurrentPlayer].level]
+			                   .item == 1) {
 				movedown();
-
 			}
-		}
-		else {
+		} else {
 			dx = treasurex2;
 			dy = treasurey2;
 		}
@@ -1084,54 +995,57 @@ void destination() {
 			if (treasurelvl2 > level) {
 				findstairs(0);
 				if (dx == PlayerLocation[CurrentPlayer].mapx && dy == PlayerLocation[CurrentPlayer].mapy ||
-					dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy]
-					[PlayerLocation[CurrentPlayer].level].type == 's' &&
-					dungeon[PlayerLocation[CurrentPlayer].mapx]
-					[PlayerLocation[CurrentPlayer].mapy][PlayerLocation[CurrentPlayer].level].item == 0) {
+				    dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy]
+				           [PlayerLocation[CurrentPlayer].level]
+				                .type == 's' &&
+				        dungeon[PlayerLocation[CurrentPlayer].mapx]
+				               [PlayerLocation[CurrentPlayer].mapy][PlayerLocation[CurrentPlayer].level]
+				                   .item == 0) {
 					movedown();
 				}
-			}
-			else if (treasurelvl2 < level) {
+			} else if (treasurelvl2 < level) {
 				findstairs(1);
 				if (dx == PlayerLocation[CurrentPlayer].mapx &&
-					dy == PlayerLocation[CurrentPlayer].mapy ||
-					dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy]
-					[PlayerLocation[CurrentPlayer].level].type == 's' &&
-					dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy]
-					[PlayerLocation[CurrentPlayer].level].item == 1) {
+				        dy == PlayerLocation[CurrentPlayer].mapy ||
+				    dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy]
+				           [PlayerLocation[CurrentPlayer].level]
+				                .type == 's' &&
+				        dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy]
+				               [PlayerLocation[CurrentPlayer].level]
+				                   .item == 1) {
 					movedown();
 				}
-			}
-			else {
+			} else {
 				dx = PlayerLocation[foundtreasure2].mapx;
 				dy = PlayerLocation[foundtreasure2].mapy;
 			}
 		}
-
 
 		if (foundtreasure2 != 0 && foundtreasure2 == CurrentPlayer) {
 
 			if (PlayerLocation[foundtreasure2].coplvl > level) {
 				findstairs(0);
 				if (dx == PlayerLocation[CurrentPlayer].mapx && dy == PlayerLocation[CurrentPlayer].mapy ||
-					dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy]
-					[PlayerLocation[CurrentPlayer].level].type == 's' &&
-					dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy]
-					[PlayerLocation[CurrentPlayer].level].item == 0) {
+				    dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy]
+				           [PlayerLocation[CurrentPlayer].level]
+				                .type == 's' &&
+				        dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy]
+				               [PlayerLocation[CurrentPlayer].level]
+				                   .item == 0) {
 					movedown();
 				}
-			}
-			else if (PlayerLocation[foundtreasure2].coplvl < level) {
+			} else if (PlayerLocation[foundtreasure2].coplvl < level) {
 				findstairs(1);
 				if (dx == PlayerLocation[CurrentPlayer].mapx && dy == PlayerLocation[CurrentPlayer].mapy ||
-					dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy]
-					[PlayerLocation[CurrentPlayer].level].type == 's' &&
-					dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy]
-					[PlayerLocation[CurrentPlayer].level].item == 1) {
+				    dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy]
+				           [PlayerLocation[CurrentPlayer].level]
+				                .type == 's' &&
+				        dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy]
+				               [PlayerLocation[CurrentPlayer].level]
+				                   .item == 1) {
 					movedown();
 				}
-			}
-			else {
+			} else {
 				dx = PlayerLocation[foundtreasure2].copx;
 				dy = PlayerLocation[foundtreasure2].copy;
 			}
@@ -1140,9 +1054,8 @@ void destination() {
 }
 
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
-
 
 int findstairs(char way) {
 	int x, y;
@@ -1171,11 +1084,10 @@ int findstairs(char way) {
 	}
 
 	return 0;
-
 }
 
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
 int findelixir(int item) {
@@ -1186,8 +1098,6 @@ int findelixir(int item) {
 	int level;
 
 	char thing;
-
-
 
 	switch (item) {
 	case 1:
@@ -1202,7 +1112,6 @@ int findelixir(int item) {
 	case 4:
 		thing = 'r';
 		break;
-
 	}
 
 	level = PlayerLocation[CurrentPlayer].level;
@@ -1235,7 +1144,7 @@ int findelixir(int item) {
 	return 0;
 }
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
 int findbeholder(int x, int y, int lvl) {
@@ -1243,7 +1152,6 @@ int findbeholder(int x, int y, int lvl) {
 	int savecurrent;
 	int i;
 	int len;
-
 
 	if (PlayerLocation[CurrentPlayer].character == 3)
 		return 0;
@@ -1253,22 +1161,22 @@ int findbeholder(int x, int y, int lvl) {
 		CurrentPlayer = i;
 		if (savecurrent != i) {
 			if (PlayerLocation[CurrentPlayer].character == 3 &&
-				PlayerLocation[i].asleep == 0 &&
-				x == PlayerLocation[i].mapx &&
-				y == PlayerLocation[i].mapy &&
-				lvl == PlayerLocation[i].level &&
-				PlayerLocation[i].dead == 0) {
+			    PlayerLocation[i].asleep == 0 &&
+			    x == PlayerLocation[i].mapx &&
+			    y == PlayerLocation[i].mapy &&
+			    lvl == PlayerLocation[i].level &&
+			    PlayerLocation[i].dead == 0) {
 				CurrentPlayer = savecurrent;
 				strcpy(PlayerLocation[CurrentPlayer].lastmove, "-");
 				return 1;
 			}
 			if (foundtreasure == savecurrent &&
-				PlayerLocation[i].character == 2 &&
-				PlayerLocation[i].asleep == 0 &&
-				x == PlayerLocation[i].mapx &&
-				y == PlayerLocation[i].mapy &&
-				lvl == PlayerLocation[i].level &&
-				PlayerLocation[i].dead == 0) {
+			    PlayerLocation[i].character == 2 &&
+			    PlayerLocation[i].asleep == 0 &&
+			    x == PlayerLocation[i].mapx &&
+			    y == PlayerLocation[i].mapy &&
+			    lvl == PlayerLocation[i].level &&
+			    PlayerLocation[i].dead == 0) {
 				CurrentPlayer = savecurrent;
 				strcpy(PlayerLocation[i].lastmove, "-");
 				len = random_num(2);
@@ -1278,12 +1186,12 @@ int findbeholder(int x, int y, int lvl) {
 					return 0;
 			}
 			if (foundtreasure == savecurrent &&
-				PlayerLocation[i].character == 1 &&
-				PlayerLocation[i].asleep == 0 &&
-				x == PlayerLocation[i].mapx &&
-				y == PlayerLocation[i].mapy &&
-				lvl == PlayerLocation[i].level &&
-				PlayerLocation[i].dead == 0) {
+			    PlayerLocation[i].character == 1 &&
+			    PlayerLocation[i].asleep == 0 &&
+			    x == PlayerLocation[i].mapx &&
+			    y == PlayerLocation[i].mapy &&
+			    lvl == PlayerLocation[i].level &&
+			    PlayerLocation[i].dead == 0) {
 				CurrentPlayer = savecurrent;
 				strcpy(PlayerLocation[i].lastmove, "-");
 				len = random_num(2);
@@ -1305,13 +1213,11 @@ int findbeholder(int x, int y, int lvl) {
 		}
 	}
 
-
 	return 0;
 }
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
-
 
 void check_dead() {
 
@@ -1335,10 +1241,8 @@ void check_dead() {
 }
 
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
-
-
 
 void apply_damage() {
 
@@ -1355,12 +1259,10 @@ void apply_damage() {
 		for (i = 1; i <= 20; i++) {
 			if (missle[i].frame != 0) {
 				if (missle[i].misslex == PlayerLocation[t].mapx &&
-					missle[i].missley == PlayerLocation[t].mapy &&
-					missle[i].misslelvl == PlayerLocation[t].level &&
-					PlayerLocation[t].active &&
-					PlayerLocation[t].dead == 0 && missle[i].owner != t
-					) {
-
+				    missle[i].missley == PlayerLocation[t].mapy &&
+				    missle[i].misslelvl == PlayerLocation[t].level &&
+				    PlayerLocation[t].active &&
+				    PlayerLocation[t].dead == 0 && missle[i].owner != t) {
 
 					PlayerLocation[missle[i].owner].numshots = PlayerLocation[missle[i].owner].numshots - 1;
 					if (foundtreasure == t && PlayerLocation[t].protection == 0 && ishost) {
@@ -1373,8 +1275,6 @@ void apply_damage() {
 						strcpy(PlayerLocation[t].lastmove, "-");
 						PlayerLocation[t].track = 0;
 
-
-
 						if (networkgame && ishost) {
 
 							dtreasure[0].towner = t;
@@ -1382,11 +1282,8 @@ void apply_damage() {
 							dtreasure[0].tdy = PlayerLocation[t].mapy;
 							dtreasure[0].tdlvl = PlayerLocation[t].level;
 
-
 							send_treasure(0, 0);
-
 						}
-
 					}
 
 					if (foundtreasure2 == t && PlayerLocation[t].protection == 0 && ishost) {
@@ -1404,18 +1301,13 @@ void apply_damage() {
 							dtreasure[1].tdy = PlayerLocation[t].mapy;
 							dtreasure[1].tdlvl = PlayerLocation[t].level;
 
-
-
 							send_treasure2(0, 0);
-
 						}
-
 					}
 
 					missle[i].frame = 0;
 
 					if (ishost || t == 1) {
-
 
 						hurt = random_num((PlayerLocation[missle[i].owner].damagemax - PlayerLocation[missle[i].owner].damagemin) + 1) + 1;
 						hurt = hurt + (PlayerLocation[missle[i].owner].damagemin - 1);
@@ -1427,25 +1319,19 @@ void apply_damage() {
 									PlayerLocation[t].armour = 0;
 									PlayerLocation[t].ability = PlayerLocation[t].ability - hurt;
 
-								}
-								else {
+								} else {
 									PlayerLocation[t].armour = PlayerLocation[t].armour - hurt;
 								}
 
-							}
-							else {
+							} else {
 								PlayerLocation[t].ability = PlayerLocation[t].ability - hurt;
-
 							}
-
 
 							if (t == 1) {
 								if (m_directSoundOK)
 									m_pDirSound->PlaySound(m_bufferOuch);
 							}
-
 						}
-
 					}
 
 					if (PlayerLocation[t].asleep == 1 && ishost)
@@ -1453,16 +1339,14 @@ void apply_damage() {
 					if (missle[i].misslelvl == PlayerLocation[camera].level)
 						if (!networkserver)
 							result = pDirDraw->BlitImage(&CPoint(PlayerLocation[t].x, PlayerLocation[t].y),
-								partsASurfaceNum, &CRect(0, 1152, 63, 1152 + 63));
+							                             partsASurfaceNum, &CRect(0, 1152, 63, 1152 + 63));
 
 					if (m_directSoundOK)
 						m_pDirSound->PlaySound(m_bufferHit);
 					if (PlayerLocation[t].ability <= 0) {
 
-
 						if (t <= newwarrior) {
 							if (ishost || t == 1) {
-
 
 								if (ishost) {
 									PlayerLocation[missle[i].owner].skill = PlayerLocation[missle[i].owner].skill + PlayerLocation[t].damagemax;
@@ -1470,7 +1354,6 @@ void apply_damage() {
 									if (networkgame && ishost) {
 										send_reward(missle[i].owner, PlayerLocation[t].damagemax);
 									}
-
 								}
 
 								PlayerLocation[t].mapx = PlayerLocation[t].copx;
@@ -1502,15 +1385,11 @@ void apply_damage() {
 								PlayerLocation[t].maxmissle = 4;
 								PlayerLocation[t].firerate = 5;
 
-
-
 								if (m_directSoundOK)
 									m_pDirSound->PlaySound(m_bufferDead);
 
-
 								if (ishost && networkgame)
 									send_player(t, 0, 0);
-
 
 								if (t == 1) {
 									advancelevel = 20;
@@ -1521,20 +1400,10 @@ void apply_damage() {
 
 									if (rand == 1)
 										return;
-
 								}
-
-
-
-
-
-
 							}
-						}
-						else {
+						} else {
 							kill_monster(t, missle[i].owner);
-
-
 						}
 					}
 				}
@@ -1544,7 +1413,7 @@ void apply_damage() {
 }
 
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
 void calc_player_move() {
@@ -1586,12 +1455,10 @@ void calc_player_move() {
 }
 
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
-
 void calc_animation() {
-
 
 	int framey, framex;
 	int frame2y, frame2x, adjust;
@@ -1605,9 +1472,7 @@ void calc_animation() {
 	frame2y = 0;
 	adjust = 0;
 
-
 	switch (frame_num) {
-
 
 	case 1:
 
@@ -1627,7 +1492,6 @@ void calc_animation() {
 	case 5:
 		adjust = 320;
 		break;
-
 	}
 
 	switch (PlayerLocation[CurrentPlayer].direction) {
@@ -1671,7 +1535,6 @@ void calc_animation() {
 		frame2y = frame2y + 128;
 		break;
 
-
 	case 3:
 		framey = framey + 256;
 		frame2y = frame2y + 256;
@@ -1707,31 +1570,23 @@ void calc_animation() {
 	PlayerLocation[CurrentPlayer].fy = framey;
 	PlayerLocation[CurrentPlayer].fx2 = frame2x;
 	PlayerLocation[CurrentPlayer].fy2 = frame2y;
-
-
 }
 
-
-
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
-
-bool OutsideMaze(int x, int y)
-{
-
+bool OutsideMaze(int x, int y) {
 
 	return (x <= 0 || y <= 0 ||
-		x >= DUNGEONX || y >= DUNGEONY);
-}/* OutsideMaze */
+	        x >= DUNGEONX || y >= DUNGEONY);
+} /* OutsideMaze */
 
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
-bool AtFinish(int x, int y)
-{
+bool AtFinish(int x, int y) {
 
 	if (x == dx && y == dy)
 		return 1;
@@ -1740,14 +1595,12 @@ bool AtFinish(int x, int y)
 }
 
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
-bool WallExists(int x, int y, int level, int dir)
-{
+bool WallExists(int x, int y, int level, int dir) {
 
-	switch (dir)
-	{
+	switch (dir) {
 	case 2: {
 		y--;
 		break;
@@ -1764,63 +1617,55 @@ bool WallExists(int x, int y, int level, int dir)
 		x--;
 		break;
 	}
-	}/* switch */
+	} /* switch */
 
-   /* In this version, we never wander outside the maze, since we
-	* are looking for "F". Hence being outside the maze is like
-	* finding a wall.
-	*/
+	/* In this version, we never wander outside the maze, since we
+	 * are looking for "F". Hence being outside the maze is like
+	 * finding a wall.
+	 */
 
 	if (dungeon[x][y][level].type == 0 || dungeon[x][y][level].type == 'u')
 		return 1;
 
-
 	if (OutsideMaze(x, y) == 1)
 		return 1;
 
-
-
-
 	return 0;
 
-}/* WallExists */
+} /* WallExists */
 
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
-void MarkSquare(int x, int y, int level)
-{
+void MarkSquare(int x, int y, int level) {
 	shortestroute++;
 	dungeon[x][y][level].mark = 'X';
 	dungeon[x][y][level].order = ++orderglobal;
 }
 
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
-void UnmarkSquare(int x, int y, int level)
-{
+void UnmarkSquare(int x, int y, int level) {
 	shortestroute--;
 	dungeon[x][y][level].mark = 0;
 	dungeon[x][y][level].order = 0;
 }
 
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
-bool IsMarked(int x, int y, int level)
-{
+bool IsMarked(int x, int y, int level) {
 	if (dungeon[x][y][level].mark == 'X')
 		return 1;
 	else
 		return 0;
 }
 
-static bool SolveMaze(int x, int y, int level, int dir)
-{
+static bool SolveMaze(int x, int y, int level, int dir) {
 
 	int x1, y1;
 	int count;
@@ -1835,10 +1680,7 @@ static bool SolveMaze(int x, int y, int level, int dir)
 			//			printf("\nallsquare %d saveshort %d startsolve %d movex %d movey %d\n",allsquare,saveshort,startsolve,moveitx,moveity);
 			moveitxfin = moveitx;
 			moveityfin = moveity;
-
-
 		}
-
 
 		if (PlayerLocation[CurrentPlayer].stairsx > 0) {
 			return (TRUE);
@@ -1861,8 +1703,7 @@ static bool SolveMaze(int x, int y, int level, int dir)
 		if (!WallExists(x, y, level, direction)) {
 			x1 = x;
 			y1 = y;
-			switch (direction)
-			{
+			switch (direction) {
 			case 2:
 				y1--;
 				break;
@@ -1872,7 +1713,8 @@ static bool SolveMaze(int x, int y, int level, int dir)
 			case 4:
 				y1++;
 				break;
-			case 1: x1--;
+			case 1:
+				x1--;
 				break;
 			}
 
@@ -1889,8 +1731,6 @@ static bool SolveMaze(int x, int y, int level, int dir)
 				}
 				return (TRUE);
 			}
-
-
 		}
 	}
 	//	UnmarkSquare(x,y,level);
@@ -1901,11 +1741,10 @@ static bool SolveMaze(int x, int y, int level, int dir)
 
 	startsolve--;
 	return (FALSE);
-}/* SolveMaze */
-
+} /* SolveMaze */
 
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
 int computer_m(int x, int y, int level) {
@@ -1923,19 +1762,17 @@ int computer_m(int x, int y, int level) {
 	start_recursion = 1;
 	int loopx, loopy;
 
-
 	//	FILE *fp;
 
-//	i = random_num(5);
-//	if (PlayerLocation[CurrentPlayer].character ==3 && i!=1) {
-//		computermove();
-//		return 0;
-//	}
+	//	i = random_num(5);
+	//	if (PlayerLocation[CurrentPlayer].character ==3 && i!=1) {
+	//		computermove();
+	//		return 0;
+	//	}
 	if (PlayerLocation[CurrentPlayer].mapx == dx &&
-		PlayerLocation[CurrentPlayer].mapy == dy
-		||
-		dungeon[dx][dy][level].type == 'u' ||
-		dungeon[dx][dy][level].type == 0) {
+	        PlayerLocation[CurrentPlayer].mapy == dy ||
+	    dungeon[dx][dy][level].type == 'u' ||
+	    dungeon[dx][dy][level].type == 0) {
 
 		px = x;
 		py = y;
@@ -1966,7 +1803,6 @@ int computer_m(int x, int y, int level) {
 		//			PlayerLocation[CurrentPlayer].rest = 9;
 		//		}
 
-
 		return 0;
 	}
 
@@ -1995,21 +1831,16 @@ int computer_m(int x, int y, int level) {
 		dir = 3;
 
 	PlayerLocation[CurrentPlayer].direction = dir;
-	//	out_map(PlayerLocation[CurrentPlayer].mapx,PlayerLocation[CurrentPlayer].mapy,dir,saveshort,saveroute,size);		
+	//	out_map(PlayerLocation[CurrentPlayer].mapx,PlayerLocation[CurrentPlayer].mapy,dir,saveshort,saveroute,size);
 
 	return dir;
-
 }
 
-
-
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
-static bool SolveMaze3(int x, int y, int level, int dir)
-{
-
+static bool SolveMaze3(int x, int y, int level, int dir) {
 
 	int x1, y1;
 	int counter = 0;
@@ -2017,9 +1848,6 @@ static bool SolveMaze3(int x, int y, int level, int dir)
 	int flag;
 	int flag2;
 	int short2 = 0;
-
-
-
 
 	for (i = 0; i < DUNGEONX * DUNGEONY; i++) {
 		stack[i].dir = 1;
@@ -2041,9 +1869,7 @@ static bool SolveMaze3(int x, int y, int level, int dir)
 				moveityfin = moveity;
 				if (saveshort <= 2)
 					break;
-
 			}
-
 		}
 		dir = stack[counter].dir;
 		x = stack[counter].x;
@@ -2070,8 +1896,7 @@ static bool SolveMaze3(int x, int y, int level, int dir)
 			if (!WallExists(x, y, level, dir)) {
 				x1 = x;
 				y1 = y;
-				switch (dir)
-				{
+				switch (dir) {
 				case 2:
 					y1--;
 					break;
@@ -2081,10 +1906,10 @@ static bool SolveMaze3(int x, int y, int level, int dir)
 				case 4:
 					y1++;
 					break;
-				case 1: x1--;
+				case 1:
+					x1--;
 					break;
 				}
-
 			}
 
 			if (!IsMarked(x1, y1, level) && x1 != 0) {
@@ -2094,16 +1919,14 @@ static bool SolveMaze3(int x, int y, int level, int dir)
 				stack[counter].y = y;
 				MarkSquare(x, y, level);
 				flag = FALSE;
-			}
-			else
+			} else
 				dir++;
 		}
 
 		if (flag2) {
 			x1 = x;
 			y1 = y;
-			switch (dir)
-			{
+			switch (dir) {
 			case 2:
 				y1--;
 				break;
@@ -2113,7 +1936,8 @@ static bool SolveMaze3(int x, int y, int level, int dir)
 			case 4:
 				y1++;
 				break;
-			case 1: x1--;
+			case 1:
+				x1--;
 				break;
 			}
 			MarkSquare(x1, y1, level);
@@ -2134,23 +1958,18 @@ static bool SolveMaze3(int x, int y, int level, int dir)
 }
 
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
-
-
 int count_nodes(int lvlnum) {
-
 
 	int x, y;
 	int count;
 	int node;
 	node = 0;
 
-
 	for (y = 0; y <= DUNGEONY; y++) {
 		for (x = 0; x <= DUNGEONX; x++) {
-
 
 			if (dungeon[x][y][lvlnum].type == 'f' || dungeon[x][y][lvlnum].type == 's') {
 				count = 0;
@@ -2166,70 +1985,54 @@ int count_nodes(int lvlnum) {
 
 				if (count >= 3) {
 					node++;
-
 				}
-
 			}
-
 		}
 	}
 
-
 	return node;
-
 }
-
 
 void apply_body_damage(int loser, int winner) {
 
 	int hurt;
-	int 			randnum;
+	int randnum;
 	int r;
 	if (PlayerLocation[loser].protection == 0 && PlayerLocation[loser].hit == 0) {
 
-
 		if (ishost || loser == 1) {
-
 
 			if (winner == 99) {
 				hurt = 4;
-			}
-			else {
+			} else {
 				hurt = random_num((PlayerLocation[winner].damagemax - PlayerLocation[winner].damagemin) + 1) + 1;
 				hurt = hurt + (PlayerLocation[winner].damagemin - 1);
 			}
-
 
 			if (PlayerLocation[loser].armour > 0) {
 				if (PlayerLocation[loser].armour - hurt < 0) {
 					hurt = hurt - PlayerLocation[loser].armour;
 					PlayerLocation[loser].armour = 0;
 					PlayerLocation[loser].ability = PlayerLocation[loser].ability - hurt;
-				}
-				else {
+				} else {
 					PlayerLocation[loser].armour = PlayerLocation[loser].armour - hurt;
 				}
-			}
-			else {
+			} else {
 				PlayerLocation[loser].ability = PlayerLocation[loser].ability - hurt;
 			}
 
 			PlayerLocation[loser].hit = 1;
-
 		}
 
 		if (loser == 1) {
 
 			if (m_directSoundOK)
 				m_pDirSound->PlaySound(m_bufferOuch);
-
-
 		}
 
 		//		if (!networkserver)
 		//			result = pDirDraw->BlitImage(&CPoint(PlayerLocation[loser].x, PlayerLocation[loser].y),
 		//			partsASurfaceNum, 	&CRect(0, 1152, 63, 1152+63));
-
 
 		if (foundtreasure == loser && PlayerLocation[loser].protection == 0) {
 
@@ -2244,13 +2047,10 @@ void apply_body_damage(int loser, int winner) {
 				PlayerLocation[loser].track = 0;
 				if (networkgame && ishost)
 					send_treasure(0, 0);
-
-
 			}
 		}
 
 		if (foundtreasure2 == loser && PlayerLocation[loser].protection == 0) {
-
 
 			if (ishost) {
 				treasurex2 = PlayerLocation[loser].mapx;
@@ -2263,7 +2063,6 @@ void apply_body_damage(int loser, int winner) {
 				PlayerLocation[loser].track = 0;
 				if (networkgame && ishost)
 					send_treasure2(0, 0);
-
 			}
 		}
 
@@ -2296,11 +2095,8 @@ void apply_body_damage(int loser, int winner) {
 			PlayerLocation[loser].maxmissle = 4;
 			PlayerLocation[loser].firerate = 5;
 
-
 			if (m_directSoundOK)
 				m_pDirSound->PlaySound(m_bufferDead);
-
-
 
 			hitkeyboard = 0;
 			mousehit = 0;
@@ -2314,14 +2110,10 @@ void apply_body_damage(int loser, int winner) {
 				r = play_again();
 				if (r == 1)
 					return;
-
 			}
-
 		}
 	}
 }
-
-
 
 void went_up_level() {
 
@@ -2331,7 +2123,6 @@ void went_up_level() {
 		PlayerLocation[1].ability = PlayerLocation[1].ability + 20;
 		if (m_directSoundOK)
 			m_pDirSound->PlaySound(m_bufferWin);
-
 
 		switch (advanceattrib) {
 		case 0:
@@ -2374,14 +2165,10 @@ void went_up_level() {
 		if (ishost && networkgame) {
 			send_player(1, 1, 0);
 		}
-
 	}
 }
 
-
 int play_again() {
-
-
 
 	if (ishost && !networkgame) {
 
@@ -2411,9 +2198,7 @@ int play_again() {
 
 			SetTimer(hWindow, 3, timerlength, TimerProc);
 			return 1;
-		}
-		else
-		{
+		} else {
 			showmission = 0;
 
 			mousehit = 0;
@@ -2426,26 +2211,18 @@ int play_again() {
 				play_random_music();
 			SetTimer(hWindow, 1, 50, TimerProc);
 			return 1;
-
 		}
 	}
 
 	return 0;
-
 }
-
-
 
 void kill_monster(int t, int winner) {
 	int rand;
 	int randnum;
 
-
-
 	if (ishost) {
-		if (items < 50 + maxlevel
-			&& dungeon[PlayerLocation[t].mapx][PlayerLocation[t].mapy][PlayerLocation[t].level].item == 0
-			&& dungeon[PlayerLocation[t].mapx][PlayerLocation[t].mapy][PlayerLocation[t].level].type == 'f') {
+		if (items < 50 + maxlevel && dungeon[PlayerLocation[t].mapx][PlayerLocation[t].mapy][PlayerLocation[t].level].item == 0 && dungeon[PlayerLocation[t].mapx][PlayerLocation[t].mapy][PlayerLocation[t].level].type == 'f') {
 			rand = random_num(4) + 1;
 			switch (rand) {
 			case 1:
@@ -2468,16 +2245,10 @@ void kill_monster(int t, int winner) {
 				break;
 			}
 
-
-
-			if (dungeon[PlayerLocation[t].mapx][PlayerLocation[t].mapy][PlayerLocation[t].level].item
-				&& ishost && networkgame) {
+			if (dungeon[PlayerLocation[t].mapx][PlayerLocation[t].mapy][PlayerLocation[t].level].item && ishost && networkgame) {
 				send_dungeon_square(PlayerLocation[t].mapx, PlayerLocation[t].mapy, PlayerLocation[t].level, 0);
-
 			}
 		}
-
-
 
 		dscene[t].x = PlayerLocation[t].x;
 		dscene[t].y = PlayerLocation[t].y;
@@ -2494,9 +2265,7 @@ void kill_monster(int t, int winner) {
 		strcpy(PlayerLocation[t].lastmove, "-");
 		PlayerLocation[t].ability = 5;
 
-
 		switch (PlayerLocation[t].image) {
-
 
 		case 1:
 			randnum = random_num(20) + 1;
@@ -2517,36 +2286,35 @@ void kill_monster(int t, int winner) {
 			break;
 
 		case 2:
-			//behold
+			// behold
 			randnum = random_num(6) + 1;
 			PlayerLocation[t].ability = 6 + randnum + countlevels;
 			PlayerLocation[t].ability = beholderability;
 			break;
 		case 6:
-			//skel
+			// skel
 			randnum = random_num(4) + 1;
 			PlayerLocation[t].ability = 4 + randnum + countlevels;
 			PlayerLocation[t].ability = skeletonability;
 			break;
 		case 7:
-			//mount
+			// mount
 			randnum = random_num(3) + 1;
 			PlayerLocation[t].ability = 3 + randnum + countlevels;
 			PlayerLocation[t].ability = moutherability;
 			break;
 		case 8:
-			//orc
+			// orc
 			randnum = random_num(5) + 1;
 			PlayerLocation[t].ability = 5 + randnum + countlevels;
 			PlayerLocation[t].ability = orcability;
 			break;
 		case 9:
-			//lord help us death orb
+			// lord help us death orb
 			randnum = random_num(10) + 1;
 			PlayerLocation[t].ability = 10 + randnum + countlevels;
 			PlayerLocation[t].ability = deathorbability;
 			break;
-
 		}
 		PlayerLocation[t].stairs = 0;
 
@@ -2567,26 +2335,17 @@ void kill_monster(int t, int winner) {
 		if (ishost && networkgame) {
 			send_player(t, 0, 0);
 
-
 			send_death(t, dscene[t].x, dscene[t].y, dscene[t].lvl, 0,
-				dscene[t].direction, dscene[t].counter,
-				dscene[t].mapx, dscene[t].mapy,
-				PlayerLocation[t].dead);
-
-
-
-
-
+			           dscene[t].direction, dscene[t].counter,
+			           dscene[t].mapx, dscene[t].mapy,
+			           PlayerLocation[t].dead);
 
 			send_play_sound(2);
 		}
 
 		if (m_directSoundOK)
 			m_pDirSound->PlaySound(m_bufferMonsterdie);
-
-
 	}
-
 
 	if (ishost) {
 		PlayerLocation[winner].skill = PlayerLocation[winner].skill + PlayerLocation[t].damagemax;
@@ -2594,9 +2353,5 @@ void kill_monster(int t, int winner) {
 		if (networkgame && ishost) {
 			send_reward(winner, PlayerLocation[t].damagemax);
 		}
-
 	}
-
-
-
 }

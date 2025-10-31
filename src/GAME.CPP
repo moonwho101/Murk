@@ -1,8 +1,7 @@
-//  Murk Ver 1.12 By Mark Longo 
+//  Murk Ver 1.12 By Mark Longo
 //  Copyright 1999  , All Rights Reserver.
 
-
-// The guts of NETWORK PLAY.  
+// The guts of NETWORK PLAY.
 
 #include "StdAfx.h"
 #include <windowsx.h>
@@ -19,31 +18,31 @@
 static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
-#define MSG_NUMPLAYERS		0x11
-#define MSG_SENDMAN			0x12
-#define MSG_PLAYERNUM       0x13
-#define MSG_MISSLE			0x14
-#define MSG_QUIT		    0x15
-#define MSG_PLAYERQUICK	    0x16
-#define MSG_DUNGEONSQUARE   0x17
-#define MSG_CHAT		    0x18
-#define MSG_DUNGEONSIZE	    0x19
-#define MSG_REWARD		    0x20
-#define MSG_PLAYER			0x22
-#define MSG_STARTTIMER      0x33
-#define MSG_DELETEPLAYER    0x34
-#define MSG_ERROR			0x35
-#define MSG_VERSION			0x36
-#define MSG_DEATH			0x37
-#define MSG_STOPTIMER		0x44
-#define MSG_PIT				0x45
-#define MSG_TREASURE		0x55
-#define MSG_PLAYERDIR		0x66
-#define MSG_PLAYSOUND		0x67
-#define MSG_SENDDUNGEON     0x77
-#define MSG_DROPTREASURE    0x78
-#define MSG_HOSTPING	    0x79
-#define MSG_DUNGEON			0x88
+#define MSG_NUMPLAYERS 0x11
+#define MSG_SENDMAN 0x12
+#define MSG_PLAYERNUM 0x13
+#define MSG_MISSLE 0x14
+#define MSG_QUIT 0x15
+#define MSG_PLAYERQUICK 0x16
+#define MSG_DUNGEONSQUARE 0x17
+#define MSG_CHAT 0x18
+#define MSG_DUNGEONSIZE 0x19
+#define MSG_REWARD 0x20
+#define MSG_PLAYER 0x22
+#define MSG_STARTTIMER 0x33
+#define MSG_DELETEPLAYER 0x34
+#define MSG_ERROR 0x35
+#define MSG_VERSION 0x36
+#define MSG_DEATH 0x37
+#define MSG_STOPTIMER 0x44
+#define MSG_PIT 0x45
+#define MSG_TREASURE 0x55
+#define MSG_PLAYERDIR 0x66
+#define MSG_PLAYSOUND 0x67
+#define MSG_SENDDUNGEON 0x77
+#define MSG_DROPTREASURE 0x78
+#define MSG_HOSTPING 0x79
+#define MSG_DUNGEON 0x88
 
 #define MAX_BUFFER_SIZE 512
 
@@ -57,37 +56,33 @@ void send_pingserver();
 void send_client_error(int slot, int problem);
 void send_version(int slot);
 void kill_dplay();
-void send_death(int player, int x, int y, int lvl, int image, int
-	direction, int counter, int mapx, int mapy, int dead);
+void send_death(int player, int x, int y, int lvl, int image, int direction, int counter, int mapx, int mapy, int dead);
 
 extern void play_random_music();
 extern void stop_song();
-
 
 extern void build_server_screen();
 BOOL doit;
 extern DWORD Globalid;
 
-extern void 		find_tcp_ipx();
+extern void find_tcp_ipx();
 
 typedef struct _MSGINT {
 	BYTE MsgCode;
 	int miscint1;
 	int miscint2;
-} MSGINT, * LPMSGINT;
+} MSGINT, *LPMSGINT;
 
 typedef struct _MSGCHAR {
 	BYTE MsgCode;
 	int miscchar1;
 	int miscchar2;
-} MSGCHAR, * LPMSGCHAR;
-
+} MSGCHAR, *LPMSGCHAR;
 
 typedef struct _CHATMSG {
 	BYTE MsgCode;
 	char say[80];
-} CHATMSG, * LPCHATMSG;
-
+} CHATMSG, *LPCHATMSG;
 
 typedef struct _DUNGEONMSG {
 	BYTE MsgCode;
@@ -101,7 +96,7 @@ typedef struct _DUNGEONMSG {
 	BYTE y;
 	BYTE lvl;
 
-} DUNGEONMSG, * LPDUNGEON;
+} DUNGEONMSG, *LPDUNGEON;
 
 typedef struct _DSCENE {
 	BYTE MsgCode;
@@ -115,8 +110,7 @@ typedef struct _DSCENE {
 	BYTE mapx;
 	BYTE mapy;
 	int dead;
-} DSCENE, * LPDEATH;
-
+} DSCENE, *LPDEATH;
 
 typedef struct _MISSLEMSG {
 	BYTE MsgCode;
@@ -130,9 +124,9 @@ typedef struct _MISSLEMSG {
 	WORD owner;
 	WORD missledx;
 	WORD missledy;
-} MISSLEMSG, * LPMISSLE;
+} MISSLEMSG, *LPMISSLE;
 
-typedef struct  _PLAYERMSG {
+typedef struct _PLAYERMSG {
 	BYTE MsgCode;
 	BYTE PlayerNum;
 	BYTE protection;
@@ -194,9 +188,9 @@ typedef struct  _PLAYERMSG {
 	BYTE damagemin;
 	BYTE damagemax;
 	BYTE active;
-} PLAYERMSG, * LPPLAYER;
+} PLAYERMSG, *LPPLAYER;
 
-typedef struct  _PLAYERDIR {
+typedef struct _PLAYERDIR {
 	BYTE MsgCode;
 	BYTE PlayerNum;
 	BYTE justdied;
@@ -229,10 +223,9 @@ typedef struct  _PLAYERDIR {
 	BYTE protection;
 	BYTE calcmove;
 	BYTE moved;
-} PLAYERDIR, * LPPLAYERDIR;
+} PLAYERDIR, *LPPLAYERDIR;
 
-
-typedef struct  _PLAYERQUICK {
+typedef struct _PLAYERQUICK {
 	BYTE MsgCode;
 	BYTE PlayerNum;
 	WORD x;
@@ -250,11 +243,11 @@ typedef struct  _PLAYERQUICK {
 	BYTE rest;
 	BYTE calcmove;
 	BYTE moved;
-} PLAYERQUICK, * LPPLAYERQUICK;
+} PLAYERQUICK, *LPPLAYERQUICK;
 
 BOOL CALLBACK DlgProcChooseProvider(HWND hDlg, UINT msg, WPARAM wParam, LPARAM lParam);
 BOOL FAR PASCAL EnumSession(LPDPSESSIONDESC lpDPGameDesc, LPVOID lpContext,
-	LPDWORD lpdwTimeOut, DWORD dwFlags);
+                            LPDWORD lpdwTimeOut, DWORD dwFlags);
 BOOL CALLBACK DlgProcSelSession(HWND hDlg, UINT msg, WPARAM wParam, LPARAM lParam);
 
 HRESULT ShutdownConnection();
@@ -265,19 +258,14 @@ extern char serverscreen[100];
 
 int networktype;
 
-
-CGame::CGame()
-{
+CGame::CGame() {
 }
 
-CGame::~CGame()
-{
+CGame::~CGame() {
 	//  DPCleanup();
 }
 
-BOOL
-CGame::DPInit()
-{
+BOOL CGame::DPInit() {
 
 	int i;
 
@@ -286,33 +274,26 @@ CGame::DPInit()
 	}
 
 	return (::DirectPlayCreate(lpGuid,
-		&m_pDirectPlay, NULL) == DP_OK);
-
-
+	                           &m_pDirectPlay, NULL) == DP_OK);
 
 	return FALSE;
 }
 
-void
-CGame::DPCleanup()
-{
+void CGame::DPCleanup() {
 
 	// End the DP session
-//  DPEndSession();
+	//  DPEndSession();
 
-  // Cleanup the DP object
-//  if (m_pDirectPlay)
-//  {
-//    m_pDirectPlay->Release();
-//    m_pDirectPlay = NULL;
-//  }
+	// Cleanup the DP object
+	//  if (m_pDirectPlay)
+	//  {
+	//    m_pDirectPlay->Release();
+	//    m_pDirectPlay = NULL;
+	//  }
 }
 
-BOOL
-CGame::DPCreateSession()
-{
-	if (m_pDirectPlay)
-	{
+BOOL CGame::DPCreateSession() {
+	if (m_pDirectPlay) {
 		DPSESSIONDESC dpsdDesc;
 		::ZeroMemory(&dpsdDesc, sizeof(DPSESSIONDESC));
 		dpsdDesc.dwSize = sizeof(DPSESSIONDESC);
@@ -320,13 +301,11 @@ CGame::DPCreateSession()
 		dpsdDesc.dwFlags = DPOPEN_CREATESESSION;
 		dpsdDesc.guidSession = TICTACTOE_10;
 		strcpy(dpsdDesc.szSessionName, "Murk");
-		if (m_pDirectPlay->Open(&dpsdDesc) == DP_OK)
-		{
+		if (m_pDirectPlay->Open(&dpsdDesc) == DP_OK) {
 			// Create local player and set game info
 			m_pDirectPlay->EnableNewPlayers(TRUE);
 
-			if (DPCreateLocalPlayer())
-			{
+			if (DPCreateLocalPlayer()) {
 				m_bMyTurn = TRUE;
 				return TRUE;
 			}
@@ -336,16 +315,12 @@ CGame::DPCreateSession()
 	return FALSE;
 }
 
-BOOL
-CGame::DPConnectSession()
-{
+BOOL CGame::DPConnectSession() {
 
 	HRESULT hr;
 
-	if (m_pDirectPlay)
-	{
-		if (1)
-		{
+	if (m_pDirectPlay) {
+		if (1) {
 			// Open remote DP session
 			DPSESSIONDESC dpsdDesc;
 			::ZeroMemory(&dpsdDesc, sizeof(DPSESSIONDESC));
@@ -384,21 +359,17 @@ CGame::DPConnectSession()
 			case DPERR_USERCANCEL:
 				debug_me("DPConnectSession", "User cancelled", 0, 0);
 				break;
-
 			}
 
-			if (hr == DP_OK)
-			{
+			if (hr == DP_OK) {
 				m_dpidPlayer[1] = 1;
 
 				debug_me("DPConnectSession", "Attached and ready...", 0, 0);
 				m_pDirectPlay->EnableNewPlayers(TRUE);
-				if (DPCreateLocalPlayer())
-				{
+				if (DPCreateLocalPlayer()) {
 					debug_me("DPConnectSession", "Returned Success", 0, 0);
 					m_bMyTurn = FALSE;
 					return TRUE;
-
 				}
 			}
 		}
@@ -407,9 +378,7 @@ CGame::DPConnectSession()
 	return FALSE;
 }
 
-void
-CGame::DPEndSession()
-{
+void CGame::DPEndSession() {
 
 	//  Destroy the local DP player and clear the remote player
 	DPDestroyLocalPlayer();
@@ -419,25 +388,18 @@ CGame::DPEndSession()
 	if (m_pDirectPlay)
 		m_pDirectPlay->Close();
 
-	if (m_pDirectPlay)
-	{
+	if (m_pDirectPlay) {
 		m_pDirectPlay->Release();
 		m_pDirectPlay = NULL;
 	}
 
 	delete m_pGame;
-
 }
-
-
-
 
 //-----------------------------------------------------------------
 // CGame Protected Methods
 //-----------------------------------------------------------------
-BOOL
-CGame::DPCreateLocalPlayer()
-{
+BOOL CGame::DPCreateLocalPlayer() {
 	char friendname[100];
 	char formalname[100];
 
@@ -445,23 +407,18 @@ CGame::DPCreateLocalPlayer()
 	strcpy(formalname, "friend");
 
 	globalthread = NULL;
-	if (m_pDirectPlay->CreatePlayer(&m_dpidPlayer[0], "Friend"
-		, "Formal", &globalthread) == DP_OK) {
+	if (m_pDirectPlay->CreatePlayer(&m_dpidPlayer[0], "Friend", "Formal", &globalthread) == DP_OK) {
 		debug_me("DPCreateLocalPlayer", "CreatePlayer Success", 0, 0);
 		make_thread2();
 		return TRUE;
-	}
-	else {
+	} else {
 		return FALSE;
 	}
 }
 
-BOOL
-CGame::DPDestroyLocalPlayer()
-{
+BOOL CGame::DPDestroyLocalPlayer() {
 	// Destroy local DP player
-	if (m_pDirectPlay->DestroyPlayer(m_dpidPlayer[0]) == DP_OK)
-	{
+	if (m_pDirectPlay->DestroyPlayer(m_dpidPlayer[0]) == DP_OK) {
 		m_dpidPlayer[0] = 0;
 		return TRUE;
 	}
@@ -472,10 +429,10 @@ CGame::DPDestroyLocalPlayer()
 void send_dungeon_info(int slot) {
 
 	int x, y, lvl;
-	DWORD   nBytes;
+	DWORD nBytes;
 	LPDUNGEON lpDungeon;
 
-	BYTE Comm[512];    // Communication buffer for messages	
+	BYTE Comm[512]; // Communication buffer for messages
 	for (lvl = 1; lvl <= maxlevel; lvl++) {
 		for (y = 0; y <= DUNGEONY + 1; y++) {
 			for (x = 0; x <= DUNGEONX + 1; x++) {
@@ -495,17 +452,12 @@ void send_dungeon_info(int slot) {
 					Sleep(8);
 					if (slot != 0) {
 						if (m_pDirectPlay->Send(m_dpidPlayer[0], m_dpidPlayer[slot],
-							DPSEND_GUARANTEE, (LPSTR)Comm, nBytes) == DP_OK) {
-
-
+						                        DPSEND_GUARANTEE, (LPSTR)Comm, nBytes) == DP_OK) {
 						}
-					}
-					else {
+					} else {
 						if (m_pDirectPlay->Send(m_dpidPlayer[0], DPID_ALLPLAYERS,
-							DPSEND_GUARANTEE, (LPSTR)Comm, nBytes) == DP_OK) {
-
+						                        DPSEND_GUARANTEE, (LPSTR)Comm, nBytes) == DP_OK) {
 						}
-
 					}
 				}
 			}
@@ -515,11 +467,10 @@ void send_dungeon_info(int slot) {
 
 void send_player(int i, int client, int slot) {
 
-
-	DWORD   nBytes;
+	DWORD nBytes;
 	LPPLAYER lpPlayer;
 
-	BYTE Comm[512];    // Communication buffer for messages
+	BYTE Comm[512]; // Communication buffer for messages
 
 	lpPlayer = (LPPLAYER)Comm;
 	lpPlayer->MsgCode = MSG_PLAYER;
@@ -593,28 +544,26 @@ void send_player(int i, int client, int slot) {
 
 	if (slot != 0) {
 		if (m_pDirectPlay->Send(m_dpidPlayer[0], m_dpidPlayer[slot],
-			DPSEND_GUARANTEE, (LPSTR)Comm, nBytes) == DP_OK) {
+		                        DPSEND_GUARANTEE, (LPSTR)Comm, nBytes) == DP_OK) {
 		}
-	}
-	else {
+	} else {
 		if (client == 1) {
 			if (m_pDirectPlay->Send(m_dpidPlayer[0], 0,
-				0, (LPSTR)Comm, nBytes) == DP_OK) {
+			                        0, (LPSTR)Comm, nBytes) == DP_OK) {
 			}
-		}
-		else {
+		} else {
 			if (m_pDirectPlay->Send(m_dpidPlayer[0], DPID_ALLPLAYERS,
-				DPSEND_GUARANTEE, (LPSTR)Comm, nBytes) == DP_OK) {
+			                        DPSEND_GUARANTEE, (LPSTR)Comm, nBytes) == DP_OK) {
 			}
 		}
 	}
 }
 
 void send_player2(int i, int client, int slot) {
-	DWORD   nBytes;
+	DWORD nBytes;
 	LPPLAYERDIR lpPlayer;
 
-	BYTE Comm[512];    // Communication buffer for messages
+	BYTE Comm[512]; // Communication buffer for messages
 
 	lpPlayer = (LPPLAYERDIR)Comm;
 
@@ -659,35 +608,30 @@ void send_player2(int i, int client, int slot) {
 	lpPlayer->calcmove = PlayerLocation[i].calcmove;
 	lpPlayer->moved = PlayerLocation[i].moved;
 
-
 	nBytes = sizeof(PLAYERDIR);
 
 	if (slot != 0) {
 		if (m_pDirectPlay->Send(m_dpidPlayer[0], m_dpidPlayer[slot],
-			DPSEND_GUARANTEE, (LPSTR)Comm, nBytes) == DP_OK) {
+		                        DPSEND_GUARANTEE, (LPSTR)Comm, nBytes) == DP_OK) {
 		}
-	}
-	else {
+	} else {
 		if (client == 1) {
 			if (m_pDirectPlay->Send(m_dpidPlayer[0], 0,
-				0, (LPSTR)Comm, nBytes) == DP_OK) {
+			                        0, (LPSTR)Comm, nBytes) == DP_OK) {
 			}
-		}
-		else {
+		} else {
 			if (m_pDirectPlay->Send(m_dpidPlayer[0], DPID_ALLPLAYERS,
-				0, (LPSTR)Comm, nBytes) == DP_OK) {
+			                        0, (LPSTR)Comm, nBytes) == DP_OK) {
 			}
 		}
 	}
 }
 
-
-
 void send_playerquick(int i, int client, int slot) {
-	DWORD   nBytes;
+	DWORD nBytes;
 	LPPLAYERQUICK lpPlayer;
 
-	BYTE Comm[512];    // Communication buffer for messages
+	BYTE Comm[512]; // Communication buffer for messages
 
 	lpPlayer = (LPPLAYERQUICK)Comm;
 
@@ -715,18 +659,16 @@ void send_playerquick(int i, int client, int slot) {
 	nBytes = sizeof(PLAYERQUICK);
 	if (slot != 0) {
 		if (m_pDirectPlay->Send(m_dpidPlayer[0], m_dpidPlayer[slot],
-			DPSEND_GUARANTEE, (LPSTR)Comm, nBytes) == DP_OK) {
+		                        DPSEND_GUARANTEE, (LPSTR)Comm, nBytes) == DP_OK) {
 		}
-	}
-	else {
+	} else {
 		if (client == 1) {
 			if (m_pDirectPlay->Send(m_dpidPlayer[0], 0,
-				0, (LPSTR)Comm, nBytes) == DP_OK) {
+			                        0, (LPSTR)Comm, nBytes) == DP_OK) {
 			}
-		}
-		else {
+		} else {
 			if (m_pDirectPlay->Send(m_dpidPlayer[0], DPID_ALLPLAYERS,
-				0, (LPSTR)Comm, nBytes) == DP_OK) {
+			                        0, (LPSTR)Comm, nBytes) == DP_OK) {
 			}
 		}
 	}
@@ -737,10 +679,8 @@ void DPEventMsg2() {
 	int i;
 	int freeslot;
 
-
-
 	DWORD count;
-	DPID  dpidFrom, dpidTo;
+	DPID dpidFrom, dpidTo;
 	DWORD nBytes;
 	nBytes = MAX_BUFFER_SIZE;
 	DWORD dwLen = 128;
@@ -754,23 +694,19 @@ void DPEventMsg2() {
 	LPMSGINT lpMsgInt;
 	LPDEATH lpDeath;
 
-
 	while (1) {
 		m_pDirectPlay->GetMessageCount(m_dpidPlayer[0], &count);
 		if (count == 0)
 			return;
 
 		if (m_pDirectPlay->Receive(&dpidFrom, &dpidTo,
-			DPRECEIVE_ALL, CommBuff, &nBytes) == DP_OK)
-		{
-			if (dpidFrom == 0 && ishost)
-			{
-				//				debug_me("DPEventMsg2","Server Message came in",0,0);	
-								// Got a system message
-				DPMSG_GENERIC* pmsgGeneric = (DPMSG_GENERIC*)CommBuff;
-				CString         sText;
-				switch (pmsgGeneric->dwType)
-				{
+		                           DPRECEIVE_ALL, CommBuff, &nBytes) == DP_OK) {
+			if (dpidFrom == 0 && ishost) {
+				//				debug_me("DPEventMsg2","Server Message came in",0,0);
+				// Got a system message
+				DPMSG_GENERIC *pmsgGeneric = (DPMSG_GENERIC *)CommBuff;
+				CString sText;
+				switch (pmsgGeneric->dwType) {
 				case DPSYS_CONNECT:
 					debug_me("DPEventMsg2", "Connected", 0, 0);
 					break;
@@ -784,7 +720,6 @@ void DPEventMsg2() {
 						PlayerLocation[1].active = FALSE;
 					freeslot = find_free_slot();
 
-
 					send_version(freeslot);
 
 					if (freeslot > newwarrior) {
@@ -795,19 +730,13 @@ void DPEventMsg2() {
 						//					    if (m_pDirectPlay->DestroyPlayer(m_dpidPlayer[freeslot]) == DP_OK){
 						//					}
 
-
-
-
-
-					}
-					else {
+					} else {
 						debug_me("DPEventMsg2", "Find free slot", 0, 0);
-						m_dpidPlayer[freeslot] = ((DPMSG_ADDPLAYER*)
-							pmsgGeneric)->dpId;
-
+						m_dpidPlayer[freeslot] = ((DPMSG_ADDPLAYER *)
+						                              pmsgGeneric)
+						                             ->dpId;
 
 						send_playernum(freeslot);
-
 
 						switch (PlayerLocation[freeslot].image) {
 						case 1:
@@ -826,12 +755,6 @@ void DPEventMsg2() {
 							strcpy(networkresponse, "Murk: Cleric joins the game!");
 
 							break;
-
-
-
-
-
-
 						}
 
 						send_chat(0);
@@ -845,10 +768,7 @@ void DPEventMsg2() {
 						for (i = 1; i <= NumPlayers; i++) {
 							send_player(i, 0, freeslot);
 							if (PlayerLocation[i].active) {
-
-
 							}
-
 						}
 						send_player(freeslot, 0, 0);
 
@@ -856,23 +776,18 @@ void DPEventMsg2() {
 						dungeon[PlayerLocation[freeslot].copx][PlayerLocation[freeslot].copy][PlayerLocation[freeslot].coplvl].item = 'c';
 						send_dungeon_square(PlayerLocation[freeslot].copx, PlayerLocation[freeslot].copy, PlayerLocation[freeslot].coplvl, 1);
 
-
 						for (i = 1; i <= 48; i++) {
 
 							if (pits[i].frame != 0) {
 								send_pit(freeslot, 0, pits[i].x, pits[i].y, pits[i].lvl, pits[i].frame);
-
 							}
-
 						}
 
 						send_treasure2(freeslot, 0);
 
-
 						if (networkserver) {
 							InvalidateRect(hWindow, NULL, TRUE);
 							UpdateWindow(hWindow);
-
 						}
 					}
 					break;
@@ -881,13 +796,11 @@ void DPEventMsg2() {
 					debug_me("DPEventMsg2", "Got delet Player Message (not used)", 0, 0);
 					break;
 				}
-			}
-			else {
+			} else {
 				if (dpidTo == m_dpidPlayer[0]) {
 					if (ishost) {
 						lpDungeon = (LPDUNGEON)CommBuff;
-						switch (CommBuff[0])
-						{
+						switch (CommBuff[0]) {
 						case MSG_CHAT:
 							lpChat = (LPCHATMSG)CommBuff;
 							strcpy(networkresponse, lpChat->say);
@@ -909,9 +822,8 @@ void DPEventMsg2() {
 								dtreasure[0].tdx = PlayerLocation[lpMsgInt->miscint2].mapx;
 								dtreasure[0].tdy = PlayerLocation[lpMsgInt->miscint2].mapy;
 								dtreasure[0].tdlvl = PlayerLocation[lpMsgInt->miscint2].level;
-								//								debug_me("DPEventMsg2","Drop Treasure 1 Owner:",lpMsgInt->miscint2,0);	
-							}
-							else {
+								//								debug_me("DPEventMsg2","Drop Treasure 1 Owner:",lpMsgInt->miscint2,0);
+							} else {
 								PlayerLocation[lpMsgInt->miscint2].hit = 1;
 								foundtreasure2 = 0;
 								send_treasure2(0, 0);
@@ -920,20 +832,15 @@ void DPEventMsg2() {
 								dtreasure[1].tdy = PlayerLocation[lpMsgInt->miscint2].mapy;
 								dtreasure[1].tdlvl = PlayerLocation[lpMsgInt->miscint2].level;
 
-								//								debug_me("DPEventMsg2","Drop Treasure 2 Owner:",lpMsgInt->miscint2,0);	
-
-
+								//								debug_me("DPEventMsg2","Drop Treasure 2 Owner:",lpMsgInt->miscint2,0);
 							}
 
 							break;
-
 
 						case MSG_HOSTPING:
 							lpMsgInt = (LPMSGINT)CommBuff;
 							pingplayer[lpMsgInt->miscint1] = 0;
 							break;
-
-
 
 						case MSG_SENDDUNGEON:
 							break;
@@ -948,7 +855,6 @@ void DPEventMsg2() {
 							}
 
 							PlayerLocation[lpDungeon->x].active = FALSE;
-
 
 							switch (PlayerLocation[lpDungeon->x].image) {
 							case 1:
@@ -971,12 +877,10 @@ void DPEventMsg2() {
 
 							send_chat(0);
 
-
 							clear_player(lpDungeon->x);
 							if (networkserver) {
 								InvalidateRect(hWindow, NULL, TRUE);
 								UpdateWindow(hWindow);
-
 							}
 
 							break;
@@ -987,12 +891,11 @@ void DPEventMsg2() {
 							break;
 						case MSG_MISSLE:
 
-
 							lpMissle = (LPMISSLE)CommBuff;
 							i = lpMissle->owner;
 							start_missle(lpMissle->misslex, lpMissle->missley, lpMissle->direction,
-								lpMissle->misslelvl,
-								lpMissle->missledx, lpMissle->missledy, i);
+							             lpMissle->misslelvl,
+							             lpMissle->missledx, lpMissle->missledy, i);
 							break;
 						case MSG_PLAYERQUICK:
 
@@ -1016,8 +919,6 @@ void DPEventMsg2() {
 								PlayerLocation[i].moved = lpPlayerQuick->moved;
 							}
 							break;
-
-
 
 						case MSG_PLAYERDIR:
 
@@ -1120,19 +1021,15 @@ void DPEventMsg2() {
 								PlayerLocation[i].damagemax = lpPlayer->damagemax;
 								PlayerLocation[i].damagemin = lpPlayer->damagemin;
 								PlayerLocation[i].active = lpPlayer->active;
-
 							}
 							break;
 						}
-					}
-					else {
+					} else {
 
-						switch (CommBuff[0])
-						{
+						switch (CommBuff[0]) {
 
 						case MSG_REWARD:
 							lpMsgInt = (LPMSGINT)CommBuff;
-
 
 							PlayerLocation[1].skill = PlayerLocation[1].skill + lpMsgInt->miscint1;
 							break;
@@ -1160,17 +1057,14 @@ void DPEventMsg2() {
 								dscene[i].mapx = lpDeath->mapx;
 								dscene[i].mapy = lpDeath->mapy;
 								PlayerLocation[i].dead = lpDeath->dead;
-
-
 							}
 
 							break;
 
-
 						case MSG_STARTTIMER:
 
 							initplayer = 2;
-							//fix this killtimer 							
+							// fix this killtimer
 							if (stopthetime == 0) {
 								KillTimer(hWindow, 1);
 								stopthetime = 1;
@@ -1191,7 +1085,7 @@ void DPEventMsg2() {
 
 								if (m_directSoundOK)
 									m_pDirSound->PlaySound(m_bufferTreasure);
-								//treasure
+								// treasure
 								break;
 							case 2:
 								if (m_directSoundOK)
@@ -1228,34 +1122,26 @@ void DPEventMsg2() {
 							startgame = 1;
 							new_level(1);
 
-
-
 							break;
 						case MSG_TREASURE:
 							lpDungeon = (LPDUNGEON)CommBuff;
 
-
-
 							if (lpDungeon->image) {
 
-								//								debug_me("DPEventMsg2","Got Treasure 1",lpDungeon->x,lpDungeon->y);	
+								//								debug_me("DPEventMsg2","Got Treasure 1",lpDungeon->x,lpDungeon->y);
 								treasurex2 = lpDungeon->x;
 								treasurey2 = lpDungeon->y;
 								treasurelvl2 = lpDungeon->lvl;
 								if (initplayer >= 2) {
 									if (lpDungeon->order == netplayernum) {
 										foundtreasure2 = 1;
-									}
-									else
+									} else
 										foundtreasure2 = lpDungeon->order;
-
 								}
 
+							} else {
 
-							}
-							else {
-
-								//								debug_me("DPEventMsg2","Got Treasure 2",lpDungeon->x,lpDungeon->y);	
+								//								debug_me("DPEventMsg2","Got Treasure 2",lpDungeon->x,lpDungeon->y);
 								treasurex = lpDungeon->x;
 								treasurey = lpDungeon->y;
 								treasurelvl = lpDungeon->lvl;
@@ -1263,17 +1149,13 @@ void DPEventMsg2() {
 									if (lpDungeon->order == netplayernum) {
 
 										foundtreasure = 1;
-									}
-									else
+									} else
 										foundtreasure = lpDungeon->order;
-
 								}
-
 							}
 
 							break;
 						case MSG_NUMPLAYERS:
-
 
 							lpDungeon = (LPDUNGEON)CommBuff;
 							debug_me("DPEventMsg2", "Got NumPlayers", lpDungeon->x, 0);
@@ -1289,13 +1171,10 @@ void DPEventMsg2() {
 							if (lpDungeon->order != 112) {
 								debug_me("DPEventMsg2", "Wrong Version", 0, 0);
 								abortgame = 1;
-
 							}
 							break;
 
-
 						case MSG_PIT:
-
 
 							lpDungeon = (LPDUNGEON)CommBuff;
 
@@ -1333,7 +1212,7 @@ void DPEventMsg2() {
 							dungeon[lpDungeon->x][lpDungeon->y][lpDungeon->lvl].image = lpDungeon->image;
 							dungeon[lpDungeon->x][lpDungeon->y][lpDungeon->lvl].mark = lpDungeon->mark;
 							dungeon[lpDungeon->x][lpDungeon->y][lpDungeon->lvl].order = lpDungeon->order;
-							//							debug_me("DPEventMsg2","Got Dungeon Item (xy)",lpDungeon->x,lpDungeon->y);	
+							//							debug_me("DPEventMsg2","Got Dungeon Item (xy)",lpDungeon->x,lpDungeon->y);
 							break;
 						case MSG_DUNGEONSIZE:
 
@@ -1355,24 +1234,22 @@ void DPEventMsg2() {
 							lpMissle = (LPMISSLE)CommBuff;
 							if (lpMissle->owner == netplayernum || initplayer < 2) {
 
-							}
-							else {
+							} else {
 
 								if (lpMissle->owner == 1)
 									i = netplayernum;
 								else
 									i = lpMissle->owner;
 								start_missle(lpMissle->misslex, lpMissle->missley, lpMissle->direction,
-									lpMissle->misslelvl,
-									lpMissle->missledx, lpMissle->missledy, i);
+								             lpMissle->misslelvl,
+								             lpMissle->missledx, lpMissle->missledy, i);
 							}
 							break;
 						case MSG_PLAYERDIR:
 							lpPlayerDir = (LPPLAYERDIR)CommBuff;
 							i = lpPlayerDir->PlayerNum;
 							if (i == netplayernum || initplayer < 2) {
-							}
-							else {
+							} else {
 								if (i == 1)
 									i = netplayernum;
 
@@ -1406,15 +1283,13 @@ void DPEventMsg2() {
 								PlayerLocation[i].speed = lpPlayerDir->speed;
 								PlayerLocation[i].calcmove = lpPlayerDir->calcmove;
 								PlayerLocation[i].moved = lpPlayerDir->moved;
-
 							}
 							break;
 						case MSG_PLAYERQUICK:
 							lpPlayerQuick = (LPPLAYERQUICK)CommBuff;
 							i = lpPlayerQuick->PlayerNum;
 							if (i == netplayernum || initplayer < 2) {
-							}
-							else {
+							} else {
 
 								if (i == 1)
 									i = netplayernum;
@@ -1440,19 +1315,14 @@ void DPEventMsg2() {
 							i = lpPlayer->PlayerNum;
 							if (i == netplayernum && initplayer > 0) {
 
-							}
-							else {
+							} else {
 
 								if (i == 1) {
 									i = netplayernum;
 
-
-								}
-								else if (initplayer == 0 && i == netplayernum) {
+								} else if (initplayer == 0 && i == netplayernum) {
 									initplayer = 1;
 									i = 1;
-
-
 								}
 								PlayerLocation[i].protection = lpPlayer->protection;
 
@@ -1526,16 +1396,14 @@ void DPEventMsg2() {
 				}
 			}
 		}
-
 	}
 }
 
-
 void send_settimer(int slot) {
-	DWORD   nBytes;
+	DWORD nBytes;
 	LPDUNGEON lpDungeon;
 
-	BYTE Comm[512];    // Communication buffer for messages	
+	BYTE Comm[512]; // Communication buffer for messages
 
 	lpDungeon = (LPDUNGEON)Comm;
 	lpDungeon->MsgCode = MSG_STARTTIMER;
@@ -1551,23 +1419,21 @@ void send_settimer(int slot) {
 	nBytes = sizeof(DUNGEONMSG);
 	if (slot != 0) {
 		if (m_pDirectPlay->Send(m_dpidPlayer[0], m_dpidPlayer[slot],
-			DPSEND_GUARANTEE, (LPSTR)Comm, nBytes) == DP_OK) {
+		                        DPSEND_GUARANTEE, (LPSTR)Comm, nBytes) == DP_OK) {
 		}
-	}
-	else {
+	} else {
 		if (m_pDirectPlay->Send(m_dpidPlayer[0], DPID_ALLPLAYERS,
-			DPSEND_GUARANTEE, (LPSTR)Comm, nBytes) == DP_OK) {
+		                        DPSEND_GUARANTEE, (LPSTR)Comm, nBytes) == DP_OK) {
 		}
 	}
 }
 
 void send_stoptimer(int slot) {
 
-
-	DWORD   nBytes;
+	DWORD nBytes;
 	LPDUNGEON lpDungeon;
 
-	BYTE Comm[512];    // Communication buffer for messages	
+	BYTE Comm[512]; // Communication buffer for messages
 
 	lpDungeon = (LPDUNGEON)Comm;
 	lpDungeon->MsgCode = MSG_STOPTIMER;
@@ -1585,23 +1451,21 @@ void send_stoptimer(int slot) {
 	if (slot != 0) {
 
 		if (m_pDirectPlay->Send(m_dpidPlayer[0], m_dpidPlayer[slot],
-			DPSEND_GUARANTEE, (LPSTR)Comm, nBytes) == DP_OK) {
+		                        DPSEND_GUARANTEE, (LPSTR)Comm, nBytes) == DP_OK) {
 		}
-	}
-	else {
+	} else {
 		if (m_pDirectPlay->Send(m_dpidPlayer[0], DPID_ALLPLAYERS,
-			DPSEND_GUARANTEE, (LPSTR)Comm, nBytes) == DP_OK) {
+		                        DPSEND_GUARANTEE, (LPSTR)Comm, nBytes) == DP_OK) {
 		}
 	}
 }
 
 void send_treasure(int slot, int forsure) {
 
-
-	DWORD   nBytes;
+	DWORD nBytes;
 	LPDUNGEON lpDungeon;
 
-	BYTE Comm[512];    // Communication buffer for messages	
+	BYTE Comm[512]; // Communication buffer for messages
 
 	lpDungeon = (LPDUNGEON)Comm;
 	lpDungeon->MsgCode = MSG_TREASURE;
@@ -1618,31 +1482,26 @@ void send_treasure(int slot, int forsure) {
 
 	if (slot != 0) {
 		m_pDirectPlay->Send(m_dpidPlayer[0], m_dpidPlayer[slot],
-			DPSEND_GUARANTEE, (LPSTR)Comm, nBytes);
+		                    DPSEND_GUARANTEE, (LPSTR)Comm, nBytes);
 
-	}
-	else {
+	} else {
 		if (forsure) {
 			m_pDirectPlay->Send(m_dpidPlayer[0], DPID_ALLPLAYERS,
-				DPSEND_GUARANTEE, (LPSTR)Comm, nBytes);
+			                    DPSEND_GUARANTEE, (LPSTR)Comm, nBytes);
 
-
-		}
-		else {
+		} else {
 			m_pDirectPlay->Send(m_dpidPlayer[0], DPID_ALLPLAYERS,
-				0, (LPSTR)Comm, nBytes);
-
-
+			                    0, (LPSTR)Comm, nBytes);
 		}
 	}
 }
 
 void send_treasure2(int slot, int forsure) {
 
-	DWORD   nBytes;
+	DWORD nBytes;
 	LPDUNGEON lpDungeon;
 
-	BYTE Comm[512];    // Communication buffer for messages	
+	BYTE Comm[512]; // Communication buffer for messages
 
 	lpDungeon = (LPDUNGEON)Comm;
 	lpDungeon->MsgCode = MSG_TREASURE;
@@ -1659,37 +1518,32 @@ void send_treasure2(int slot, int forsure) {
 
 	if (slot != 0) {
 		m_pDirectPlay->Send(m_dpidPlayer[0], m_dpidPlayer[slot],
-			DPSEND_GUARANTEE, (LPSTR)Comm, nBytes);
+		                    DPSEND_GUARANTEE, (LPSTR)Comm, nBytes);
 		send_settimer(slot);
 		if (!istimerset) {
 			showmission = 3;
-
 
 			SetTimer(hWindow, 3, timerlength, TimerProc);
 			receiveok = 1;
 			istimerset = 1;
 		}
-	}
-	else {
+	} else {
 		if (forsure) {
 			m_pDirectPlay->Send(m_dpidPlayer[0], DPID_ALLPLAYERS,
-				DPSEND_GUARANTEE, (LPSTR)Comm, nBytes);
+			                    DPSEND_GUARANTEE, (LPSTR)Comm, nBytes);
 
-		}
-		else {
+		} else {
 			m_pDirectPlay->Send(m_dpidPlayer[0], DPID_ALLPLAYERS,
-				0, (LPSTR)Comm, nBytes);
-
+			                    0, (LPSTR)Comm, nBytes);
 		}
 	}
 }
 
-
 void send_numplayers(int slot) {
 
-	DWORD   nBytes;
+	DWORD nBytes;
 	LPDUNGEON lpDungeon;
-	BYTE Comm[512];    // Communication buffer for messages	
+	BYTE Comm[512]; // Communication buffer for messages
 
 	lpDungeon = (LPDUNGEON)Comm;
 	lpDungeon->MsgCode = MSG_NUMPLAYERS;
@@ -1705,24 +1559,21 @@ void send_numplayers(int slot) {
 	nBytes = sizeof(DUNGEONMSG);
 	if (slot != 0) {
 		if (m_pDirectPlay->Send(m_dpidPlayer[0], m_dpidPlayer[slot],
-			DPSEND_GUARANTEE, (LPSTR)Comm, nBytes) == DP_OK) {
+		                        DPSEND_GUARANTEE, (LPSTR)Comm, nBytes) == DP_OK) {
 		}
-	}
-	else {
+	} else {
 		if (m_pDirectPlay->Send(m_dpidPlayer[0], DPID_ALLPLAYERS,
-			DPSEND_GUARANTEE, (LPSTR)Comm, nBytes) == DP_OK) {
+		                        DPSEND_GUARANTEE, (LPSTR)Comm, nBytes) == DP_OK) {
 		}
 	}
 }
 
-
 void send_playernum(int slot) {
 
-
-	DWORD   nBytes;
+	DWORD nBytes;
 	LPDUNGEON lpDungeon;
 
-	BYTE                    Comm[512];    // Communication buffer for messages	
+	BYTE Comm[512]; // Communication buffer for messages
 
 	lpDungeon = (LPDUNGEON)Comm;
 	lpDungeon->MsgCode = MSG_PLAYERNUM;
@@ -1738,19 +1589,16 @@ void send_playernum(int slot) {
 	nBytes = sizeof(DUNGEONMSG);
 
 	if (m_pDirectPlay->Send(m_dpidPlayer[0], m_dpidPlayer[slot],
-		0, (LPSTR)Comm, nBytes) == DP_OK) {
+	                        0, (LPSTR)Comm, nBytes) == DP_OK) {
 	}
-
 }
-
 
 void send_missle(int client, int misslex, int missley, int misslelvl, int frame, int image, int direction, int owner, int missledx, int missledy, int slot) {
 
-
-	DWORD   nBytes;
+	DWORD nBytes;
 	LPMISSLE lpMissle;
 
-	BYTE                    Comm[512];    // Communication buffer for messages
+	BYTE Comm[512]; // Communication buffer for messages
 
 	lpMissle = (LPMISSLE)Comm;
 	lpMissle->MsgCode = MSG_MISSLE;
@@ -1772,29 +1620,24 @@ void send_missle(int client, int misslex, int missley, int misslelvl, int frame,
 
 	if (client == 1) {
 		if (m_pDirectPlay->Send(m_dpidPlayer[0], 0,
-			0, (LPSTR)Comm, nBytes) == DP_OK) {
+		                        0, (LPSTR)Comm, nBytes) == DP_OK) {
 		}
-	}
-	else {
+	} else {
 		if (m_pDirectPlay->Send(m_dpidPlayer[0], DPID_ALLPLAYERS,
-			0, (LPSTR)Comm, nBytes) == DP_OK) {
+		                        0, (LPSTR)Comm, nBytes) == DP_OK) {
 		}
 	}
 }
 
+void send_death(int player, int x, int y, int lvl, int image, int direction, int counter, int mapx, int mapy, int dead) {
 
-void send_death(int player, int x, int y, int lvl, int image, int
-	direction, int counter, int mapx, int mapy, int dead) {
-
-
-	DWORD   nBytes;
+	DWORD nBytes;
 	LPDEATH lpDeath;
 
-	BYTE                    Comm[512];    // Communication buffer for messages
+	BYTE Comm[512]; // Communication buffer for messages
 
 	lpDeath = (LPDEATH)Comm;
 	lpDeath->MsgCode = MSG_DEATH;
-
 
 	lpDeath->player = player;
 	lpDeath->x = x;
@@ -1808,16 +1651,12 @@ void send_death(int player, int x, int y, int lvl, int image, int
 	lpDeath->mapy = mapy;
 	lpDeath->dead = dead;
 
-
 	nBytes = sizeof(DSCENE);
 
 	if (m_pDirectPlay->Send(m_dpidPlayer[0], DPID_ALLPLAYERS,
-		0, (LPSTR)Comm, nBytes) == DP_OK) {
+	                        0, (LPSTR)Comm, nBytes) == DP_OK) {
 	}
 }
-
-
-
 
 int find_free_slot() {
 
@@ -1838,16 +1677,12 @@ int find_free_slot() {
 	return i;
 }
 
-
-
-
 void send_deleteme() {
 
-
-	DWORD   nBytes;
+	DWORD nBytes;
 	LPDUNGEON lpDungeon;
 
-	BYTE                    Comm[512];    // Communication buffer for messages	
+	BYTE Comm[512]; // Communication buffer for messages
 
 	lpDungeon = (LPDUNGEON)Comm;
 	lpDungeon->MsgCode = MSG_DELETEPLAYER;
@@ -1863,13 +1698,11 @@ void send_deleteme() {
 	nBytes = sizeof(DUNGEONMSG);
 
 	if (m_pDirectPlay->Send(m_dpidPlayer[0], 0,
-		0, (LPSTR)Comm, nBytes) == DP_OK) {
+	                        0, (LPSTR)Comm, nBytes) == DP_OK) {
 	}
 }
 
-
 void clear_player(int id) {
-
 
 	int randnum;
 
@@ -1916,18 +1749,11 @@ void clear_player(int id) {
 		advancelevel = 20;
 		advanceattrib = 0;
 	}
-
-
 }
-
 
 void showdialogs() {
 	int result;
 	int lvlnum, x, y;
-
-
-
-
 
 	if (!networkserver)
 		pDirDraw->FlipToGDISurface();
@@ -1944,8 +1770,7 @@ void showdialogs() {
 	doit = FALSE;
 
 	DialogBox(NULL, (LPCTSTR)IDD_CHOOSEPROVIDER, hWindow,
-		(DLGPROC)DlgProcChooseProvider);
-
+	          (DLGPROC)DlgProcChooseProvider);
 
 	if (!doit) {
 		result = m_pGame->DPInit();
@@ -1955,14 +1780,12 @@ void showdialogs() {
 			abortgame = 2;
 			doit = TRUE;
 			return;
-		}
-		else
+		} else
 			strcat(networkresponse, "Direct Play Initialized~");
 
 		doit = FALSE;
 		DialogBox(NULL, (LPCTSTR)IDD_Q_CREATE, hWindow,
-			(DLGPROC)DlgProcQCreate);
-
+		          (DLGPROC)DlgProcQCreate);
 
 		ishost = 0;
 		networkgame = 1;
@@ -1977,39 +1800,30 @@ void showdialogs() {
 					abortgame = 3;
 					doit = TRUE;
 					return;
-				}
-				else {
+				} else {
 					strcat(networkresponse, "Create Session ok..~");
 					doit = FALSE;
 				}
-			}
-			else {
+			} else {
 				ishost = 0;
 				doit = FALSE;
 				DialogBox(NULL, (LPCTSTR)IDD_SELSESSION, hWindow,
-					(DLGPROC)DlgProcSelSession);
+				          (DLGPROC)DlgProcSelSession);
 
 				if (!doit) {
 					result = m_pGame->DPConnectSession();
-
 
 					if (result == FALSE) {
 						if (abortgame != 5)
 							abortgame = 4;
 						debug_me("ShowDialogs", "DPConnectSession Failed", 0, 0);
 						doit = TRUE;
-					}
-					else {
+					} else {
 						strcat(networkresponse, "Connected to server...~");
 						doit = FALSE;
-
 					}
 				}
 			}
-
-
-
-
 
 			if (!doit)
 				strcat(networkresponse, "Receiving Dungeon");
@@ -2027,20 +1841,16 @@ void showdialogs() {
 					}
 				}
 			}
-
 		}
 	}
 }
 
-
 void reset_networkserver() {
-
 
 	int i;
 	BOOL flag;
 
 	flag = FALSE;
-
 
 	for (i = 2; i <= 5; i++) {
 
@@ -2053,7 +1863,6 @@ void reset_networkserver() {
 		return;
 	}
 
-
 	debug_me("reset_networkserver", "Resetting Server", 0, 0);
 
 	KillTimer(hWindow, 3);
@@ -2065,7 +1874,6 @@ void reset_networkserver() {
 	levelcounter = 1;
 	new_level(0);
 }
-
 
 void send_new_level() {
 	int i;
@@ -2082,19 +1890,17 @@ void send_new_level() {
 	send_treasure2(0, 1);
 	debug_me("sned_new_level", "Send and start timers", 0, 0);
 
-	//	SetTimer(hWindow, 2, 4000, TimerProc);		
+	//	SetTimer(hWindow, 2, 4000, TimerProc);
 	SetTimer(hWindow, 3, timerlength, TimerProc);
 	receiveok = 1;
 	send_settimer(0);
-
 }
 
-
 void send_dungeon_square(int x, int y, int lvl, int forsure) {
-	DWORD   nBytes;
+	DWORD nBytes;
 	LPDUNGEON lpDungeon;
 
-	BYTE Comm[512];    // Communication buffer for messages	
+	BYTE Comm[512]; // Communication buffer for messages
 
 	lpDungeon = (LPDUNGEON)Comm;
 	lpDungeon->MsgCode = MSG_DUNGEONSQUARE;
@@ -2111,21 +1917,20 @@ void send_dungeon_square(int x, int y, int lvl, int forsure) {
 
 	if (forsure) {
 		if (m_pDirectPlay->Send(m_dpidPlayer[0], DPID_ALLPLAYERS,
-			DPSEND_GUARANTEE, (LPSTR)Comm, nBytes) == DP_OK) {
+		                        DPSEND_GUARANTEE, (LPSTR)Comm, nBytes) == DP_OK) {
 		}
-	}
-	else {
+	} else {
 		if (m_pDirectPlay->Send(m_dpidPlayer[0], DPID_ALLPLAYERS,
-			0, (LPSTR)Comm, nBytes) == DP_OK) {
+		                        0, (LPSTR)Comm, nBytes) == DP_OK) {
 		}
 	}
 }
 
 void send_chat(int client) {
-	DWORD   nBytes;
+	DWORD nBytes;
 	LPCHATMSG lpChat;
 
-	BYTE                    Comm[512];    // Communication buffer for messages	
+	BYTE Comm[512]; // Communication buffer for messages
 
 	lpChat = (LPCHATMSG)Comm;
 	lpChat->MsgCode = MSG_CHAT;
@@ -2133,27 +1938,22 @@ void send_chat(int client) {
 
 	nBytes = sizeof(CHATMSG);
 
-
 	if (client == 1) {
 		if (m_pDirectPlay->Send(m_dpidPlayer[0], 0,
-			0, (LPSTR)Comm, nBytes) == DP_OK) {
+		                        0, (LPSTR)Comm, nBytes) == DP_OK) {
 		}
-	}
-	else {
+	} else {
 		if (m_pDirectPlay->Send(m_dpidPlayer[0], DPID_ALLPLAYERS,
-			0, (LPSTR)Comm, nBytes) == DP_OK) {
+		                        0, (LPSTR)Comm, nBytes) == DP_OK) {
 		}
 	}
 }
-
 
 void make_thread2() {
 	createthread();
 }
 
-
-void ThreadFunction(LPVOID lpParam)
-{
+void ThreadFunction(LPVOID lpParam) {
 	HANDLE hEvents[2];
 
 	hEvents[0] = quitthread;
@@ -2168,9 +1968,7 @@ void ThreadFunction(LPVOID lpParam)
 	debug_me("ThreadFunction", "Quit thread...", 0, 0);
 
 	ExitThread(0);
-
 }
-
 
 void createthread() {
 
@@ -2182,18 +1980,15 @@ void createthread() {
 	ResetEvent(quitthread);
 
 	mainthread = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)ThreadFunction,
-		globalthread, 0, &IDThread);
-
+	                          globalthread, 0, &IDThread);
 }
-
 
 void send_dungeon_size(int slot) {
 
-
-	DWORD   nBytes;
+	DWORD nBytes;
 	LPDUNGEON lpDungeon;
 
-	BYTE Comm[512];    // Communication buffer for messages	
+	BYTE Comm[512]; // Communication buffer for messages
 
 	lpDungeon = (LPDUNGEON)Comm;
 	lpDungeon->MsgCode = MSG_DUNGEONSIZE;
@@ -2210,25 +2005,22 @@ void send_dungeon_size(int slot) {
 
 	if (slot != 0) {
 		if (m_pDirectPlay->Send(m_dpidPlayer[0], m_dpidPlayer[slot],
-			DPSEND_GUARANTEE, (LPSTR)Comm, nBytes) == DP_OK) {
+		                        DPSEND_GUARANTEE, (LPSTR)Comm, nBytes) == DP_OK) {
 		}
-	}
-	else {
+	} else {
 
 		if (m_pDirectPlay->Send(m_dpidPlayer[0], DPID_ALLPLAYERS,
-			DPSEND_GUARANTEE, (LPSTR)Comm, nBytes) == DP_OK) {
+		                        DPSEND_GUARANTEE, (LPSTR)Comm, nBytes) == DP_OK) {
 		}
 	}
 }
 
-
-
 void send_drop_treasure(int treasure) {
 
-	DWORD   nBytes;
+	DWORD nBytes;
 	LPMSGINT lpMsgInt;
 
-	BYTE Comm[512];    // Communication buffer for messages	
+	BYTE Comm[512]; // Communication buffer for messages
 
 	lpMsgInt = (LPMSGINT)Comm;
 	lpMsgInt->MsgCode = MSG_DROPTREASURE;
@@ -2237,21 +2029,17 @@ void send_drop_treasure(int treasure) {
 	lpMsgInt->miscint2 = netplayernum;
 	nBytes = sizeof(MSGINT);
 
-
 	if (m_pDirectPlay->Send(m_dpidPlayer[0], 0,
-		DPSEND_GUARANTEE, (LPSTR)Comm, nBytes) == DP_OK) {
+	                        DPSEND_GUARANTEE, (LPSTR)Comm, nBytes) == DP_OK) {
 	}
-
-
 }
-
 
 void send_pinghost() {
 
-	DWORD   nBytes;
+	DWORD nBytes;
 	LPMSGINT lpMsgInt;
 
-	BYTE Comm[512];    // Communication buffer for messages	
+	BYTE Comm[512]; // Communication buffer for messages
 
 	lpMsgInt = (LPMSGINT)Comm;
 	lpMsgInt->MsgCode = MSG_HOSTPING;
@@ -2260,19 +2048,16 @@ void send_pinghost() {
 	lpMsgInt->miscint2 = 0;
 	nBytes = sizeof(MSGINT);
 
-
 	if (m_pDirectPlay->Send(m_dpidPlayer[0], 0,
-		0, (LPSTR)Comm, nBytes) == DP_OK) {
+	                        0, (LPSTR)Comm, nBytes) == DP_OK) {
 	}
-
-
 }
 void send_pingserver() {
 
-	DWORD   nBytes;
+	DWORD nBytes;
 	LPMSGINT lpMsgInt;
 
-	BYTE Comm[512];    // Communication buffer for messages	
+	BYTE Comm[512]; // Communication buffer for messages
 
 	lpMsgInt = (LPMSGINT)Comm;
 	lpMsgInt->MsgCode = MSG_HOSTPING;
@@ -2283,13 +2068,9 @@ void send_pingserver() {
 	nBytes = sizeof(MSGINT);
 
 	if (m_pDirectPlay->Send(m_dpidPlayer[0], DPID_ALLPLAYERS,
-		0, (LPSTR)Comm, nBytes) == DP_OK) {
+	                        0, (LPSTR)Comm, nBytes) == DP_OK) {
 	}
-
-
 }
-
-
 
 void serversettings(int go) {
 
@@ -2297,8 +2078,7 @@ void serversettings(int go) {
 	int lvlnum, x, y;
 	m_pGame = new CGame;
 
-	//	lpGuid = (LPGUID) Globalid;	
-
+	//	lpGuid = (LPGUID) Globalid;
 
 	if (go) {
 		debug_me("serversettings", "Read server settings", 0, 0);
@@ -2309,17 +2089,14 @@ void serversettings(int go) {
 			networktype = 0;
 
 			if (networkserver) {
-				//				ValidateRect(hWindow,NULL); 
+				//				ValidateRect(hWindow,NULL);
 				UpdateWindow(hWindow);
 			}
-
 
 			debug_me("serversettings", "Error reading server settings", 0, 0);
 			return;
 
-
-		}
-		else {
+		} else {
 			if (x == 1) {
 				networktype = 1;
 				//				strcpy(serverscreen,"MURK TCP Server is running...");
@@ -2333,33 +2110,22 @@ void serversettings(int go) {
 
 				InvalidateRect(hWindow, NULL, TRUE);
 
-				//				ValidateRect(hWindow,NULL); 
+				//				ValidateRect(hWindow,NULL);
 				UpdateWindow(hWindow);
 			}
 			find_tcp_ipx();
-
 		}
-
-
 	}
-
-
-
-
 
 	if (!go) {
 		DialogBox(NULL, (LPCTSTR)IDD_CHOOSEPROVIDER, hWindow,
-			(DLGPROC)DlgProcChooseProvider);
-
+		          (DLGPROC)DlgProcChooseProvider);
 	}
-
-
 
 	result = m_pGame->DPInit();
 	if (result == FALSE) {
 		debug_me("serversettings", "DPINIT Failed", 0, 0);
 	}
-
 
 	dialogresponse = 1;
 
@@ -2386,17 +2152,14 @@ void serversettings(int go) {
 			}
 		}
 	}
-
 }
-
 
 void send_play_sound(int sound) {
 
-
-	DWORD   nBytes;
+	DWORD nBytes;
 	LPMSGINT lpMsgInt;
 
-	BYTE Comm[512];    // Communication buffer for messages	
+	BYTE Comm[512]; // Communication buffer for messages
 
 	lpMsgInt = (LPMSGINT)Comm;
 	lpMsgInt->MsgCode = MSG_PLAYSOUND;
@@ -2405,25 +2168,17 @@ void send_play_sound(int sound) {
 	lpMsgInt->miscint2 = 0;
 	nBytes = sizeof(MSGINT);
 
-
 	if (m_pDirectPlay->Send(m_dpidPlayer[0], DPID_ALLPLAYERS,
-		0, (LPSTR)Comm, nBytes) == DP_OK) {
+	                        0, (LPSTR)Comm, nBytes) == DP_OK) {
 	}
-
-
-
-
 }
-
-
 
 void send_pit(int slot, int forsure, int x, int y, int lvl, int frame) {
 
-
-	DWORD   nBytes;
+	DWORD nBytes;
 	LPDUNGEON lpDungeon;
 
-	BYTE Comm[512];    // Communication buffer for messages	
+	BYTE Comm[512]; // Communication buffer for messages
 
 	lpDungeon = (LPDUNGEON)Comm;
 	lpDungeon->MsgCode = MSG_PIT;
@@ -2440,34 +2195,26 @@ void send_pit(int slot, int forsure, int x, int y, int lvl, int frame) {
 
 	if (slot != 0) {
 		m_pDirectPlay->Send(m_dpidPlayer[0], m_dpidPlayer[slot],
-			DPSEND_GUARANTEE, (LPSTR)Comm, nBytes);
+		                    DPSEND_GUARANTEE, (LPSTR)Comm, nBytes);
 
-	}
-	else {
+	} else {
 		if (forsure) {
 			m_pDirectPlay->Send(m_dpidPlayer[0], DPID_ALLPLAYERS,
-				DPSEND_GUARANTEE, (LPSTR)Comm, nBytes);
+			                    DPSEND_GUARANTEE, (LPSTR)Comm, nBytes);
 
-
-		}
-		else {
+		} else {
 			m_pDirectPlay->Send(m_dpidPlayer[0], DPID_ALLPLAYERS,
-				0, (LPSTR)Comm, nBytes);
-
-
+			                    0, (LPSTR)Comm, nBytes);
 		}
 	}
 }
 
-
-
 void send_client_error(int slot, int problem) {
 
-
-	DWORD   nBytes;
+	DWORD nBytes;
 	LPDUNGEON lpDungeon;
 
-	BYTE Comm[512];    // Communication buffer for messages	
+	BYTE Comm[512]; // Communication buffer for messages
 
 	lpDungeon = (LPDUNGEON)Comm;
 	lpDungeon->MsgCode = MSG_ERROR;
@@ -2484,26 +2231,22 @@ void send_client_error(int slot, int problem) {
 
 	if (slot != 0) {
 		if (m_pDirectPlay->Send(m_dpidPlayer[0], m_dpidPlayer[slot],
-			DPSEND_GUARANTEE, (LPSTR)Comm, nBytes) == DP_OK) {
+		                        DPSEND_GUARANTEE, (LPSTR)Comm, nBytes) == DP_OK) {
 		}
-	}
-	else {
+	} else {
 
 		if (m_pDirectPlay->Send(m_dpidPlayer[0], DPID_ALLPLAYERS,
-			DPSEND_GUARANTEE, (LPSTR)Comm, nBytes) == DP_OK) {
+		                        DPSEND_GUARANTEE, (LPSTR)Comm, nBytes) == DP_OK) {
 		}
 	}
 }
 
-
-
 void send_version(int slot) {
 
-
-	DWORD   nBytes;
+	DWORD nBytes;
 	LPDUNGEON lpDungeon;
 
-	BYTE Comm[512];    // Communication buffer for messages	
+	BYTE Comm[512]; // Communication buffer for messages
 
 	lpDungeon = (LPDUNGEON)Comm;
 	lpDungeon->MsgCode = MSG_VERSION;
@@ -2520,25 +2263,22 @@ void send_version(int slot) {
 
 	if (slot != 0) {
 		if (m_pDirectPlay->Send(m_dpidPlayer[0], m_dpidPlayer[slot],
-			DPSEND_GUARANTEE, (LPSTR)Comm, nBytes) == DP_OK) {
+		                        DPSEND_GUARANTEE, (LPSTR)Comm, nBytes) == DP_OK) {
 		}
-	}
-	else {
+	} else {
 
 		if (m_pDirectPlay->Send(m_dpidPlayer[0], DPID_ALLPLAYERS,
-			DPSEND_GUARANTEE, (LPSTR)Comm, nBytes) == DP_OK) {
+		                        DPSEND_GUARANTEE, (LPSTR)Comm, nBytes) == DP_OK) {
 		}
 	}
 }
 
-
 void send_reward(int slot, int reward) {
 
-
-	DWORD   nBytes;
+	DWORD nBytes;
 	LPMSGINT lpMsgInt;
 
-	BYTE Comm[512];    // Communication buffer for messages	
+	BYTE Comm[512]; // Communication buffer for messages
 
 	lpMsgInt = (LPMSGINT)Comm;
 	lpMsgInt->MsgCode = MSG_REWARD;
@@ -2548,34 +2288,25 @@ void send_reward(int slot, int reward) {
 
 	nBytes = sizeof(MSGINT);
 
-
 	if (slot != 0) {
 		if (m_pDirectPlay->Send(m_dpidPlayer[0], m_dpidPlayer[slot],
-			DPSEND_GUARANTEE, (LPSTR)Comm, nBytes) == DP_OK) {
-
-
+		                        DPSEND_GUARANTEE, (LPSTR)Comm, nBytes) == DP_OK) {
 		}
-	}
-	else {
+	} else {
 		if (m_pDirectPlay->Send(m_dpidPlayer[0], DPID_ALLPLAYERS,
-			DPSEND_GUARANTEE, (LPSTR)Comm, nBytes) == DP_OK) {
+		                        DPSEND_GUARANTEE, (LPSTR)Comm, nBytes) == DP_OK) {
 		}
 	}
 }
 
-
-
 void kill_dplay() {
-
-
 
 	debug_me("kill_dplay", "", 0, 0);
 
 	if (networkgame && m_pDirectPlay != NULL)
 		DPShutDown();
 
-	if (globalthread != NULL)
-	{
+	if (globalthread != NULL) {
 		debug_me("kill_dplay", "Kill Thread", 0, 0);
 		// wake up receive thread and wait for it to quit
 		SetEvent(quitthread);
@@ -2586,16 +2317,12 @@ void kill_dplay() {
 		globalthread = NULL;
 	}
 
-
-
 	debug_me("kill_dplay", "Finished kill_dplay", 0, 0);
-
 }
 
 void DPShutDown() {
 
-	if (m_pDirectPlay->DestroyPlayer(m_dpidPlayer[0]) == DP_OK)
-	{
+	if (m_pDirectPlay->DestroyPlayer(m_dpidPlayer[0]) == DP_OK) {
 		debug_me("DPShutDown", "DestroyPlayer Success...", 0, 0);
 	}
 	m_dpidPlayer[1] = 0;
@@ -2603,8 +2330,7 @@ void DPShutDown() {
 	// Close the DP object
 	if (m_pDirectPlay)
 		m_pDirectPlay->Close();
-	if (m_pDirectPlay)
-	{
+	if (m_pDirectPlay) {
 		debug_me("DPShutDown", "m_pDirectPlay Release...", 0, 0);
 		m_pDirectPlay->Release();
 		m_pDirectPlay = NULL;
@@ -2614,5 +2340,4 @@ void DPShutDown() {
 		delete m_pGame;
 		debug_me("DPShutDown", "Delete m_pGame...", 0, 0);
 	}
-
 }

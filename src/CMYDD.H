@@ -7,14 +7,13 @@
 
 #include "cdirdraw.h"
 
-class CMyDirDraw : public CDirDraw
-{
-public:
+class CMyDirDraw : public CDirDraw {
+  public:
 	CMyDirDraw(HWND hWnd);
 	~CMyDirDraw();
 	BOOL FlipToGDISurface();
 
-protected:
+  protected:
 	virtual void RepaintOffScreenSurfaces();
 };
 

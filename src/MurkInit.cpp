@@ -1,4 +1,4 @@
-//  Murk Ver 1.12 By Mark Longo 
+//  Murk Ver 1.12 By Mark Longo
 //  Copyright 1999  , All Rights Reserver.
 #include "stdafx.h"
 
@@ -6,7 +6,7 @@
 #include "murkcommon.h"
 #include "mapiwin.h"
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
 int beholderability = 30;
@@ -15,13 +15,10 @@ int orcability = 15;
 int skeletonability = 10;
 int deathorbability = 50;
 
-
-
 void init_ping_player();
 extern void send_pit(int slot, int forsure, int x, int y, int lvl, int frame);
 void set_tile();
 extern void init_death_scene();
-
 
 extern int mousestate;
 void assign_player_cop() {
@@ -43,7 +40,6 @@ void assign_player_cop() {
 	countm = 1;
 	NumPlayers = 0;
 
-
 	if (networkgame) {
 		countlevels = 0;
 	}
@@ -52,12 +48,9 @@ void assign_player_cop() {
 
 	for (j = 0; j <= 9; j++) {
 
-
-
 		if (j == 0) {
 			countm = 1;
-		}
-		else
+		} else
 			countm = countm + NumPlayers;
 		if (j == 0)
 			NumPlayers = 1;
@@ -116,11 +109,9 @@ void assign_player_cop() {
 						PlayerLocation[i].team = 1;
 					if (gamedef.gametype == 2)
 						PlayerLocation[i].team = 1;
-				}
-				else {
+				} else {
 
 					PlayerLocation[i].team = 1;
-
 				}
 				if (startthegame == 1)
 					PlayerLocation[i].image = 1;
@@ -129,15 +120,11 @@ void assign_player_cop() {
 				PlayerLocation[i].shoot = 1;
 				PlayerLocation[i].maxspeed = 1;
 
-
 				if (networkgame && ishost && networkserver) {
 
-				}
-				else {
+				} else {
 					PlayerLocation[i].active = TRUE;
-
 				}
-
 
 				//				PlayerLocation[i].maxspeed = gamedef.fspeed;
 				if (setability) {
@@ -179,8 +166,7 @@ void assign_player_cop() {
 						PlayerLocation[i].team = 1;
 					if (gamedef.gametype == 2)
 						PlayerLocation[i].team = 1;
-				}
-				else {
+				} else {
 					PlayerLocation[i].team = gamedef.fteam;
 				}
 
@@ -188,7 +174,6 @@ void assign_player_cop() {
 				randnum = random_num(20) + 1;
 				PlayerLocation[i].ability = 20 + randnum + countlevels;
 			}
-
 
 			if (j == 2) {
 				if (setability == 1 && networkgame)
@@ -212,8 +197,7 @@ void assign_player_cop() {
 						PlayerLocation[i].team = 1;
 					if (gamedef.gametype == 2)
 						PlayerLocation[i].team = 2;
-				}
-				else {
+				} else {
 
 					PlayerLocation[i].team = gamedef.cteam;
 				}
@@ -239,19 +223,15 @@ void assign_player_cop() {
 						PlayerLocation[i].team = 1;
 					if (gamedef.gametype == 2)
 						PlayerLocation[i].team = 1;
-				}
-				else {
+				} else {
 
 					PlayerLocation[i].maxspeed = gamedef.tspeed;
-
 				}
 				randnum = random_num(20) + 1;
 				PlayerLocation[i].ability = 20 + randnum + countlevels;
 			}
 
-
 			if (j == 4) {
-
 
 				if (setability == 1 && networkgame)
 					PlayerLocation[i].active = FALSE;
@@ -275,8 +255,7 @@ void assign_player_cop() {
 						PlayerLocation[i].team = 1;
 					if (gamedef.gametype == 2)
 						PlayerLocation[i].team = 2;
-				}
-				else {
+				} else {
 
 					PlayerLocation[i].team = gamedef.wteam;
 				}
@@ -288,8 +267,7 @@ void assign_player_cop() {
 				if (j >= 0 && j <= 4) {
 					if (PlayerLocation[i].team == 1) {
 						lvlnum = 1;
-					}
-					else {
+					} else {
 						lvlnum = maxlevel;
 					}
 					/*
@@ -309,31 +287,25 @@ void assign_player_cop() {
 
 					}
 					*/
-				}
-				else {
+				} else {
 
 					if (gamedef.gametype == 2) {
 						randnum = random_num(maxlevel - 2) + 1;
 						randnum++;
 						lvlnum = randnum;
-					}
-					else {
+					} else {
 
 						randnum = random_num(maxlevel - 1) + 1;
 						randnum++;
 						lvlnum = randnum;
-
-
 					}
-
 				}
 
 				randx = random_num(DUNGEONX) + 1;
 				randy = random_num(DUNGEONY) + 1;
 				if (dungeon[randx][randy][lvlnum].type == 'f' && dungeon[randx][randy][lvlnum].item == 0) {
 					check = 1;
-				}
-				else {
+				} else {
 					check = 0;
 				}
 			}
@@ -372,7 +344,6 @@ void assign_player_cop() {
 			PlayerLocation[i].moved = 0;
 			PlayerLocation[i].speed = 2;
 
-
 			//			PlayerLocation[i].maxspeed = 2;
 			PlayerLocation[i].stairs = 0;
 			PlayerLocation[i].character = 2;
@@ -384,7 +355,6 @@ void assign_player_cop() {
 				PlayerLocation[i].skill = 0;
 				PlayerLocation[i].ring = 1;
 				PlayerLocation[i].armour = 0;
-
 			}
 			if (i <= newwarrior) {
 				PlayerLocation[i].dead = 65;
@@ -416,7 +386,6 @@ void assign_player_cop() {
 			else if (PlayerLocation[i].image == 4)
 				dungeon[randx][randy][lvlnum].image = 2;
 
-
 			if (j == 1) {
 			}
 			maxmove = 8;
@@ -444,7 +413,7 @@ void assign_player_cop() {
 
 				randnum = random_num(5);
 				if (j == 5) {
-					//beholder
+					// beholder
 					randnum = random_num(6) + 1;
 					PlayerLocation[i].ability = 26 + randnum + countlevels;
 					PlayerLocation[i].maxspeed = 2;
@@ -460,9 +429,8 @@ void assign_player_cop() {
 					//					PlayerLocation[i].ability = 20;
 					PlayerLocation[i].ability = beholderability;
 
-				}
-				else if (j == 6) {
-					//mouther
+				} else if (j == 6) {
+					// mouther
 					randnum = random_num(3) + 1;
 					PlayerLocation[i].ability = 3 + randnum + countlevels;
 					PlayerLocation[i].maxspeed = 2;
@@ -476,9 +444,8 @@ void assign_player_cop() {
 					PlayerLocation[i].damagemax = 1;
 					PlayerLocation[i].maxspeed = gamedef.mspeed;
 					PlayerLocation[i].ability = moutherability;
-				}
-				else if (j == 7) {
-					//orc
+				} else if (j == 7) {
+					// orc
 					randnum = random_num(5) + 1;
 					PlayerLocation[i].ability = 5 + randnum + countlevels;
 					PlayerLocation[i].maxspeed = 2;
@@ -493,9 +460,8 @@ void assign_player_cop() {
 					PlayerLocation[i].maxspeed = gamedef.ospeed;
 					PlayerLocation[i].ability = orcability;
 
-				}
-				else if (j == 8) {
-					//skeleton
+				} else if (j == 8) {
+					// skeleton
 					randnum = random_num(4) + 1;
 					PlayerLocation[i].ability = 4 + randnum + countlevels;
 					PlayerLocation[i].maxspeed = 2;
@@ -510,9 +476,8 @@ void assign_player_cop() {
 					PlayerLocation[i].maxspeed = gamedef.sspeed;
 					PlayerLocation[i].ability = skeletonability;
 
-				}
-				else if (j == 9) {
-					//god help us - death orb
+				} else if (j == 9) {
+					// god help us - death orb
 
 					randnum = random_num(10) + 1;
 					PlayerLocation[i].ability = 30 + randnum + countlevels;
@@ -529,27 +494,21 @@ void assign_player_cop() {
 					PlayerLocation[i].maxspeed = gamedef.dspeed;
 					PlayerLocation[i].ability = deathorbability;
 				}
-
 			}
 
 			PlayerLocation[i].maxmove = maxmove;
 			check_dungeon();
-
 		}
-
 	}
 	NumPlayers = newwarrior +
-		gamedef.beholders + gamedef.mouther + gamedef.ogre + gamedef.skeletons +
-		gamedef.deathorb;
-
+	             gamedef.beholders + gamedef.mouther + gamedef.ogre + gamedef.skeletons +
+	             gamedef.deathorb;
 
 	monster_cop();
-
 }
 
-BOOL InitGraphics()
-{
-	//pDirDraw = new CDirDraw(hWindow);
+BOOL InitGraphics() {
+	// pDirDraw = new CDirDraw(hWindow);
 	pDirDraw = new CMyDirDraw(hWindow);
 	ddok = pDirDraw->DirectDrawOK();
 	if (!ddok)
@@ -575,7 +534,6 @@ BOOL InitGraphics()
 	if (DungeonSurface3 == 0)
 		return FALSE;
 
-
 	scroll = pDirDraw->CreateOffScreenSurface(800, 600);
 	if (scroll == 0)
 		return FALSE;
@@ -583,8 +541,6 @@ BOOL InitGraphics()
 	selectplayer = pDirDraw->CreateOffScreenSurface(800, 1650);
 	if (selectplayer == 0)
 		return FALSE;
-
-
 
 	LoadFloorDibs("../artwork/dungeon.bmp");
 	LoadDudeDibs(1);
@@ -595,109 +551,95 @@ BOOL InitGraphics()
 	return TRUE;
 }
 
-
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
-
-void LoadFloorDibs(char* p)
-{
-	CDib* pDib;
+void LoadFloorDibs(char *p) {
+	CDib *pDib;
 	pDib = new CDib(p);
 	pDirDraw->CopyDibToSurface(partsBSurfaceNum,
-		&CPoint(0, 0), pDib, &CRect(0, 0, 800, 1176));
+	                           &CPoint(0, 0), pDib, &CRect(0, 0, 800, 1176));
 	delete pDib;
-
 
 	pDib = new CDib("../artwork/dungeon2.bmp");
 	pDirDraw->CopyDibToSurface(DungeonSurface2,
-		&CPoint(0, 0), pDib, &CRect(0, 0, 800, 600));
+	                           &CPoint(0, 0), pDib, &CRect(0, 0, 800, 600));
 	delete pDib;
 
 	pDib = new CDib("../artwork/dungeon3.bmp");
 	pDirDraw->CopyDibToSurface(DungeonSurface3,
-		&CPoint(0, 0), pDib, &CRect(0, 0, 800, 600));
+	                           &CPoint(0, 0), pDib, &CRect(0, 0, 800, 600));
 	delete pDib;
-
-
 }
 
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
-void LoadScroll()
-{
+void LoadScroll() {
 
 	CString splash("../artwork/scroll.bmp");
-	CDib* pDib = new CDib(splash);
+	CDib *pDib = new CDib(splash);
 	pDirDraw->CopyDibToSurface(scroll,
-		&CPoint(0, 0), pDib, &CRect(0, 0, 800, 600));
+	                           &CPoint(0, 0), pDib, &CRect(0, 0, 800, 600));
 	delete pDib;
 }
 
-
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
-void LoadSelect()
-{
+void LoadSelect() {
 
 	CString splash("../artwork/select.bmp");
-	CDib* pDib = new CDib(splash);
+	CDib *pDib = new CDib(splash);
 	pDirDraw->CopyDibToSurface(selectplayer,
-		&CPoint(0, 0), pDib, &CRect(0, 0, 800, 1650));
+	                           &CPoint(0, 0), pDib, &CRect(0, 0, 800, 1650));
 	delete pDib;
 }
 
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
-void LoadSplash()
-{
+void LoadSplash() {
 
 	CString splash("../artwork/murk256.bmp");
-	CDib* pDib = new CDib(splash);
+	CDib *pDib = new CDib(splash);
 	pDirDraw->CopyDibToSurface(murksplash,
-		&CPoint(0, 0), pDib, &CRect(0, 0, 800, 600));
+	                           &CPoint(0, 0), pDib, &CRect(0, 0, 800, 600));
 	delete pDib;
 }
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
-
-void LoadDudeDibs(UINT floor)
-{
+void LoadDudeDibs(UINT floor) {
 	char s[5];
 	wsprintf(s, "%d", floor);
 	CString floorFileName("../artwork/p256.BMP");
 
-	CDib* pDib = new CDib(floorFileName);
+	CDib *pDib = new CDib(floorFileName);
 	BOOL resultOK = pDirDraw->SetPalette(pDib);
 	pDirDraw->CopyDibToSurface(partsASurfaceNum,
-		&CPoint(0, 0), pDib, &CRect(0, 0, 800, 1280));
+	                           &CPoint(0, 0), pDib, &CRect(0, 0, 800, 1280));
 	delete pDib;
 }
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
-void load_panel()
-{
+void load_panel() {
 	CString floorFileName("../artwork/pan3.BMP");
-	CDib* pDib = new CDib(floorFileName);
+	CDib *pDib = new CDib(floorFileName);
 	//	254172
 	pDirDraw->CopyDibToSurface(panelSurfaceNum, &CPoint(0, 0), pDib, &CRect(0, 0, 259, 189));
 	delete pDib;
 }
 
-
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
 void clear_dungeon() {
@@ -714,9 +656,7 @@ void clear_dungeon() {
 			}
 		}
 	}
-
 }
-
 
 void init_dungeon() {
 
@@ -732,7 +672,6 @@ void init_dungeon() {
 			dimage[level] = 1;
 		else
 			dimage[level] = 2;
-
 	}
 	for (level = 1; level <= maxlevel; level++) {
 		for (y = 0; y < DUNGEONY; y++) {
@@ -784,7 +723,7 @@ void init_dungeon() {
 }
 
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
 void assign_treasure() {
@@ -806,8 +745,7 @@ void assign_treasure() {
 		lvl = 1;
 		if (dungeon[randx][randy][lvl].type == 'f' && dungeon[randx][randy][lvl].item == 0) {
 			check = 1;
-		}
-		else {
+		} else {
 			check = 0;
 		}
 	}
@@ -818,7 +756,7 @@ void assign_treasure() {
 	foundtreasure = 0;
 }
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
 void assign_treasure2() {
@@ -828,7 +766,6 @@ void assign_treasure2() {
 	int lvl;
 	int randnum;
 	check = 0;
-
 
 	while (check == 0) {
 
@@ -847,12 +784,9 @@ void assign_treasure2() {
 			lvl = maxlevel;
 		}
 
-
-
 		if (dungeon[randx][randy][lvl].type == 'f' && dungeon[randx][randy][lvl].item == 0) {
 			check = 1;
-		}
-		else {
+		} else {
 			check = 0;
 		}
 	}
@@ -865,7 +799,7 @@ void assign_treasure2() {
 }
 
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
 void assign_elixir(int length) {
@@ -884,8 +818,7 @@ void assign_elixir(int length) {
 			lvl = random_num(maxlevel) + 1;
 			if (dungeon[randx][randy][lvl].type == 'f' && dungeon[randx][randy][lvl].item == 0) {
 				check = 1;
-			}
-			else {
+			} else {
 				check = 0;
 			}
 		}
@@ -901,7 +834,6 @@ void assign_elixir(int length) {
 			dungeon[randx][randy][lvl].item = 'e';
 	}
 
-
 	for (i = 0; i < 2; i++) {
 		check = 0;
 		while (check == 0) {
@@ -910,27 +842,20 @@ void assign_elixir(int length) {
 			lvl = random_num(maxlevel) + 1;
 			if (dungeon[randx][randy][lvl].type == 'f' && dungeon[randx][randy][lvl].item == 0) {
 				check = 1;
-			}
-			else {
+			} else {
 				check = 0;
 			}
 		}
 
 		dungeon[randx][randy][lvl].item = 'r';
-
 	}
-
-
 }
 
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
-
 void monster_cop() {
-
-
 
 	int check;
 	int randx, randy;
@@ -956,14 +881,11 @@ void monster_cop() {
 				if (dungeon[randx][randy][lvl].type == 'f' && dungeon[randx][randy][lvl].item == 0) {
 					check = 1;
 					flip = 0;
-				}
-				else {
+				} else {
 					check = 0;
-
 				}
 			}
 		}
-
 
 		dungeon[randx][randy][lvl].explored = 0;
 		dungeon[randx][randy][lvl].item = 'c';
@@ -975,7 +897,7 @@ void monster_cop() {
 }
 
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
 void assign_pit(int level) {
@@ -987,7 +909,6 @@ void assign_pit(int level) {
 	int i;
 	check = 0;
 
-
 	if (pitcounter > 8)
 		return;
 
@@ -998,19 +919,15 @@ void assign_pit(int level) {
 			randy = random_num(DUNGEONY) + 1;
 			lvl = random_num(maxlevel - 1) + 1;
 			if (dungeon[randx][randy][lvl + 1].type == 'f' &&
-				dungeon[randx][randy][lvl].type == 'f'
-				&& dungeon[randx][randy][lvl].item == 0) {
+			    dungeon[randx][randy][lvl].type == 'f' && dungeon[randx][randy][lvl].item == 0) {
 				for (i = 1; i <= 48; i++) {
-					if (pits[i].x == randx && pits[i].y == randy && pits[i].lvl == lvl
-						&& pits[i].frame != 0) {
+					if (pits[i].x == randx && pits[i].y == randy && pits[i].lvl == lvl && pits[i].frame != 0) {
 						return;
-					}
-					else
+					} else
 						check = 1;
 				}
 
-			}
-			else {
+			} else {
 				check = 0;
 			}
 		}
@@ -1026,26 +943,22 @@ void assign_pit(int level) {
 
 		if (networkgame && ishost)
 			send_pit(0, 0, randx, randy, lvl, 1);
-
 	}
 }
 
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
 void new_level(int nextlev) {
 
 	int randnum;
 
-
 	sharewarelevel++;
-
 
 	srand((unsigned)time(NULL));
 
 	init_ping_player();
-
 
 	if (nextlev) {
 		levelcounter++;
@@ -1087,7 +1000,6 @@ void new_level(int nextlev) {
 		dtreasure[randnum].tdx = 0;
 		dtreasure[randnum].tdy = 0;
 		dtreasure[randnum].tdlvl = 0;
-
 	}
 
 	gameerror = 0;
@@ -1117,19 +1029,14 @@ void new_level(int nextlev) {
 	beholder = 0;
 	init_chat();
 
-
-
-
 	if (networkgame) {
 		strcpy(chat[0].say, "Find the -p   and return it home");
 		chat[0].duration = 90;
 
-	}
-	else {
+	} else {
 
 		strcpy(chat[0].say, gamedef.response);
 		chat[0].duration = 90;
-
 	}
 
 	strcpy(lastmove, "-");
@@ -1152,7 +1059,6 @@ void new_level(int nextlev) {
 		assign_treasure2();
 	}
 
-
 	if (startthegame == 1)
 		startthegame = 2;
 	setability = 0;
@@ -1166,14 +1072,9 @@ void new_level(int nextlev) {
 
 		if (ishost && !networkgame) {
 			bdown = 0;
-
-
-
 		}
-
 	}
 }
-
 
 void generate_dungeon() {
 
@@ -1203,10 +1104,8 @@ void generate_dungeon() {
 	//	sx=5;
 	//	sy=5;
 
-
 	randx = sx;
 	randy = sy;
-
 
 	//	for (lvlnum=1;lvlnum<=maxlevel;lvlnum++) {
 	lvlnum = 0;
@@ -1220,9 +1119,7 @@ void generate_dungeon() {
 
 			debug_me("BAD", "BAD", 0, 0);
 			//			return;
-
 		}
-
 
 		for (y = 0; y <= DUNGEONY + 1; y++) {
 			for (x = 0; x <= DUNGEONX + 1; x++) {
@@ -1233,7 +1130,6 @@ void generate_dungeon() {
 				dungeon[x][y][lvlnum].explored = 0;
 			}
 		}
-
 
 		work1 = 8;
 		for (y = 1; y < 8; y++) {
@@ -1276,12 +1172,7 @@ void generate_dungeon() {
 			work2--;
 		}
 
-
-
-
-
 		for (jump = 0; jump < 4; jump++) {
-
 
 			quit = 0;
 			good = 0;
@@ -1296,7 +1187,6 @@ void generate_dungeon() {
 			dungeon[x][y][lvlnum].type = 'f';
 			dungeon[x][y][lvlnum].explored = 0;
 			dungeon[x][y][lvlnum].item = 0;
-
 
 			for (i = 0; i < 75; i++) {
 				xpos = 0;
@@ -1319,16 +1209,13 @@ void generate_dungeon() {
 				quit = 0;
 				good = 0;
 
-				if ((x + xpos) > 0 && (x + xpos) < DUNGEONX && (y + ypos) > 0 && (y + ypos) < DUNGEONY
-					&& dungeon[x + xpos][y + ypos][lvlnum].type != 'u'
-					&& dungeon[x + xpos][y + ypos][lvlnum].type != 's') {
+				if ((x + xpos) > 0 && (x + xpos) < DUNGEONX && (y + ypos) > 0 && (y + ypos) < DUNGEONY && dungeon[x + xpos][y + ypos][lvlnum].type != 'u' && dungeon[x + xpos][y + ypos][lvlnum].type != 's') {
 					//					check upper left
 					rand = random_num(30);
 					//					rand = random_num(5);
 					//					rand=2;
 					if (rand == 1) {
-					}
-					else {
+					} else {
 						if (dungeon[x + xpos - 1][y + ypos - 1][lvlnum].type == 'f') {
 							good++;
 						}
@@ -1342,7 +1229,7 @@ void generate_dungeon() {
 							quit = 1;
 						}
 						good = 0;
-						//					check lower left 
+						//					check lower left
 						if (dungeon[x + xpos - 1][y + ypos + 1][lvlnum].type == 'f') {
 							good++;
 						}
@@ -1355,7 +1242,7 @@ void generate_dungeon() {
 						if (good == 3) {
 							quit = 1;
 						}
-						//					check upper right 
+						//					check upper right
 						good = 0;
 						if (dungeon[x + xpos + 1][y + ypos - 1][lvlnum].type == 'f') {
 							good++;
@@ -1369,7 +1256,7 @@ void generate_dungeon() {
 						if (good == 3) {
 							quit = 1;
 						}
-						//					check lower right 
+						//					check lower right
 						good = 0;
 						if (dungeon[x + xpos + 1][y + ypos + 1][lvlnum].type == 'f') {
 							good++;
@@ -1397,11 +1284,7 @@ void generate_dungeon() {
 		numnodes = count_nodes(lvlnum);
 		counttry = 0;
 
-
-
 		if (numnodes >= 30) {
-
-
 
 			//		if (numnodes >=40) {
 			lvlnum--;
@@ -1410,21 +1293,18 @@ void generate_dungeon() {
 				lvlnum = 0;
 				numtry = 0;
 				debug_me("generate_dungeon", "NumNodes Start Again lvlnum==1", numtry, counttry);
-			}
-			else {
+			} else {
 				debug_me("generatedungeon", "TOO MANY NODES", numnodes, 0);
 				for (fixabovex = 0; fixabovex <= DUNGEONX + 1; fixabovex++) {
 					for (fixabovey = 0; fixabovey <= DUNGEONY + 1; fixabovey++) {
-						if (dungeon[fixabovex][fixabovey][lvlnum].type == 's'
-							&& dungeon[fixabovex][fixabovey][lvlnum].item == 0) {
+						if (dungeon[fixabovex][fixabovey][lvlnum].type == 's' && dungeon[fixabovex][fixabovey][lvlnum].item == 0) {
 							dungeon[fixabovex][fixabovey][lvlnum].type = 'f';
 							dungeon[fixabovex][fixabovey][lvlnum].item = 0;
 						}
 					}
 				}
 			}
-		}
-		else {
+		} else {
 			if (lvlnum > 1) {
 				leave = 0;
 				for (i = 1; i < 4; i++) {
@@ -1462,19 +1342,16 @@ void generate_dungeon() {
 								//								lvlnum = 0;
 								//							numtry = 0;
 								//						debug_me("generate_dungeon", "Start Again lvlnum==1", numtry, counttry);
-							}
-							else {
+							} else {
 
 								for (fixabovex = 0; fixabovex <= DUNGEONX + 1; fixabovex++) {
 									for (fixabovey = 0; fixabovey <= DUNGEONY + 1; fixabovey++) {
-										if (dungeon[fixabovex][fixabovey][lvlnum].type == 's'
-											&& dungeon[fixabovex][fixabovey][lvlnum].item == 0) {
+										if (dungeon[fixabovex][fixabovey][lvlnum].type == 's' && dungeon[fixabovex][fixabovey][lvlnum].item == 0) {
 											dungeon[fixabovex][fixabovey][lvlnum].type = 'f';
 											dungeon[fixabovex][fixabovey][lvlnum].item = 0;
 										}
 									}
 								}
-
 							}
 							leave = 1;
 							check = 1;
@@ -1482,7 +1359,7 @@ void generate_dungeon() {
 							//									sy=DUNGEONY+1;
 
 							numtry++;
-							//numtry  number of times we have tried to find stairs for this level
+							// numtry  number of times we have tried to find stairs for this level
 
 							i = 4;
 
@@ -1495,8 +1372,7 @@ void generate_dungeon() {
 
 							debug_me("generate_dungeon", "NO STAIRS!", 0, 0);
 							//									i=4;
-						}
-						else {
+						} else {
 							debug_me("generate_dungeon", "NO STAIRS!", 0, 0);
 							check = 0;
 						}
@@ -1516,7 +1392,6 @@ void generate_dungeon() {
 	}
 }
 
-
 void init_chat() {
 
 	int i;
@@ -1525,50 +1400,33 @@ void init_chat() {
 		strcpy(chat[i].say, "");
 		chat[i].duration = 6;
 	}
-
-
 }
-
 
 void init_ping_player() {
 
-
 	int i;
-
 
 	for (i = 0; i < 10; i++) {
 		pingplayer[i] = 0;
 	}
-
-
 }
-
 
 void set_tile() {
 
 	int i;
 	int randnum;
 
-
-
 	randnum = 1;
-
 
 	for (i = 1; i < 39; i++) {
 		//		randnum = random_num(3)+1;
-
 
 		tile_type[i] = randnum;
 		randnum++;
 		if (randnum > 3)
 			randnum = 1;
-
 	}
-
-
-
 }
-
 
 void init_death_scene() {
 
@@ -1583,9 +1441,5 @@ void init_death_scene() {
 		dscene[i].counter = 0;
 		dscene[i].mapx = 0;
 		dscene[i].mapy = 0;
-
 	}
-
-
-
 }

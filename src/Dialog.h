@@ -9,34 +9,32 @@
 
 #include "resource.h"
 
-
 /////////////////////////////////////////////////////////////////////////////
 // Dialog dialog
 
-class Dialog : public CDialog
-{
-// Construction
-public:
-	Dialog(CWnd* pParent = NULL);   // standard constructor
+class Dialog : public CDialog {
+	// Construction
+  public:
+	Dialog(CWnd *pParent = NULL); // standard constructor
 
-// Dialog Data
+	// Dialog Data
 
-	enum { IDD = IDD_DIALOG1 };
+	enum {
+		IDD = IDD_DIALOG1
+	};
 
-
-// Overrides
+	// Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(Dialog)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+  protected:
+	virtual void DoDataExchange(CDataExchange *pDX); // DDX/DDV support
+	                                                 //}}AFX_VIRTUAL
 
-// Implementation
-protected:
-
+	// Implementation
+  protected:
 	// Generated message map functions
 	//{{AFX_MSG(Dialog)
-		// NOTE: the ClassWizard will add member functions here
+	// NOTE: the ClassWizard will add member functions here
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

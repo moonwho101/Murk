@@ -27,24 +27,20 @@
 #include "stdafx.h"
 #include "Registry.h"
 
-CRegistry::CRegistry(HKEY hKeyRoot)
-{
+CRegistry::CRegistry(HKEY hKeyRoot) {
 	m_hKey = hKeyRoot;
 }
 
-CRegistry::~CRegistry()
-{
+CRegistry::~CRegistry() {
 	Close();
 }
 
-
-BOOL CRegistry::VerifyKey(HKEY hKeyRoot, LPCTSTR pszPath)
-{
+BOOL CRegistry::VerifyKey(HKEY hKeyRoot, LPCTSTR pszPath) {
 	ASSERT(hKeyRoot);
 	ASSERT(pszPath);
 
 	LONG ReturnValue = RegOpenKeyEx(hKeyRoot, pszPath, 0L,
-		KEY_ALL_ACCESS, &m_hKey);
+	                                KEY_ALL_ACCESS, &m_hKey);
 	if (ReturnValue == ERROR_SUCCESS)
 		return TRUE;
 
@@ -55,12 +51,11 @@ BOOL CRegistry::VerifyKey(HKEY hKeyRoot, LPCTSTR pszPath)
 	return FALSE;
 }
 
-BOOL CRegistry::VerifyKey(LPCTSTR pszPath)
-{
+BOOL CRegistry::VerifyKey(LPCTSTR pszPath) {
 	ASSERT(m_hKey);
 
 	LONG ReturnValue = RegOpenKeyEx(m_hKey, pszPath, 0L,
-		KEY_ALL_ACCESS, &m_hKey);
+	                                KEY_ALL_ACCESS, &m_hKey);
 
 	m_Info.lMessage = ReturnValue;
 	m_Info.dwSize = 0L;
@@ -72,11 +67,10 @@ BOOL CRegistry::VerifyKey(LPCTSTR pszPath)
 	return FALSE;
 }
 
-BOOL CRegistry::VerifyValue(LPCTSTR pszValue)
-{
+BOOL CRegistry::VerifyValue(LPCTSTR pszValue) {
 	ASSERT(m_hKey);
 	LONG lReturn = RegQueryValueEx(m_hKey, pszValue, NULL,
-		NULL, NULL, NULL);
+	                               NULL, NULL, NULL);
 
 	m_Info.lMessage = lReturn;
 	m_Info.dwSize = 0L;
@@ -88,13 +82,12 @@ BOOL CRegistry::VerifyValue(LPCTSTR pszValue)
 	return FALSE;
 }
 
-BOOL CRegistry::CreateKey(HKEY hKeyRoot, LPCTSTR pszPath)
-{
+BOOL CRegistry::CreateKey(HKEY hKeyRoot, LPCTSTR pszPath) {
 	DWORD dw;
 
 	LONG ReturnValue = RegCreateKeyEx(hKeyRoot, pszPath, 0L, NULL,
-		REG_OPTION_VOLATILE, KEY_ALL_ACCESS, NULL,
-		&m_hKey, &dw);
+	                                  REG_OPTION_VOLATILE, KEY_ALL_ACCESS, NULL,
+	                                  &m_hKey, &dw);
 
 	m_Info.lMessage = ReturnValue;
 	m_Info.dwSize = 0L;
@@ -106,12 +99,11 @@ BOOL CRegistry::CreateKey(HKEY hKeyRoot, LPCTSTR pszPath)
 	return FALSE;
 }
 
-BOOL CRegistry::Open(HKEY hKeyRoot, LPCTSTR pszPath)
-{
+BOOL CRegistry::Open(HKEY hKeyRoot, LPCTSTR pszPath) {
 	m_sPath = pszPath;
 
 	LONG ReturnValue = RegOpenKeyEx(hKeyRoot, pszPath, 0L,
-		KEY_ALL_ACCESS, &m_hKey);
+	                                KEY_ALL_ACCESS, &m_hKey);
 
 	m_Info.lMessage = ReturnValue;
 	m_Info.dwSize = 0L;
@@ -123,24 +115,21 @@ BOOL CRegistry::Open(HKEY hKeyRoot, LPCTSTR pszPath)
 	return FALSE;
 }
 
-void CRegistry::Close()
-{
-	if (m_hKey)
-	{
+void CRegistry::Close() {
+	if (m_hKey) {
 		RegCloseKey(m_hKey);
 		m_hKey = NULL;
 	}
 }
 
-BOOL CRegistry::Write(LPCTSTR pszKey, LPCTSTR pszData)
-{
+BOOL CRegistry::Write(LPCTSTR pszKey, LPCTSTR pszData) {
 	ASSERT(m_hKey);
 	ASSERT(pszKey);
 	ASSERT(pszData);
 	ASSERT(AfxIsValidAddress(pszData, strlen(pszData), FALSE));
 
 	LONG ReturnValue = RegSetValueEx(m_hKey, pszKey, 0L, REG_SZ,
-		(CONST BYTE*) pszData, strlen(pszData) + 1);
+	                                 (CONST BYTE *)pszData, strlen(pszData) + 1);
 
 	m_Info.lMessage = ReturnValue;
 	m_Info.dwSize = strlen(pszData) + 1;
@@ -152,26 +141,22 @@ BOOL CRegistry::Write(LPCTSTR pszKey, LPCTSTR pszData)
 	return FALSE;
 }
 
-
-
-BOOL CRegistry::Read2(LPCTSTR pszKey, CString& sVal)
-{
+BOOL CRegistry::Read2(LPCTSTR pszKey, CString &sVal) {
 	ASSERT(m_hKey);
 	ASSERT(pszKey);
 
 	DWORD dwType;
 	DWORD dwSize = 200;
-	char  szString[255];
+	char szString[255];
 
 	LONG lReturn = RegQueryValueEx(m_hKey, (LPSTR)pszKey, NULL,
-		&dwType, (BYTE*)szString, &dwSize);
+	                               &dwType, (BYTE *)szString, &dwSize);
 
 	m_Info.lMessage = lReturn;
 	m_Info.dwType = dwType;
 	m_Info.dwSize = dwSize;
 
-	if (lReturn == ERROR_SUCCESS)
-	{
+	if (lReturn == ERROR_SUCCESS) {
 		sVal = szString;
 		return TRUE;
 	}
@@ -179,12 +164,9 @@ BOOL CRegistry::Read2(LPCTSTR pszKey, CString& sVal)
 	return FALSE;
 }
 
-
-BOOL CRegistry::DeleteValue(LPCTSTR pszValue)
-{
+BOOL CRegistry::DeleteValue(LPCTSTR pszValue) {
 	ASSERT(m_hKey);
 	LONG lReturn = RegDeleteValue(m_hKey, pszValue);
-
 
 	m_Info.lMessage = lReturn;
 	m_Info.dwType = 0L;
@@ -196,8 +178,7 @@ BOOL CRegistry::DeleteValue(LPCTSTR pszValue)
 	return FALSE;
 }
 
-BOOL CRegistry::DeleteValueKey(HKEY hKeyRoot, LPCTSTR pszPath)
-{
+BOOL CRegistry::DeleteValueKey(HKEY hKeyRoot, LPCTSTR pszPath) {
 	ASSERT(pszPath);
 	ASSERT(hKeyRoot);
 

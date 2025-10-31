@@ -1,18 +1,15 @@
-//Main Murk Variables
+// Main Murk Variables
 
-
-#define WIN32_LEAN_AND_MEAN      // Exclude rarely-used stuff from Windows headers
+#define WIN32_LEAN_AND_MEAN // Exclude rarely-used stuff from Windows headers
 
 #ifndef _WIN32_WINNT
 #define _WIN32_WINNT 0x601
 #endif
 
-
 #include <winsock2.h>
 #include <afx.h>
 
-
-//#include <windows.h>
+// #include <windows.h>
 #include <string.h>
 #include <winuser.h>
 #include "resource.h"
@@ -25,8 +22,8 @@
 
 #include "Resource.h"
 
-CGame* m_pGame;
-LPGUID  lpGuid;
+CGame *m_pGame;
+LPGUID lpGuid;
 
 struct PlayerDat {
 	int protection;
@@ -111,30 +108,28 @@ struct dungeon_struct {
 	int order;
 };
 
-//struct dungeon_struct dungeon [40][40][40];
+// struct dungeon_struct dungeon [40][40][40];
 
-typedef	struct {
+typedef struct {
 	int dir;
 	int x;
 	int y;
 } mazestack;
 
 //	typedef mazestack *stack;
-LPDIRECTPLAY  m_pDirectPlay;
+LPDIRECTPLAY m_pDirectPlay;
 
-DPID          m_dpidPlayer[10];
-HANDLE        m_hDPEvent;
+DPID m_dpidPlayer[10];
+HANDLE m_hDPEvent;
 
 //  TileState     m_tsGrid[3][3];
-UINT          m_uiTurns;
-BOOL          m_bMyTurn;
-
+UINT m_uiTurns;
+BOOL m_bMyTurn;
 
 BOOL moveok;
 BOOL computersmove;
 
 BOOL bIsActive;
-
 
 struct dungeon_struct dungeon[140][140][40];
 
@@ -144,11 +139,7 @@ int maxlevel;
 
 DWORD dwsession;
 
-
-
-
 int oktosend;
-
 
 int dialogresponse;
 
@@ -184,9 +175,7 @@ int moveityfin;
 int orderglobal;
 int saveshort;
 
-
 int select1, select2, select3, select4;
-
 
 int start_recursion = 0;
 
@@ -220,7 +209,6 @@ int treasurey2;
 int treasurelvl2;
 int foundtreasure2;
 
-
 int playerfx;
 int playerfy;
 int playerfx2;
@@ -239,7 +227,6 @@ int frame_num;
 int MoveNum;
 int savelastmove;
 char response[900];
-
 
 int startthegame;
 
@@ -286,8 +273,6 @@ struct thepits {
 };
 struct thepits pits[50];
 
-
-
 struct murkregistry {
 	char name[50];
 	char key[50];
@@ -307,12 +292,10 @@ struct deathscene {
 	int counter;
 	int mapx;
 	int mapy;
-
 };
 struct deathscene dscene[100];
 
-
-mazestack* stack;
+mazestack *stack;
 
 UINT partsASurfaceNum, partsBSurfaceNum, panelSurfaceNum;
 UINT murksplash;
@@ -323,111 +306,109 @@ UINT DungeonSurface3;
 
 int tile_type[40];
 
-
-
-CWave* m_pWave;
-CDirSound* m_pDirSound;
+CWave *m_pWave;
+CDirSound *m_pDirSound;
 
 UINT m_bufferNum;
 
-CWave* m_pMusic;
+CWave *m_pMusic;
 UINT m_bufferMusic;
 
-CWave* m_pDrip;
+CWave *m_pDrip;
 UINT m_bufferDrip;
 
-CWave* m_pScream;
+CWave *m_pScream;
 UINT m_bufferScream;
 
-//CWave* m_pBeholder;
-//UINT m_bufferBeholder;
+// CWave* m_pBeholder;
+// UINT m_bufferBeholder;
 
-CWave* m_pTreasure;
+CWave *m_pTreasure;
 UINT m_bufferTreasure;
 
-CWave* m_pDead;
+CWave *m_pDead;
 UINT m_bufferDead;
 
-CWave* m_pWin;
+CWave *m_pWin;
 UINT m_bufferWin;
 
-CWave* m_pReward;
+CWave *m_pReward;
 UINT m_bufferReward;
 
-CWave* m_pBow;
+CWave *m_pBow;
 UINT m_bufferBow;
 
-CWave* m_pSword;
+CWave *m_pSword;
 UINT m_bufferSword;
 
-CWave* m_pYell;
+CWave *m_pYell;
 UINT m_bufferYell;
 
-CWave* m_pHit;
+CWave *m_pHit;
 UINT m_bufferHit;
 
-CWave* m_pMonsterdie;
+CWave *m_pMonsterdie;
 UINT m_bufferMonsterdie;
 
-CWave* m_pMumble;
+CWave *m_pMumble;
 UINT m_bufferMumble;
 
-CWave* m_pDragon;
+CWave *m_pDragon;
 UINT m_bufferDragon;
 
-CWave* m_pRegen;
+CWave *m_pRegen;
 UINT m_bufferRegen;
 
-
-CWave* m_pSkeleton;
+CWave *m_pSkeleton;
 UINT m_bufferSkeleton;
 
-CWave* m_pDorb;
+CWave *m_pDorb;
 UINT m_bufferDorb;
 
-CWave* m_pFireball;
+CWave *m_pFireball;
 UINT m_bufferFireball;
 
-CWave* m_pOuch;
+CWave *m_pOuch;
 UINT m_bufferOuch;
 
-
-CWave* m_pButton;
+CWave *m_pButton;
 UINT m_bufferButton;
 
-CWave* m_pSwordThief;
+CWave *m_pSwordThief;
 UINT m_bufferSwordThief;
 
-CWave* m_pSwordBarb;
+CWave *m_pSwordBarb;
 UINT m_bufferSwordBarb;
 
-
-CWave* m_pEyeswizard;
+CWave *m_pEyeswizard;
 UINT m_bufferEyeswizard;
 
-CWave* m_pTadaCleric;
+CWave *m_pTadaCleric;
 UINT m_bufferTadaCleric;
 
-CWave* m_pProtection;
+CWave *m_pProtection;
 UINT m_bufferProtection;
-
 
 BOOL m_directSoundOK;
 
-//CONST MAXMOVE = 7 ;
+// CONST MAXMOVE = 7 ;
 HINSTANCE hInstance;
 
-//CDirDraw* pDirDraw;
+// CDirDraw* pDirDraw;
 
-CMyDirDraw* pDirDraw;
+CMyDirDraw *pDirDraw;
 BOOL ddok;
 BOOL setupOK = FALSE;
 HWND hWindow;
 
-typedef enum { North, East, South, West } directionT;
+typedef enum {
+	North,
+	East,
+	South,
+	West
+} directionT;
 
 int ishost;
-
 
 int networkgame;
 
@@ -442,7 +423,6 @@ int dropt;
 int bdown;
 
 char networkresponse[512];
-
 
 struct chatit {
 	char say[300];
@@ -462,14 +442,12 @@ char advanceattrib;
 int countlevels;
 int istimerset;
 
-
 HANDLE mainthread;
 HANDLE globalthread;
 HANDLE quitthread;
 DWORD IDThread;
 
 BOOL sendonce;
-
 
 int countsquares;
 int stopthetime;
@@ -478,14 +456,11 @@ BOOL receivedata;
 
 int initplayer;
 
-
 int receiveok;
-
 
 int pingplayer[10];
 
 int helpscreen;
-
 
 struct droptreasure {
 
@@ -499,9 +474,7 @@ struct droptreasure dtreasure[3];
 
 int gameerror;
 
-
 int shareware;
 int sharewarelevel;
-
 
 int abortgame;

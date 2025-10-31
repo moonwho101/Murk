@@ -18,7 +18,6 @@
 static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
-
 //-----------------------------------------------------------------
 // CSessionInfoDlg Message Map & Runtime Support
 //-----------------------------------------------------------------
@@ -28,23 +27,19 @@ END_MESSAGE_MAP()
 //-----------------------------------------------------------------
 // CSessionInfoDlg Public Constructor(s)/Destructor
 //-----------------------------------------------------------------
-CSessionInfoDlg::CSessionInfoDlg(CWnd* pParent)
-  : CDialog(CSessionInfoDlg::IDD, pParent)
-{
+CSessionInfoDlg::CSessionInfoDlg(CWnd *pParent)
+    : CDialog(CSessionInfoDlg::IDD, pParent) {
 }
 
-CSessionInfoDlg::~CSessionInfoDlg()
-{
+CSessionInfoDlg::~CSessionInfoDlg() {
 }
 
 //-----------------------------------------------------------------
 // CSessionInfoDlg Protected Methods
 //-----------------------------------------------------------------
-void
-CSessionInfoDlg::DoDataExchange(CDataExchange* pDX)
-{
-  CDialog::DoDataExchange(pDX);
+void CSessionInfoDlg::DoDataExchange(CDataExchange *pDX) {
+	CDialog::DoDataExchange(pDX);
 
-  // Establish data exchange between text box and string member
-  DDX_Text(pDX, IDC_EB_NAME, m_sName);
+	// Establish data exchange between text box and string member
+	DDX_Text(pDX, IDC_EB_NAME, m_sName);
 }

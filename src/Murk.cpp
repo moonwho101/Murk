@@ -1,4 +1,4 @@
-//  Murk Ver 1.12 By Mark Longo 
+//  Murk Ver 1.12 By Mark Longo
 //  Copyright 1999  , All Rights Reserved.
 //
 //  Here lies the guts of Murk.
@@ -18,12 +18,11 @@
 #include <stdlib.h>
 #include <crtdbg.h>
 
-
 void check_leftmousedown();
 void check_rightmousedown();
 
 extern BOOL InitMIDI();
-extern UINT        m_uiDevID;
+extern UINT m_uiDevID;
 
 int keyboardlock;
 
@@ -49,7 +48,6 @@ void check_input();
 void check_keys();
 void check_mouse();
 
-
 ///////////////////////////////////////////////////////////
 // WinMain
 ///////////////////////////////////////////////////////////
@@ -58,7 +56,7 @@ extern int networktype;
 extern void send_pinghost();
 extern void serversettings(int go);
 extern void build_server_screen();
-extern void	 kill_dplay();
+extern void kill_dplay();
 extern void send_pingserver();
 extern int is_shareware();
 extern int joystickhit;
@@ -68,8 +66,8 @@ extern void play_random_music();
 extern void stop_song();
 extern void CleanupMIDI();
 extern void write_reg();
-extern BOOL          InitJoystick();
-extern LONG  OnJoyMove(UINT wParam, LONG lParam);
+extern BOOL InitJoystick();
+extern LONG OnJoyMove(UINT wParam, LONG lParam);
 extern LONG OnJoyButtonDown(UINT wParam, LONG lParam);
 extern void send_drop_treasure(int treasure);
 
@@ -81,19 +79,17 @@ extern bool IsShareware();
 #define _CRTDBG_MAP_ALLOC
 
 int APIENTRY WinMain(HINSTANCE hCurrentInst,
-	HINSTANCE hPreviousInst, LPSTR lpszCmdLine,
-	int nCmdShow)
-{
-
+                     HINSTANCE hPreviousInst, LPSTR lpszCmdLine,
+                     int nCmdShow) {
 
 	WNDCLASS wndClass;
 	HWND hWnd;
 	MSG msg;
 	_CrtSetDbgFlag(
-		_CRTDBG_ALLOC_MEM_DF |
-		_CRTDBG_LEAK_CHECK_DF);
+	    _CRTDBG_ALLOC_MEM_DF |
+	    _CRTDBG_LEAK_CHECK_DF);
 	_CrtSetReportMode(_CRT_ERROR,
-		_CRTDBG_MODE_DEBUG);
+	                  _CRTDBG_MODE_DEBUG);
 
 	CDialog dialog;
 
@@ -106,17 +102,15 @@ int APIENTRY WinMain(HINSTANCE hCurrentInst,
 	wndClass.hCursor = LoadCursor(NULL, IDC_ARROW);
 	readyornot = 0;
 
-	//IMPORTANT!!  Change compserv=1 to compile MURK into a windowed server
-	//compserv=0 while make the game run with graphics
+	// IMPORTANT!!  Change compserv=1 to compile MURK into a windowed server
+	// compserv=0 while make the game run with graphics
 
-
-	compserv = 0;   //client
+	compserv = 0; // client
 	//	compserv=1;  //server
 	//
 	if (strstr(lpszCmdLine, "/s") != NULL || compserv) {
 		wndClass.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);
-	}
-	else {
+	} else {
 		wndClass.hbrBackground = NULL;
 	}
 
@@ -131,7 +125,6 @@ int APIENTRY WinMain(HINSTANCE hCurrentInst,
 	networkserver = 0;
 	networkgame = 0;
 
-
 	if (strstr(lpszCmdLine, "/s") != NULL || compserv) {
 		networkserver = 1;
 		networkgame = 1;
@@ -139,8 +132,7 @@ int APIENTRY WinMain(HINSTANCE hCurrentInst,
 
 	if (networkserver) {
 		timerlength = 60;
-	}
-	else {
+	} else {
 		timerlength = 54;
 	}
 
@@ -149,38 +141,35 @@ int APIENTRY WinMain(HINSTANCE hCurrentInst,
 	if (!networkserver) {
 		// Create a window of the previously defined class.
 		hWnd = CreateWindow(
-			"Aztec",          // Window class's name.
-			"Murk Ver 1.12",// Title bar text.
-			WS_POPUP,         // The window's style.
-			0,                // X position.
-			0,                // Y position.
-			240,              // Width.
-			280,              // Height.
-			NULL,             // Parent window's handle.
-			NULL,             // Menu handle.
-			hCurrentInst,     // Instance handle.
-			NULL);            // No additional data.
+		    "Aztec",         // Window class's name.
+		    "Murk Ver 1.12", // Title bar text.
+		    WS_POPUP,        // The window's style.
+		    0,               // X position.
+		    0,               // Y position.
+		    240,             // Width.
+		    280,             // Height.
+		    NULL,            // Parent window's handle.
+		    NULL,            // Menu handle.
+		    hCurrentInst,    // Instance handle.
+		    NULL);           // No additional data.
 
-	}
-	else {
+	} else {
 
 		hWnd = CreateWindow(
-			"Aztec",          // Window class's name.
-			"Murk Ver 1.12",// Title bar text.
-			WS_OVERLAPPEDWINDOW,         // The window's style.
-			0,                // X position.
-			0,                // Y position.
-			240,              // Width.
-			280,              // Height.
-			NULL,             // Parent window's handle.
-			NULL,             // Menu handle.
-			hCurrentInst,     // Instance handle.
-			NULL);            // No additional data.
+		    "Aztec",             // Window class's name.
+		    "Murk Ver 1.12",     // Title bar text.
+		    WS_OVERLAPPEDWINDOW, // The window's style.
+		    0,                   // X position.
+		    0,                   // Y position.
+		    240,                 // Width.
+		    280,                 // Height.
+		    NULL,                // Parent window's handle.
+		    NULL,                // Menu handle.
+		    hCurrentInst,        // Instance handle.
+		    NULL);               // No additional data.
 	}
 
-
 	SetMenu(hWnd, NULL);
-
 
 	clear_log();
 	strcpy(serverscreen, "Welcome to Murk...");
@@ -198,12 +187,10 @@ int APIENTRY WinMain(HINSTANCE hCurrentInst,
 	DUNGEONY = 18;
 
 	SystemParametersInfo(SPI_SETKEYBOARDSPEED, 31,
-		(LPVOID)NULL, SPIF_UPDATEINIFILE |
-		SPIF_SENDWININICHANGE);
+	                     (LPVOID)NULL, SPIF_UPDATEINIFILE | SPIF_SENDWININICHANGE);
 
 	SystemParametersInfo(SPI_SETKEYBOARDDELAY, 0,
-		(LPVOID)NULL, SPIF_UPDATEINIFILE |
-		SPIF_SENDWININICHANGE);
+	                     (LPVOID)NULL, SPIF_UPDATEINIFILE | SPIF_SENDWININICHANGE);
 
 	if (!networkserver) {
 		setupOK = InitGraphics();
@@ -222,13 +209,12 @@ int APIENTRY WinMain(HINSTANCE hCurrentInst,
 		load_panel();
 		play_sound();
 		m_directSoundOK = TRUE;
-	}
-	else {
+	} else {
 		m_directSoundOK = FALSE;
 	}
 
 	if (m_directSoundOK) {
-		//InitMIDI();
+		// InitMIDI();
 	}
 
 	shareware = 0;
@@ -269,7 +255,7 @@ int APIENTRY WinMain(HINSTANCE hCurrentInst,
 	select4 = 0;
 	bdown = 0;
 
-	stack = (mazestack*)calloc(56 * 56, sizeof(mazestack));
+	stack = (mazestack *)calloc(56 * 56, sizeof(mazestack));
 
 	movelevel = 0;
 	advancelevel = 50;
@@ -286,20 +272,16 @@ int APIENTRY WinMain(HINSTANCE hCurrentInst,
 
 	if (networkserver) {
 		serversettings(1);
-	}
-	else {
+	} else {
 		SetTimer(hWindow, 1, 50, TimerProc);
 		SetTimer(hWindow, 2, 4000, TimerProc);
 	}
 
 	keyboardlock = 0;
 	readyornot = 1;
-	while (1)
-	{
-		if (PeekMessage(&msg, NULL, 0, 0, PM_NOREMOVE))
-		{
-			if (!GetMessage(&msg, NULL, 0, 0))
-			{
+	while (1) {
+		if (PeekMessage(&msg, NULL, 0, 0, PM_NOREMOVE)) {
+			if (!GetMessage(&msg, NULL, 0, 0)) {
 				return msg.wParam;
 			}
 			TranslateMessage(&msg);
@@ -312,19 +294,16 @@ int APIENTRY WinMain(HINSTANCE hCurrentInst,
 // WndProc
 ///////////////////////////////////////////////////////////
 
-
 LRESULT APIENTRY WndProc(HWND hWnd, UINT message,
-	WPARAM wParam, LPARAM lParam)
-{
+                         WPARAM wParam, LPARAM lParam) {
 	// Handle the messages to which the application
 	// must respond.
 
 	HDC hDC;
 	PAINTSTRUCT paintStruct;
-	int i=0;
+	int i = 0;
 
-	switch (message)
-	{
+	switch (message) {
 
 	case WM_PAINT:
 		if (networkserver) {
@@ -338,8 +317,7 @@ LRESULT APIENTRY WndProc(HWND hWnd, UINT message,
 				if (networktype == 1) {
 					strcpy(serverscreen, "Murk TCP/IP Server (Active)");
 					TextOut(hDC, 1, 1, serverscreen, strlen(serverscreen));
-				}
-				else {
+				} else {
 					strcpy(serverscreen, "Murk IPX/SPX Server (Active)");
 					TextOut(hDC, 1, 1, serverscreen, strlen(serverscreen));
 				}
@@ -347,45 +325,40 @@ LRESULT APIENTRY WndProc(HWND hWnd, UINT message,
 				for (i = 1; i <= newwarrior; i++) {
 					switch (PlayerLocation[i].image) {
 					case 1:
-						//barbarian
+						// barbarian
 						if (PlayerLocation[i].active) {
 							strcpy(serverscreen, "Barbarian is connected");
-						}
-						else
+						} else
 							strcpy(serverscreen, "                           ");
 						TextOut(hDC, 1, 20, serverscreen, strlen(serverscreen));
 						break;
 					case 3:
-						//barbarian
+						// barbarian
 						if (PlayerLocation[i].active) {
 							strcpy(serverscreen, "Thief is connected");
-						}
-						else
+						} else
 							strcpy(serverscreen, "                           ");
 
 						TextOut(hDC, 1, 40, serverscreen, strlen(serverscreen));
 						break;
 					case 4:
-						//barbarian
+						// barbarian
 						if (PlayerLocation[i].active) {
 							strcpy(serverscreen, "Mage is connected");
-						}
-						else
+						} else
 							strcpy(serverscreen, "                           ");
 
 						TextOut(hDC, 1, 60, serverscreen, strlen(serverscreen));
 						break;
 					case 5:
-						//barbarian
+						// barbarian
 						if (PlayerLocation[i].active) {
 							strcpy(serverscreen, "Cleric is connected");
-						}
-						else
+						} else
 							strcpy(serverscreen, "                           ");
 
 						TextOut(hDC, 1, 80, serverscreen, strlen(serverscreen));
 						break;
-
 					}
 				}
 			}
@@ -436,7 +409,7 @@ LRESULT APIENTRY WndProc(HWND hWnd, UINT message,
 		return 0;
 	case WM_ACTIVATEAPP:
 		if (wParam) {
-			//active
+			// active
 
 			if (showmission == 3 && !networkserver) {
 				display_dungeon(1);
@@ -445,9 +418,7 @@ LRESULT APIENTRY WndProc(HWND hWnd, UINT message,
 				if (m_directSoundOK)
 					play_random_music();
 
-
-			}
-			else if (readyornot == 1 && !networkserver) {
+			} else if (readyornot == 1 && !networkserver) {
 				SetTimer(hWindow, 1, 50, TimerProc);
 				SetTimer(hWindow, 2, 4000, TimerProc);
 				display_dungeon(1);
@@ -456,9 +427,8 @@ LRESULT APIENTRY WndProc(HWND hWnd, UINT message,
 					play_random_music();
 			}
 
-		}
-		else {
-			//deactivate
+		} else {
+			// deactivate
 
 			if (showmission == 3 && !networkserver) {
 				KillTimer(hWindow, 3);
@@ -466,8 +436,7 @@ LRESULT APIENTRY WndProc(HWND hWnd, UINT message,
 				if (m_directSoundOK)
 					stop_song();
 
-			}
-			else if (readyornot == 1 && !networkserver) {
+			} else if (readyornot == 1 && !networkserver) {
 				KillTimer(hWindow, 1);
 				KillTimer(hWindow, 2);
 
@@ -477,21 +446,16 @@ LRESULT APIENTRY WndProc(HWND hWnd, UINT message,
 		}
 
 		return 0;
-
 	}
 	return DefWindowProc(hWnd, message, wParam, lParam);
 }
-
 
 ///////////////////////////////////////////////////////////
 // OnDestroy
 ///////////////////////////////////////////////////////////
 
-
-void OnDestroy()
-{
+void OnDestroy() {
 	if (showmission == 3) {
-
 
 		KillTimer(hWindow, 3);
 	}
@@ -522,11 +486,10 @@ void OnDestroy()
 	delete m_pDragon;
 	delete m_pRegen;
 	free(stack);
-
 }
 
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
 void ShowPlayer(int animate) {
@@ -563,22 +526,17 @@ void ShowPlayer(int animate) {
 		break;
 	}
 
-
 	if (PlayerLocation[CurrentPlayer].character == 3) {
 		if (PlayerLocation[CurrentPlayer].image == 9) {
 			framex = framex + 64;
 			frame2x = frame2x + 64;
 			if (animate != 2)
 				animate = 0;
-
-
 		}
 		if (PlayerLocation[CurrentPlayer].image == 2) {
 			if (animate != 2)
 				animate = 0;
-
 		}
-
 	}
 
 	switch (PlayerLocation[CurrentPlayer].image) {
@@ -618,7 +576,6 @@ void ShowPlayer(int animate) {
 		framey = framey + 128;
 		frame2y = frame2y + 128;
 		break;
-
 	}
 
 	if (PlayerLocation[CurrentPlayer].dead <= 64 && PlayerLocation[CurrentPlayer].dead > 1) {
@@ -633,30 +590,24 @@ void ShowPlayer(int animate) {
 		frame2y = PlayerLocation[CurrentPlayer].fy2;
 	}
 
-
 	if (animate == 2) {
-		//death scene
+		// death scene
 		if (!networkserver)
 			resultOK = pDirDraw->BlitImage(&CPoint(dscene[CurrentPlayer].x, dscene[CurrentPlayer].y + (64 - dscene[CurrentPlayer].counter)), partsASurfaceNum,
-				&CRect(framex, framey, frame2x, frame2y - (64 - dscene[CurrentPlayer].counter)));
-
-
-
-
+			                               &CRect(framex, framey, frame2x, frame2y - (64 - dscene[CurrentPlayer].counter)));
 
 		return;
 	}
 
 	if (!networkserver)
 		resultOK = pDirDraw->BlitImage(&CPoint(PlayerLocation[CurrentPlayer].x, PlayerLocation[CurrentPlayer].y + deadadjust), partsASurfaceNum,
-			&CRect(framex, framey, frame2x, frame2y - deadadjust2));
+		                               &CRect(framex, framey, frame2x, frame2y - deadadjust2));
 	check_dungeon();
 }
 
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
-
 
 void animate_player(int startpos) {
 
@@ -671,7 +622,6 @@ void animate_player(int startpos) {
 	frame2x = 0;
 	frame2y = 0;
 	adjust = 0;
-
 
 	switch (frame_num) {
 	case 1:
@@ -697,7 +647,6 @@ void animate_player(int startpos) {
 		if (PlayerLocation[CurrentPlayer].image == 2)
 			adjust = 64;
 	}
-
 
 	switch (PlayerLocation[CurrentPlayer].direction) {
 	case 1:
@@ -774,7 +723,6 @@ void animate_player(int startpos) {
 	fx2 = frame2x;
 	fy2 = frame2y;
 
-
 	if (ishost || networkgame == 0 || CurrentPlayer == 1) {
 		PlayerLocation[CurrentPlayer].fx = framex;
 		PlayerLocation[CurrentPlayer].fy = framey;
@@ -783,27 +731,22 @@ void animate_player(int startpos) {
 		if (PlayerLocation[CurrentPlayer].stairs != 0) {
 			if (PlayerLocation[CurrentPlayer].stairs == 1) {
 				PlayerLocation[CurrentPlayer].y = PlayerLocation[CurrentPlayer].y + 2;
-			}
-			else {
+			} else {
 				PlayerLocation[CurrentPlayer].y = PlayerLocation[CurrentPlayer].y - 2;
 			}
-		}
-		else {
+		} else {
 			PlayerLocation[CurrentPlayer].x = PlayerLocation[CurrentPlayer].x + move1 * 8;
 			PlayerLocation[CurrentPlayer].y = PlayerLocation[CurrentPlayer].y + move2 * 4;
 		}
-
 	}
 }
 
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
-
-
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
 void OnTimer() {
@@ -836,25 +779,20 @@ void OnTimer() {
 		PlayerLocation[CurrentPlayer].staircounter--;
 		if (PlayerLocation[CurrentPlayer].staircounter == 3) {
 
-
 			if (PlayerLocation[CurrentPlayer].stairs == 1) {
 				PlayerLocation[CurrentPlayer].level++;
 				PlayerLocation[CurrentPlayer].track = 0;
 
 				PlayerLocation[CurrentPlayer].y = PlayerLocation[CurrentPlayer].y - 12;
-			}
-			else if (PlayerLocation[CurrentPlayer].stairs == 2) {
+			} else if (PlayerLocation[CurrentPlayer].stairs == 2) {
 				if (PlayerLocation[CurrentPlayer].level > 1)
 					PlayerLocation[CurrentPlayer].level--;
 
-
 				PlayerLocation[CurrentPlayer].track = 0;
 				PlayerLocation[CurrentPlayer].y = PlayerLocation[CurrentPlayer].y + 12;
-
 			}
 			wakeup_sleepy_heads();
-		}
-		else if (PlayerLocation[CurrentPlayer].staircounter <= 0) {
+		} else if (PlayerLocation[CurrentPlayer].staircounter <= 0) {
 			PlayerLocation[CurrentPlayer].staircounter = 0;
 			frame_num = 0;
 			animateon = 0;
@@ -864,13 +802,10 @@ void OnTimer() {
 			wakeup_sleepy_heads();
 			check_dungeon();
 
-		}
-		else
+		} else
 			PlayerLocation[1].framehuman = 1;
 
-
 		return;
-
 	}
 	if (frame_num == 3) {
 		if (PlayerLocation[CurrentPlayer].stairs > 0) {
@@ -878,8 +813,7 @@ void OnTimer() {
 		if (PlayerLocation[CurrentPlayer].stairs == 1) {
 			PlayerLocation[CurrentPlayer].level++;
 			PlayerLocation[CurrentPlayer].track = 0;
-		}
-		else if (PlayerLocation[CurrentPlayer].stairs == 2) {
+		} else if (PlayerLocation[CurrentPlayer].stairs == 2) {
 			if (PlayerLocation[CurrentPlayer].level > 1)
 				PlayerLocation[CurrentPlayer].level--;
 			PlayerLocation[CurrentPlayer].track = 0;
@@ -887,7 +821,6 @@ void OnTimer() {
 		check_dungeon();
 		PlayerLocation[CurrentPlayer].frame = frame_num;
 	}
-
 
 	if (frame_num > 5) {
 		frame_num = 0;
@@ -898,11 +831,9 @@ void OnTimer() {
 	}
 }
 
-
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
-
 
 inline void display_dungeon(int player) {
 	CONST int XADJUST = 49;
@@ -940,7 +871,6 @@ inline void display_dungeon(int player) {
 	startxreset = 530;
 	startyreset = -200;
 
-
 	if (!networkserver) {
 		pDirDraw->ClearSurface(BACKBUFFERNUM);
 		if (sharewarelevel >= 6 && shareware) {
@@ -964,10 +894,7 @@ inline void display_dungeon(int player) {
 		UINT resultclick = MessageBox(hWindow, "You are running an OLD version.\nPlease Vist http://www.murk.on.ca\nFor the latest Version.", "Update Your Version\nA purchased Registration key will work on Updates.", MB_OK);
 		PostMessage(hWindow, WM_CLOSE, 0, 0L);
 		return;
-
 	}
-
-
 
 	level = PlayerLocation[camera].level;
 	for (i = 1; i <= NumPlayers; i++)
@@ -1086,120 +1013,109 @@ inline void display_dungeon(int player) {
 				}
 				if (!networkserver) {
 
-
 					switch (tile_type[PlayerLocation[1].level]) {
 
 					case 1:
 						resultOK = pDirDraw->BlitImage(&CPoint(startx, starty),
-							partsBSurfaceNum, &CRect(recu1, recu2, recl1, recl2));
+						                               partsBSurfaceNum, &CRect(recu1, recu2, recl1, recl2));
 						break;
 
 					case 2:
 						resultOK = pDirDraw->BlitImage(&CPoint(startx, starty),
-							DungeonSurface2, &CRect(recu1, recu2, recl1, recl2));
+						                               DungeonSurface2, &CRect(recu1, recu2, recl1, recl2));
 						break;
 					case 3:
 						resultOK = pDirDraw->BlitImage(&CPoint(startx, starty),
-							DungeonSurface3, &CRect(recu1, recu2, recl1, recl2));
+						                               DungeonSurface3, &CRect(recu1, recu2, recl1, recl2));
 						break;
 					case 4:
 						resultOK = pDirDraw->BlitImage(&CPoint(startx, starty),
-							DungeonSurface3, &CRect(recu1, recu2, recl1, recl2));
+						                               DungeonSurface3, &CRect(recu1, recu2, recl1, recl2));
 						break;
 					}
-
-
-
 				}
 			}
 			if (dungeon[x][y][level].type == 's' && dungeon[x][y][level].explored == 1) {
 				if (dungeon[x][y][level].item == 1) {
 					if (!networkserver)
 						resultOK = pDirDraw->BlitImage(&CPoint(startx, starty),
-							partsBSurfaceNum, &CRect(224, 0, 336, 97));
-				}
-				else {
+						                               partsBSurfaceNum, &CRect(224, 0, 336, 97));
+				} else {
 					/*down*/
 					if (!networkserver)
 						resultOK = pDirDraw->BlitImage(&CPoint(startx, starty),
-							partsBSurfaceNum, &CRect(112, 0, 224, 97));
+						                               partsBSurfaceNum, &CRect(112, 0, 224, 97));
 				}
 			}
 			if (dungeon[x][y][level].item == 'c' && dungeon[x][y][level].explored == 1 && !networkserver) {
 				if (dungeon[x][y][level].image == 0) {
 					BOOL resultOK = pDirDraw->BlitImage(&CPoint(startx, starty + 20), partsBSurfaceNum,
-						&CRect(113, 294, 225, 391));
-				}
-				else if (dungeon[x][y][level].image == 1) {
+					                                    &CRect(113, 294, 225, 391));
+				} else if (dungeon[x][y][level].image == 1) {
 					resultOK = pDirDraw->BlitImage(&CPoint(startx, starty + 20), partsBSurfaceNum,
-						&CRect(113 + 112 + 112, 294, 225 + 112 + 112, 391));
-				}
-				else if (dungeon[x][y][level].image == 2) {
+					                               &CRect(113 + 112 + 112, 294, 225 + 112 + 112, 391));
+				} else if (dungeon[x][y][level].image == 2) {
 					resultOK = pDirDraw->BlitImage(&CPoint(startx, starty + 20), partsBSurfaceNum,
-						&CRect(113 + 112 + 112 + 112, 294, 225 + 112 + 112 + 112, 391));
-				}
-				else if (dungeon[x][y][level].image == 3) {
+					                               &CRect(113 + 112 + 112 + 112, 294, 225 + 112 + 112 + 112, 391));
+				} else if (dungeon[x][y][level].image == 3) {
 					resultOK = pDirDraw->BlitImage(&CPoint(startx, starty + 20), partsBSurfaceNum,
-						&CRect(113 + 112 + 112 + 112 + 112, 294, 225 + 112 + 112 + 112 + 112, 391));
-				}
-				else if (dungeon[x][y][level].image == 4) {
+					                               &CRect(113 + 112 + 112 + 112 + 112, 294, 225 + 112 + 112 + 112 + 112, 391));
+				} else if (dungeon[x][y][level].image == 4) {
 					resultOK = pDirDraw->BlitImage(&CPoint(startx, starty + 20), partsBSurfaceNum,
-						&CRect(224, 294, 337, 391));
+					                               &CRect(224, 294, 337, 391));
 				}
 			}
 
 			if (dungeon[x][y][level].item == 'e' && dungeon[x][y][level].explored == 1) {
 				if (!networkserver)
 					BOOL resultOK = pDirDraw->BlitImage(&CPoint(startx, starty + 20), partsBSurfaceNum,
-						&CRect(226, 490, 338, 587));
+					                                    &CRect(226, 490, 338, 587));
 			}
 			if (dungeon[x][y][level].item == 's' && dungeon[x][y][level].explored == 1) {
 				if (!networkserver)
 					BOOL resultOK = pDirDraw->BlitImage(&CPoint(startx, starty), partsBSurfaceNum,
-						&CRect(565, 0, 565 + 113, 97));
+					                                    &CRect(565, 0, 565 + 113, 97));
 			}
 			if (dungeon[x][y][level].item == 'r' && dungeon[x][y][level].explored == 1) {
 				if (!networkserver)
 					BOOL resultOK = pDirDraw->BlitImage(&CPoint(startx, starty), partsBSurfaceNum,
-						&CRect(678, 0, 678 + 113, 97));
+					                                    &CRect(678, 0, 678 + 113, 97));
 			}
 			if (dungeon[x][y][level].item == 'a' && dungeon[x][y][level].explored == 1) {
 				if (!networkserver)
 					BOOL resultOK = pDirDraw->BlitImage(&CPoint(startx, starty), partsBSurfaceNum,
-						&CRect(224 + 113 + 113, 0, 449 + 113, 97));
+					                                    &CRect(224 + 113 + 113, 0, 449 + 113, 97));
 			}
 			if (x == treasurex && y == treasurey && level == treasurelvl && dungeon[x][y][level].explored == 1 && foundtreasure == 0) {
 				if (!networkserver)
 					BOOL resultOK = pDirDraw->BlitImage(&CPoint(startx, starty + 20), partsBSurfaceNum,
-						&CRect(0, 294, 112, 391));
+					                                    &CRect(0, 294, 112, 391));
 			}
 			if (x == treasurex2 && y == treasurey2 && level == treasurelvl2 && dungeon[x][y][level].explored == 1 && foundtreasure2 == 0) {
 				if (!networkserver)
 					BOOL resultOK = pDirDraw->BlitImage(&CPoint(startx, starty + 20), partsBSurfaceNum,
-						&CRect(678, 294, 790, 391));
+					                                    &CRect(678, 294, 790, 391));
 			}
 			for (i = 1; i <= 48; i++) {
 
 				if (dungeon[x][y][level].explored) {
 					if (pits[i].x == x &&
-						pits[i].y == y &&
-						pits[i].lvl == level &&
-						pits[i].frame != 0) {
+					    pits[i].y == y &&
+					    pits[i].lvl == level &&
+					    pits[i].frame != 0) {
 						if (pits[i].frame <= 6 || pits[i].frame >= 30) {
 							if (!networkserver)
 								BOOL resultOK = pDirDraw->BlitImage(&CPoint(startx, starty + 20), partsBSurfaceNum,
-									&CRect(452, 490, 452 + 113, 490 + 98));
-						}
-						else if (pits[i].frame <= 12 || pits[i].frame >= 24) {
+								                                    &CRect(452, 490, 452 + 113, 490 + 98));
+						} else if (pits[i].frame <= 12 || pits[i].frame >= 24) {
 							if (!networkserver)
 								BOOL resultOK = pDirDraw->BlitImage(&CPoint(startx, starty + 20), partsBSurfaceNum,
-									&CRect(452 + 113, 490, 452 + 113 + 113, 490 + 98));
+								                                    &CRect(452 + 113, 490, 452 + 113 + 113, 490 + 98));
 
-						}
-						else if (pits[i].frame <= 18 || pits[i].frame > 18) {
+						} else if (pits[i].frame <= 18 || pits[i].frame > 18) {
 							if (!networkserver)
 								BOOL resultOK = pDirDraw->BlitImage(&CPoint(startx, starty + 20), partsBSurfaceNum,
-									&CRect(452 + 113 + 113, 490, 452 + 113 + 113 + 113, 490 + 98));
+								                                    &CRect(452 + 113 + 113, 490, 452 + 113 + 113 + 113, 490 + 98));
 						}
 					}
 				}
@@ -1225,14 +1141,13 @@ inline void display_dungeon(int player) {
 
 				else if (PlayerLocation[i].mapx == x && PlayerLocation[i].mapy == y && PlayerLocation[i].asleep == 0 && PlayerLocation[i].moved == 0 && PlayerLocation[i].dead <= 64) {
 
-
 					if (ishost && PlayerLocation[i].active || i == 1 && PlayerLocation[i].active) {
 						for (rand = 1; rand <= 48; rand++) {
 							if (PlayerLocation[i].mapx == pits[rand].x &&
-								PlayerLocation[i].mapy == pits[rand].y &&
-								PlayerLocation[i].level == pits[rand].lvl &&
-								pits[rand].frame >= 18 && pits[rand].frame <= 29 &&
-								PlayerLocation[i].frame == 0) {
+							    PlayerLocation[i].mapy == pits[rand].y &&
+							    PlayerLocation[i].level == pits[rand].lvl &&
+							    pits[rand].frame >= 18 && pits[rand].frame <= 29 &&
+							    PlayerLocation[i].frame == 0) {
 								PlayerLocation[i].track = 0;
 								if (i == 1) {
 									hitkeyboard = 0;
@@ -1241,15 +1156,13 @@ inline void display_dungeon(int player) {
 									PlayerLocation[i].staircounter = 6;
 									PlayerLocation[i].frame = 1;
 									PlayerLocation[i].framehuman = 1;
-								}
-								else {
+								} else {
 									PlayerLocation[i].frame = 1;
 									PlayerLocation[i].rest = 0;
 									PlayerLocation[i].stairs = 1;
 									strcpy(PlayerLocation[i].lastmove, "-");
 								}
 							}
-
 						}
 					}
 
@@ -1257,11 +1170,10 @@ inline void display_dungeon(int player) {
 						m_pDirSound->PlaySound(m_bufferRegen);
 
 					if (startgame == 1 || PlayerLocation[i].justdied == 1 || PlayerLocation[i].x == 0 && PlayerLocation[i].y == 0) {
-						//save player co-ords at start of level!
+						// save player co-ords at start of level!
 						PlayerLocation[i].x = startx + 20;
 						PlayerLocation[i].y = starty + 10;
 						PlayerLocation[i].justdied = 0;
-
 					}
 
 					monstershoot = 0;
@@ -1269,38 +1181,31 @@ inline void display_dungeon(int player) {
 
 						if (ishost && i > newwarrior || networkgame == 0)
 							monstershoot = monster_shoot();
-
 					}
 
 					if (monstershoot == 1) {
 						if (monstershoot == 1) {
 							start_missle(PlayerLocation[i].mapx, PlayerLocation[i].mapy, PlayerLocation[i].direction,
-								PlayerLocation[i].level,
-								PlayerLocation[i].x, PlayerLocation[i].y, i);
-
+							             PlayerLocation[i].level,
+							             PlayerLocation[i].x, PlayerLocation[i].y, i);
 
 							if (i <= newwarrior && i != 1) {
 
 								if (PlayerLocation[i].ability <= 10 &&
-									!PlayerLocation[i].protection &&
-									PlayerLocation[i].ring > 0) {
+								    !PlayerLocation[i].protection &&
+								    PlayerLocation[i].ring > 0) {
 
 									PlayerLocation[i].protection = 70;
 									PlayerLocation[i].ring--;
 									if (m_directSoundOK)
 										m_pDirSound->PlaySound(m_bufferTadaCleric);
-
-
 								}
-
 							}
-
-
 						}
 					}
 					if (i == 1 && hitkeyboard == 1 && PlayerLocation[i].framehuman == 0 || i == 1 && mousehit == 1 && PlayerLocation[i].framehuman == 0) {
 
-						//human move
+						// human move
 
 						if (newmove != 0) {
 
@@ -1327,7 +1232,6 @@ inline void display_dungeon(int player) {
 						}
 						if (cancelmove == 0) {
 
-
 							if (mousehit == 1 && PlayerLocation[1].direction == 1) {
 								handle_left();
 							}
@@ -1346,8 +1250,7 @@ inline void display_dungeon(int player) {
 							PlayerLocation[1].frame = frame_num;
 							mousehit = 0;
 							joystickhit = 0;
-						}
-						else {
+						} else {
 
 							PlayerLocation[1].framehuman = 1;
 
@@ -1359,25 +1262,21 @@ inline void display_dungeon(int player) {
 								sendonce = FALSE;
 								if (!ishost) {
 									send_playerquick(1, 1, 0);
-								}
-								else if (!networkserver && ishost) {
+								} else if (!networkserver && ishost) {
 									send_playerquick(1, 0, 0);
 								}
 							}
-
 						}
-					}
-					else if (i == 1 && hitkeyboard == 0 && PlayerLocation[CurrentPlayer].stairs == 0 || i == 1 && mousehit == 0 && PlayerLocation[CurrentPlayer].stairs == 0) {
+					} else if (i == 1 && hitkeyboard == 0 && PlayerLocation[CurrentPlayer].stairs == 0 || i == 1 && mousehit == 0 && PlayerLocation[CurrentPlayer].stairs == 0) {
 
 						PlayerLocation[1].framehuman = 0;
 						PlayerLocation[1].frame = 0;
 
-						//here						
+						// here
 						if (networkgame && !ishost)
 							send_player2(1, 1, 0);
 						else if (networkgame && ishost && !networkserver)
 							send_player2(1, 0, 0);
-
 					}
 
 					if (PlayerLocation[i].limitspeed && PlayerLocation[i].speed != 1 && i != 1 || PlayerLocation[i].rest > 0 && i != 1) {
@@ -1387,10 +1286,8 @@ inline void display_dungeon(int player) {
 							}
 						}
 
-						//monster is slow ... skip him
-					}
-					else {
-
+						// monster is slow ... skip him
+					} else {
 
 						if (PlayerLocation[i].frame == 0 && PlayerLocation[i].calcmove == 1 && i != 1) {
 
@@ -1407,24 +1304,21 @@ inline void display_dungeon(int player) {
 								if (restmonster == 1 && i > newwarrior && ishost) {
 									restmonster = random_num(7) + 7;
 									PlayerLocation[i].rest = restmonster;
-								}
-								else {
+								} else {
 									if (PlayerLocation[i].track == 0) {
 
 										strcpy(PlayerLocation[i].lastmove, "-");
 										destination();
 										if (PlayerLocation[CurrentPlayer].character == 13) {
 											computermove();
-										}
-										else
+										} else
 											computer_m(PlayerLocation[i].mapx, PlayerLocation[i].mapy, PlayerLocation[i].level);
 										PlayerLocation[i].track = 10;
 
 										PlayerLocation[i].dx = dx;
 										PlayerLocation[i].dy = dy;
 										PlayerLocation[i].dl = PlayerLocation[i].level;
-									}
-									else {
+									} else {
 										PlayerLocation[i].track--;
 										if (PlayerLocation[i].track < 0)
 											PlayerLocation[i].track = 0;
@@ -1433,8 +1327,7 @@ inline void display_dungeon(int player) {
 										dy = PlayerLocation[i].dy;
 										if (PlayerLocation[CurrentPlayer].character == 13) {
 											computermove();
-										}
-										else {
+										} else {
 											computer_m(PlayerLocation[i].mapx, PlayerLocation[i].mapy, PlayerLocation[i].level);
 										}
 									}
@@ -1446,15 +1339,14 @@ inline void display_dungeon(int player) {
 									calc_animation();
 								}
 								PlayerLocation[i].calcmove = 0;
-							}//new one
-						}
-						else if (PlayerLocation[i].frame == 0) {
+							} // new one
+						} else if (PlayerLocation[i].frame == 0) {
 
 							animateon = 0;
 						}
 
 						else {
-							//animate the character
+							// animate the character
 							frame_num = PlayerLocation[i].frame;
 
 							OnTimer();
@@ -1463,26 +1355,24 @@ inline void display_dungeon(int player) {
 							animateon = 1;
 							animateon = 0;
 						}
-
 					}
 					if (foundtreasure == i && !networkserver) {
 						if (treasurelvl >= level)
 							BOOL resultOK = pDirDraw->BlitImage(&CPoint(PlayerLocation[i].x, PlayerLocation[i].y - 20), partsBSurfaceNum,
-								&CRect(0, 490, 56, 530));
+							                                    &CRect(0, 490, 56, 530));
 						else
 							BOOL resultOK = pDirDraw->BlitImage(&CPoint(PlayerLocation[i].x, PlayerLocation[i].y - 20), partsBSurfaceNum,
-								&CRect(56, 490, 112, 530));
+							                                    &CRect(56, 490, 112, 530));
 					}
 
 					if (foundtreasure2 == i && !networkserver) {
 						if (treasurelvl2 >= level)
 							BOOL resultOK = pDirDraw->BlitImage(&CPoint(PlayerLocation[i].x, PlayerLocation[i].y - 20), partsBSurfaceNum,
-								&CRect(113, 490, 169, 587));
+							                                    &CRect(113, 490, 169, 587));
 						else
 							BOOL resultOK = pDirDraw->BlitImage(&CPoint(PlayerLocation[i].x, PlayerLocation[i].y - 20), partsBSurfaceNum,
-								&CRect(170, 490, 225, 587));
+							                                    &CRect(170, 490, 225, 587));
 					}
-
 
 					if (PlayerLocation[i].limitspeed && ishost) {
 						PlayerLocation[i].speed++;
@@ -1516,33 +1406,28 @@ inline void display_dungeon(int player) {
 								m_pDirSound->PlaySound(m_bufferProtection);
 							if (m_directSoundOK)
 								m_pDirSound->PlaySound(m_bufferEyeswizard);
-
 						}
 
 						if (PlayerLocation[i].protection <= 0)
 							PlayerLocation[i].protection = 0;
 					}
 
-
 					if (i == dtreasure[0].towner && networkgame && ishost) {
 
-
 						if (dtreasure[0].tdx != PlayerLocation[i].mapx ||
-							dtreasure[0].tdy != PlayerLocation[i].mapy ||
-							dtreasure[0].tdlvl != PlayerLocation[i].level) {
+						    dtreasure[0].tdy != PlayerLocation[i].mapy ||
+						    dtreasure[0].tdlvl != PlayerLocation[i].level) {
 							dtreasure[0].towner = 0;
 							dtreasure[0].tdx = 0;
 							dtreasure[0].tdy = 0;
 							dtreasure[0].tdlvl = 0;
-
 						}
 					}
 					if (i == dtreasure[1].towner && networkgame && ishost) {
 
-
 						if (dtreasure[1].tdx != PlayerLocation[i].mapx ||
-							dtreasure[1].tdy != PlayerLocation[i].mapy ||
-							dtreasure[1].tdlvl != PlayerLocation[i].level) {
+						    dtreasure[1].tdy != PlayerLocation[i].mapy ||
+						    dtreasure[1].tdlvl != PlayerLocation[i].level) {
 
 							dtreasure[1].towner = 0;
 							dtreasure[1].tdx = 0;
@@ -1554,7 +1439,7 @@ inline void display_dungeon(int player) {
 					if (ishost)
 						PlayerLocation[i].moved = 1;
 
-					//old attack player
+					// old attack player
 					if (attack_player() == 1) {
 						endgame = TRUE;
 						break;
@@ -1566,7 +1451,7 @@ inline void display_dungeon(int player) {
 					if (dscene[i].lvl == PlayerLocation[camera].level)
 						ShowPlayer(2);
 
-					//the death scene!
+					// the death scene!
 					dscene[i].counter = dscene[i].counter - 6;
 					if (dscene[i].counter <= 0) {
 
@@ -1579,47 +1464,38 @@ inline void display_dungeon(int player) {
 					}
 				}
 
-				if (PlayerLocation[i].mapx == x && PlayerLocation[i].mapy == y - 1 && PlayerLocation[i].asleep == 0
-					&& PlayerLocation[i].dead <= 64 &&
-					PlayerLocation[i].active != FALSE) {
+				if (PlayerLocation[i].mapx == x && PlayerLocation[i].mapy == y - 1 && PlayerLocation[i].asleep == 0 && PlayerLocation[i].dead <= 64 &&
+				    PlayerLocation[i].active != FALSE) {
 					if (PlayerLocation[i].protection > 0 && PlayerLocation[i].level == level && !networkserver) {
 						if (PlayerLocation[i].protection <= 20 && PlayerLocation[i].protection >= 25 ||
-							PlayerLocation[i].protection <= 15 && PlayerLocation[i].protection >= 10 ||
-							PlayerLocation[i].protection <= 5 && PlayerLocation[i].protection >= 1
-							) {
+						    PlayerLocation[i].protection <= 15 && PlayerLocation[i].protection >= 10 ||
+						    PlayerLocation[i].protection <= 5 && PlayerLocation[i].protection >= 1) {
 							if (PlayerLocation[i].protection == 25 ||
-								PlayerLocation[i].protection == 15 ||
-								PlayerLocation[i].protection == 5)
+							    PlayerLocation[i].protection == 15 ||
+							    PlayerLocation[i].protection == 5)
 								if (m_directSoundOK)
 									m_pDirSound->PlaySound(m_bufferProtection);
 
-						}
-						else {
+						} else {
 							BOOL resultOK = pDirDraw->BlitImage(&CPoint(PlayerLocation[i].x - 24, PlayerLocation[i].y - 15), partsBSurfaceNum,
-								&CRect(226 + 113, 490, 338 + 113, 587));
+							                                    &CRect(226 + 113, 490, 338 + 113, 587));
 						}
-
 					}
 					if (PlayerLocation[i].frame == 0 || PlayerLocation[i].fx == 0) {
 						if (PlayerLocation[i].level == PlayerLocation[camera].level)
 							ShowPlayer(0);
-					}
-					else {
+					} else {
 						animateon = 1;
 						if (PlayerLocation[i].level == PlayerLocation[camera].level)
 							ShowPlayer(1);
 						animateon = 0;
 					}
 
-
-
 					if (ishost && PlayerLocation[i].speed == 1 && networkgame) {
-
 
 						if (PlayerLocation[i].frame == 0) {
 							send_player2(i, 0, 0);
-						}
-						else {
+						} else {
 
 							send_playerquick(i, 0, 0);
 						}
@@ -1680,7 +1556,6 @@ inline void display_dungeon(int player) {
 
 	for (i = 1; i <= 48; i++) {
 
-
 		if (pits[i].frame > 0)
 			pits[i].frame++;
 
@@ -1692,7 +1567,7 @@ inline void display_dungeon(int player) {
 
 	rand = random_num(15);
 
-	//	rand=1;		
+	//	rand=1;
 	if (rand == 1 && gamedef.pits == 1 && ishost) {
 		assign_pit(level);
 	}
@@ -1700,14 +1575,10 @@ inline void display_dungeon(int player) {
 
 		if (endgame) {
 
-
 			strcpy(chat[0].say, "Level Complete...Stand by.");
 			chat[0].duration = 60;
-
 		}
 		show_panel();
-
-
 
 		resultOK = pDirDraw->FlipSurfaces();
 		if (player != 1)
@@ -1718,10 +1589,7 @@ inline void display_dungeon(int player) {
 
 		if (ishost) {
 
-
-
-			//FINISHED LEVEL
-
+			// FINISHED LEVEL
 
 			KillTimer(hWindow, 3);
 			//			KillTimer(hWindow, 2);
@@ -1747,14 +1615,9 @@ inline void display_dungeon(int player) {
 				showmission = 3;
 				hitanykey = 1;
 				SetTimer(hWindow, 1, 50, TimerProc);
-
-
 			}
-
 		}
 	}
-
-
 
 	cronit++;
 	if (cronit > 20) {
@@ -1764,15 +1627,12 @@ inline void display_dungeon(int player) {
 			send_treasure(0, 0);
 			send_treasure2(0, 0);
 			send_pingserver();
-
 		}
 
 		if (!ishost) {
 			send_pinghost();
-
 		}
 	}
-
 
 	if (ishost && networkgame) {
 
@@ -1784,10 +1644,7 @@ inline void display_dungeon(int player) {
 
 				if (loop != 1)
 					pingplayer[loop] = pingplayer[loop]++;
-
 			}
-
-
 
 			if (pingplayer[loop] > 250) {
 
@@ -1814,21 +1671,15 @@ inline void display_dungeon(int player) {
 
 				send_chat(0);
 
-
-
-
 				dungeon[PlayerLocation[loop].copx][PlayerLocation[loop].copy][PlayerLocation[loop].coplvl].item = 'm';
 				send_dungeon_square(PlayerLocation[loop].copx, PlayerLocation[loop].copy, PlayerLocation[loop].coplvl, 1);
 				if (m_pDirectPlay->DestroyPlayer(m_dpidPlayer[loop]) == DP_OK) {
-
 				}
 
 				PlayerLocation[loop].active = FALSE;
 				clear_player(loop);
-
 			}
 		}
-
 	}
 	if (!ishost && networkgame) {
 
@@ -1839,7 +1690,7 @@ inline void display_dungeon(int player) {
 			pingplayer[0] = 900;
 			strcpy(chat[0].say, "No response from Murk Server!!!");
 			chat[0].duration = 100;
-			//del player
+			// del player
 		}
 	}
 
@@ -1847,17 +1698,12 @@ inline void display_dungeon(int player) {
 		reset_networkserver();
 	}
 
-
-
-
 	keyboardlock = 0;
 	hitkeyboard = 0;
-
 }
 
-
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
 void show_missle(void) {
@@ -1933,7 +1779,7 @@ void show_missle(void) {
 			if (missle[i].misslelvl == PlayerLocation[camera].level) {
 				if (!networkserver)
 					resultOK = pDirDraw->BlitImage(&CPoint(missle[i].missledx, missle[i].missledy), partsASurfaceNum,
-						&CRect(framex, framey, frame2x, frame2y));
+					                               &CRect(framex, framey, frame2x, frame2y));
 			}
 
 			missle[i].frame++;
@@ -1952,8 +1798,7 @@ void show_missle(void) {
 					missle[i].frame = 0;
 					PlayerLocation[missle[i].owner].numshots = PlayerLocation[missle[i].owner].numshots - 1;
 
-				}
-				else
+				} else
 					missle[i].frame = 1;
 			}
 		}
@@ -1961,14 +1806,13 @@ void show_missle(void) {
 }
 
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
 void start_missle(int x, int y, int dir, int lvl, int sx, int sy, int owner) {
 
 	int i;
 	int rand;
-
 
 	if (PlayerLocation[owner].numshots >= PlayerLocation[owner].maxmissle) {
 		if (ishost || owner == 1)
@@ -1979,9 +1823,6 @@ void start_missle(int x, int y, int dir, int lvl, int sx, int sy, int owner) {
 		if (missle[i].frame == 0)
 			break;
 	}
-
-
-
 
 	switch (PlayerLocation[owner].image) {
 	case 2:
@@ -1995,7 +1836,6 @@ void start_missle(int x, int y, int dir, int lvl, int sx, int sy, int owner) {
 		if (m_directSoundOK)
 			m_pDirSound->PlaySound(m_bufferBow);
 		break;
-
 	}
 
 	missle[i].misslex = x;
@@ -2044,7 +1884,7 @@ void start_missle(int x, int y, int dir, int lvl, int sx, int sy, int owner) {
 
 	PlayerLocation[owner].numshots = PlayerLocation[owner].numshots + 1;
 
-	//fix it
+	// fix it
 	if (networkgame) {
 		if (ishost)
 			send_missle(0, missle[i].misslex, missle[i].missley, missle[i].misslelvl, missle[i].frame, missle[i].image, missle[i].direction, owner, missle[i].missledx, missle[i].missledy, i);
@@ -2054,14 +1894,11 @@ void start_missle(int x, int y, int dir, int lvl, int sx, int sy, int owner) {
 }
 
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
-
-
-
 ///////////////////////////////////////////////////////////
-// 
+//
 ///////////////////////////////////////////////////////////
 
 int monster_shoot(void) {
@@ -2076,8 +1913,8 @@ int monster_shoot(void) {
 	int savedir;
 	int j;
 	//	int restmonster;
-	//	int work;	
-	//	int work2;	
+	//	int work;
+	//	int work2;
 	char junk[30];
 	int rand;
 
@@ -2092,7 +1929,6 @@ int monster_shoot(void) {
 	savedir = PlayerLocation[savecurrent].direction;
 	i = CurrentPlayer;
 	int image;
-
 
 	if (CurrentPlayer == 1) {
 
@@ -2113,20 +1949,17 @@ int monster_shoot(void) {
 		if (PlayerLocation[savecurrent].character == 3)
 			monster = 1;
 		if (PlayerLocation[savecurrent].asleep == 0 &&
-			PlayerLocation[savecurrent].numshots < PlayerLocation[savecurrent].maxmissle
-			&& PlayerLocation[savecurrent].dead == 0 &&
-			PlayerLocation[savecurrent].active) {
-
+		    PlayerLocation[savecurrent].numshots < PlayerLocation[savecurrent].maxmissle && PlayerLocation[savecurrent].dead == 0 &&
+		    PlayerLocation[savecurrent].active) {
 
 			while (flag) {
 				for (t = 1; t <= NumPlayers; t++) {
 					if (t != savecurrent) {
 						if (PlayerLocation[t].mapx == x1 &&
-							PlayerLocation[t].mapy == y1 &&
-							PlayerLocation[t].level == savelevel &&
-							PlayerLocation[t].dead == 0 &&
-							PlayerLocation[t].active) {
-
+						    PlayerLocation[t].mapy == y1 &&
+						    PlayerLocation[t].level == savelevel &&
+						    PlayerLocation[t].dead == 0 &&
+						    PlayerLocation[t].active) {
 
 							if (PlayerLocation[t].character == 3 && monster) {
 								flag = FALSE;
@@ -2134,11 +1967,9 @@ int monster_shoot(void) {
 
 							else if (PlayerLocation[t].team == image && !monster) {
 								flag = FALSE;
-							}
-							else {
+							} else {
 								CurrentPlayer = savecurrent;
-								if (PlayerLocation[CurrentPlayer].frame == 0
-									&& PlayerLocation[CurrentPlayer].rest == 0) {
+								if (PlayerLocation[CurrentPlayer].frame == 0 && PlayerLocation[CurrentPlayer].rest == 0) {
 									if (PlayerLocation[CurrentPlayer].direction != j)
 										PlayerLocation[CurrentPlayer].direction = j;
 
@@ -2161,7 +1992,6 @@ int monster_shoot(void) {
 									rand = random_num(agression);
 									if (rand != 1) {
 
-
 										switch (PlayerLocation[CurrentPlayer].intelligence) {
 
 										case 1:
@@ -2178,7 +2008,6 @@ int monster_shoot(void) {
 											break;
 										}
 
-
 										PlayerLocation[CurrentPlayer].track = 10;
 										PlayerLocation[CurrentPlayer].dx = x1;
 										PlayerLocation[CurrentPlayer].dy = y1;
@@ -2192,8 +2021,7 @@ int monster_shoot(void) {
 									if (PlayerLocation[savecurrent].firecount == 0) {
 										PlayerLocation[savecurrent].firecount = PlayerLocation[savecurrent].firerate;
 										return 1;
-									}
-									else {
+									} else {
 										return 0;
 									}
 								}
@@ -2217,10 +2045,8 @@ int monster_shoot(void) {
 				}
 
 				if (dungeon[x1][y1][level].type == 'f' || dungeon[x1][y1][level].type == 's') {
-				}
-				else {
+				} else {
 					flag = FALSE;
-
 				}
 			}
 		}
@@ -2244,8 +2070,6 @@ int monster_shoot(void) {
 	return 0;
 }
 
-
-
 void build_server_screen() {
 
 	HDC hDC;
@@ -2262,72 +2086,60 @@ void build_server_screen() {
 			if (networktype == 1) {
 				strcpy(serverscreen, "Murk TCP/IP Server (Active)");
 				TextOut(hDC, 1, 1, serverscreen, strlen(serverscreen));
-			}
-			else {
+			} else {
 				strcpy(serverscreen, "Murk IPX/SPX Server (Active)");
 				TextOut(hDC, 1, 1, serverscreen, strlen(serverscreen));
 			}
 
 			for (i = 1; i <= newwarrior; i++) {
 
-
 				switch (PlayerLocation[i].image) {
 				case 1:
-					//barbarian
+					// barbarian
 					if (PlayerLocation[i].active) {
 						strcpy(serverscreen, "Barbarian is connected");
-					}
-					else
+					} else
 						strcpy(serverscreen, "                           ");
 					TextOut(hDC, 1, 20, serverscreen, strlen(serverscreen));
 					break;
 				case 3:
-					//barbarian
+					// barbarian
 					if (PlayerLocation[i].active) {
 						strcpy(serverscreen, "Thief is connected");
-					}
-					else
+					} else
 						strcpy(serverscreen, "                           ");
 
 					TextOut(hDC, 1, 30, serverscreen, strlen(serverscreen));
 					break;
 				case 4:
-					//barbarian
+					// barbarian
 					if (PlayerLocation[i].active) {
 						strcpy(serverscreen, "Mage is connected");
-					}
-					else
+					} else
 						strcpy(serverscreen, "                           ");
 
 					TextOut(hDC, 1, 40, serverscreen, strlen(serverscreen));
 					break;
 				case 5:
-					//barbarian
+					// barbarian
 					if (PlayerLocation[i].active) {
 						strcpy(serverscreen, "Cleric is connected");
-					}
-					else
+					} else
 						strcpy(serverscreen, "                           ");
 
 					TextOut(hDC, 1, 50, serverscreen, strlen(serverscreen));
 					break;
-
 				}
 			}
 		}
-
 	}
 
-
 	ReleaseDC(hWindow, hDC);
-
-
 }
 
 void check_input() {
 	controlsinuse = 0;
 	int fire = 0;
-
 
 	if (GetAsyncKeyState(17) < 0) {
 		if (PlayerLocation[1].firecount == 0) {
@@ -2335,8 +2147,8 @@ void check_input() {
 				PlayerLocation[1].firecount = PlayerLocation[1].firerate;
 			}
 			start_missle(PlayerLocation[1].mapx, PlayerLocation[1].mapy, PlayerLocation[1].direction,
-				PlayerLocation[1].level,
-				PlayerLocation[1].x, PlayerLocation[1].y, 1);
+			             PlayerLocation[1].level,
+			             PlayerLocation[1].x, PlayerLocation[1].y, 1);
 			fire = 1;
 		}
 	}
@@ -2347,7 +2159,6 @@ void check_input() {
 			return;
 	}
 
-
 	if (mousestate == 0)
 		check_keys();
 
@@ -2355,12 +2166,9 @@ void check_input() {
 		return;
 	}
 
-
-
-
 	if (GetKeyState(VK_LBUTTON) >= 0) {
-		//mouse is up
-		//check to see if it was down a sec ago
+		// mouse is up
+		// check to see if it was down a sec ago
 		if (mousestate == 1) {
 			bdown = 0;
 			cancelmove = 1;
@@ -2374,39 +2182,24 @@ void check_input() {
 			return;
 		}
 
-
+	} else if (::GetAsyncKeyState(VK_LBUTTON) < 0) {
+		// mouse is down
+		mousestate = 1;
+		//			debug_me("MOUSE L DOWN","DOWN",0,0);
+		check_leftmousedown();
 	}
-	else
-		if (::GetAsyncKeyState(VK_LBUTTON) < 0) {
-			//mouse is down
-			mousestate = 1;
-			//			debug_me("MOUSE L DOWN","DOWN",0,0);
-			check_leftmousedown();
-		}
-
-
 
 	if (GetKeyState(VK_RBUTTON) < 0 && fire == 0) {
 		check_rightmousedown();
-
 	}
-
 }
-
 
 void check_mouse() {
 	if (::GetAsyncKeyState(VK_LBUTTON) < 0) {
 
-
 		check_leftmousedown();
-
-
-
 	}
-
-
 }
-
 
 void check_rightmousedown() {
 
@@ -2417,16 +2210,10 @@ void check_rightmousedown() {
 	int playerdir;
 	CPoint ptCurPos;
 
-
-
-
 	::GetCursorPos(&ptCurPos);
-
-
 
 	x1 = ptCurPos.x;
 	y1 = ptCurPos.y;
-
 
 	x = x1;
 	y = y1;
@@ -2437,40 +2224,31 @@ void check_rightmousedown() {
 
 	if (x <= PlayerLocation[1].x + 30 && y <= PlayerLocation[1].y + 54) {
 		playerdir = 1;
-
 	}
 	if (x >= PlayerLocation[1].x + 30 && y > PlayerLocation[1].y + 54) {
 		playerdir = 4;
 	}
 	if (x >= PlayerLocation[1].x + 30 && y <= PlayerLocation[1].y + 54) {
 		playerdir = 2;
-
 	}
 	if (x <= PlayerLocation[1].x + 30 && y > PlayerLocation[1].y + 54) {
 		playerdir = 3;
-
 	}
 	//	if (PlayerLocation[1].direction != playerdir)
 	//		mousehit =0;
 
-
 	if (mousestate == 0)
 		PlayerLocation[1].direction = playerdir;
 	//	}
-
 
 	if (PlayerLocation[1].firecount == 0) {
 		if (PlayerLocation[1].firecount == 0) {
 			PlayerLocation[1].firecount = PlayerLocation[1].firerate;
 		}
 		start_missle(PlayerLocation[1].mapx, PlayerLocation[1].mapy, PlayerLocation[1].direction,
-			PlayerLocation[1].level,
-			PlayerLocation[1].x, PlayerLocation[1].y, 1);
-
+		             PlayerLocation[1].level,
+		             PlayerLocation[1].x, PlayerLocation[1].y, 1);
 	}
-
-
-
 }
 
 void check_leftmousedown() {
@@ -2486,39 +2264,29 @@ void check_leftmousedown() {
 	x1 = ptCurPos.x;
 	y1 = ptCurPos.y;
 
-	//	debug_me("CHECKLEFT","x1,y1",x1,y1);	
-	//	debug_me("CHECKLEFT","Player x,y",PlayerLocation[1].x,PlayerLocation[1].y);	
-
-
-
+	//	debug_me("CHECKLEFT","x1,y1",x1,y1);
+	//	debug_me("CHECKLEFT","Player x,y",PlayerLocation[1].x,PlayerLocation[1].y);
 
 	if (showmission == 1 || showmission == 0 || showmission == 2) {
-
 
 		bdown = 1;
 		mousehitx = x1;
 		mousehity = y1;
 		return;
-
 	}
 	if (showmission == 4) {
 		bdown = 1;
 		mousehitx = 0;
 		mousehity = 0;
 		return;
-
 	}
 
-
-
 	if (y1 > 600 && x1 < 240) {
-		if (PlayerLocation[1].ring > 0 && x1 > 166 && y1 > 575
-			&& x1 < 220 && y1 < 630 && PlayerLocation[1].protection == 0) {
+		if (PlayerLocation[1].ring > 0 && x1 > 166 && y1 > 575 && x1 < 220 && y1 < 630 && PlayerLocation[1].protection == 0) {
 
 			bdown = 1;
 			mousehitx = x1;
 			mousehity = y1;
-
 
 			if (m_directSoundOK)
 				m_pDirSound->PlaySound(m_bufferButton);
@@ -2530,7 +2298,7 @@ void check_leftmousedown() {
 			return;
 		}
 
-		if (x1 < 150 && y1>575 && x1 > 95 && y1 < 630) {
+		if (x1 < 150 && y1 > 575 && x1 > 95 && y1 < 630) {
 			bdown = 1;
 			mousehitx = x1;
 			mousehity = y1;
@@ -2540,10 +2308,7 @@ void check_leftmousedown() {
 				if (m_directSoundOK)
 					m_pDirSound->PlaySound(m_bufferButton);
 
-
-
 				if (foundtreasure2 == 1) {
-
 
 					if (ishost) {
 						treasurex2 = PlayerLocation[1].mapx;
@@ -2553,7 +2318,6 @@ void check_leftmousedown() {
 					}
 					if (networkgame)
 						send_drop_treasure(2);
-
 				}
 				if (foundtreasure == 1) {
 
@@ -2565,26 +2329,20 @@ void check_leftmousedown() {
 					}
 					if (networkgame)
 						send_drop_treasure(1);
-
 				}
 
-
 				//			PlayerLocation[1].hit=10;
-
 			}
-			//sendplayer
+			// sendplayer
 			return;
 		}
 		return;
-
 	}
-
 
 	if (PlayerLocation[1].x + 30 > (int)x1 - 5 && PlayerLocation[1].x + 30 < (int)x1 + 5)
 		return;
 	if (PlayerLocation[1].y + 54 > (int)y1 - 5 && PlayerLocation[1].y + 54 < (int)y1 + 5)
 		return;
-
 
 	if (PlayerLocation[1].dead == 0) {
 		mousehit = 1;
@@ -2592,59 +2350,44 @@ void check_leftmousedown() {
 		y = y1;
 
 		handle_mouse(x, y);
-
 	}
-
 }
 
 BOOL check_joystick(int fire) {
 
-
 	//  if (m_bJoyActive)
-//  {
+	//  {
 
 	JOYINFO jiInfo;
 	CPoint ptJoyPos(0, 0);
-
 
 	::joyGetPos(m_uiDevID, &jiInfo);
 	ptJoyPos.x = jiInfo.wXpos;
 	ptJoyPos.y = jiInfo.wYpos;
 
-
 	if (fire == 0)
 		joy_button(jiInfo.wButtons);
 
-
 	// Convert joystick position to client coordinates
-//    if (JoyToClient(&ptJoyPos))
-//    {
+	//    if (JoyToClient(&ptJoyPos))
+	//    {
 
+	// Convert client joystick position to screen coordinates
+	//      ClientToScreen(&ptJoyPos);
 
-
-	  // Convert client joystick position to screen coordinates
-//      ClientToScreen(&ptJoyPos);
-
-	  // Move the ghost cursor
-//      ::SetCursorPos(ptJoyPos.x, ptJoyPos.y);
-//    }
-//  }
-
-
-
+	// Move the ghost cursor
+	//      ::SetCursorPos(ptJoyPos.x, ptJoyPos.y);
+	//    }
+	//  }
 
 	if (ptJoyPos.x == 0 && ptJoyPos.y == 0) {
 		//		mousehit=0;
 		joystickhit = 0;
 
 		return TRUE;
-
-
 	}
 
-
-
-	if (ptJoyPos.x < (xmax / 2) + 5000 && ptJoyPos.x >(xmax / 2) - 5000 && ptJoyPos.y < ymin + 10000) {
+	if (ptJoyPos.x < (xmax / 2) + 5000 && ptJoyPos.x > (xmax / 2) - 5000 && ptJoyPos.y < ymin + 10000) {
 		if (hitkeyboard == 0 && PlayerLocation[1].stairs == 0 && PlayerLocation[1].dead == 0) {
 			mousehit = 1;
 			joystickhit = 1;
@@ -2653,7 +2396,7 @@ BOOL check_joystick(int fire) {
 		return TRUE;
 	}
 
-	if (ptJoyPos.x < (xmax / 2) + 5000 && ptJoyPos.x >(xmax / 2) - 5000 && ptJoyPos.y > ymax - 10000) {
+	if (ptJoyPos.x < (xmax / 2) + 5000 && ptJoyPos.x > (xmax / 2) - 5000 && ptJoyPos.y > ymax - 10000) {
 
 		if (hitkeyboard == 0 && PlayerLocation[1].stairs == 0 && PlayerLocation[1].dead == 0) {
 			mousehit = 1;
@@ -2663,8 +2406,7 @@ BOOL check_joystick(int fire) {
 		return TRUE;
 	}
 
-
-	if (ptJoyPos.y < (ymax / 2) + 5000 && ptJoyPos.y >(xmax / 2) - 5000 && ptJoyPos.x < xmin + 10000) {
+	if (ptJoyPos.y < (ymax / 2) + 5000 && ptJoyPos.y > (xmax / 2) - 5000 && ptJoyPos.x < xmin + 10000) {
 
 		if (hitkeyboard == 0 && PlayerLocation[1].stairs == 0 && PlayerLocation[1].dead == 0) {
 			mousehit = 1;
@@ -2673,7 +2415,7 @@ BOOL check_joystick(int fire) {
 		}
 		return TRUE;
 	}
-	if (ptJoyPos.y < (ymax / 2) + 5000 && ptJoyPos.y >(xmax / 2) - 5000 && ptJoyPos.x > xmax - 10000) {
+	if (ptJoyPos.y < (ymax / 2) + 5000 && ptJoyPos.y > (xmax / 2) - 5000 && ptJoyPos.x > xmax - 10000) {
 
 		if (hitkeyboard == 0 && PlayerLocation[1].stairs == 0 && PlayerLocation[1].dead == 0) {
 			mousehit = 1;
@@ -2682,9 +2424,6 @@ BOOL check_joystick(int fire) {
 		}
 		return TRUE;
 	}
-
-
-
 
 	if (ptJoyPos.x < xmin + 10000 && ptJoyPos.y < ymin + 10000) {
 
@@ -2725,11 +2464,8 @@ BOOL check_joystick(int fire) {
 		return TRUE;
 	}
 
-
-
-
-	if (ptJoyPos.x < (xmax / 2) + 10000 && ptJoyPos.x >(xmax / 2) - 10000 &&
-		ptJoyPos.y < (ymax / 2) + 10000 && ptJoyPos.x >(ymax / 2) - 10000) {
+	if (ptJoyPos.x < (xmax / 2) + 10000 && ptJoyPos.x > (xmax / 2) - 10000 &&
+	    ptJoyPos.y < (ymax / 2) + 10000 && ptJoyPos.x > (ymax / 2) - 10000) {
 
 		if (joystickhit == 1)
 			mousehit = 0;
@@ -2737,38 +2473,29 @@ BOOL check_joystick(int fire) {
 		return TRUE;
 	}
 
-
-
 	joystickhit = 0;
 
 	return TRUE;
-
-
 }
 
 BOOL joy_button(UINT Button) {
 
-	if (Button & JOY_BUTTON1)
-	{
+	if (Button & JOY_BUTTON1) {
 		if (PlayerLocation[1].firecount == 0) {
 			if (PlayerLocation[1].firecount == 0) {
 				PlayerLocation[1].firecount = PlayerLocation[1].firerate;
 			}
 
 			start_missle(PlayerLocation[1].mapx, PlayerLocation[1].mapy, PlayerLocation[1].direction,
-				PlayerLocation[1].level,
-				PlayerLocation[1].x, PlayerLocation[1].y, 1);
+			             PlayerLocation[1].level,
+			             PlayerLocation[1].x, PlayerLocation[1].y, 1);
 		}
-
-
 	}
-	if (Button & JOY_BUTTON2)
-	{
+	if (Button & JOY_BUTTON2) {
 
 		if (PlayerLocation[1].stairs == 0)
 			handle_stairs();
 	}
-
 
 	if (Button & JOY_BUTTON3) {
 		if (foundtreasure == 1) {
@@ -2780,7 +2507,6 @@ BOOL joy_button(UINT Button) {
 			dropt = 0;
 			if (networkgame)
 				send_drop_treasure(1);
-
 		}
 
 		if (foundtreasure2 == 1) {
@@ -2792,10 +2518,7 @@ BOOL joy_button(UINT Button) {
 			dropt = 0;
 			if (networkgame)
 				send_drop_treasure(2);
-
 		}
-
-
 	}
 	if (Button & JOY_BUTTON4) {
 		if (PlayerLocation[1].protection == 0 && PlayerLocation[1].ring != 0) {
@@ -2805,19 +2528,12 @@ BOOL joy_button(UINT Button) {
 			PlayerLocation[1].protection = 70;
 			PlayerLocation[1].ring--;
 		}
-
-
 	}
 
 	return TRUE;
-
 }
 
-
-
-
 void check_keys() {
-
 
 	if (!networkserver) {
 		if (keyboardlock == 0) {
@@ -2831,8 +2547,7 @@ void check_keys() {
 						keyboardlock = 1;
 					}
 				}
-			}
-			else if (GetAsyncKeyState(VK_RIGHT) < 0 || GetAsyncKeyState(34) < 0) {
+			} else if (GetAsyncKeyState(VK_RIGHT) < 0 || GetAsyncKeyState(34) < 0) {
 
 				if (hitkeyboard == 0 && PlayerLocation[1].stairs == 0 && PlayerLocation[1].dead == 0) {
 					handle_right();
@@ -2841,8 +2556,7 @@ void check_keys() {
 						keyboardlock = 1;
 					}
 				}
-			}
-			else  if (GetAsyncKeyState(VK_UP) < 0 || GetAsyncKeyState(33) < 0) {
+			} else if (GetAsyncKeyState(VK_UP) < 0 || GetAsyncKeyState(33) < 0) {
 
 				if (hitkeyboard == 0 && PlayerLocation[1].stairs == 0 && PlayerLocation[1].dead == 0) {
 					handle_up();
@@ -2851,8 +2565,7 @@ void check_keys() {
 						keyboardlock = 1;
 					}
 				}
-			}
-			else if (GetAsyncKeyState(VK_DOWN) < 0 || GetAsyncKeyState(35) < 0) {
+			} else if (GetAsyncKeyState(VK_DOWN) < 0 || GetAsyncKeyState(35) < 0) {
 
 				if (hitkeyboard == 0 && PlayerLocation[1].stairs == 0 && PlayerLocation[1].dead == 0) {
 					handle_down();
@@ -2865,24 +2578,23 @@ void check_keys() {
 
 			/*
 
-						if (GetAsyncKeyState(17) <0 ) {
-							if (PlayerLocation[1].firecount==0) {
-								if (PlayerLocation[1].firecount==0){
-									PlayerLocation[1].firecount = PlayerLocation[1].firerate;
-								}
+			            if (GetAsyncKeyState(17) <0 ) {
+			                if (PlayerLocation[1].firecount==0) {
+			                    if (PlayerLocation[1].firecount==0){
+			                        PlayerLocation[1].firecount = PlayerLocation[1].firerate;
+			                    }
 
-								start_missle  (PlayerLocation[1].mapx,PlayerLocation[1].mapy,PlayerLocation[1].direction,
-									PlayerLocation[1].level,
-									PlayerLocation[1].x,PlayerLocation[1].y,1);
-							}
+			                    start_missle  (PlayerLocation[1].mapx,PlayerLocation[1].mapy,PlayerLocation[1].direction,
+			                        PlayerLocation[1].level,
+			                        PlayerLocation[1].x,PlayerLocation[1].y,1);
+			                }
 
-						}
+			            }
 			*/
 			if (GetAsyncKeyState(190) < 0) {
 				cancelmove = 1;
 				mousehit = 0;
 				//				hitkeyboard=0;
-
 			}
 			if (GetAsyncKeyState(16) < 0) {
 				if (hitkeyboard == 0 && PlayerLocation[1].stairs == 0) {
@@ -2891,10 +2603,6 @@ void check_keys() {
 						hitkeyboard = 1;
 				}
 			}
-
 		}
 	}
 }
-
-
-

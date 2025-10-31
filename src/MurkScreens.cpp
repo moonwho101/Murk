@@ -1,5 +1,5 @@
 
-//  Murk Ver 1.12 By Mark Longo 
+//  Murk Ver 1.12 By Mark Longo
 //  Copyright 1999  , All Rights Reserver.
 #include "stdafx.h"
 
@@ -30,18 +30,16 @@ void showsplash() {
 	int image;
 	int armr;
 
-	int	d1;
-	int	d2;
+	int d1;
+	int d2;
 	int mmissle;
-	int	frate;
-
+	int frate;
 
 	char buffer[100];
 
-
 	pDirDraw->ClearSurface(BACKBUFFERNUM);
 	resultok = pDirDraw->BlitImage(&CPoint(100, 50), murksplash,
-		&CRect(0, 0, 800, 600));
+	                               &CRect(0, 0, 800, 600));
 
 	flag = FALSE;
 	x = 90;
@@ -56,11 +54,11 @@ void showsplash() {
 		adjust = 0;
 
 		if (mousehitx != 0) {
-			if (mousehitx < 273 && mousehity >600 && bdown == 1 && i == 1 ||
-				mousehitx < 424 && mousehitx > 273 && mousehity > 600 && bdown == 1 && i == 2 ||
-				mousehitx < 575 && mousehitx > 424 && mousehity > 600 && bdown == 1 && i == 3 ||
-				mousehitx < 725 && mousehitx > 575 && mousehity > 600 && bdown == 1 && i == 4 ||
-				mousehitx < 875 && mousehitx > 725 && mousehity > 600 && bdown == 1 && i == 5) {
+			if (mousehitx < 273 && mousehity > 600 && bdown == 1 && i == 1 ||
+			    mousehitx < 424 && mousehitx > 273 && mousehity > 600 && bdown == 1 && i == 2 ||
+			    mousehitx < 575 && mousehitx > 424 && mousehity > 600 && bdown == 1 && i == 3 ||
+			    mousehitx < 725 && mousehitx > 575 && mousehity > 600 && bdown == 1 && i == 4 ||
+			    mousehitx < 875 && mousehitx > 725 && mousehity > 600 && bdown == 1 && i == 5) {
 				recu1 = 226;
 				recu2 = 882;
 				recl1 = 452;
@@ -70,7 +68,7 @@ void showsplash() {
 			}
 		}
 		resultOK = pDirDraw->BlitImage(&CPoint(x, y),
-			partsBSurfaceNum, &CRect(recu1, recu2, recl1, recl2));
+		                               partsBSurfaceNum, &CRect(recu1, recu2, recl1, recl2));
 
 		switch (i) {
 		case 1:
@@ -103,39 +101,31 @@ void showsplash() {
 			recl1 = 452;
 			recl2 = 1127;
 			break;
-
 		}
 
 		resultOK = pDirDraw->BlitImage(&CPoint(x + adjust, y + 25 + adjust),
-			partsBSurfaceNum, &CRect(recu1, recu2, recl1, recl2));
+		                               partsBSurfaceNum, &CRect(recu1, recu2, recl1, recl2));
 
 		x = x + 150;
 	}
 
-
 	//		resultOK = pDirDraw->BlitImage(&CPoint(775 ,580),
 	//		partsBSurfaceNum, &CRect(449, 1054, 665,1115));
 
-
 	resultOK = pDirDraw->BlitImage(&CPoint(775, 560),
-		partsBSurfaceNum, &CRect(449, 1054, 665, 1140));
-
-
+	                               partsBSurfaceNum, &CRect(449, 1054, 665, 1140));
 
 	resultok = pDirDraw->FlipSurfaces();
 
 	if (mousehitx != 0 || mousehity != 0) {
-		if (mousehitx < 273 && mousehity >600) {
+		if (mousehitx < 273 && mousehity > 600) {
 
 			if (m_directSoundOK)
 				m_pDirSound->PlaySound(m_bufferButton);
 
-
 			mousehitx = 0;
 			mousehity = 0;
 			showmission = 1;
-
-
 		}
 		if (mousehitx < 424 && mousehitx > 273 && mousehity > 600) {
 
@@ -165,17 +155,15 @@ void showsplash() {
 				setability = 1;
 				new_level(0);
 
-				//				SetTimer(hWindow, 2, 4000, TimerProc);		
+				//				SetTimer(hWindow, 2, 4000, TimerProc);
 				showmission = 4;
 				SetTimer(hWindow, 1, 50, TimerProc);
 				networkgame = 1;
-				//				SetTimer(hWindow, 3, timerlength, TimerProc);		
+				//				SetTimer(hWindow, 3, timerlength, TimerProc);
 				istimerset = 1;
 				receiveok = 1;
 
-
-			}
-			else if (ishost && !doit) {
+			} else if (ishost && !doit) {
 				movelevel--;
 				setability = 1;
 				new_level(0);
@@ -185,8 +173,7 @@ void showsplash() {
 				istimerset = 1;
 				showmission = 3;
 				receiveok = 1;
-			}
-			else {
+			} else {
 				mousehit = 0;
 				hitanykey = 0;
 				showmission = 0;
@@ -194,10 +181,9 @@ void showsplash() {
 				mousehity = 0;
 				SetTimer(hWindow, 1, 50, TimerProc);
 			}
-
 		}
 		if (mousehitx < 575 && mousehitx > 424 && mousehity > 600) {
-			//pppp
+			// pppp
 			if (m_directSoundOK)
 				m_pDirSound->PlaySound(m_bufferButton);
 
@@ -209,13 +195,11 @@ void showsplash() {
 				//					reset_game();
 				//					result=load_game() ;
 				//					new_level(0);
-				//					mousehit=0;			
+				//					mousehit=0;
 				//					hitanykey=0;
 				//					showmission=2;
 
 				//
-
-
 
 				result = load_game();
 
@@ -246,7 +230,6 @@ void showsplash() {
 					PlayerLocation[1].maxmissle = mmissle;
 					PlayerLocation[1].firerate = frate;
 
-
 					if (PlayerLocation[1].image == 3)
 						dungeon[PlayerLocation[1].copx][PlayerLocation[1].copy][PlayerLocation[1].coplvl].image = 1;
 
@@ -259,16 +242,14 @@ void showsplash() {
 					if (PlayerLocation[1].image == 1)
 						dungeon[PlayerLocation[1].copx][PlayerLocation[1].copy][PlayerLocation[1].coplvl].image = 0;
 
-
 					mousehit = 0;
 					hitanykey = 1;
 					showmission = 3;
 					SetTimer(hWindow, 1, 50, TimerProc);
 
-					//							SetTimer(hWindow, 3, timerlength, TimerProc);		
+					//							SetTimer(hWindow, 3, timerlength, TimerProc);
 				}
-			}
-			else {
+			} else {
 				KillTimer(hWindow, 1);
 				resultok = pDirDraw->FlipSurfaces();
 				pDirDraw->FlipToGDISurface();
@@ -282,18 +263,13 @@ void showsplash() {
 				showmission = 0;
 				mousehitx = 0;
 				mousehity = 0;
-
 			}
-
 		}
-
 
 		if (mousehitx < 725 && mousehitx > 575 && mousehity > 600) {
 
 			if (m_directSoundOK)
 				m_pDirSound->PlaySound(m_bufferButton);
-
-
 
 			if (!networkserver) {
 				resultok = pDirDraw->FlipSurfaces();
@@ -303,38 +279,23 @@ void showsplash() {
 			KillTimer(hWindow, 1);
 
 			DialogBox(NULL, (LPCTSTR)IDD_REG, hWindow,
-				(DLGPROC)DlgRegister);
-
-
+			          (DLGPROC)DlgRegister);
 
 			result = GetDlgItemText(hWindow, IDC_EDIT1, &buffer[0], 50);
-
-
-
-
-
-
-
 
 			SetTimer(hWindow, 1, 50, TimerProc);
 			mousehitx = 0;
 			mousehity = 0;
-
 		}
 		if (mousehitx < 876 && mousehitx > 725 && mousehity > 600) {
 
 			if (m_directSoundOK)
 				m_pDirSound->PlaySound(m_bufferButton);
 
-
 			PostMessage(hWindow, WM_CLOSE, 0, 0L);
 			mousehitx = 0;
 			mousehity = 0;
-
 		}
-
-
-
 	}
 	if (bdown == 0) {
 		mousehitx = 0;
@@ -375,8 +336,6 @@ void sendtext(char p1[900]) {
 
 	strcpy(result2, "");
 	strcpy(p2, "");
-
-
 
 	sprintf(result2, "%3d", countlevels + 1);
 
@@ -421,7 +380,7 @@ void sendtext(char p1[900]) {
 	strcat(result2, p2);
 	//		if (i !=newwarrior2)
 	//			strcat(result2,"    ");
-	//		
+	//
 	//	}
 
 	strcat(result2, "~\0");
@@ -430,12 +389,10 @@ void sendtext(char p1[900]) {
 
 	if (showmission == 2) {
 
-
 		if (networkgame == 1) {
 			//		strcpy(p2,"~~Episode Objective~~");
 			strcpy(p2, "Find the -p   and return it home");
-		}
-		else {
+		} else {
 			strcpy(p2, "~~Episode Objective~~");
 			strcat(p2, gamedef.response);
 		}
@@ -463,7 +420,6 @@ void sendtext(char p1[900]) {
 		penx = 240;
 		peny = 700;
 	}
-
 
 	if (helpscreen == 1) {
 		strcpy(p2, "                Murk Help      ~~F1: Help Screen   F2: Episode Information~F3: Save Game     F4: Load Game~F5: Chat          F6: Stats~~Mouse Controls:~Left Mouse Botton:  Move~Right Mouse Button: Fire~Double click Left Button to use stairs.~~Keyboard Controls:~Arrows :  Move~CTRL   :  Fire~SHIFT  :  Up & Down Stairs~R Key to use Ring~T Key to Drop Treasure~~Programmed by Mark Longo (mlongo@murk.on.ca)~Graphics by Tom Portaccio~~www.murk.on.ca for updates!");
@@ -598,7 +554,6 @@ void sendtext(char p1[900]) {
 			stop = 1;
 			break;
 
-
 		case '1':
 			framex = 0;
 			framey = 686;
@@ -639,7 +594,6 @@ void sendtext(char p1[900]) {
 			framex = 513;
 			framey = 686;
 			break;
-
 
 		case '.':
 			framex = 570;
@@ -765,8 +719,6 @@ void sendtext(char p1[900]) {
 			framey = 784;
 			break;
 
-
-
 		case '!':
 			framex = 0;
 			framey = 833;
@@ -811,7 +763,6 @@ void sendtext(char p1[900]) {
 			framex = 570;
 			framey = 833;
 			break;
-
 
 		case '>':
 			framex = 684;
@@ -866,7 +817,6 @@ void sendtext(char p1[900]) {
 				framex = 384;
 				framey = 1024 + 64;
 				break;
-
 
 			case 'j':
 				playergrid = 2;
@@ -948,45 +898,38 @@ void sendtext(char p1[900]) {
 				framex = 226;
 				framey = 0;
 				break;
-
 			}
 			break;
 		}
 		if (stop == 0) {
 			if (playergrid == 0) {
 				result = pDirDraw->BlitImage(&CPoint(penx, peny),
-					partsBSurfaceNum, &CRect(framex, framey, framex + 56, framey + 49));
+				                             partsBSurfaceNum, &CRect(framex, framey, framex + 56, framey + 49));
 				penx = penx + 15;
 
-			}
-			else if (playergrid == 1) {
+			} else if (playergrid == 1) {
 
 				peny = peny - 20;
 
 				result = pDirDraw->BlitImage(&CPoint(penx, peny),
-					partsASurfaceNum, &CRect(framex, framey, framex + 64, framey + 64));
+				                             partsASurfaceNum, &CRect(framex, framey, framex + 64, framey + 64));
 
 				penx = penx + 30;
 
 				peny = peny + 20;
-			}
-			else {
+			} else {
 				peny = peny - 20;
 				result = pDirDraw->BlitImage(&CPoint(penx, peny),
-					partsBSurfaceNum, &CRect(framex, framey, framex + 113, framey + 98));
+				                             partsBSurfaceNum, &CRect(framex, framey, framex + 113, framey + 98));
 				penx = penx + 20;
 				peny = peny + 20;
-
-
 			}
 		}
 		if (penx > 980) {
 			peny = peny + 25;
 			penx = 5;
 		}
-
 	}
-
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -1002,8 +945,7 @@ void showscroll() {
 
 	pDirDraw->ClearSurface(BACKBUFFERNUM);
 	resultok = pDirDraw->BlitImage(&CPoint(100, 80), scroll,
-		&CRect(0, 0, 800, 600));
-
+	                               &CRect(0, 0, 800, 600));
 
 	recu1 = 0;
 	recu2 = 882;
@@ -1014,8 +956,7 @@ void showscroll() {
 
 	if ((showmission != 4 && helpscreen == 0))
 		if (mousehitx < 1000 && mousehitx > 0 && mousehity > 0 && bdown == 1 && showmission == 2 ||
-			GetAsyncKeyState(32) < 0 && showmission == 2 || GetAsyncKeyState(13) && showmission == 2 < 0
-			) {
+		    GetAsyncKeyState(32) < 0 && showmission == 2 || GetAsyncKeyState(13) && showmission == 2 < 0) {
 			recu1 = 226;
 			recu2 = 882;
 			recl1 = 452;
@@ -1026,13 +967,11 @@ void showscroll() {
 			//				m_pDirSound->PlaySound(m_bufferButton);
 			if (m_directSoundOK)
 				m_pDirSound->PlaySound(m_bufferProtection);
-
 		}
 
 	if (helpscreen == 1 && (showmission != 4) && showmission == 2)
 		if (mousehitx < 1000 && mousehitx > 0 && mousehity > 0 && bdown == 1 ||
-			GetAsyncKeyState(32) < 0 || GetAsyncKeyState(13) < 0
-			) {
+		    GetAsyncKeyState(32) < 0 || GetAsyncKeyState(13) < 0) {
 			recu1 = 226;
 			recu2 = 882;
 			recl1 = 452;
@@ -1043,20 +982,15 @@ void showscroll() {
 			if (m_directSoundOK)
 				m_pDirSound->PlaySound(m_bufferProtection);
 
-			//			SetTimer(hWindow, 2, 4000, TimerProc);		
-			//			SetTimer(hWindow, 3, timerlength, TimerProc);		
-
+			//			SetTimer(hWindow, 2, 4000, TimerProc);
+			//			SetTimer(hWindow, 3, timerlength, TimerProc);
 		}
-
-
-
 
 	if (flag) {
 		pDirDraw->ClearSurface(BACKBUFFERNUM);
 
-
 		helpscreen = 0;
-		//		KillTimer(hWindow, 1);	
+		//		KillTimer(hWindow, 1);
 		hitanykey = 1;
 		showmission = 3;
 		if (ishost && networkgame == 0 || !ishost && networkgame) {
@@ -1069,12 +1003,11 @@ void showscroll() {
 
 void showselect() {
 
-
-	//ooops
+	// ooops
 	int resultok;
 	if (mousehitx != 0 && mousehity != 0) {
 		if (mousehitx < 512 && mousehity < 384) {
-			//thief
+			// thief
 
 			if (m_directSoundOK)
 				m_pDirSound->PlaySound(m_bufferSwordThief);
@@ -1085,36 +1018,31 @@ void showselect() {
 				select1 = 0;
 		}
 		if (mousehitx > 512 && mousehity < 384) {
-			//cleric
+			// cleric
 			if (select2 == 0)
 				select2 = 1;
 			else
 				select2 = 0;
 			if (m_directSoundOK)
 				m_pDirSound->PlaySound(m_bufferTadaCleric);
-
 		}
-		if (mousehitx < 512 && mousehity>384) {
-			//wizard
+		if (mousehitx < 512 && mousehity > 384) {
+			// wizard
 			if (select3 == 0)
 				select3 = 1;
 			else
 				select3 = 0;
 			if (m_directSoundOK)
 				m_pDirSound->PlaySound(m_bufferEyeswizard);
-
-
 		}
 		if (mousehitx > 512 && mousehity > 384) {
-			//figher
+			// figher
 			if (select4 == 0)
 				select4 = 1;
 			else
 				select4 = 0;
 			if (m_directSoundOK)
 				m_pDirSound->PlaySound(m_bufferSwordBarb);
-
-
 		}
 	}
 	mousehitx = 0;
@@ -1122,34 +1050,34 @@ void showselect() {
 
 	if (select1 == 0)
 		resultok = pDirDraw->BlitImage(&CPoint(90, 80), selectplayer,
-			&CRect(0, 0, 400, 325));
+		                               &CRect(0, 0, 400, 325));
 	else
 		resultok = pDirDraw->BlitImage(&CPoint(90, 80), selectplayer,
-			&CRect(400, 0, 800, 325));
+		                               &CRect(400, 0, 800, 325));
 
 	if (select2 == 0)
 		resultok = pDirDraw->BlitImage(&CPoint(490, 80), selectplayer,
-			&CRect(0, 325, 400, 650));
+		                               &CRect(0, 325, 400, 650));
 	else
 		resultok = pDirDraw->BlitImage(&CPoint(490, 80), selectplayer,
-			&CRect(400, 325, 800, 650));
+		                               &CRect(400, 325, 800, 650));
 
 	if (select3 == 0)
 		resultok = pDirDraw->BlitImage(&CPoint(90, 400), selectplayer,
-			&CRect(0, 650, 400, 975));
+		                               &CRect(0, 650, 400, 975));
 	else
 		resultok = pDirDraw->BlitImage(&CPoint(90, 400), selectplayer,
-			&CRect(400, 650, 800, 975));
+		                               &CRect(400, 650, 800, 975));
 
 	if (select4 == 0)
 		resultok = pDirDraw->BlitImage(&CPoint(490, 400), selectplayer,
-			&CRect(0, 975, 400, 1300));
+		                               &CRect(0, 975, 400, 1300));
 	else
 		resultok = pDirDraw->BlitImage(&CPoint(540, 400), selectplayer,
-			&CRect(400, 975, 800, 1300));
+		                               &CRect(400, 975, 800, 1300));
 
 	resultok = pDirDraw->BlitImage(&CPoint(220, 20), selectplayer,
-		&CRect(39, 1375, 590, 1462));
+	                               &CRect(39, 1375, 590, 1462));
 	if (select1 != 0 || select2 != 0 || select3 != 0 || select4 != 0) {
 		swap_players();
 		resultok = pDirDraw->FlipSurfaces();
@@ -1164,18 +1092,15 @@ void showselect() {
 		mousehitx = 0;
 		mousehity = 0;
 	}
-
-
 }
 
 //////////////////////////////////////////////////////////////////////////////
 
 void read_levels() {
-	FILE* fp;
+	FILE *fp;
 	int work;
 	int count = 1;
 	int abort;
-
 
 	char fname[20];
 
@@ -1192,11 +1117,9 @@ void read_levels() {
 	else if (PlayerLocation[1].image == 5)
 		strcpy(fname, "levelsc.dat");
 
-
 	if (ishost && networkgame) {
 		strcpy(fname, "levelsn.dat");
 	}
-
 
 	while (abort == 0) {
 		if ((fp = fopen(fname, "r")) == NULL) {
@@ -1208,8 +1131,7 @@ void read_levels() {
 			levelcounter = 1;
 		}
 
-		for (count = 1; count <= levelcounter; count++)
-		{
+		for (count = 1; count <= levelcounter; count++) {
 
 			fgets(response, 890, fp);
 			strcpy(gamedef.response, response);
@@ -1217,15 +1139,12 @@ void read_levels() {
 			fgets(response, 890, fp);
 			strcpy(gamedef.title, response);
 
-
 			if (networkgame) {
 				//			strcpy(gamedef.title,"~~Episode Objective~~");
 				strcpy(gamedef.title, "Find the -p   and return it home");
 				//			strcpy(gamedef.response,"~~Episode Objective~~");
 				strcpy(gamedef.response, "Find the -p   and return it home");
 			}
-
-
 
 			fgets(response, 890, fp);
 			work = atoi(response);
@@ -1239,7 +1158,6 @@ void read_levels() {
 			work = atoi(response);
 			gamedef.bspeed = work;
 
-
 			fgets(response, 890, fp);
 			work = atoi(response);
 			gamedef.deathorb = work;
@@ -1248,7 +1166,6 @@ void read_levels() {
 			work = atoi(response);
 			gamedef.dspeed = work;
 
-
 			fgets(response, 890, fp);
 			work = atoi(response);
 			gamedef.skeletons = work;
@@ -1256,7 +1173,6 @@ void read_levels() {
 			fgets(response, 890, fp);
 			work = atoi(response);
 			gamedef.sspeed = work;
-
 
 			fgets(response, 890, fp);
 			work = atoi(response);
@@ -1298,7 +1214,6 @@ void read_levels() {
 			work = atoi(response);
 			gamedef.cspeed = work;
 
-
 			fgets(response, 890, fp);
 			work = atoi(response);
 			gamedef.thief = work;
@@ -1310,7 +1225,6 @@ void read_levels() {
 			fgets(response, 890, fp);
 			work = atoi(response);
 			gamedef.tspeed = work;
-
 
 			fgets(response, 890, fp);
 			work = atoi(response);
@@ -1351,72 +1265,61 @@ void read_levels() {
 				fclose(fp);
 				abort = 0;
 				break;
-			}
-			else
+			} else
 				abort = 1;
 		}
 	}
 
-
-
 	/*
-		char response[900];
-		char title[80];
-		int gametype;
-		int beholders;
-		int bspeed;
-		int deathorb;
-		int dspeed;
-		int skeletons;
-		int sspeed;
-		int mouther;
-		int mspeed;
-		int ogre;
-		int ospeed;
-		int fighter;
-		int fspeed;
-		int fteam;
-		int thief;
-		int tspeed;
-		int tteam;
-		int cleric;
-		int cspeed;
-		int cteam;
-		int wizard;
-		int wspeed;
-		int wteam;
-		int dungeonx;
-		int dungeony;
-		int dungeonlvl;
-		int pits;
-		int maxpit;
+	    char response[900];
+	    char title[80];
+	    int gametype;
+	    int beholders;
+	    int bspeed;
+	    int deathorb;
+	    int dspeed;
+	    int skeletons;
+	    int sspeed;
+	    int mouther;
+	    int mspeed;
+	    int ogre;
+	    int ospeed;
+	    int fighter;
+	    int fspeed;
+	    int fteam;
+	    int thief;
+	    int tspeed;
+	    int tteam;
+	    int cleric;
+	    int cspeed;
+	    int cteam;
+	    int wizard;
+	    int wspeed;
+	    int wteam;
+	    int dungeonx;
+	    int dungeony;
+	    int dungeonlvl;
+	    int pits;
+	    int maxpit;
 	*/
-
-
 }
-
-
 
 void swap_players() {
 
 	if (select1 == 1) {
 		PlayerLocation[1].image = 3;
 		dungeon[PlayerLocation[1].copx][PlayerLocation[1].copy][PlayerLocation[1].coplvl].image = 1;
-	}
-	else if (select2 == 1) {
+	} else if (select2 == 1) {
 		PlayerLocation[1].image = 5;
 		dungeon[PlayerLocation[1].copx][PlayerLocation[1].copy][PlayerLocation[1].coplvl].image = 3;
-	}
-	else if (select3 == 1) {
+	} else if (select3 == 1) {
 		PlayerLocation[1].image = 4;
 		dungeon[PlayerLocation[1].copx][PlayerLocation[1].copy][PlayerLocation[1].coplvl].image = 2;
-	}
-	else if (select4 == 1) {
+	} else if (select4 == 1) {
 		dungeon[PlayerLocation[1].copx][PlayerLocation[1].copy][PlayerLocation[1].coplvl].image = 0;
 		PlayerLocation[1].image = 1;
 	}
 }
-
 
 void show_panel() {
 
@@ -1435,44 +1338,41 @@ void show_panel() {
 			adjust = adjust + 256 + 256 + 256;
 
 		resultok = pDirDraw->BlitImage(&CPoint(0 + adjust, 575), panelSurfaceNum,
-			&CRect(0, 0, 259, 189));
+		                               &CRect(0, 0, 259, 189));
 
 		if (i == 1) {
 			if (foundtreasure == 1 || foundtreasure2 == 1) {
 				if (mousehitx < 150 && mousehitx > 100 && mousehity > 600 && bdown == 1) {
 					resultok = pDirDraw->BlitImage(&CPoint(0 + adjust + 90, 575 + 14),
-						partsBSurfaceNum, &CRect(265, 986, 335, 1034));
-				}
-				else {
+					                               partsBSurfaceNum, &CRect(265, 986, 335, 1034));
+				} else {
 					resultok = pDirDraw->BlitImage(&CPoint(0 + adjust + 90, 575 + 14),
-						partsBSurfaceNum, &CRect(39, 984, 109, 1035));
+					                               partsBSurfaceNum, &CRect(39, 984, 109, 1035));
 				}
 				if (foundtreasure == 1) {
 					resultok = pDirDraw->BlitImage(&CPoint(0 + adjust + 82, 575 + 14),
-						partsBSurfaceNum, &CRect(14, 313, 84, 359));
+					                               partsBSurfaceNum, &CRect(14, 313, 84, 359));
 				}
 				if (foundtreasure2 == 1) {
 					resultok = pDirDraw->BlitImage(&CPoint(0 + adjust + 81, 575 + 18),
-						partsBSurfaceNum, &CRect(688, 318, 761, 361));
+					                               partsBSurfaceNum, &CRect(688, 318, 761, 361));
 				}
 			}
 			if (PlayerLocation[1].ring > 0) {
 				if (mousehitx < 220 && mousehitx > 160 && mousehity > 600 && bdown == 1) {
 					resultok = pDirDraw->BlitImage(&CPoint(0 + adjust + 90 + 70, 575 + 14),
-						partsBSurfaceNum, &CRect(265, 986, 335, 1034));
-				}
-				else {
+					                               partsBSurfaceNum, &CRect(265, 986, 335, 1034));
+				} else {
 					resultok = pDirDraw->BlitImage(&CPoint(0 + adjust + 90 + 70, 575 + 14),
-						partsBSurfaceNum, &CRect(39, 984, 109, 1035));
+					                               partsBSurfaceNum, &CRect(39, 984, 109, 1035));
 				}
 				resultok = pDirDraw->BlitImage(&CPoint(0 + adjust + 90 + 70 + 18, 575 + 14 + 8),
-					partsBSurfaceNum, &CRect(711, 33, 745, 67));
+				                               partsBSurfaceNum, &CRect(711, 33, 745, 67));
 			}
 		}
 	}
 	gamescreen = 0;
 	sendtext("");
-
 
 	if (strlen(chat[0].say)) {
 		gamescreen = 1;
@@ -1482,14 +1382,11 @@ void show_panel() {
 			chat[0].duration = 0;
 			strcpy(chat[0].say, "");
 		}
-
-
 	}
 
 	if (strlen(networkresponse)) {
 		gamescreen = 2;
 		sendtext("");
-
 	}
 
 	gamescreen = 0;
