@@ -1,0 +1,46 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Murk build (release)",
+            "type": "shell",
+            "command": "msbuild",
+            "args": [
+                "src\\Murk.sln",
+                "/property:GenerateFullPaths=true",
+                "/t:build",
+                "/p:Configuration=Release",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "group": "build",
+            "presentation": {
+                "reveal": "silent"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "Murk clean (release)",
+            "type": "shell",
+            "command": "msbuild",
+            "args": [
+                "src\\Murk.sln",
+                "/property:GenerateFullPaths=true",
+                "/p:Configuration=Release",                
+                "/t:Clean"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Murk launch",
+            "type": "shell",
+            "command": "${workspaceFolder}/bin/Murk.exe",
+            "options": {
+                "cwd": "${workspaceFolder}/bin"
+            },
+            "group": "none",
+            "problemMatcher": []
+        },
+    ]
+}
