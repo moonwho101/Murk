@@ -141,22 +141,16 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Aztec.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="icon2.ico">
+    <Image Include="icon3.ico">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="id.bin">
+    <None Include="song1.mds" />
+    <None Include="song2.mds" />
+    <None Include="song4.mid" />
+    <None Include="mids3.bin">
       <Filter>Resource Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="mids1.bin">
-      <Filter>Resource Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="mids3.bin">
-      <Filter>Resource Files</Filter>
-    </CustomBuild>
+    </None>
   </ItemGroup>
 </Project>

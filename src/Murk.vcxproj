@@ -185,13 +185,13 @@
     <ClInclude Include="StdAfx.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Aztec.ico" />
-    <Image Include="icon2.ico" />
+    <Image Include="icon3.ico" />
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="id.bin" />
-    <CustomBuild Include="mids1.bin" />
-    <CustomBuild Include="mids3.bin" />
+    <None Include="mids3.bin" />
+    <None Include="song1.mds" />
+    <None Include="song2.mds" />
+    <None Include="song4.mid" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

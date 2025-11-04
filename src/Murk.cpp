@@ -98,7 +98,7 @@ int APIENTRY WinMain(HINSTANCE hCurrentInst,
 	wndClass.cbClsExtra = 0;
 	wndClass.cbWndExtra = 0;
 	wndClass.hInstance = hCurrentInst;
-	wndClass.hIcon = LoadIcon(hCurrentInst, MAKEINTRESOURCE(IDI_ICON2));
+	wndClass.hIcon = LoadIcon(hCurrentInst, MAKEINTRESOURCE(IDI_ICON3));
 	wndClass.hCursor = LoadCursor(NULL, IDC_ARROW);
 	readyornot = 0;
 
