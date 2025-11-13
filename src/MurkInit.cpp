@@ -1076,261 +1076,217 @@ void new_level(int nextlev) {
 	}
 }
 
-// ------------------------------
-// Dungeon generation helpers (C-style, internal linkage)
-// ------------------------------
-
-static int is_inside_bounds(int x, int y) {
-	// Playable area is 1..DUNGEONX and 1..DUNGEONY; we also keep a padded border at [0] and [DUNGEON?+1]
-	return (x >= 1 && x <= DUNGEONX && y >= 1 && y <= DUNGEONY);
-}
-
-static void reset_level_grid(int lvlnum) {
-	// Reset all cells (including padded border) for the level
-	int x, y;
-	for (y = 0; y <= DUNGEONY + 1; y++) {
-		for (x = 0; x <= DUNGEONX + 1; x++) {
-			dungeon[x][y][lvlnum].mark = 0;
-			dungeon[x][y][lvlnum].order = 0;
-			dungeon[x][y][lvlnum].type = 0;
-			dungeon[x][y][lvlnum].item = 0;
-			dungeon[x][y][lvlnum].explored = 0;
-		}
-	}
-}
-
-static void prefill_blocked_regions(int lvlnum) {
-	// Recreate the original four 'u' fill passes, but guard by bounds to avoid OOB on small maps
-	int x, y;
-	int work1, work2;
-
-	work1 = 8;
-	for (y = 1; y < 8; y++) {
-		for (x = 1; x < work1; x++) {
-			if (is_inside_bounds(x, y)) {
-				dungeon[x][y][lvlnum].type = 'u';
-				dungeon[x][y][lvlnum].item = 0;
-				dungeon[x][y][lvlnum].explored = 0;
-			}
-		}
-		work1--;
-	}
-
-	work1 = 25;
-	work2 = 9;
-	for (y = 1; y < 11; y++) {
-		for (x = work2; x < work1; x++) {
-			if (is_inside_bounds(x, y)) {
-				dungeon[x][y][lvlnum].type = 'u';
-				dungeon[x][y][lvlnum].item = 0;
-				dungeon[x][y][lvlnum].explored = 0;
-			}
-		}
-		work2++;
-	}
-
-	work1 = 1;
-	for (y = 12; y < 25; y++) {
-		for (x = 1; x < work1; x++) {
-			if (is_inside_bounds(x, y)) {
-				dungeon[x][y][lvlnum].type = 'u';
-				dungeon[x][y][lvlnum].item = 0;
-				dungeon[x][y][lvlnum].explored = 0;
-			}
-		}
-		work1++;
-	}
-
-	work1 = 25;
-	work2 = 18;
-	for (y = 11; y < 22; y++) {
-		for (x = work2; x < work1; x++) {
-			if (is_inside_bounds(x, y)) {
-				dungeon[x][y][lvlnum].type = 'u';
-				dungeon[x][y][lvlnum].item = 0;
-				dungeon[x][y][lvlnum].explored = 0;
-			}
-		}
-		work2--;
-	}
-}
-
-static void seed_floor_at(int lvlnum, int x, int y) {
-	// Safe seed of a floor tile (accepting padded border range)
-	if (x >= 0 && x <= DUNGEONX + 1 && y >= 0 && y <= DUNGEONY + 1) {
-		dungeon[x][y][lvlnum].type = 'f';
-		dungeon[x][y][lvlnum].explored = 0;
-		dungeon[x][y][lvlnum].item = 0;
-	}
-}
-
-static void carve_random_walk(int lvlnum, int startx, int starty, int steps) {
-	// Random walk that carves floor tiles while attempting to avoid 3-sided dead-ends
-	int i;
-	int x = startx;
-	int y = starty;
-	int xpos = 0, ypos = 0;
-	int way, randval;
-	int good;
-	int quit;
-
-	for (i = 0; i < steps; i++) {
-		xpos = 0;
-		ypos = 0;
-		way = random_num(4);
-		switch (way) {
-		case 0: xpos = -1; break;
-		case 1: xpos = +1; break;
-		case 2: ypos = -1; break;
-		case 3: ypos = +1; break;
-		}
-
-		quit = 0;
-		good = 0;
-
-		if ((x + xpos) > 0 && (x + xpos) < DUNGEONX &&
-		    (y + ypos) > 0 && (y + ypos) < DUNGEONY &&
-		    dungeon[x + xpos][y + ypos][lvlnum].type != 'u' &&
-		    dungeon[x + xpos][y + ypos][lvlnum].type != 's') {
-
-			// Occasionally skip the adjacency check for variety
-			randval = random_num(30);
-			if (randval != 1) {
-				// Upper left
-				if (dungeon[x + xpos - 1][y + ypos - 1][lvlnum].type == 'f') good++;
-				if (dungeon[x + xpos - 1][y + ypos    ][lvlnum].type == 'f') good++;
-				if (dungeon[x + xpos    ][y + ypos - 1][lvlnum].type == 'f') good++;
-				if (good == 3) quit = 1;
-
-				// Lower left
-				good = 0;
-				if (dungeon[x + xpos - 1][y + ypos + 1][lvlnum].type == 'f') good++;
-				if (dungeon[x + xpos - 1][y + ypos    ][lvlnum].type == 'f') good++;
-				if (dungeon[x + xpos    ][y + ypos + 1][lvlnum].type == 'f') good++;
-				if (good == 3) quit = 1;
-
-				// Upper right
-				good = 0;
-				if (dungeon[x + xpos + 1][y + ypos - 1][lvlnum].type == 'f') good++;
-				if (dungeon[x + xpos + 1][y + ypos    ][lvlnum].type == 'f') good++;
-				if (dungeon[x + xpos    ][y + ypos - 1][lvlnum].type == 'f') good++;
-				if (good == 3) quit = 1;
-
-				// Lower right
-				good = 0;
-				if (dungeon[x + xpos + 1][y + ypos + 1][lvlnum].type == 'f') good++;
-				if (dungeon[x + xpos    ][y + ypos + 1][lvlnum].type == 'f') good++;
-				if (dungeon[x + xpos + 1][y + ypos    ][lvlnum].type == 'f') good++;
-				if (good == 3) quit = 1;
-			}
-
-			if (quit == 0) {
-				dungeon[x + xpos][y + ypos][lvlnum].type = 'f';
-				dungeon[x + xpos][y + ypos][lvlnum].explored = 0;
-				x = x + xpos;
-				y = y + ypos;
-			}
-		}
-	}
-}
-
-static void carve_level_from_center(int lvlnum, int sx, int sy) {
-	// Perform four random walks of 75 steps each, starting from the center
-	int jump;
-	seed_floor_at(lvlnum, sx, sy);
-	for (jump = 0; jump < 4; jump++) {
-		carve_random_walk(lvlnum, sx, sy, 75);
-	}
-}
-
-static void clear_stairs_on_level(int lvl) {
-	// Convert any 's' (stairs) back to floor on a specific level
-	int x, y;
-	for (x = 0; x <= DUNGEONX + 1; x++) {
-		for (y = 0; y <= DUNGEONY + 1; y++) {
-			if (dungeon[x][y][lvl].type == 's') {
-				dungeon[x][y][lvl].type = 'f';
-				dungeon[x][y][lvl].item = 0;
-			}
-		}
-	}
-}
-
-static void clear_stairs_pair(int lvl) {
-	// Clear stairs both on lvl and on lvl+1 (if in range)
-	clear_stairs_on_level(lvl);
-	if (lvl + 1 <= maxlevel) {
-		clear_stairs_on_level(lvl + 1);
-	}
-}
-
-static int find_floor_cell_on_level(int lvlnum, int *px, int *py, int maxTries) {
-	// Try random coordinates until we find a 'f' (floor) or we give up
-	int tries = 0;
-	int x, y;
-
-	while (tries < maxTries) {
-		x = random_num(DUNGEONX) + 1;
-		y = random_num(DUNGEONY) + 1;
-		if (dungeon[x][y][lvlnum].type == 'f') {
-			*px = x;
-			*py = y;
-			return 1;
-		}
-		tries++;
-	}
-	return 0;
-}
-
-// ------------------------------
-// Refactored dungeon generation
-// ------------------------------
-
 void generate_dungeon() {
 
-	int x, y, i;
+	int x, y, i, way, jump;
+	int xpos, ypos;
+	int good;
+	BOOL quit, check;
+	int work1;
+	int work2;
 	int randx, randy;
 	int lvlnum;
+	int rand;
 	int numnodes;
 	int counttry;
 	int leave;
+	int fixabovex;
+	int fixabovey;
 	int sx, sy;
 
-	int numtry = 0;   // number of times we have tried to place stairs for the current level
-	int stopit = 0;   // global fail-safe to avoid infinite outer loops
+	int numtry = 0;
 
-	// Start carving near the center of the playable area
+	int stopit = 0;
+
 	sx = (int)(DUNGEONX) / 2;
 	sy = (int)(DUNGEONY) / 2;
+
+	//	sx=5;
+	//	sy=5;
 
 	randx = sx;
 	randy = sy;
 
+	//	for (lvlnum=1;lvlnum<=maxlevel;lvlnum++) {
 	lvlnum = 0;
 	while (lvlnum < maxlevel) {
 		lvlnum++;
+		//	debug_me("generatedungeon","LVLNUM",lvlnum,0);
 		stopit++;
 		if (stopit >= (DUNGEONX * DUNGEONY * maxlevel) * 2) {
-			// Emergency reset if something goes terribly wrong
 			lvlnum = 0;
 			numtry = 0;
+
 			debug_me("BAD", "BAD", 0, 0);
-			// return; // original code did not return; keep same behavior
+			//			return;
 		}
 
-		// 1) Prepare the level grid and prefill "unreachable" spaces
-		reset_level_grid(lvlnum);
-		prefill_blocked_regions(lvlnum);
+		for (y = 0; y <= DUNGEONY + 1; y++) {
+			for (x = 0; x <= DUNGEONX + 1; x++) {
+				dungeon[x][y][lvlnum].mark = 0;
+				dungeon[x][y][lvlnum].order = 0;
+				dungeon[x][y][lvlnum].type = 0;
+				dungeon[x][y][lvlnum].item = 0;
+				dungeon[x][y][lvlnum].explored = 0;
+			}
+		}
 
-		// 2) Carve paths from the center
-		carve_level_from_center(lvlnum, sx, sy);
+		work1 = 8;
+		for (y = 1; y < 8; y++) {
+			for (x = 1; x < work1; x++) {
+				dungeon[x][y][lvlnum].type = 'u';
+				dungeon[x][y][lvlnum].item = 0;
+				dungeon[x][y][lvlnum].explored = 0;
+			}
+			work1--;
+		}
+		work1 = 25;
+		work2 = 9;
+		for (y = 1; y < 11; y++) {
+			for (x = work2; x < work1; x++) {
+				dungeon[x][y][lvlnum].type = 'u';
+				dungeon[x][y][lvlnum].item = 0;
+				dungeon[x][y][lvlnum].explored = 0;
+			}
+			work2++;
+		}
 
-		// 3) Validate node count and roll-back if too many nodes
+		work1 = 1;
+		for (y = 12; y < 25; y++) {
+			for (x = 1; x < work1; x++) {
+				dungeon[x][y][lvlnum].type = 'u';
+				dungeon[x][y][lvlnum].item = 0;
+				dungeon[x][y][lvlnum].explored = 0;
+			}
+			work1++;
+		}
+
+		work1 = 25;
+		work2 = 18;
+		for (y = 11; y < 22; y++) {
+			for (x = work2; x < work1; x++) {
+				dungeon[x][y][lvlnum].type = 'u';
+				dungeon[x][y][lvlnum].item = 0;
+				dungeon[x][y][lvlnum].explored = 0;
+			}
+			work2--;
+		}
+
+		for (jump = 0; jump < 4; jump++) {
+
+			quit = 0;
+			good = 0;
+			check = 0;
+			randx = sx;
+			randy = sy;
+			x = sx;
+			y = sy;
+			//			debug_me("	","GENERATE sx sy",x,y);
+			xpos = 0;
+			ypos = 0;
+			dungeon[x][y][lvlnum].type = 'f';
+			dungeon[x][y][lvlnum].explored = 0;
+			dungeon[x][y][lvlnum].item = 0;
+
+			for (i = 0; i < 75; i++) {
+				xpos = 0;
+				ypos = 0;
+				way = random_num(4);
+				switch (way) {
+				case 0:
+					xpos = -1;
+					break;
+				case 1:
+					xpos = +1;
+					break;
+				case 2:
+					ypos = -1;
+					break;
+				case 3:
+					ypos = +1;
+					break;
+				}
+				quit = 0;
+				good = 0;
+
+				if ((x + xpos) > 0 && (x + xpos) < DUNGEONX && (y + ypos) > 0 && (y + ypos) < DUNGEONY && dungeon[x + xpos][y + ypos][lvlnum].type != 'u' && dungeon[x + xpos][y + ypos][lvlnum].type != 's') {
+					//					check upper left
+					rand = random_num(30);
+					//					rand = random_num(5);
+					//					rand=2;
+					if (rand == 1) {
+					} else {
+						if (dungeon[x + xpos - 1][y + ypos - 1][lvlnum].type == 'f') {
+							good++;
+						}
+						if (dungeon[x + xpos - 1][y + ypos][lvlnum].type == 'f') {
+							good++;
+						}
+						if (dungeon[x + xpos][y + ypos - 1][lvlnum].type == 'f') {
+							good++;
+						}
+						if (good == 3) {
+							quit = 1;
+						}
+						good = 0;
+						//					check lower left
+						if (dungeon[x + xpos - 1][y + ypos + 1][lvlnum].type == 'f') {
+							good++;
+						}
+						if (dungeon[x + xpos - 1][y + ypos][lvlnum].type == 'f') {
+							good++;
+						}
+						if (dungeon[x + xpos][y + ypos + 1][lvlnum].type == 'f') {
+							good++;
+						}
+						if (good == 3) {
+							quit = 1;
+						}
+						//					check upper right
+						good = 0;
+						if (dungeon[x + xpos + 1][y + ypos - 1][lvlnum].type == 'f') {
+							good++;
+						}
+						if (dungeon[x + xpos + 1][y + ypos][lvlnum].type == 'f') {
+							good++;
+						}
+						if (dungeon[x + xpos][y + ypos - 1][lvlnum].type == 'f') {
+							good++;
+						}
+						if (good == 3) {
+							quit = 1;
+						}
+						//					check lower right
+						good = 0;
+						if (dungeon[x + xpos + 1][y + ypos + 1][lvlnum].type == 'f') {
+							good++;
+						}
+						if (dungeon[x + xpos][y + ypos + 1][lvlnum].type == 'f') {
+							good++;
+						}
+						if (dungeon[x + xpos + 1][y + ypos][lvlnum].type == 'f') {
+							good++;
+						}
+						if (good == 3) {
+							quit = 1;
+						}
+					}
+
+					if (quit == 0) {
+						dungeon[x + xpos][y + ypos][lvlnum].type = 'f';
+						dungeon[x + xpos][y + ypos][lvlnum].explored = 0;
+						x = x + xpos;
+						y = y + ypos;
+					}
+				}
+			}
+		}
 		numnodes = count_nodes(lvlnum);
 		counttry = 0;
 
 		if (numnodes >= 30) {
-			// Too many nodes for this level: roll back one level and clean up any stairs
+
+			//		if (numnodes >=40) {
 			lvlnum--;
 
 			if (lvlnum == 1 || lvlnum == 0) {
@@ -1339,66 +1295,98 @@ void generate_dungeon() {
 				debug_me("generate_dungeon", "NumNodes Start Again lvlnum==1", numtry, counttry);
 			} else {
 				debug_me("generatedungeon", "TOO MANY NODES", numnodes, 0);
-				clear_stairs_pair(lvlnum);
-			}
-			continue;
-		}
-
-		// 4) Connect with stairs to the previous level if not at the first level
-		if (lvlnum > 1) {
-			leave = 0;
-
-			for (i = 1; i < 4; i++) {
-				int check = 0;
-
-				while (check == 0) {
-					// 4.a) Find a random floor on current level (bounded attempts)
-					int found = find_floor_cell_on_level(lvlnum, &randx, &randy, (DUNGEONX * DUNGEONY * 2));
-					if (!found) {
-						// Could not find a floor tile - give up and restart
-						leave = 1;
-						check = 1;
-						break;
-					}
-					debug_me("found floor", "", numtry, counttry);
-
-					// 4.b) If floor aligns with the same coordinate on previous level, accept
-					counttry++;
-					if (counttry >= 350) {
-						// Too many attempts: roll back a level and clean up stairs
-						lvlnum--;
-						debug_me("generate_dungeon", "FAILED numtry counttry", numtry, counttry);
-
-						if (lvlnum == 1 || numtry >= 10 || lvlnum == 0) {
-							// keep rolling back to restart
-						} else {
-							clear_stairs_pair(lvlnum);
+				for (fixabovex = 0; fixabovex <= DUNGEONX + 1; fixabovex++) {
+					for (fixabovey = 0; fixabovey <= DUNGEONY + 1; fixabovey++) {
+						if (dungeon[fixabovex][fixabovey][lvlnum].type == 's' && dungeon[fixabovex][fixabovey][lvlnum].item == 0) {
+							dungeon[fixabovex][fixabovey][lvlnum].type = 'f';
+							dungeon[fixabovex][fixabovey][lvlnum].item = 0;
 						}
-						leave = 1;
-						check = 1;
-
-						numtry++;
-						i = 4; // break outer for loop
-						break;
-					}
-
-					if (dungeon[randx][randy][lvlnum - 1].type == 'f' &&
-					    dungeon[randx][randy][lvlnum    ].type == 'f') {
-						check = 1;
-						debug_me("generate_dungeon", "NO STAIRS!", 0, 0);
-					} else {
-						debug_me("generate_dungeon", "NO STAIRS!", 0, 0);
-						check = 0;
 					}
 				}
+			}
+		} else {
+			if (lvlnum > 1) {
+				leave = 0;
+				for (i = 1; i < 4; i++) {
+					//					randx = random_num(DUNGEONX)+1 ;
+					//					randy = random_num(DUNGEONY)+1 ;
+					check = 0;
+					while (check == 0) {
+						//						for (sy=0;sy<=DUNGEONY+1;sy++) {
+						//							for (sx=0;sx<=DUNGEONX+1;sx++){
+						//						randx = random_num(DUNGEONX) + 1;
+						//					randy = random_num(DUNGEONY) + 1;
 
-				if (leave) break;
+						int floor = 0;
 
-				// 4.c) Place the stairs pair (up/down) between lvlnum-1 and lvlnum
-				dungeon[randx][randy][lvlnum - 1].type = 's';
-				dungeon[randx][randy][lvlnum - 1].item = 0;
-				dungeon[randx][randy][lvlnum    ].type = 's';
-				dungeon[randx][randy][lvlnum    ].item = 1;
+						while (floor == 0) {
+							randx = random_num(DUNGEONX) + 1;
+							randy = random_num(DUNGEONY) + 1;
+
+							if (dungeon[randx][randy][lvlnum].type == 'f') {
+								debug_me("found floor", "", numtry, counttry);
+								break;
+							}
+						}
+						//								randx = sx ;
+						//								randy = sy ;
+						counttry++;
+						if (counttry >= 350) {
+
+							//						if (counttry>=50) {
+
+							lvlnum--;
+							debug_me("generate_dungeon", "FAILED numtry counttry", numtry, counttry);
+
+							if (lvlnum == 1 || numtry >= 10 || lvlnum == 0) {
+								//								lvlnum = 0;
+								//							numtry = 0;
+								//						debug_me("generate_dungeon", "Start Again lvlnum==1", numtry, counttry);
+							} else {
+
+								for (fixabovex = 0; fixabovex <= DUNGEONX + 1; fixabovex++) {
+									for (fixabovey = 0; fixabovey <= DUNGEONY + 1; fixabovey++) {
+										if (dungeon[fixabovex][fixabovey][lvlnum].type == 's' && dungeon[fixabovex][fixabovey][lvlnum].item == 0) {
+											dungeon[fixabovex][fixabovey][lvlnum].type = 'f';
+											dungeon[fixabovex][fixabovey][lvlnum].item = 0;
+										}
+									}
+								}
+							}
+							leave = 1;
+							check = 1;
+							//									sx=DUNGEONX+1;
+							//									sy=DUNGEONY+1;
+
+							numtry++;
+							// numtry  number of times we have tried to find stairs for this level
+
+							i = 4;
+
+							break;
+						}
+						if (dungeon[randx][randy][lvlnum - 1].type == 'f' && dungeon[randx][randy][lvlnum].type == 'f') {
+							//									sx=DUNGEONX+1;
+							//									sy=DUNGEONY+1;
+							check = 1;
+
+							debug_me("generate_dungeon", "NO STAIRS!", 0, 0);
+							//									i=4;
+						} else {
+							debug_me("generate_dungeon", "NO STAIRS!", 0, 0);
+							check = 0;
+						}
+						//							}
+						//						}
+					}
+
+					if (leave)
+						break;
+					dungeon[randx][randy][lvlnum - 1].type = 's';
+					dungeon[randx][randy][lvlnum - 1].item = 0;
+					dungeon[randx][randy][lvlnum].type = 's';
+					dungeon[randx][randy][lvlnum].item = 1;
+				}
 			}
 		}
 	}
