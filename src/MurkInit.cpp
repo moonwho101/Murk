@@ -1179,18 +1179,10 @@ static void carve_random_walk(int lvlnum, int startx, int starty, int steps) {
 		ypos = 0;
 		way = random_num(4);
 		switch (way) {
-		case 0:
-			xpos = -1;
-			break;
-		case 1:
-			xpos = +1;
-			break;
-		case 2:
-			ypos = -1;
-			break;
-		case 3:
-			ypos = +1;
-			break;
+		case 0: xpos = -1; break;
+		case 1: xpos = +1; break;
+		case 2: ypos = -1; break;
+		case 3: ypos = +1; break;
 		}
 
 		quit = 0;
@@ -1205,47 +1197,31 @@ static void carve_random_walk(int lvlnum, int startx, int starty, int steps) {
 			randval = random_num(30);
 			if (randval != 1) {
 				// Upper left
-				if (dungeon[x + xpos - 1][y + ypos - 1][lvlnum].type == 'f')
-					good++;
-				if (dungeon[x + xpos - 1][y + ypos][lvlnum].type == 'f')
-					good++;
-				if (dungeon[x + xpos][y + ypos - 1][lvlnum].type == 'f')
-					good++;
-				if (good == 3)
-					quit = 1;
+				if (dungeon[x + xpos - 1][y + ypos - 1][lvlnum].type == 'f') good++;
+				if (dungeon[x + xpos - 1][y + ypos    ][lvlnum].type == 'f') good++;
+				if (dungeon[x + xpos    ][y + ypos - 1][lvlnum].type == 'f') good++;
+				if (good == 3) quit = 1;
 
 				// Lower left
 				good = 0;
-				if (dungeon[x + xpos - 1][y + ypos + 1][lvlnum].type == 'f')
-					good++;
-				if (dungeon[x + xpos - 1][y + ypos][lvlnum].type == 'f')
-					good++;
-				if (dungeon[x + xpos][y + ypos + 1][lvlnum].type == 'f')
-					good++;
-				if (good == 3)
-					quit = 1;
+				if (dungeon[x + xpos - 1][y + ypos + 1][lvlnum].type == 'f') good++;
+				if (dungeon[x + xpos - 1][y + ypos    ][lvlnum].type == 'f') good++;
+				if (dungeon[x + xpos    ][y + ypos + 1][lvlnum].type == 'f') good++;
+				if (good == 3) quit = 1;
 
 				// Upper right
 				good = 0;
-				if (dungeon[x + xpos + 1][y + ypos - 1][lvlnum].type == 'f')
-					good++;
-				if (dungeon[x + xpos + 1][y + ypos][lvlnum].type == 'f')
-					good++;
-				if (dungeon[x + xpos][y + ypos - 1][lvlnum].type == 'f')
-					good++;
-				if (good == 3)
-					quit = 1;
+				if (dungeon[x + xpos + 1][y + ypos - 1][lvlnum].type == 'f') good++;
+				if (dungeon[x + xpos + 1][y + ypos    ][lvlnum].type == 'f') good++;
+				if (dungeon[x + xpos    ][y + ypos - 1][lvlnum].type == 'f') good++;
+				if (good == 3) quit = 1;
 
 				// Lower right
 				good = 0;
-				if (dungeon[x + xpos + 1][y + ypos + 1][lvlnum].type == 'f')
-					good++;
-				if (dungeon[x + xpos][y + ypos + 1][lvlnum].type == 'f')
-					good++;
-				if (dungeon[x + xpos + 1][y + ypos][lvlnum].type == 'f')
-					good++;
-				if (good == 3)
-					quit = 1;
+				if (dungeon[x + xpos + 1][y + ypos + 1][lvlnum].type == 'f') good++;
+				if (dungeon[x + xpos    ][y + ypos + 1][lvlnum].type == 'f') good++;
+				if (dungeon[x + xpos + 1][y + ypos    ][lvlnum].type == 'f') good++;
+				if (good == 3) quit = 1;
 			}
 
 			if (quit == 0) {
@@ -1320,8 +1296,8 @@ void generate_dungeon() {
 	int leave;
 	int sx, sy;
 
-	int numtry = 0; // number of times we have tried to place stairs for the current level
-	int stopit = 0; // global fail-safe to avoid infinite outer loops
+	int numtry = 0;   // number of times we have tried to place stairs for the current level
+	int stopit = 0;   // global fail-safe to avoid infinite outer loops
 
 	// Start carving near the center of the playable area
 	sx = (int)(DUNGEONX) / 2;
@@ -1338,7 +1314,7 @@ void generate_dungeon() {
 			// Emergency reset if something goes terribly wrong
 			lvlnum = 0;
 			numtry = 0;
-			debug_me("generate_dungeon", "could not generate dungeon", 0, 0);
+			debug_me("BAD", "BAD", 0, 0);
 			// return; // original code did not return; keep same behavior
 		}
 
@@ -1362,7 +1338,7 @@ void generate_dungeon() {
 				numtry = 0;
 				debug_me("generate_dungeon", "NumNodes Start Again lvlnum==1", numtry, counttry);
 			} else {
-				debug_me("generate_dungeon", "Too many nodes", numnodes, 0);
+				debug_me("generatedungeon", "TOO MANY NODES", numnodes, 0);
 				clear_stairs_pair(lvlnum);
 			}
 			continue;
@@ -1384,14 +1360,14 @@ void generate_dungeon() {
 						check = 1;
 						break;
 					}
-					debug_me("generate_dungeon", "found floor", numtry, counttry);
+					debug_me("found floor", "", numtry, counttry);
 
 					// 4.b) If floor aligns with the same coordinate on previous level, accept
 					counttry++;
 					if (counttry >= 350) {
 						// Too many attempts: roll back a level and clean up stairs
 						lvlnum--;
-						debug_me("generate_dungeon", "Failed numtry counttry", numtry, counttry);
+						debug_me("generate_dungeon", "FAILED numtry counttry", numtry, counttry);
 
 						if (lvlnum == 1 || numtry >= 10 || lvlnum == 0) {
 							// keep rolling back to restart
@@ -1407,21 +1383,22 @@ void generate_dungeon() {
 					}
 
 					if (dungeon[randx][randy][lvlnum - 1].type == 'f' &&
-					    dungeon[randx][randy][lvlnum].type == 'f') {
+					    dungeon[randx][randy][lvlnum    ].type == 'f') {
 						check = 1;
+						debug_me("generate_dungeon", "NO STAIRS!", 0, 0);
 					} else {
+						debug_me("generate_dungeon", "NO STAIRS!", 0, 0);
 						check = 0;
 					}
 				}
 
-				if (leave)
-					break;
+				if (leave) break;
 
 				// 4.c) Place the stairs pair (up/down) between lvlnum-1 and lvlnum
 				dungeon[randx][randy][lvlnum - 1].type = 's';
 				dungeon[randx][randy][lvlnum - 1].item = 0;
-				dungeon[randx][randy][lvlnum].type = 's';
-				dungeon[randx][randy][lvlnum].item = 1;
+				dungeon[randx][randy][lvlnum    ].type = 's';
+				dungeon[randx][randy][lvlnum    ].item = 1;
 			}
 		}
 	}
