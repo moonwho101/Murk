@@ -629,18 +629,39 @@ void handle_mouse(int x, int y) {
 	}
 }
 
+
+void mouse_adjust(int mx, int my, int px, int py, int type) {
+
+	int dx = mx - px;
+	int dy = my - py;
+	int val;
+
+	// Shear algorithm for isometric projection
+	if (type == 1) {
+		// Project onto axis with slope -0.5
+		// v = y - x/2
+		val = dy - (dx / 2);
+		calcmousex = px - val;
+		calcmousey = py + (val / 2);
+	} else {
+		// Project onto axis with slope 0.5
+		// u = y + x/2
+		val = dy + (dx / 2);
+		calcmousex = px + val;
+		calcmousey = py + (val / 2);
+	}
+}
+
 ///////////////////////////////////////////////////////////
 //
 ///////////////////////////////////////////////////////////
 
-void mouse_adjust(int mx, int my, int px, int py, int type) {
+void mouse_adjust_old(int mx, int my, int px, int py, int type) {
+
 
 	int newmx;
 	int newmy;
 	int b;
-
-	//	int newy;
-	//	int newx;
 
 	// find the intsersction of two lines to adjust the mouse
 	// to work on the 3d grid ... holy moly
@@ -655,7 +676,8 @@ void mouse_adjust(int mx, int my, int px, int py, int type) {
 		// new one
 		b = (newmx / 2) - newmy;
 		calcmousex = (b) + px;
-		calcmousey = (b / 2) + b + py;
+		// mistake fixed here (AI) calcmousey = (b / 2) + b + py;
+		calcmousey = (b / 2) + py;
 	} else {
 		b = (int)(newmy + (.5 * newmx));
 		calcmousex = (b) + px;
