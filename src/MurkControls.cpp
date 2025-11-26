@@ -677,7 +677,7 @@ void mouse_adjust_old(int mx, int my, int px, int py, int type) {
 		b = (newmx / 2) - newmy;
 		calcmousex = (b) + px;
 		// mistake fixed here (AI) calcmousey = (b / 2) + b + py;
-		calcmousey = (b / 2) + py;
+		calcmousey = py - (b / 2);
 	} else {
 		b = (int)(newmy + (.5 * newmx));
 		calcmousex = (b) + px;
