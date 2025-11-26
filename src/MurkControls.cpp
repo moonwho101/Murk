@@ -629,26 +629,31 @@ void handle_mouse(int x, int y) {
 	}
 }
 
+// Adjust mouse coordinates for isometric projection
+// mx,my = mouse position
+// px,py = reference point (e.g., tile origin)
+// type   = axis selector (0 = slope +0.5, 1 = slope -0.5)
 
 void mouse_adjust(int mx, int my, int px, int py, int type) {
-
+	// Relative mouse offset
 	int dx = mx - px;
 	int dy = my - py;
+
+	// Use integer-safe math (avoid truncation surprises)
 	int val;
 
-	// Shear algorithm for isometric projection
 	if (type == 1) {
 		// Project onto axis with slope -0.5
-		// v = y - x/2
-		val = dy - (dx / 2);
+		// v = dy - dx/2
+		val = dy - (dx >> 1); // use bitshift for exact /2
 		calcmousex = px - val;
-		calcmousey = py + (val / 2);
+		calcmousey = py + (val >> 1);
 	} else {
-		// Project onto axis with slope 0.5
-		// u = y + x/2
-		val = dy + (dx / 2);
+		// Project onto axis with slope +0.5
+		// u = dy + dx/2
+		val = dy + (dx >> 1);
 		calcmousex = px + val;
-		calcmousey = py + (val / 2);
+		calcmousey = py + (val >> 1);
 	}
 }
 
