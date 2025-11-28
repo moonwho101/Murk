@@ -634,7 +634,7 @@ void handle_mouse(int x, int y) {
 // px,py = reference point (e.g., tile origin)
 // type   = axis selector (0 = slope +0.5, 1 = slope -0.5)
 
-void mouse_adjust(int mx, int my, int px, int py, int type) {
+void mouse_adjust_shear(int mx, int my, int px, int py, int type) {
 	// Relative mouse offset
 	int dx = mx - px;
 	int dy = my - py;
@@ -661,8 +661,7 @@ void mouse_adjust(int mx, int my, int px, int py, int type) {
 //
 ///////////////////////////////////////////////////////////
 
-void mouse_adjust_old(int mx, int my, int px, int py, int type) {
-
+void mouse_adjust(int mx, int my, int px, int py, int type) {
 
 	int newmx;
 	int newmy;
@@ -681,14 +680,15 @@ void mouse_adjust_old(int mx, int my, int px, int py, int type) {
 		// new one
 		b = (newmx / 2) - newmy;
 		calcmousex = (b) + px;
-		// mistake fixed here (AI) calcmousey = (b / 2) + b + py;
-		calcmousey = py - (b / 2);
+		// Extra +b term compensates for screen Y-axis inversion, making clicks align with isometric tiles.
+		calcmousey = (b / 2) + b + py;
 	} else {
 		b = (int)(newmy + (.5 * newmx));
 		calcmousex = (b) + px;
 		calcmousey = (b / 2) + py;
 	}
 }
+
 
 ///////////////////////////////////////////////////////////
 //
