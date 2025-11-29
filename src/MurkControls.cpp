@@ -629,6 +629,42 @@ void handle_mouse(int x, int y) {
 	}
 }
 
+///////////////////////////////////////////////////////////
+//
+///////////////////////////////////////////////////////////
+
+void mouse_adjust(int mx, int my, int px, int py, int type) {
+
+	int newmx;
+	int newmy;
+	int b;
+
+	// find the intsersction of two lines to adjust the mouse
+	// to work on the 3d grid ... holy moly
+
+	// intersection of y = -1/2x + b and y = x/2,  x=b
+
+	newmx = mx - px;
+	newmy = my - py;
+
+	if (type == 1) {
+		// new one
+		b = (newmx / 2) - newmy;
+		calcmousex = (b) + px;
+		// Extra +b term compensates for screen Y-axis inversion, making clicks align with isometric tiles.
+		calcmousey = (b / 2) + b + py;
+	} else {
+		b = (int)(newmy + (.5 * newmx));
+		calcmousex = (b) + px;
+		calcmousey = (b / 2) + py;
+	}
+}
+
+
+///////////////////////////////////////////////////////////
+//
+///////////////////////////////////////////////////////////
+
 // Adjust mouse coordinates for isometric projection
 // mx,my = mouse position
 // px,py = reference point (e.g., tile origin)
@@ -656,43 +692,6 @@ void mouse_adjust_shear(int mx, int my, int px, int py, int type) {
 		calcmousey = py + (val >> 1);
 	}
 }
-
-///////////////////////////////////////////////////////////
-//
-///////////////////////////////////////////////////////////
-
-void mouse_adjust(int mx, int my, int px, int py, int type) {
-
-	int newmx;
-	int newmy;
-	int b;
-
-	// find the intsersction of two lines to adjust the mouse
-	// to work on the 3d grid ... holy moly
-
-	newmx = mx - px;
-	newmy = my - py;
-	b = (int)(newmy + (.5 * newmx));
-	calcmousex = (b) + px;
-	calcmousey = (b / 2) + py;
-
-	if (type == 1) {
-		// new one
-		b = (newmx / 2) - newmy;
-		calcmousex = (b) + px;
-		// Extra +b term compensates for screen Y-axis inversion, making clicks align with isometric tiles.
-		calcmousey = (b / 2) + b + py;
-	} else {
-		b = (int)(newmy + (.5 * newmx));
-		calcmousex = (b) + px;
-		calcmousey = (b / 2) + py;
-	}
-}
-
-
-///////////////////////////////////////////////////////////
-//
-///////////////////////////////////////////////////////////
 
 void OnRButtonDown(LPARAM lParam) {
 
