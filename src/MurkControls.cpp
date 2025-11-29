@@ -654,7 +654,7 @@ void mouse_adjust(int mx, int my, int px, int py, int type) {
 		// Extra +b term compensates for screen Y-axis inversion, making clicks align with isometric tiles.
 		calcmousey = (b / 2) + b + py;
 	} else {
-		b = (int)(newmy + (.5 * newmx));
+		b = (int)(newmy + (newmx / 2));
 		calcmousex = (b) + px;
 		calcmousey = (b / 2) + py;
 	}
