@@ -1189,7 +1189,7 @@ inline void display_dungeon(int player) {
 							             PlayerLocation[i].level,
 							             PlayerLocation[i].x, PlayerLocation[i].y, i);
 
-							if (i <= newwarrior && i != 1) {
+							if (i <= newwarrior ) {
 
 								if (PlayerLocation[i].ability <= 10 &&
 								    !PlayerLocation[i].protection &&
