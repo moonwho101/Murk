@@ -774,39 +774,39 @@ void OnTimer() {
 
 	frame_num++;
 
-	if (PlayerLocation[CurrentPlayer].stairs > 0 && CurrentPlayer == 1) {
-		//			PlayerLocation[CurrentPlayer].staircounter=0;
-		PlayerLocation[CurrentPlayer].staircounter--;
-		if (PlayerLocation[CurrentPlayer].staircounter == 3) {
+	//if (PlayerLocation[CurrentPlayer].stairs > 0 && CurrentPlayer == 1) {
+	//	//			PlayerLocation[CurrentPlayer].staircounter=0;
+	//	PlayerLocation[CurrentPlayer].staircounter--;
+	//	if (PlayerLocation[CurrentPlayer].staircounter == 3) {
 
-			if (PlayerLocation[CurrentPlayer].stairs == 1) {
-				PlayerLocation[CurrentPlayer].level++;
-				PlayerLocation[CurrentPlayer].track = 0;
+	//		if (PlayerLocation[CurrentPlayer].stairs == 1) {
+	//			PlayerLocation[CurrentPlayer].level++;
+	//			PlayerLocation[CurrentPlayer].track = 0;
 
-				PlayerLocation[CurrentPlayer].y = PlayerLocation[CurrentPlayer].y - 12;
-			} else if (PlayerLocation[CurrentPlayer].stairs == 2) {
-				if (PlayerLocation[CurrentPlayer].level > 1)
-					PlayerLocation[CurrentPlayer].level--;
+	//			PlayerLocation[CurrentPlayer].y = PlayerLocation[CurrentPlayer].y - 12;
+	//		} else if (PlayerLocation[CurrentPlayer].stairs == 2) {
+	//			if (PlayerLocation[CurrentPlayer].level > 1)
+	//				PlayerLocation[CurrentPlayer].level--;
 
-				PlayerLocation[CurrentPlayer].track = 0;
-				PlayerLocation[CurrentPlayer].y = PlayerLocation[CurrentPlayer].y + 12;
-			}
-			wakeup_sleepy_heads();
-		} else if (PlayerLocation[CurrentPlayer].staircounter <= 0) {
-			PlayerLocation[CurrentPlayer].staircounter = 0;
-			frame_num = 0;
-			animateon = 0;
-			PlayerLocation[1].frame = frame_num;
-			PlayerLocation[1].framehuman = 0;
-			PlayerLocation[CurrentPlayer].stairs = 0;
-			wakeup_sleepy_heads();
-			check_dungeon();
+	//			PlayerLocation[CurrentPlayer].track = 0;
+	//			PlayerLocation[CurrentPlayer].y = PlayerLocation[CurrentPlayer].y + 12;
+	//		}
+	//		wakeup_sleepy_heads();
+	//	} else if (PlayerLocation[CurrentPlayer].staircounter <= 0) {
+	//		PlayerLocation[CurrentPlayer].staircounter = 0;
+	//		frame_num = 0;
+	//		animateon = 0;
+	//		PlayerLocation[1].frame = frame_num;
+	//		PlayerLocation[1].framehuman = 0;
+	//		PlayerLocation[CurrentPlayer].stairs = 0;
+	//		wakeup_sleepy_heads();
+	//		check_dungeon();
 
-		} else
-			PlayerLocation[1].framehuman = 1;
+	//	} else
+	//		PlayerLocation[1].framehuman = 1;
 
-		return;
-	}
+	//	return;
+	//}
 	if (frame_num == 3) {
 		if (PlayerLocation[CurrentPlayer].stairs > 0) {
 		}
