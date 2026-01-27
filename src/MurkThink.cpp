@@ -506,7 +506,7 @@ int attack_player() {
 	    PlayerLocation[CurrentPlayer].character == 2 && foundtreasure == 0 && CurrentPlayer != foundtreasure2 &&
 	    ishost) {
 
-		if (PlayerLocation[CurrentPlayer].team == 1 && PlayerLocation[CurrentPlayer].protecttreasure == 0 && CurrentPlayer != 1 && networkgame == 0) {
+		if (PlayerLocation[CurrentPlayer].team == 1 && PlayerLocation[CurrentPlayer].protecttreasure == 0  && networkgame == 0) {
 
 		} else {
 
@@ -538,7 +538,7 @@ int attack_player() {
 	    PlayerLocation[CurrentPlayer].level == treasurelvl2 &&
 	    PlayerLocation[CurrentPlayer].hit == 0 &&
 	    PlayerLocation[CurrentPlayer].character == 2 && foundtreasure2 == 0 && CurrentPlayer != foundtreasure && ishost) {
-		if (PlayerLocation[CurrentPlayer].team == 2 && PlayerLocation[CurrentPlayer].protecttreasure == 0 && CurrentPlayer != 1 && networkgame == 0) {
+		if (PlayerLocation[CurrentPlayer].team == 2 && PlayerLocation[CurrentPlayer].protecttreasure == 0  && networkgame == 0) {
 		} else {
 
 			if (m_directSoundOK)
@@ -638,7 +638,7 @@ int attack_player() {
 				}
 			}
 			return 1;
-		} else if (CurrentPlayer != 1) {
+		} else  {
 
 			if (ishost && !networkgame) {
 				treasurex = PlayerLocation[CurrentPlayer].mapx;
@@ -680,7 +680,7 @@ int attack_player() {
 			}
 
 			return 1;
-		} else if (CurrentPlayer != 1) {
+		} else  {
 
 			if (ishost && !networkgame) {
 				treasurex2 = PlayerLocation[CurrentPlayer].mapx;
