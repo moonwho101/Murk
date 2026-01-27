@@ -1203,81 +1203,81 @@ inline void display_dungeon(int player) {
 							}
 						}
 					}
-					if (i == 1 && hitkeyboard == 1 && PlayerLocation[i].framehuman == 0 || i == 1 && mousehit == 1 && PlayerLocation[i].framehuman == 0) {
+					//if (i == 1 && hitkeyboard == 1 && PlayerLocation[i].framehuman == 0 || i == 1 && mousehit == 1 && PlayerLocation[i].framehuman == 0) {
 
-						// human move
+					//	// human move
 
-						if (newmove != 0) {
+					//	if (newmove != 0) {
 
-							PlayerLocation[i].direction = newmove;
-							newmove = 0;
-							mousehit = 1;
-							mousehitx = newmovex;
-							mousehity = newmovey;
-						}
+					//		PlayerLocation[i].direction = newmove;
+					//		newmove = 0;
+					//		mousehit = 1;
+					//		mousehitx = newmovex;
+					//		mousehity = newmovey;
+					//	}
 
-						if (mousehit == 1 && joystickhit != 1) {
-							if (PlayerLocation[1].direction == 1 && PlayerLocation[1].x + 30 <= mousehitx && PlayerLocation[1].y + 54 <= mousehity) {
-								cancelmove = 1;
-							}
-							if (PlayerLocation[1].direction == 2 && PlayerLocation[1].x + 30 >= mousehitx && PlayerLocation[1].y + 54 <= mousehity) {
-								cancelmove = 1;
-							}
-							if (PlayerLocation[1].direction == 3 && PlayerLocation[1].x + 30 <= mousehitx && PlayerLocation[1].y + 54 >= mousehity) {
-								cancelmove = 1;
-							}
-							if (PlayerLocation[1].direction == 4 && PlayerLocation[1].x + 30 >= mousehitx && PlayerLocation[1].y + 54 >= mousehity) {
-								cancelmove = 1;
-							}
-						}
-						if (cancelmove == 0) {
+					//	if (mousehit == 1 && joystickhit != 1) {
+					//		if (PlayerLocation[1].direction == 1 && PlayerLocation[1].x + 30 <= mousehitx && PlayerLocation[1].y + 54 <= mousehity) {
+					//			cancelmove = 1;
+					//		}
+					//		if (PlayerLocation[1].direction == 2 && PlayerLocation[1].x + 30 >= mousehitx && PlayerLocation[1].y + 54 <= mousehity) {
+					//			cancelmove = 1;
+					//		}
+					//		if (PlayerLocation[1].direction == 3 && PlayerLocation[1].x + 30 <= mousehitx && PlayerLocation[1].y + 54 >= mousehity) {
+					//			cancelmove = 1;
+					//		}
+					//		if (PlayerLocation[1].direction == 4 && PlayerLocation[1].x + 30 >= mousehitx && PlayerLocation[1].y + 54 >= mousehity) {
+					//			cancelmove = 1;
+					//		}
+					//	}
+					//	if (cancelmove == 0) {
 
-							if (mousehit == 1 && PlayerLocation[1].direction == 1) {
-								handle_left();
-							}
-							if (mousehit == 1 && PlayerLocation[1].direction == 4)
-								handle_right();
-							if (mousehit == 1 && PlayerLocation[1].direction == 2)
-								handle_up();
-							if (mousehit == 1 && PlayerLocation[1].direction == 3)
-								handle_down();
-						}
+					//		if (mousehit == 1 && PlayerLocation[1].direction == 1) {
+					//			handle_left();
+					//		}
+					//		if (mousehit == 1 && PlayerLocation[1].direction == 4)
+					//			handle_right();
+					//		if (mousehit == 1 && PlayerLocation[1].direction == 2)
+					//			handle_up();
+					//		if (mousehit == 1 && PlayerLocation[1].direction == 3)
+					//			handle_down();
+					//	}
 
-						if (cancelmove == 1) {
-							frame_num = 0;
-							cancelmove = 0;
-							PlayerLocation[1].framehuman = 0;
-							PlayerLocation[1].frame = frame_num;
-							mousehit = 0;
-							joystickhit = 0;
-						} else {
+					//	if (cancelmove == 1) {
+					//		frame_num = 0;
+					//		cancelmove = 0;
+					//		PlayerLocation[1].framehuman = 0;
+					//		PlayerLocation[1].frame = frame_num;
+					//		mousehit = 0;
+					//		joystickhit = 0;
+					//	} else {
 
-							PlayerLocation[1].framehuman = 1;
+					//		PlayerLocation[1].framehuman = 1;
 
-							if (PlayerLocation[1].frame == 0) {
-								PlayerLocation[1].frame = 1;
-							}
+					//		if (PlayerLocation[1].frame == 0) {
+					//			PlayerLocation[1].frame = 1;
+					//		}
 
-							if (networkgame) {
-								sendonce = FALSE;
-								if (!ishost) {
-									send_playerquick(1, 1, 0);
-								} else if (!networkserver && ishost) {
-									send_playerquick(1, 0, 0);
-								}
-							}
-						}
-					} else if (i == 1 && hitkeyboard == 0 && PlayerLocation[CurrentPlayer].stairs == 0 || i == 1 && mousehit == 0 && PlayerLocation[CurrentPlayer].stairs == 0) {
+					//		if (networkgame) {
+					//			sendonce = FALSE;
+					//			if (!ishost) {
+					//				send_playerquick(1, 1, 0);
+					//			} else if (!networkserver && ishost) {
+					//				send_playerquick(1, 0, 0);
+					//			}
+					//		}
+					//	}
+					//} else if (i == 1 && hitkeyboard == 0 && PlayerLocation[CurrentPlayer].stairs == 0 || i == 1 && mousehit == 0 && PlayerLocation[CurrentPlayer].stairs == 0) {
 
-						PlayerLocation[1].framehuman = 0;
-						PlayerLocation[1].frame = 0;
+					//	PlayerLocation[1].framehuman = 0;
+					//	PlayerLocation[1].frame = 0;
 
-						// here
-						if (networkgame && !ishost)
-							send_player2(1, 1, 0);
-						else if (networkgame && ishost && !networkserver)
-							send_player2(1, 0, 0);
-					}
+					//	// here
+					//	if (networkgame && !ishost)
+					//		send_player2(1, 1, 0);
+					//	else if (networkgame && ishost && !networkserver)
+					//		send_player2(1, 0, 0);
+					//}
 
 					if (PlayerLocation[i].limitspeed && PlayerLocation[i].speed != 1 && i != 1 || PlayerLocation[i].rest > 0 && i != 1) {
 						if (PlayerLocation[i].active && ishost && networkgame && PlayerLocation[i].character == 2) {
@@ -1289,15 +1289,10 @@ inline void display_dungeon(int player) {
 						// monster is slow ... skip him
 					} else {
 
-						if (PlayerLocation[i].frame == 0 && PlayerLocation[i].calcmove == 1 && i != 1) {
+						if (PlayerLocation[i].frame == 0) {
 
 							// frame 0 ... computer move
 
-							if (i <= newwarrior && networkgame && ishost || !ishost || !PlayerLocation[i].active) {
-
-							}
-
-							else {
 								restmonster = random_num(8);
 								restmonster = 0;
 
@@ -1340,11 +1335,11 @@ inline void display_dungeon(int player) {
 								}
 								PlayerLocation[i].calcmove = 0;
 							} // new one
-						} else if (PlayerLocation[i].frame == 0) {
+						 
+						if (PlayerLocation[i].frame == 0) {
 
 							animateon = 0;
 						}
-
 						else {
 							// animate the character
 							frame_num = PlayerLocation[i].frame;

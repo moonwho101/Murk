@@ -360,7 +360,7 @@ void assign_player_cop() {
 				PlayerLocation[i].dead = 65;
 			}
 			if (i == 2)
-				PlayerLocation[i].calcmove = 1;
+				PlayerLocation[i].calcmove = 0;
 			else
 				PlayerLocation[i].calcmove = 0;
 
