@@ -607,7 +607,7 @@ int attack_player() {
 		}
 	}
 
-	if (dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy][PlayerLocation[CurrentPlayer].level].item == 'r' && PlayerLocation[CurrentPlayer].ring <= 4) {
+	if (dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy][PlayerLocation[CurrentPlayer].level].item == 'r') {
 		if (PlayerLocation[CurrentPlayer].character == 2) {
 
 			if (ishost)
@@ -629,7 +629,9 @@ int attack_player() {
 				m_pDirSound->PlaySound(m_bufferWin);
 
 			if (ishost) {
-				PlayerLocation[CurrentPlayer].skill = PlayerLocation[CurrentPlayer].skill + 8;
+				//PlayerLocation[CurrentPlayer].skill +=  30;
+				//PlayerLocation[CurrentPlayer].armour += 30;
+				//PlayerLocation[CurrentPlayer].ring += 3;
 				if (networkgame && ishost) {
 					send_reward(CurrentPlayer, 8);
 					send_play_sound(3);
@@ -667,7 +669,10 @@ int attack_player() {
 			//					PlayerLocation[CurrentPlayer].skill=PlayerLocation[CurrentPlayer].skill + 8;
 			//			}
 			if (ishost) {
-				PlayerLocation[CurrentPlayer].skill = PlayerLocation[CurrentPlayer].skill + 8;
+				//PlayerLocation[CurrentPlayer].skill += 30;
+				//PlayerLocation[CurrentPlayer].armour += 30;
+				//PlayerLocation[CurrentPlayer].ring += 3;
+
 				if (networkgame && ishost) {
 					send_reward(CurrentPlayer, 8);
 					send_play_sound(3);
@@ -1391,16 +1396,16 @@ void apply_damage() {
 								if (ishost && networkgame)
 									send_player(t, 0, 0);
 
-								if (t == 1) {
-									advancelevel = 20;
-									advanceattrib = 0;
-									hitkeyboard = 0;
-									mousehit = 0;
-									rand = play_again();
+								//if (t == 1) {
+								//	advancelevel = 20;
+								//	advanceattrib = 0;
+								//	hitkeyboard = 0;
+								//	mousehit = 0;
+								//	rand = play_again();
 
-									if (rand == 1)
-										return;
-								}
+								//	if (rand == 1)
+								//		return;
+								//}
 							}
 						} else {
 							kill_monster(t, missle[i].owner);
@@ -2104,13 +2109,13 @@ void apply_body_damage(int loser, int winner) {
 			if (ishost && networkgame)
 				send_player(loser, 0, 0);
 
-			if (loser == 1) {
+			/*if (loser == 1) {
 				advancelevel = 20;
 				advanceattrib = 0;
 				r = play_again();
 				if (r == 1)
 					return;
-			}
+			}*/
 		}
 	}
 }

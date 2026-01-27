@@ -1925,10 +1925,10 @@ int monster_shoot(void) {
 	i = CurrentPlayer;
 	int image;
 
-	if (CurrentPlayer == 1) {
+	/*if (CurrentPlayer == 1) {
 
 		return 0;
-	}
+	}*/
 
 	image = PlayerLocation[savecurrent].team;
 
