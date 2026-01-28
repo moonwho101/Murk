@@ -648,7 +648,7 @@ int attack_player() {
 				if (networkgame && ishost)
 					send_treasure(0, 0);
 
-				for (loop2 = 2; loop2 <= NumPlayers; loop2++) {
+				for (loop2 = 1; loop2 <= NumPlayers; loop2++) {
 
 					if (PlayerLocation[loop2].team == PlayerLocation[CurrentPlayer].team)
 						PlayerLocation[loop2].protecttreasure = 0;
@@ -689,7 +689,7 @@ int attack_player() {
 				foundtreasure2 = 0;
 				if (networkgame && ishost)
 					send_treasure2(0, 0);
-				for (loop2 = 2; loop2 <= NumPlayers; loop2++) {
+				for (loop2 = 1; loop2 <= NumPlayers; loop2++) {
 
 					if (PlayerLocation[loop2].team == PlayerLocation[CurrentPlayer].team)
 						PlayerLocation[loop2].protecttreasure = 0;
