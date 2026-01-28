@@ -1289,7 +1289,7 @@ inline void display_dungeon(int player) {
 						// monster is slow ... skip him
 					} else {
 
-						if (PlayerLocation[i].frame == 0) {
+						if (PlayerLocation[i].frame == 0 && PlayerLocation[i].calcmove == 1) {
 
 							// frame 0 ... computer move
 
@@ -1516,7 +1516,7 @@ inline void display_dungeon(int player) {
 	work1 = 1;
 	whoisnext++;
 	if (whoisnext > 6)
-		whoisnext = 2;
+		whoisnext = 1;
 	i = whoisnext;
 	for (loop = 1; loop <= NumPlayers; loop++) {
 		PlayerLocation[loop].calcmove = 0;
@@ -1536,7 +1536,7 @@ inline void display_dungeon(int player) {
 			if (i > 6)
 				break;
 			if (work2 > 6) {
-				work2 = 2;
+				work2 = 1;
 			}
 			for (loop = work2; loop <= NumPlayers; loop += 5) {
 				if (PlayerLocation[loop].asleep == 0 && PlayerLocation[loop].dead == 0 && PlayerLocation[loop].justdied == 0 && PlayerLocation[loop].frame == 0) {
