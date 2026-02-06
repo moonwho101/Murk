@@ -835,42 +835,7 @@ void OnTimer() {
 //
 ///////////////////////////////////////////////////////////
 
-inline void display_dungeon(int player) {
-	CONST int XADJUST = 49;
-	CONST int YADJUST = 25;
-
-	int x, y, startxreset, startyreset;
-
-	BOOL mademove = FALSE;
-
-	int level;
-	int i;
-	int work1;
-	int work2;
-	int lvlnum;
-	char response[10];
-	int final;
-	int monstershoot;
-	int restmonster;
-	int loop;
-	int rand;
-	BOOL endgame;
-	int recu1, recu2, recl1, recl2;
-	int savecurrent;
-	BOOL resultOK;
-
-	endgame = FALSE;
-
-	startx = 930;
-	starty = -200;
-	startxreset = startx;
-	startyreset = starty - 100;
-
-	startx = 530;
-	starty = -100;
-	startxreset = 530;
-	startyreset = -200;
-
+BOOL check_game_status() {
 	if (!networkserver) {
 		pDirDraw->ClearSurface(BACKBUFFERNUM);
 		if (sharewarelevel >= 6 && shareware) {
@@ -881,7 +846,7 @@ inline void display_dungeon(int player) {
 			pDirDraw->FlipToGDISurface();
 			UINT resultclick = MessageBox(hWindow, "Thank You for Playing Murk Shareware.\nPlease Register at http://www.murk.on.ca", "Murk Shareware", MB_OK);
 			PostMessage(hWindow, WM_CLOSE, 0, 0L);
-			return;
+			return FALSE;
 		}
 	}
 
@@ -893,15 +858,18 @@ inline void display_dungeon(int player) {
 		pDirDraw->FlipToGDISurface();
 		UINT resultclick = MessageBox(hWindow, "You are running an OLD version.\nPlease Vist http://www.murk.on.ca\nFor the latest Version.", "Update Your Version\nA purchased Registration key will work on Updates.", MB_OK);
 		PostMessage(hWindow, WM_CLOSE, 0, 0L);
-		return;
+		return FALSE;
 	}
 
-	level = PlayerLocation[camera].level;
-	for (i = 1; i <= NumPlayers; i++)
-		PlayerLocation[i].moved = 0;
+	return TRUE;
+}
 
-	for (y = 0; y < DUNGEONY + 1; y++) {
-		for (x = 0; x < DUNGEONX + 1; x++) {
+void draw_dungeon_cell(int x, int y, int level, int startx, int starty) {
+	int lvlnum;
+	char response[10];
+	int final;
+	int recu1, recu2, recl1, recl2;
+	BOOL resultOK;
 			if (dungeon[x][y][level].type == 'f' && dungeon[x][y][level].explored == 1 || dungeon[x][y][level].type == 's' && dungeon[x][y][level].explored == 1) {
 				lvlnum = level;
 				strcpy(response, "");
@@ -1047,6 +1015,12 @@ inline void display_dungeon(int player) {
 						                               partsBSurfaceNum, &CRect(112, 0, 224, 97));
 				}
 			}
+
+}
+
+void draw_dungeon_items(int x, int y, int level, int startx, int starty) {
+	BOOL resultOK;
+	int i;
 			if (dungeon[x][y][level].item == 'c' && dungeon[x][y][level].explored == 1 && !networkserver) {
 				if (dungeon[x][y][level].image == 0) {
 					BOOL resultOK = pDirDraw->BlitImage(&CPoint(startx, starty + 20), partsBSurfaceNum,
@@ -1118,10 +1092,17 @@ inline void display_dungeon(int player) {
 								                                    &CRect(452 + 113 + 113, 490, 452 + 113 + 113 + 113, 490 + 98));
 						}
 					}
-				}
-			}
-			savecurrent = CurrentPlayer;
-			savelevel = level;
+
+}
+
+void handle_players_in_cell(int x, int y, int level, int startx, int starty, BOOL &endgame) {
+	int savecurrent = CurrentPlayer;
+	int savelevel = level;
+	int i;
+	int rand;
+	int monstershoot;
+	int restmonster;
+	BOOL resultOK;
 			for (i = NumPlayers; i > 0; i--) {
 				CurrentPlayer = i;
 				if (foundtreasure != 0 && CurrentPlayer == foundtreasure && ishost) {
@@ -1502,17 +1483,12 @@ inline void display_dungeon(int player) {
 					}
 				}
 			}
-			CurrentPlayer = savecurrent;
 
-			level = PlayerLocation[camera].level;
+	CurrentPlayer = savecurrent;
+}
 
-			startx = startx + XADJUST;
-			starty = starty + YADJUST;
-		}
-		startx = startxreset - ((y + 1) * 48);
-		starty = startyreset + ((y + 1) * 24);
-	}
-
+void update_dungeon_state(int level) {
+	int loop, i, rand, work1, work2;
 	startgame = 0;
 	show_missle();
 
@@ -1570,7 +1546,11 @@ inline void display_dungeon(int player) {
 	//	rand=1;
 	if (rand == 1 && gamedef.pits == 1 && ishost) {
 		assign_pit(level);
-	}
+
+}
+
+void draw_panel_and_flip(int player, BOOL endgame) {
+	BOOL resultOK;
 	if (!networkserver) {
 
 		if (endgame) {
@@ -1585,6 +1565,9 @@ inline void display_dungeon(int player) {
 			pDirDraw->ClearSurface(BACKBUFFERNUM);
 	}
 
+}
+
+void process_endgame(BOOL endgame) {
 	if (endgame) {
 
 		if (ishost) {
@@ -1619,6 +1602,10 @@ inline void display_dungeon(int player) {
 		}
 	}
 
+}
+
+void network_ping() {
+	int loop;
 	cronit++;
 	if (cronit > 20) {
 		cronit = 0;
@@ -1698,9 +1685,54 @@ inline void display_dungeon(int player) {
 		reset_networkserver();
 	}
 
+}
+
+
+inline void display_dungeon(int player) {
+	CONST int XADJUST = 49;
+	CONST int YADJUST = 25;
+
+	int x, y, startxreset, startyreset;
+	int level;
+	int i;
+	BOOL endgame = FALSE;
+
+	startx = 530;
+	starty = -100;
+	startxreset = 530;
+	startyreset = -200;
+
+	if (!check_game_status())
+		return;
+
+	level = PlayerLocation[camera].level;
+	for (i = 1; i <= NumPlayers; i++)
+		PlayerLocation[i].moved = 0;
+
+	for (y = 0; y < DUNGEONY + 1; y++) {
+		for (x = 0; x < DUNGEONX + 1; x++) {
+			draw_dungeon_cell(x, y, level, startx, starty);
+			draw_dungeon_items(x, y, level, startx, starty);
+			handle_players_in_cell(x, y, level, startx, starty, endgame);
+
+			level = PlayerLocation[camera].level;
+
+			startx = startx + XADJUST;
+			starty = starty + YADJUST;
+		}
+		startx = startxreset - ((y + 1) * 48);
+		starty = startyreset + ((y + 1) * 24);
+	}
+
+	update_dungeon_state(level);
+	draw_panel_and_flip(player, endgame);
+	process_endgame(endgame);
+	network_ping();
+
 	keyboardlock = 0;
 	hitkeyboard = 0;
 }
+
 
 ///////////////////////////////////////////////////////////
 //
