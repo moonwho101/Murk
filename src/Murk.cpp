@@ -43,6 +43,8 @@ int mousestate;
 
 char serverscreen[100];
 
+int mademove = 0;
+
 BOOL check_joystick(int fire);
 void check_input();
 void check_keys();
@@ -870,7 +872,7 @@ void draw_dungeon_cell(int x, int y, int level, int startx, int starty) {
 	int final;
 	int recu1, recu2, recl1, recl2;
 	BOOL resultOK;
-			if (dungeon[x][y][level].type == 'f' && dungeon[x][y][level].explored == 1 || dungeon[x][y][level].type == 's' && dungeon[x][y][level].explored == 1) {
+	if (dungeon[x][y][level].type == 'f' && dungeon[x][y][level].explored == 1 || dungeon[x][y][level].type == 's' && dungeon[x][y][level].explored == 1) {
 				lvlnum = level;
 				strcpy(response, "");
 				if (dungeon[x - 1][y][lvlnum].type == 'f' || dungeon[x - 1][y][lvlnum].type == 's') {
@@ -1002,97 +1004,116 @@ void draw_dungeon_cell(int x, int y, int level, int startx, int starty) {
 						break;
 					}
 				}
-			}
-			if (dungeon[x][y][level].type == 's' && dungeon[x][y][level].explored == 1) {
-				if (dungeon[x][y][level].item == 1) {
-					if (!networkserver)
-						resultOK = pDirDraw->BlitImage(&CPoint(startx, starty),
-						                               partsBSurfaceNum, &CRect(224, 0, 336, 97));
-				} else {
-					/*down*/
-					if (!networkserver)
-						resultOK = pDirDraw->BlitImage(&CPoint(startx, starty),
-						                               partsBSurfaceNum, &CRect(112, 0, 224, 97));
-				}
-			}
-
+	}
+	if (dungeon[x][y][level].type == 's' && dungeon[x][y][level].explored == 1) {
+		if (dungeon[x][y][level].item == 1) {
+			if (!networkserver)
+				resultOK = pDirDraw->BlitImage(&CPoint(startx, starty),
+				                               partsBSurfaceNum, &CRect(224, 0, 336, 97));
+		} else {
+			/*down*/
+			if (!networkserver)
+				resultOK = pDirDraw->BlitImage(&CPoint(startx, starty),
+				                               partsBSurfaceNum, &CRect(112, 0, 224, 97));
+		}
+	}
 }
 
 void draw_dungeon_items(int x, int y, int level, int startx, int starty) {
 	BOOL resultOK;
 	int i;
-			if (dungeon[x][y][level].item == 'c' && dungeon[x][y][level].explored == 1 && !networkserver) {
-				if (dungeon[x][y][level].image == 0) {
-					BOOL resultOK = pDirDraw->BlitImage(&CPoint(startx, starty + 20), partsBSurfaceNum,
-					                                    &CRect(113, 294, 225, 391));
-				} else if (dungeon[x][y][level].image == 1) {
-					resultOK = pDirDraw->BlitImage(&CPoint(startx, starty + 20), partsBSurfaceNum,
-					                               &CRect(113 + 112 + 112, 294, 225 + 112 + 112, 391));
-				} else if (dungeon[x][y][level].image == 2) {
-					resultOK = pDirDraw->BlitImage(&CPoint(startx, starty + 20), partsBSurfaceNum,
-					                               &CRect(113 + 112 + 112 + 112, 294, 225 + 112 + 112 + 112, 391));
-				} else if (dungeon[x][y][level].image == 3) {
-					resultOK = pDirDraw->BlitImage(&CPoint(startx, starty + 20), partsBSurfaceNum,
-					                               &CRect(113 + 112 + 112 + 112 + 112, 294, 225 + 112 + 112 + 112 + 112, 391));
-				} else if (dungeon[x][y][level].image == 4) {
-					resultOK = pDirDraw->BlitImage(&CPoint(startx, starty + 20), partsBSurfaceNum,
-					                               &CRect(224, 294, 337, 391));
-				}
-			}
+	if (dungeon[x][y][level].item == 'c' && dungeon[x][y][level].explored == 1 && !networkserver) {
+		if (dungeon[x][y][level].image == 0) {
+			BOOL resultOK2 = pDirDraw->BlitImage(&CPoint(startx, starty + 20), partsBSurfaceNum,
+			                                   &CRect(113, 294, 225, 391));
+			(void)resultOK2;
+		} else if (dungeon[x][y][level].image == 1) {
+			resultOK = pDirDraw->BlitImage(&CPoint(startx, starty + 20), partsBSurfaceNum,
+			                              &CRect(113 + 112 + 112, 294, 225 + 112 + 112, 391));
+		} else if (dungeon[x][y][level].image == 2) {
+			resultOK = pDirDraw->BlitImage(&CPoint(startx, starty + 20), partsBSurfaceNum,
+			                              &CRect(113 + 112 + 112 + 112, 294, 225 + 112 + 112 + 112, 391));
+		} else if (dungeon[x][y][level].image == 3) {
+			resultOK = pDirDraw->BlitImage(&CPoint(startx, starty + 20), partsBSurfaceNum,
+			                              &CRect(113 + 112 + 112 + 112 + 112, 294, 225 + 112 + 112 + 112 + 112, 391));
+		} else if (dungeon[x][y][level].image == 4) {
+			resultOK = pDirDraw->BlitImage(&CPoint(startx, starty + 20), partsBSurfaceNum,
+			                              &CRect(224, 294, 337, 391));
+		}
+	}
 
-			if (dungeon[x][y][level].item == 'e' && dungeon[x][y][level].explored == 1) {
-				if (!networkserver)
-					BOOL resultOK = pDirDraw->BlitImage(&CPoint(startx, starty + 20), partsBSurfaceNum,
-					                                    &CRect(226, 490, 338, 587));
-			}
-			if (dungeon[x][y][level].item == 's' && dungeon[x][y][level].explored == 1) {
-				if (!networkserver)
-					BOOL resultOK = pDirDraw->BlitImage(&CPoint(startx, starty), partsBSurfaceNum,
-					                                    &CRect(565, 0, 565 + 113, 97));
-			}
-			if (dungeon[x][y][level].item == 'r' && dungeon[x][y][level].explored == 1) {
-				if (!networkserver)
-					BOOL resultOK = pDirDraw->BlitImage(&CPoint(startx, starty), partsBSurfaceNum,
-					                                    &CRect(678, 0, 678 + 113, 97));
-			}
-			if (dungeon[x][y][level].item == 'a' && dungeon[x][y][level].explored == 1) {
-				if (!networkserver)
-					BOOL resultOK = pDirDraw->BlitImage(&CPoint(startx, starty), partsBSurfaceNum,
-					                                    &CRect(224 + 113 + 113, 0, 449 + 113, 97));
-			}
-			if (x == treasurex && y == treasurey && level == treasurelvl && dungeon[x][y][level].explored == 1 && foundtreasure == 0) {
-				if (!networkserver)
-					BOOL resultOK = pDirDraw->BlitImage(&CPoint(startx, starty + 20), partsBSurfaceNum,
-					                                    &CRect(0, 294, 112, 391));
-			}
-			if (x == treasurex2 && y == treasurey2 && level == treasurelvl2 && dungeon[x][y][level].explored == 1 && foundtreasure2 == 0) {
-				if (!networkserver)
-					BOOL resultOK = pDirDraw->BlitImage(&CPoint(startx, starty + 20), partsBSurfaceNum,
-					                                    &CRect(678, 294, 790, 391));
-			}
-			for (i = 1; i <= 48; i++) {
+	if (dungeon[x][y][level].item == 'e' && dungeon[x][y][level].explored == 1) {
+		if (!networkserver) {
+			BOOL resultOK2 = pDirDraw->BlitImage(&CPoint(startx, starty + 20), partsBSurfaceNum,
+			                                   &CRect(226, 490, 338, 587));
+			(void)resultOK2;
+		}
+	}
+	if (dungeon[x][y][level].item == 's' && dungeon[x][y][level].explored == 1) {
+		if (!networkserver) {
+			BOOL resultOK2 = pDirDraw->BlitImage(&CPoint(startx, starty), partsBSurfaceNum,
+			                                   &CRect(565, 0, 565 + 113, 97));
+			(void)resultOK2;
+		}
+	}
+	if (dungeon[x][y][level].item == 'r' && dungeon[x][y][level].explored == 1) {
+		if (!networkserver) {
+			BOOL resultOK2 = pDirDraw->BlitImage(&CPoint(startx, starty), partsBSurfaceNum,
+			                                   &CRect(678, 0, 678 + 113, 97));
+			(void)resultOK2;
+		}
+	}
+	if (dungeon[x][y][level].item == 'a' && dungeon[x][y][level].explored == 1) {
+		if (!networkserver) {
+			BOOL resultOK2 = pDirDraw->BlitImage(&CPoint(startx, starty), partsBSurfaceNum,
+			                                   &CRect(224 + 113 + 113, 0, 449 + 113, 97));
+			(void)resultOK2;
+		}
+	}
+	if (x == treasurex && y == treasurey && level == treasurelvl && dungeon[x][y][level].explored == 1 && foundtreasure == 0) {
+		if (!networkserver) {
+			BOOL resultOK2 = pDirDraw->BlitImage(&CPoint(startx, starty + 20), partsBSurfaceNum,
+			                                   &CRect(0, 294, 112, 391));
+			(void)resultOK2;
+		}
+	}
+	if (x == treasurex2 && y == treasurey2 && level == treasurelvl2 && dungeon[x][y][level].explored == 1 && foundtreasure2 == 0) {
+		if (!networkserver) {
+			BOOL resultOK2 = pDirDraw->BlitImage(&CPoint(startx, starty + 20), partsBSurfaceNum,
+			                                   &CRect(678, 294, 790, 391));
+			(void)resultOK2;
+		}
+	}
+	for (i = 1; i <= 48; i++) {
 
-				if (dungeon[x][y][level].explored) {
-					if (pits[i].x == x &&
-					    pits[i].y == y &&
-					    pits[i].lvl == level &&
-					    pits[i].frame != 0) {
-						if (pits[i].frame <= 6 || pits[i].frame >= 30) {
-							if (!networkserver)
-								BOOL resultOK = pDirDraw->BlitImage(&CPoint(startx, starty + 20), partsBSurfaceNum,
-								                                    &CRect(452, 490, 452 + 113, 490 + 98));
-						} else if (pits[i].frame <= 12 || pits[i].frame >= 24) {
-							if (!networkserver)
-								BOOL resultOK = pDirDraw->BlitImage(&CPoint(startx, starty + 20), partsBSurfaceNum,
-								                                    &CRect(452 + 113, 490, 452 + 113 + 113, 490 + 98));
-
-						} else if (pits[i].frame <= 18 || pits[i].frame > 18) {
-							if (!networkserver)
-								BOOL resultOK = pDirDraw->BlitImage(&CPoint(startx, starty + 20), partsBSurfaceNum,
-								                                    &CRect(452 + 113 + 113, 490, 452 + 113 + 113 + 113, 490 + 98));
-						}
+		if (dungeon[x][y][level].explored) {
+			if (pits[i].x == x &&
+			    pits[i].y == y &&
+			    pits[i].lvl == level &&
+			    pits[i].frame != 0) {
+				if (pits[i].frame <= 6 || pits[i].frame >= 30) {
+					if (!networkserver) {
+						BOOL resultOK2 = pDirDraw->BlitImage(&CPoint(startx, starty + 20), partsBSurfaceNum,
+						                                   &CRect(452, 490, 452 + 113, 490 + 98));
+						(void)resultOK2;
+					}
+				} else if (pits[i].frame <= 12 || pits[i].frame >= 24) {
+					if (!networkserver) {
+						BOOL resultOK2 = pDirDraw->BlitImage(&CPoint(startx, starty + 20), partsBSurfaceNum,
+						                                   &CRect(452 + 113, 490, 452 + 113 + 113, 490 + 98));
+						(void)resultOK2;
 					}
 
+				} else if (pits[i].frame <= 18 || pits[i].frame > 18) {
+					if (!networkserver) {
+						BOOL resultOK2 = pDirDraw->BlitImage(&CPoint(startx, starty + 20), partsBSurfaceNum,
+						                                   &CRect(452 + 113 + 113, 490, 452 + 113 + 113 + 113, 490 + 98));
+						(void)resultOK2;
+					}
+ 				}
+			}
+		}
+	}
 }
 
 void handle_players_in_cell(int x, int y, int level, int startx, int starty, BOOL &endgame) {
@@ -1546,7 +1567,7 @@ void update_dungeon_state(int level) {
 	//	rand=1;
 	if (rand == 1 && gamedef.pits == 1 && ishost) {
 		assign_pit(level);
-
+	}
 }
 
 void draw_panel_and_flip(int player, BOOL endgame) {
@@ -1924,10 +1945,6 @@ void start_missle(int x, int y, int dir, int lvl, int sx, int sy, int owner) {
 			send_missle(1, missle[i].misslex, missle[i].missley, missle[i].misslelvl, missle[i].frame, missle[i].image, missle[i].direction, owner, missle[i].missledx, missle[i].missledy, i);
 	}
 }
-
-///////////////////////////////////////////////////////////
-//
-///////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////
 //
