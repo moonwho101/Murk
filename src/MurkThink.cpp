@@ -629,7 +629,11 @@ int attack_player() {
 				m_pDirSound->PlaySound(m_bufferWin);
 
 			if (ishost) {
-				PlayerLocation[CurrentPlayer].skill = PlayerLocation[CurrentPlayer].skill + 8;
+
+				PlayerLocation[CurrentPlayer].skill += 30;
+				PlayerLocation[CurrentPlayer].armour += 30;
+				PlayerLocation[CurrentPlayer].ring += 3;
+
 				if (networkgame && ishost) {
 					send_reward(CurrentPlayer, 8);
 					send_play_sound(3);
@@ -667,7 +671,11 @@ int attack_player() {
 			//					PlayerLocation[CurrentPlayer].skill=PlayerLocation[CurrentPlayer].skill + 8;
 			//			}
 			if (ishost) {
-				PlayerLocation[CurrentPlayer].skill = PlayerLocation[CurrentPlayer].skill + 8;
+
+				PlayerLocation[CurrentPlayer].skill += 30;
+				PlayerLocation[CurrentPlayer].armour += 30;
+				PlayerLocation[CurrentPlayer].ring += 3;
+
 				if (networkgame && ishost) {
 					send_reward(CurrentPlayer, 8);
 					send_play_sound(3);
