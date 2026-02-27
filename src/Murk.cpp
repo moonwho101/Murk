@@ -133,7 +133,7 @@ int APIENTRY WinMain(HINSTANCE hCurrentInst,
 	if (networkserver) {
 		timerlength = 60;
 	} else {
-		timerlength = 24;
+		timerlength = 54;
 	}
 
 	hInstance = hCurrentInst;
