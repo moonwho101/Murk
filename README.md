@@ -1,169 +1,142 @@
-<p align="center">
-  <img src="artwork/murk256.jpg" alt="Murk — 1998 isometric dungeon crawler" width="640">
-</p>
+# Murk
 
-<h1 align="center">Murk</h1>
+Murk is a 1998 2D isometric dungeon crawler by Mark Longo, now preserved as a buildable Windows source release. It is a fast, arcade-style fantasy action game built with Win32, MFC, DirectDraw, DirectSound, and legacy DirectPlay-era networking code.
 
-<p align="center">
-  <strong>A 1998 isometric dungeon crawler — open-source, buildable, and playable on modern Windows</strong>
-</p>
+If you are interested in retro game development, Windows 95 game programming, early DirectX history, or playable open-source dungeon games, Murk is a compact and useful codebase to explore.
 
-<p align="center">
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License"></a>
-  <img src="https://img.shields.io/badge/platform-Windows-0078d4" alt="Windows">
-  <img src="https://img.shields.io/badge/language-C%2B%2B-00599C" alt="C++">
-  <img src="https://img.shields.io/badge/era-1998-orange" alt="1998">
-  <img src="https://img.shields.io/badge/build-Visual%20Studio%202022-purple" alt="Visual Studio 2022">
-  <img src="https://img.shields.io/badge/DirectX-DirectDraw%20%7C%20DirectSound-brightgreen" alt="DirectX">
-</p>
+![Murk title art](artwork/murk256.jpg)
 
-<p align="center">
-  <a href="#-play-now">Play Now</a> · <a href="#-screenshots">Screenshots</a> · <a href="#-build-from-source">Build</a> · <a href="#-technical-deep-dive">Technical</a> · <a href="#-contributing">Contributing</a>
-</p>
+## Why Murk Stands Out
 
----
+- Original late-1990s Windows game source, updated to build in Visual Studio 2022
+- Playable on modern Windows systems from the included binary in `bin/`
+- Isometric dungeon exploration with shooting, treasure, traps, and item pickups
+- Built with classic Microsoft game tech: DirectDraw, DirectSound, DirectPlay, Win32, and MFC
+- Useful reference project for retro game preservation and DirectX-era programming patterns
 
-Murk is a fast, arcade-style fantasy dungeon crawler created by **Mark Longo** in 1998, now fully open-sourced under the MIT license. Choose from four characters, descend into procedurally generated dungeons, fight monsters, collect treasure, and survive.
+## Quick Facts
 
-Originally built for **Windows 95** using the Win32 API, MFC, DirectDraw, DirectSound, and DirectPlay, this repository preserves the complete source code — updated to compile cleanly in **Visual Studio 2022** — along with a ready-to-run binary.
+| Item | Details |
+| --- | --- |
+| Genre | Arcade-style isometric dungeon crawler |
+| Original release era | 1998-1999 |
+| Language | C++ |
+| Graphics/API | DirectDraw |
+| Audio/API | DirectSound, MIDI |
+| Networking | Legacy DirectPlay support in source |
+| Build target | Win32 |
+| License | MIT |
 
-> *"To dungeons deep and caverns old / We must away, ere break of day, / To find our long-forgotten gold."* — J.R.R. Tolkien
+## Screenshots
 
-## 🎮 Play Now
+<img src="artwork/Murk01.jpg" alt="Murk gameplay screenshot" width="800">
 
-**No build required.** A pre-built executable is included:
+<img src="artwork/dungeon.jpg" alt="Murk dungeon screenshot" width="800">
 
-1. Download or clone this repository.
-2. Open the `bin/` folder.
-3. Run **`Murk.exe`**.
+<img src="artwork/multiplayer.jpg" alt="Murk multiplayer-era promotional screenshot" width="800">
 
-Works on **Windows 10** and **Windows 11**.
+## Play Murk
 
-## 📸 Screenshots
+To try the game immediately:
 
-<img src="artwork/Murk01.jpg" alt="Murk gameplay — isometric dungeon exploration" width="800">
+1. Open the `bin/` folder.
+2. Run `Murk.exe`.
 
-<img src="artwork/dungeon.jpg" alt="Murk dungeon level with monsters and torches" width="800">
+The bundled executable is intended to run on current Windows versions, including Windows 10 and Windows 11.
 
-<img src="artwork/multiplayer.jpg" alt="Murk multiplayer promotional screenshot" width="800">
+## Gameplay
 
-## ✨ Features
+Murk was originally described as a standalone or networkable arcade quest game. You choose a character, descend into the dungeon, fight monsters, search for treasure, collect useful items, and move between levels through stairs or ladders.
 
-- **Isometric 2D dungeon crawling** — explore multi-level dungeons filled with monsters, traps, and loot
-- **Four playable characters** — each with distinct play styles
-- **Procedural dungeon generation** — different layout every time
-- **Mouse, keyboard, and joystick support** — flexible input for any setup
-- **Save and load** — continue your adventure anytime
-- **MIDI soundtrack** — atmospheric period-authentic music
-- **Legacy multiplayer code** — DirectPlay networking preserved in source (TCP/IP, IPX/SPX, modem, serial)
-- **Compact codebase** — ~30 source files, easy to read and learn from
+The codebase and bundled docs indicate support for:
 
-## 📊 Quick Facts
+- Single-player dungeon crawling
+- Legacy network play features from the DirectPlay era
+- Mouse, keyboard, and joystick input
+- Save/load functionality
+- Chat and mission/help screens
 
-| | |
-| :--- | :--- |
-| **Genre** | Arcade-style isometric dungeon crawler |
-| **Original release** | 1998–1999 |
-| **Language** | C++ (~30 source files) |
-| **Graphics** | DirectDraw (2D isometric) |
-| **Audio** | DirectSound + MIDI |
-| **Networking** | DirectPlay (TCP/IP, IPX/SPX, modem, serial) |
-| **Platform** | Win32 |
-| **Build tool** | Visual Studio 2022 |
-| **License** | MIT |
-
-## 🕹️ Controls
+## Controls
 
 ### Mouse
 
-| Action | Input |
-| :--- | :--- |
-| Move | Left click |
-| Fire | Right click |
-| Stairs / ladders | Double left click |
+- Left click: move
+- Right click: fire
+- Double left click: go up or down stairs/ladders
 
 ### Keyboard
 
-| Action | Key |
-| :--- | :--- |
-| Move | Arrow keys |
-| Fire | Ctrl |
-| Stairs / ladders | Shift |
-| Ring of Protection | R |
-| Drop treasure | T |
-| Chat | C |
-| Help | F1 |
-| Episode objective | F2 |
-| Save game | F3 |
-| Load game | F4 |
-| Chat (alt) | F5 |
+- Arrow keys: move
+- Ctrl: fire
+- Shift: go up or down stairs/ladders
+- R: use Ring of Protection
+- T: drop treasure
+- C: chat
+- F1: help
+- F2: episode objective
+- F3: save game
+- F4: load game
+- F5: chat
 
+### Joystick
 
-## 🔨 Build From Source
+- D-pad / stick: movement
+- Button 1: shoot
+- Button 2: up/down stairs
+- Button 3: ring
+- Button 4: drop treasure
+
+## Build From Source
+
+Murk can be built with Visual Studio 2022.
 
 ### Requirements
 
-- [Visual Studio 2022](https://visualstudio.microsoft.com/)
-- **Desktop development with C++** workload
-- **MFC for v143 build tools** (x86 and x64)
-- A compatible Windows SDK
+- Visual Studio 2022
+- Desktop development with C++
+- MFC for v143 build tools (x86 and x64)
+- Windows SDK compatible with the installed Visual Studio toolset
 
-### Steps
+### Build Steps
 
-```
-1. Open  src/Murk.sln  in Visual Studio 2022
-2. Select  Release | Win32  configuration
-3. Build the solution  (Ctrl+Shift+B)
-4. Output:  bin/Murk.exe
-```
+1. Open `src/Murk.sln` in Visual Studio 2022.
+2. Select the `Release | Win32` configuration.
+3. Build the solution.
+4. The output binary is written to `bin/Murk.exe`.
 
-## 🔬 Technical Deep Dive
+## Technical Notes
 
-This repository is a time capsule of **late-1990s Windows game programming** — before Unity, Unreal, and modern engines took over. It's a valuable reference for:
+This repository is especially relevant if you want to study how older Windows games were structured before modern engines became dominant.
 
-| Area | What you'll find |
-| :--- | :--- |
-| **DirectDraw rendering** | Software-driven 2D isometric blitting and sprite management |
-| **DirectSound + MIDI** | Sound effect playback and MIDI music streaming |
-| **Win32 architecture** | Message loop, window management, GDI interop |
-| **MFC integration** | Dialog-based UI, resource management, application framework |
-| **DirectPlay networking** | Session creation, player management, lobby code |
-| **Game logic** | Dungeon generation, AI, collision, item systems in plain C++ |
+Areas of interest include:
 
-## 📁 Repository Layout
+- DirectDraw-based 2D rendering
+- DirectSound and MIDI playback
+- Win32 application structure and message handling
+- MFC-era project setup and resource management
+- DirectPlay-era multiplayer code and dialogs
+- Asset-driven game logic in a compact C++ codebase
 
-```
-Murk/
-├── src/       C++ source, headers, VS solution, resources, MIDI files
-├── bin/       Pre-built binary, config files, save data, docs
-├── artwork/   Screenshots, scans, promotional art
-├── sound/     Audio assets (WAV)
-├── LICENSE    MIT License
-└── README.md
-```
+## Repository Layout
 
-## 🌍 Historical Context
+- `src/`: C++ source, headers, Visual Studio solution, resources
+- `bin/`: runnable binary, config files, save data, bundled documentation
+- `artwork/`: screenshots, scans, and promotional images
+- `sound/`: audio assets
 
-Murk was developed during the golden age of DirectX game programming, when indie developers shipped custom engines directly on top of the Windows 95 Game SDK. This codebase is a snapshot of that era — useful for **retro game preservation**, **game history research**, and anyone curious about how PC games were built before modern frameworks existed.
+## Historical Context
+
+Murk comes from the Windows 95 PC game era, when developers commonly shipped custom engines directly on top of DirectX. That makes this repository useful not only as a playable game, but also as a small historical reference for late-1990s Windows game development.
 
 <p align="center">
-  <img src="artwork/Windows95GameSDK.jpg" alt="Windows 95 Game SDK box" width="300">
-  &nbsp;&nbsp;&nbsp;
-  <img src="artwork/DirectX.jpg" alt="Classic DirectX packaging" width="300">
+	<img src="artwork/Windows95GameSDK.jpg" alt="Windows 95 Game SDK" width="300">
 </p>
-
-## 👤 Credits
-
-- **Programming** — Mark Longo
-- **Graphics** — Tom Portaccio
-
-## 📜 License
-
-This project is released under the **MIT License**. See [LICENSE](LICENSE) for details.
-
----
 
 <p align="center">
-  <sub>If you find Murk interesting, consider giving it a ⭐ — it helps others discover this piece of gaming history.</sub>
+	<img src="artwork/DirectX.jpg" alt="Classic DirectX packaging" width="601">
 </p>
+
+## License
+
+This project is released under the MIT License. See `LICENSE` for details.
 
