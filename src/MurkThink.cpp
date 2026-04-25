@@ -629,16 +629,18 @@ int attack_player() {
 				m_pDirSound->PlaySound(m_bufferWin);
 
 			if (ishost) {
-				PlayerLocation[CurrentPlayer].skill +=  30;
+
+				PlayerLocation[CurrentPlayer].skill += 30;
 				PlayerLocation[CurrentPlayer].armour += 30;
 				PlayerLocation[CurrentPlayer].ring += 3;
+
 				if (networkgame && ishost) {
 					send_reward(CurrentPlayer, 8);
 					send_play_sound(3);
 				}
 			}
 			return 1;
-		} else  {
+		} else {
 
 			if (ishost && !networkgame) {
 				treasurex = PlayerLocation[CurrentPlayer].mapx;
