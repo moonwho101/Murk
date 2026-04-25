@@ -607,7 +607,7 @@ int attack_player() {
 		}
 	}
 
-	if (dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy][PlayerLocation[CurrentPlayer].level].item == 'r' && PlayerLocation[CurrentPlayer].ring <= 4) {
+	if (dungeon[PlayerLocation[CurrentPlayer].mapx][PlayerLocation[CurrentPlayer].mapy][PlayerLocation[CurrentPlayer].level].item == 'r') {
 		if (PlayerLocation[CurrentPlayer].character == 2) {
 
 			if (ishost)
