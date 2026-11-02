@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>MURK — Isometric Dungeon Crawler</title>
+		<link rel="icon" href="./favicon.png" type="image/png" />
+		<link rel="stylesheet" href="/src/style.css" />
+	</head>
+	<body>
+		<canvas id="game"></canvas>
+		<div id="floaters"></div>
+
+		<div id="hud" class="hidden">
+			<div id="hud-left" class="panel">
+				<div class="hero-row">
+					<img id="hud-portrait" alt="" />
+					<div class="hero-meta">
+						<div id="hud-name">Hero</div>
+						<div id="hud-level">Level 1</div>
+					</div>
+				</div>
+				<div class="bar hp"><div class="fill" id="bar-hp"></div><span id="txt-hp"></span><label>Health</label></div>
+				<div class="bar armour"><div class="fill" id="bar-armour"></div><span id="txt-armour"></span><label>Armour</label></div>
+				<div class="bar xp"><div class="fill" id="bar-xp"></div><span id="txt-xp"></span><label>Experience</label></div>
+				<div class="stat-row">
+					<div class="chip" id="chip-ring" title="Rings (R)"><i class="ico ico-ring"></i><b id="txt-rings">0</b><kbd>R</kbd></div>
+					<div class="chip" id="chip-score" title="Monsters slain"><i class="ico ico-skull"></i><b id="txt-kills">0</b></div>
+					<div class="chip" id="chip-treasure" title="Treasure"><i class="ico ico-chest"></i><b id="txt-chest">—</b></div>
+				</div>
+			</div>
+
+			<div id="hud-top">
+				<div id="hud-episode">Episode 1</div>
+				<div id="hud-objective"></div>
+			</div>
+
+			<div id="hud-right" class="panel">
+				<canvas id="minimap" width="220" height="220"></canvas>
+				<div id="hud-depth">Depth 1 / 3</div>
+			</div>
+
+			<div id="hud-msgs"></div>
+			<div id="hud-pointer"><svg viewBox="0 0 40 40"><path d="M20 2 L34 34 L20 26 L6 34 Z" /></svg><span id="pointer-label"></span></div>
+			<div id="hud-hint">
+				<span><kbd>WASD</kbd> move</span>
+				<span><kbd>LMB</kbd> hold: run</span>
+				<span><kbd>Mouse</kbd> aim</span>
+				<span><kbd>RMB</kbd> / <kbd>Ctrl</kbd> fire</span>
+				<span><kbd>R</kbd> ring</span>
+				<span><kbd>E</kbd> stairs</span>
+				<span><kbd>T</kbd> drop</span>
+				<span><kbd>Esc</kbd> menu</span>
+			</div>
+			<div id="stairs-hint" class="hidden"></div>
+			<div id="death-banner" class="hidden">YOU HAVE FALLEN</div>
+		</div>
+
+		<div id="screen" class="overlay hidden"></div>
+
+		<div id="loading">
+			<div class="load-title">MURK</div>
+			<div class="load-bar"><div id="load-fill"></div></div>
+			<div class="load-sub">Descending into the dark&hellip;</div>
+		</div>
+
+		<script type="module" src="/src/main.js"></script>
+	</body>
+</html>

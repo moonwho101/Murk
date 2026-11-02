@@ -17,3 +17,8 @@ packages/
 
 
 
+
+web/node_modules/
+web/dist/
+tools/.tmp/
+__pycache__/

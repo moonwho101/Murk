@@ -35,7 +35,25 @@ If you are interested in retro game development, Windows 95 game programming, ea
 
 <img src="artwork/multiplayer.jpg" alt="Murk multiplayer-era promotional screenshot" width="800">
 
-## Play Murk
+## Play Murk in the browser (three.js edition)
+
+The `web/` folder is a port of the single-player game to **three.js**: real 3D isometric rendering with dynamic torch lighting, fog of war, bloom, particles, an adaptive synthesised score, and the original artwork converted to 32-bit RGBA. Multiplayer was intentionally left out.
+
+```
+cd web
+npm install
+npm run dev      # http://127.0.0.1:5173
+npm run build    # static site in web/dist
+npm test         # dungeon + simulation tests (includes an autopilot that beats episodes)
+```
+
+Highlights: all four heroes, the original 5 monster types, the real `levels*.dat` episode data (hundreds of episodes), the original dungeon generator (winding one-tile corridors), pits, rings, stairs, escort/rival-team episodes, per-level themes built from the original tile sheets, save/load (F3/F4) and gamepad support.
+
+Controls: **WASD/arrows** move, **mouse** aims, **left click / Space** shoots, **right click** walks to a point, **R** ring, **E** stairs, **T** drop treasure, **wheel** zoom, **Esc** pause.
+
+Assets are regenerated from the original files with `python tools/convert_assets.py` (needs `pillow` and `numpy`; palettised BMPs are upscaled 2x with Scale2x, converted to RGBA PNG and edge-bled) and `python tools/convert_levels.py` (episode data to JSON).
+
+## Play Murk (original Windows build)
 
 To try the game immediately:
 
