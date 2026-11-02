@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Murk: Isometric 3D Dungeon Crawler</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    body, html {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: #050508;
+      font-family: 'Courier New', Courier, monospace;
+      color: #eaeaea;
+    }
+
+    #game-container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle at center, #1a1a24 0%, #050508 100%);
+    }
+
+    #canvas-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      image-rendering: pixelated;
+    }
+
+    #crt-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 5;
+      background: radial-gradient(circle, transparent 65%, rgba(0, 0, 0, 0.6) 100%);
+      box-shadow: inset 0 0 100px rgba(0,0,0,0.8);
+    }
+
+    .screen-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(2px);
+      transition: opacity 0.3s ease;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    #splash-screen {
+      background: #000;
+    }
+    #splash-img {
+      max-width: 90vw;
+      max-height: 75vh;
+      object-fit: contain;
+      image-rendering: pixelated;
+      box-shadow: 0 0 30px rgba(180, 50, 50, 0.5);
+      border: 3px solid #4a3828;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .press-start {
+      margin-top: 24px;
+      font-size: 20px;
+      font-weight: bold;
+      letter-spacing: 3px;
+      color: #ffcc00;
+      text-shadow: 0 0 10px #ff6600;
+      animation: blink 1s infinite alternate;
+      cursor: pointer;
+    }
+
+    @keyframes blink {
+      from { opacity: 1; }
+      to { opacity: 0.2; }
+    }
+
+    #select-screen {
+      background: rgba(10, 8, 15, 0.94);
+    }
+
+    .select-title {
+      font-size: 28px;
+      color: #ffd700;
+      text-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
+      margin-bottom: 25px;
+      letter-spacing: 4px;
+    }
+
+    .char-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      max-width: 900px;
+      width: 90%;
+    }
+
+    .char-card {
+      background: linear-gradient(180deg, #2b2438 0%, #151120 100%);
+      border: 2px solid #5a4b73;
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .char-card:hover, .char-card.selected {
+      border-color: #ffd700;
+      transform: translateY(-5px);
+      box-shadow: 0 8px 24px rgba(255, 215, 0, 0.3);
+    }
+
+    .char-card.selected {
+      background: linear-gradient(180deg, #43335e 0%, #211833 100%);
+    }
+
+    .char-avatar-box {
+      width: 96px;
+      height: 96px;
+      overflow: hidden;
+      border: 2px solid #3c3150;
+      background: #0d0a14;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 12px;
+      border-radius: 4px;
+    }
+
+    .char-avatar {
+      image-rendering: pixelated;
+      transform-origin: top left;
+    }
+
+    .char-name {
+      font-size: 18px;
+      font-weight: bold;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .char-desc {
+      font-size: 12px;
+      color: #bbb;
+      text-align: center;
+      line-height: 1.4;
+      margin-bottom: 12px;
+    }
+
+    .char-stats {
+      font-size: 11px;
+      width: 100%;
+      color: #9fe2bf;
+    }
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      margin: 2px 0;
+    }
+
+    .btn-start {
+      margin-top: 30px;
+      padding: 12px 40px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #111;
+      background: #ffd700;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: inherit;
+      box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+      transition: background 0.2s, transform 0.1s;
+    }
+    .btn-start:hover {
+      background: #ffe347;
+      transform: scale(1.04);
+    }
+
+    .modal-box {
+      background: #19141f url('assets/scroll.png') no-repeat center center;
+      background-size: cover;
+      color: #3b2a1a;
+      width: 650px;
+      max-width: 90vw;
+      padding: 40px 50px;
+      border-radius: 6px;
+      box-shadow: 0 0 35px rgba(0, 0, 0, 0.9);
+      position: relative;
+      font-family: 'Courier New', monospace;
+      font-weight: bold;
+    }
+
+    .modal-title {
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #4a2d13;
+      border-bottom: 2px solid #8e6840;
+      padding-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .modal-content {
+      font-size: 15px;
+      line-height: 1.6;
+      white-space: pre-line;
+      max-height: 60vh;
+      overflow-y: auto;
+      color: #2e1d0d;
+    }
+
+    .modal-close {
+      display: block;
+      margin: 25px auto 0 auto;
+      padding: 8px 30px;
+      background: #4a2d13;
+      color: #f7e7c4;
+      border: none;
+      border-radius: 4px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .modal-close:hover {
+      background: #6a401c;
+    }
+
+    #hud-panel {
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 6;
+      display: flex;
+      align-items: center;
+      background: rgba(14, 12, 19, 0.9);
+      border: 2px solid #4a3d5e;
+      border-radius: 8px;
+      padding: 8px 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+      gap: 20px;
+    }
+
+    .hud-stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 65px;
+    }
+
+    .hud-label {
+      font-size: 10px;
+      color: #8f82a8;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 2px;
+    }
+
+    .hud-val {
+      font-size: 18px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .hud-val.hp { color: #ff5252; }
+    .hud-val.armour { color: #69f0ae; }
+    .hud-val.skill { color: #ffd740; }
+    .hud-val.rings { color: #40c4ff; }
+    .hud-val.floor { color: #e040fb; }
+
+    .hud-btn {
+      background: #2a2238;
+      border: 1px solid #5a4b73;
+      color: #ddd;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .hud-btn:hover {
+      background: #413557;
+      border-color: #ffd700;
+      color: #ffd700;
+    }
+    .hud-btn.active {
+      background: #ffd700;
+      color: #111;
+      border-color: #fff;
+    }
+
+    #message-banner {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 6;
+      background: rgba(20, 16, 28, 0.88);
+      border: 1px solid #ffd700;
+      color: #ffd700;
+      padding: 8px 24px;
+      border-radius: 20px;
+      font-size: 15px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+
+    #controls-hint {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      z-index: 6;
+      font-size: 11px;
+      color: #8d859e;
+      background: rgba(10, 8, 15, 0.7);
+      padding: 6px 10px;
+      border-radius: 4px;
+      pointer-events: none;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <div id="game-container">
+    <div id="canvas-container"></div>
+    <div id="crt-overlay"></div>
+
+    <div id="controls-hint">
+      <strong>Controls:</strong> Click/Arrows: Move | R-Click/Ctrl: Attack | Shift/DblClick: Stairs<br>
+      [R] Ring of Protection | [T] Drop Relic | [F1] Help | [F2] Objective
+    </div>
+
+    <div id="message-banner" class="hidden">Murk</div>
+
+    <div id="hud-panel" class="hidden">
+      <div class="hud-stat">
+        <span class="hud-label">Floor</span>
+        <span class="hud-val floor" id="hud-floor">1</span>
+      </div>
+      <div class="hud-stat">
+        <span class="hud-label">Health</span>
+        <span class="hud-val hp" id="hud-hp">35</span>
+      </div>
+      <div class="hud-stat">
+        <span class="hud-label">Armour</span>
+        <span class="hud-val armour" id="hud-armour">0</span>
+      </div>
+      <div class="hud-stat">
+        <span class="hud-label">Skill</span>
+        <span class="hud-val skill" id="hud-skill">0</span>
+      </div>
+      <div class="hud-stat">
+        <span class="hud-label">Rings</span>
+        <span class="hud-val rings" id="hud-rings">1</span>
+      </div>
+      <button class="hud-btn" id="btn-ring" title="Use Ring of Protection [R]">
+        <span>Shield</span>
+      </button>
+      <button class="hud-btn" id="btn-drop" title="Drop Treasure Relic [T]">
+        <span>Drop Relic</span>
+      </button>
+      <button class="hud-btn" id="btn-help" title="Help Screen [F1]">
+        <span>Help</span>
+      </button>
+      <button class="hud-btn" id="btn-obj" title="Objective [F2]">
+        <span>Goal</span>
+      </button>
+    </div>
+
+    <div id="splash-screen" class="screen-overlay">
+      <img id="splash-img" src="assets/murk256.png" alt="Murk Title Screen">
+      <div class="press-start">CLICK TO ENTER DUNGEON</div>
+    </div>
+
+    <div id="select-screen" class="screen-overlay hidden">
+      <h1 class="select-title">CHOOSE YOUR CHAMPION</h1>
+      <div class="char-grid" id="char-grid">
+        <div class="char-card selected" data-class="fighter" data-image="1">
+          <div class="char-avatar-box">
+            <canvas id="avatar-fighter" width="64" height="64" class="char-avatar"></canvas>
+          </div>
+          <div class="char-name">WARRIOR</div>
+          <div class="char-desc">Mighty melee combatant. High vitality and brutal slashes.</div>
+          <div class="char-stats">
+            <div class="stat-row"><span>Speed:</span><span>Moderate</span></div>
+            <div class="stat-row"><span>Damage:</span><span>2 - 4</span></div>
+            <div class="stat-row"><span>Special:</span><span>High Armor</span></div>
+          </div>
+        </div>
+
+        <div class="char-card" data-class="cleric" data-image="5">
+          <div class="char-avatar-box">
+            <canvas id="avatar-cleric" width="64" height="64" class="char-avatar"></canvas>
+          </div>
+          <div class="char-name">CLERIC</div>
+          <div class="char-desc">Holy crusader with defensive magic and holy light bolts.</div>
+          <div class="char-stats">
+            <div class="stat-row"><span>Speed:</span><span>Balanced</span></div>
+            <div class="stat-row"><span>Damage:</span><span>1 - 3</span></div>
+            <div class="stat-row"><span>Special:</span><span>Divine Aura</span></div>
+          </div>
+        </div>
+
+        <div class="char-card" data-class="thief" data-image="3">
+          <div class="char-avatar-box">
+            <canvas id="avatar-thief" width="64" height="64" class="char-avatar"></canvas>
+          </div>
+          <div class="char-name">THIEF</div>
+          <div class="char-desc">Agile assassin with throwing daggers and lightning speed.</div>
+          <div class="char-stats">
+            <div class="stat-row"><span>Speed:</span><span>Fast</span></div>
+            <div class="stat-row"><span>Damage:</span><span>1 - 3</span></div>
+            <div class="stat-row"><span>Special:</span><span>Evasion</span></div>
+          </div>
+        </div>
+
+        <div class="char-card" data-class="wizard" data-image="4">
+          <div class="char-avatar-box">
+            <canvas id="avatar-wizard" width="64" height="64" class="char-avatar"></canvas>
+          </div>
+          <div class="char-name">WIZARD</div>
+          <div class="char-desc">Master of elemental fireballs and mystic orbs.</div>
+          <div class="char-stats">
+            <div class="stat-row"><span>Speed:</span><span>Nimble</span></div>
+            <div class="stat-row"><span>Damage:</span><span>2 - 5</span></div>
+            <div class="stat-row"><span>Special:</span><span>Rapid Cast</span></div>
+          </div>
+        </div>
+      </div>
+      <button class="btn-start" id="btn-select-confirm">DESCEND INTO MURK</button>
+    </div>
+
+    <div id="modal-screen" class="screen-overlay hidden">
+      <div class="modal-box">
+        <h2 class="modal-title" id="modal-title">EPISODE OBJECTIVE</h2>
+        <div class="modal-content" id="modal-content"></div>
+        <button class="modal-close" id="modal-close">CONTINUE</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="lib/three.min.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/dungeon.js"></script>
+  <script src="js/entities.js"></script>
+  <script src="js/renderer.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
