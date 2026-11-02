@@ -1,273 +1,230 @@
 /**
- * Murk Entities: Player, Monsters, Projectiles
- * Faithful implementation of character images, stats, speeds, AI behaviors, and projectile physics.
+ * Murk entities: characters, monsters and missiles, with the stat tables from the original game.
  */
 
-const DIR = {
-  NW: 1, // left/up
-  NE: 2, // right/up
-  SW: 3, // left/down
-  SE: 4  // right/down
+// Row of each creature in p256.png (two 64px rows per creature: back-facing then front-facing).
+const SPRITE_ROW = { 1: 0, 2: 128, 3: 256, 4: 384, 5: 512, 6: 768, 7: 896, 8: 1024, 9: 128 };
+
+// Base time (seconds) to cross one tile; matches the original 6 frames at 50ms.
+const BASE_TILE_TIME = 0.28;
+
+const CLASS_DEFS = {
+  fighter: {
+    name: 'Warrior', image: 1, file: 'levelsb.dat', pad: 0,
+    hp: 40, dmin: 2, dmax: 3, shots: 4, fireCd: 0.30, tileTime: 0.29, rings: 1, armour: 5,
+    wearsArmour: true, readsScrolls: false, fireSound: 'throw.wav'
+  },
+  cleric: {
+    name: 'Cleric', image: 5, file: 'levelsc.dat', pad: 3,
+    hp: 36, dmin: 1, dmax: 3, shots: 4, fireCd: 0.30, tileTime: 0.28, rings: 2, armour: 0,
+    wearsArmour: false, readsScrolls: true, fireSound: 'fireball.wav'
+  },
+  thief: {
+    name: 'Thief', image: 3, file: 'levelst.dat', pad: 1,
+    hp: 34, dmin: 1, dmax: 3, shots: 4, fireCd: 0.22, tileTime: 0.24, rings: 1, armour: 3,
+    wearsArmour: true, readsScrolls: false, fireSound: 'tsword.wav'
+  },
+  wizard: {
+    name: 'Wizard', image: 4, file: 'levelsw.dat', pad: 2,
+    hp: 30, dmin: 2, dmax: 4, shots: 4, fireCd: 0.34, tileTime: 0.28, rings: 1, armour: 0,
+    wearsArmour: false, readsScrolls: true, fireSound: 'fireball.wav'
+  }
 };
 
+const CLASS_BY_IMAGE = { 1: 'fighter', 5: 'cleric', 3: 'thief', 4: 'wizard' };
+
+// Monster stats from MurkInit.cpp: hp, damage range, missile cap, fire delay, how eagerly it opens fire.
+const MONSTER_DEFS = {
+  beholder: { name: 'Beholder', image: 2, hp: 30, dmin: 2, dmax: 4, shots: 3, fireCd: 0.55, aggr: 0.7, sound: 'orb.wav', wake: 'dragon.wav' },
+  mouther: { name: 'Gibbering Mouther', image: 7, hp: 6, dmin: 1, dmax: 1, shots: 2, fireCd: 0.8, aggr: 0.9, sound: 'mouther.wav', wake: 'mouther.wav' },
+  ogre: { name: 'Brute', image: 8, hp: 15, dmin: 1, dmax: 3, shots: 4, fireCd: 0.7, aggr: 0.7, sound: 'throw2.wav', wake: 'dragon.wav' },
+  skeleton: { name: 'Skeleton', image: 6, hp: 10, dmin: 1, dmax: 1, shots: 2, fireCd: 0.9, aggr: 0.8, sound: 'skeleton.wav', wake: 'skeleton.wav' },
+  deathorb: { name: 'Death Orb', image: 9, hp: 50, dmin: 2, dmax: 6, shots: 8, fireCd: 0.3, aggr: 0.7, sound: 'deathorb.wav', wake: 'deathorb.wav' }
+};
+
+let entityIdCounter = 1;
+
 class Entity {
-  constructor(config = {}) {
-    this.name = config.name || 'Entity';
-    this.type = config.type || 'Monster';
-    this.image = config.image || 1;
+  constructor(cfg) {
+    this.id = entityIdCounter++;
+    this.kind = cfg.kind || 'monster'; // player | ally | rival | monster
+    this.type = cfg.type || 'monster';
+    this.name = cfg.name || 'Creature';
+    this.image = cfg.image;
+    this.team = cfg.team || 0;
 
-    this.mapx = config.x || 1;
-    this.mapy = config.y || 1;
-    this.prevX = this.mapx;
-    this.prevY = this.mapy;
-    this.moveProgress = 1.0;
-    this.moveSpeed = config.moveSpeed || 4.0;
+    this.x = cfg.x;
+    this.y = cfg.y;
+    this.lvl = cfg.lvl;
+    this.fromX = this.x;
+    this.fromY = this.y;
+    this.dir = cfg.dir || DIR.SE;
+    this.moveT = 1;
+    this.tileTime = cfg.tileTime || BASE_TILE_TIME;
 
-    this.level = config.lvl || 1;
-    this.direction = config.dir || DIR.SE;
-    this.frame = 0;
-    this.animTimer = 0;
-
-    this.ability = config.ability || 30;
-    this.maxAbility = this.ability;
-    this.damagemin = config.damagemin || 1;
-    this.damagemax = config.damagemax || 3;
-    this.maxmissle = config.maxmissle || 4;
-    this.firerate = config.firerate || 5;
-    this.fireTimer = 0;
-
-    this.armour = config.armour || 0;
-    this.ring = config.ring || 0;
+    this.maxHp = cfg.hp;
+    this.hp = cfg.hp;
+    this.armour = cfg.armour || 0;
+    this.rings = cfg.rings || 0;
     this.protection = 0;
     this.skill = 0;
-    this.dead = 0;
-    this.hitTimer = 0;
-    this.active = true;
+    this.dmin = cfg.dmin;
+    this.dmax = cfg.dmax;
+    this.maxShots = cfg.shots;
+    this.fireCd = cfg.fireCd;
+    this.fireTimer = 0;
+    this.shots = 0;
+    this.fireSound = cfg.fireSound || null;
+    this.aggr = cfg.aggr || 0.8;
 
-    this.copx = this.mapx;
-    this.copy = this.mapy;
-    this.coplvl = this.level;
-    this.asleep = config.asleep || false;
-    this.intelligence = config.intelligence || 1;
-    this.team = config.team || 0;
-
-    this.hasTreasure1 = false;
-    this.hasTreasure2 = false;
+    this.asleep = !!cfg.asleep;
+    this.alive = true;
+    this.deathTimer = 0;
+    this.respawnTimer = 0;
+    this.hitFlash = 0;
+    this.restTimer = 0;
+    this.thinkTimer = Math.random() * 0.3;
+    this.shotFlash = 0;
+    this.spawn = { x: this.x, y: this.y, lvl: this.lvl };
+    this.lair = cfg.lair || { x: this.x, y: this.y, lvl: this.lvl };
+    this.classKey = cfg.classKey || null;
+    this.carrying = 0;
+    this.bob = Math.random() * 6.28;
   }
 
-  getWorldPosition(renderer) {
-    const p1 = renderer.gridToWorld(this.prevX, this.prevY);
-    const p2 = renderer.gridToWorld(this.mapx, this.mapy);
-    const t = Math.min(1.0, this.moveProgress);
+  get isMonster() {
+    return this.kind === 'monster';
+  }
+
+  get moving() {
+    return this.moveT < 1;
+  }
+
+  // Renders from the tile it left toward the tile it is entering.
+  renderCell() {
+    const t = this.moveT;
     return {
-      x: p1.x + (p2.x - p1.x) * t,
-      z: p1.z + (p2.z - p1.z) * t
+      x: this.fromX + (this.x - this.fromX) * t,
+      y: this.fromY + (this.y - this.fromY) * t
     };
   }
 
-  getSpriteUV() {
-    let framex = 0;
-    let framey = 0;
-    let frame2x = 63;
-    let frame2y = 63;
-
-    let adjust = 0;
-    const animFrame = this.frame % 6;
-    if (animFrame === 1) adjust = 64;
-    else if (animFrame === 2) adjust = 128;
-    else if (animFrame === 3) adjust = 192;
-    else if (animFrame === 4) adjust = 256;
-    else if (animFrame === 5) adjust = 320;
-
-    if (this.image === 9) adjust = 0;
-    if (this.image === 2) adjust = 64;
-
-    switch (this.direction) {
-      case DIR.NW:
-        framex = 0 + adjust;
-        framey = 0;
-        frame2x = 63 + adjust;
-        frame2y = 63;
-        break;
-      case DIR.NE:
-        framex = 384 + adjust;
-        framey = 0;
-        frame2x = 447 + adjust;
-        frame2y = 63;
-        break;
-      case DIR.SW:
-        framex = 0 + adjust;
-        framey = 64;
-        frame2x = 63 + adjust;
-        frame2y = 127;
-        break;
-      case DIR.SE:
-        framex = 384 + adjust;
-        framey = 64;
-        frame2x = 447 + adjust;
-        frame2y = 127;
-        break;
-    }
-
-    switch (this.image) {
-      case 1: framey += 0; frame2y += 0; break;
-      case 2: framey += 128; frame2y += 128; break;
-      case 3: framey += 256; frame2y += 256; break;
-      case 4: framey += 384; frame2y += 384; break;
-      case 5: framey += 512; frame2y += 512; break;
-      case 6: framey += 768; frame2y += 768; break;
-      case 7: framey += 896; frame2y += 896; break;
-      case 8: framey += 1024; frame2y += 1024; break;
-      case 9: framey += 128; frame2y += 128; break;
-    }
-
-    return [framex, framey, frame2x, frame2y];
+  startMove(nx, ny, dir) {
+    this.fromX = this.x;
+    this.fromY = this.y;
+    this.x = nx;
+    this.y = ny;
+    this.dir = dir;
+    this.moveT = 0;
   }
 
-  update(dt, dungeonSys) {
-    if (this.moveProgress < 1.0) {
-      this.moveProgress += dt * this.moveSpeed;
-      if (this.moveProgress >= 1.0) {
-        this.moveProgress = 1.0;
-        this.prevX = this.mapx;
-        this.prevY = this.mapy;
-        this.frame = 0;
-      } else {
-        this.animTimer += dt;
-        if (this.animTimer > 0.12) {
-          this.animTimer = 0;
-          this.frame = (this.frame + 1) % 5 + 1;
-        }
+  teleport(x, y, lvl) {
+    this.x = x;
+    this.y = y;
+    this.fromX = x;
+    this.fromY = y;
+    this.lvl = lvl;
+    this.moveT = 1;
+  }
+
+  // Returns true on the frame the entity finishes entering its tile.
+  update(dt) {
+    let arrived = false;
+    if (this.moveT < 1) {
+      this.moveT = Math.min(1, this.moveT + dt / this.tileTime);
+      if (this.moveT >= 1) {
+        this.fromX = this.x;
+        this.fromY = this.y;
+        arrived = true;
       }
     }
-
     if (this.fireTimer > 0) this.fireTimer -= dt;
-    if (this.hitTimer > 0) this.hitTimer -= dt;
-    if (this.protection > 0) this.protection -= dt;
+    if (this.hitFlash > 0) this.hitFlash -= dt;
+    if (this.shotFlash > 0) this.shotFlash -= dt;
+    if (this.restTimer > 0) this.restTimer -= dt;
+    if (this.protection > 0) this.protection = Math.max(0, this.protection - dt);
+    return arrived;
   }
 
-  takeDamage(amount) {
-    if (this.protection > 0) return 0;
+  // Source rectangle [x, y, w, h] in the creature sheet.
+  spriteRect() {
+    let col = 0;
+    if (this.image === 9) col = 1;
+    else if (this.image !== 2 && this.moveT < 1) col = 1 + Math.min(4, Math.floor(this.moveT * 5));
 
-    let effectiveDamage = amount;
+    const east = this.dir === DIR.NE || this.dir === DIR.SE;
+    const front = this.dir === DIR.SW || this.dir === DIR.SE;
+    return [
+      (east ? 384 : 0) + col * 64,
+      SPRITE_ROW[this.image] + (front ? 64 : 0),
+      64, 64
+    ];
+  }
+
+  rollDamage() {
+    return this.dmin + Math.floor(Math.random() * (this.dmax - this.dmin + 1));
+  }
+
+  // Armour soaks damage first (as in the original). Returns { hp, armour, blocked }.
+  takeHit(amount) {
+    if (this.protection > 0) return { hp: 0, armour: 0, blocked: true };
+    let left = amount;
+    let armourLost = 0;
     if (this.armour > 0) {
-      const absorbed = Math.min(this.armour, Math.floor(amount / 2));
-      this.armour -= absorbed;
-      effectiveDamage = Math.max(1, amount - absorbed);
+      armourLost = Math.min(this.armour, left);
+      this.armour -= armourLost;
+      left -= armourLost;
     }
+    this.hp -= left;
+    this.hitFlash = 0.18;
+    return { hp: left, armour: armourLost, blocked: false };
+  }
+}
 
-    this.ability -= effectiveDamage;
-    this.hitTimer = 0.25;
-
-    if (this.ability <= 0) {
-      this.ability = 0;
-      this.dead = 64;
-      this.active = false;
-    }
-    return effectiveDamage;
+// Missile sprites in the sheet: 1 dagger, 2 axe, 3 fireball, 4 frost bolt, 5 rock, 6 venom.
+function missileKindFor(image, ownerKind) {
+  switch (image) {
+    case 1: return 1;
+    case 2: return 3;
+    case 3: return 1;
+    case 4: return 3;
+    case 5: return 4;
+    case 6: return 1;
+    case 7: return 6;
+    case 8: return Math.random() < 0.5 ? 2 : 5;
+    case 9: return 4;
+    default: return 1;
   }
 }
 
 class Projectile {
-  constructor(x, y, lvl, dir, owner) {
-    this.mapx = x;
-    this.mapy = y;
-    this.level = lvl;
-    this.direction = dir;
+  constructor(owner, dir) {
     this.owner = owner;
-    this.speed = 10.0;
-    this.progress = 0;
-    this.image = 1;
-
-    if (owner.image === 1) this.image = 1;
-    else if (owner.image === 2) this.image = 3;
-    else if (owner.image === 3) this.image = 1;
-    else if (owner.image === 4) this.image = 3;
-    else if (owner.image === 5) this.image = 4;
-    else if (owner.image === 6) this.image = 1;
-    else if (owner.image === 7) this.image = 6;
-    else if (owner.image === 8) this.image = 2;
-    else if (owner.image === 9) this.image = 4;
-
-    this.active = true;
-    this.distanceTraveled = 0;
-    this.maxDistance = 12;
+    this.dir = dir;
+    this.x = owner.x;
+    this.y = owner.y;
+    this.lvl = owner.lvl;
+    this.t = 0;
+    this.speed = 7;
+    this.travelled = 0;
+    this.maxRange = 11;
+    this.kind = missileKindFor(owner.image);
+    this.alive = true;
+    this.spin = Math.random() * 6.28;
   }
 
-  getWorldPosition(renderer) {
-    const worldPos = renderer.gridToWorld(this.mapx, this.mapy);
-    let offX = 0;
-    let offZ = 0;
-    const factor = renderer.tileSize * 0.7071 * this.progress;
-
-    if (this.direction === DIR.NW) { offX = -factor; offZ = -factor; }
-    else if (this.direction === DIR.NE) { offX = factor; offZ = -factor; }
-    else if (this.direction === DIR.SW) { offX = -factor; offZ = factor; }
-    else if (this.direction === DIR.SE) { offX = factor; offZ = factor; }
-
-    return { x: worldPos.x + offX, z: worldPos.z + offZ };
+  renderCell() {
+    const v = DIR_VEC[this.dir];
+    return { x: this.x + v[0] * this.t, y: this.y + v[1] * this.t };
   }
 
-  getSpriteUV() {
-    let adjust = (this.image - 1) * 64;
-    let framex = 0;
-    let framey = 640;
-    let frame2x = 63;
-    let frame2y = 703;
-
-    switch (this.direction) {
-      case DIR.NW: framex = 0 + adjust; break;
-      case DIR.NE: framex = 384 + adjust; break;
-      case DIR.SW: framex = 0 + adjust; framey += 64; frame2y += 64; break;
-      case DIR.SE: framex = 384 + adjust; framey += 64; frame2y += 64; break;
-    }
-    frame2x = framex + 63;
-    return [framex, framey, frame2x, frame2y];
-  }
-
-  update(dt, dungeonSys, entities, onHit) {
-    this.progress += dt * this.speed;
-
-    while (this.progress >= 1.0) {
-      this.progress -= 1.0;
-      this.distanceTraveled++;
-
-      if (this.direction === DIR.NW) this.mapx--;
-      else if (this.direction === DIR.NE) this.mapy--;
-      else if (this.direction === DIR.SW) this.mapy++;
-      else if (this.direction === DIR.SE) this.mapx++;
-
-      const cell = dungeonSys.dungeon[this.mapx] &&
-                   dungeonSys.dungeon[this.mapx][this.mapy] &&
-                   dungeonSys.dungeon[this.mapx][this.mapy][this.level];
-
-      if (!cell || (cell.type !== 'f' && cell.type !== 's')) {
-        this.active = false;
-        return;
-      }
-
-      for (const ent of entities) {
-        if (!ent.active || ent.level !== this.level) continue;
-        if (ent === this.owner) continue;
-        if (ent.team === this.owner.team) continue;
-
-        if (ent.mapx === this.mapx && ent.mapy === this.mapy) {
-          const dmg = Math.floor(Math.random() * (this.owner.damagemax - this.owner.damagemin + 1)) + this.owner.damagemin;
-          ent.takeDamage(dmg);
-          if (onHit) onHit(this, ent, dmg);
-          this.active = false;
-          return;
-        }
-      }
-
-      if (this.distanceTraveled >= this.maxDistance) {
-        this.active = false;
-        return;
-      }
-    }
+  spriteRect() {
+    const east = this.dir === DIR.NE || this.dir === DIR.SE;
+    const front = this.dir === DIR.SW || this.dir === DIR.SE;
+    return [(east ? 384 : 0) + (this.kind - 1) * 64, 640 + (front ? 64 : 0), 64, 64];
   }
 }
 
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { DIR, Entity, Projectile };
+  module.exports = { Entity, Projectile, CLASS_DEFS, CLASS_BY_IMAGE, MONSTER_DEFS, BASE_TILE_TIME };
 }

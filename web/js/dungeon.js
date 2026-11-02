@@ -1,392 +1,357 @@
 /**
- * Murk Dungeon Generator and Level System
- * Based on original C++ logic from MurkInit.cpp and MurkThink.cpp
+ * Murk dungeon model: episode parsing, procedural generation and grid queries.
+ * Generation follows the original C++ (MurkInit.cpp): winding single-width tunnels carved by
+ * random walks that never complete a 2x2 block, stacked floors joined by ladders.
  */
+
+const VOID_CELL = Object.freeze({ type: 0, item: 0, explored: 0, pad: -1, stair: null });
+
+const DIR = { NW: 1, NE: 2, SW: 3, SE: 4 };
+// Grid step per direction: 1 = x-1, 2 = y-1, 3 = y+1, 4 = x+1 (matches the original sprite sheet).
+const DIR_VEC = { 1: [-1, 0], 2: [0, -1], 3: [0, 1], 4: [1, 0] };
+const DIRS = [1, 2, 3, 4];
+
+function dirFromDelta(dx, dy) {
+  if (Math.abs(dx) >= Math.abs(dy)) return dx < 0 ? DIR.NW : DIR.SE;
+  return dy < 0 ? DIR.NE : DIR.SW;
+}
 
 class DungeonSystem {
   constructor() {
-    this.DUNGEONX = 14;
-    this.DUNGEONY = 14;
+    this.N = 14;
     this.maxlevel = 3;
-    this.dungeon = {}; // [x][y][lvl] -> { type: 'f'|'s'|'u'|0, item: 0|'c'|'e'|'s'|'r'|'a'|1, explored: 0|1, image: 0..4 }
+    this.levels = [];
     this.pits = [];
-    this.dimage = [];
-    this.tile_type = [];
-    this.treasurex = 0;
-    this.treasurey = 0;
-    this.treasurelvl = 1;
-    this.foundtreasure = 0;
-
-    this.treasurex2 = 0;
-    this.treasurey2 = 0;
-    this.treasurelvl2 = 1;
-    this.foundtreasure2 = 0;
-
+    this.relics = [];
+    this.tileType = [];
     this.levelDefinitions = {};
+    this.episodeCache = {};
     this.currentEpisodeDef = null;
   }
 
-  loadLevelDefs(levelsJson) {
-    this.levelDefinitions = levelsJson;
+  loadLevelDefs(json) {
+    this.levelDefinitions = json || {};
+    this.episodeCache = {};
   }
 
-  parseLevelDef(filename, episodeNum) {
+  parseEpisodes(filename) {
+    if (this.episodeCache[filename]) return this.episodeCache[filename];
     const raw = this.levelDefinitions[filename] || this.levelDefinitions['levelsb.dat'] || '';
-    const lines = raw.split(/\r?\n/).map(l => l.trim()).filter(l => l.length > 0);
-
-    let idx = 0;
+    const lines = raw.split(/\r?\n/);
     const episodes = [];
+    const num = (i) => parseInt(lines[i], 10) || 0;
 
-    while (idx < lines.length) {
-      if (idx + 28 > lines.length) break;
-      const response = lines[idx++];
-      const title = lines[idx++];
-      const gametype = parseInt(lines[idx++]);
-      const beholders = parseInt(lines[idx++]);
-      const bspeed = parseInt(lines[idx++]);
-      const deathorb = parseInt(lines[idx++]);
-      const dspeed = parseInt(lines[idx++]);
-      const skeletons = parseInt(lines[idx++]);
-      const sspeed = parseInt(lines[idx++]);
-      const mouther = parseInt(lines[idx++]);
-      const mspeed = parseInt(lines[idx++]);
-      const ogre = parseInt(lines[idx++]);
-      const ospeed = parseInt(lines[idx++]);
-      const fighter = parseInt(lines[idx++]);
-      const fteam = parseInt(lines[idx++]);
-      const fspeed = parseInt(lines[idx++]);
-      const cleric = parseInt(lines[idx++]);
-      const cteam = parseInt(lines[idx++]);
-      const cspeed = parseInt(lines[idx++]);
-      const thief = parseInt(lines[idx++]);
-      const tteam = parseInt(lines[idx++]);
-      const tspeed = parseInt(lines[idx++]);
-      const wizard = parseInt(lines[idx++]);
-      const wteam = parseInt(lines[idx++]);
-      const wspeed = parseInt(lines[idx++]);
-      const dungeonx = parseInt(lines[idx++]);
-      const dungeony = parseInt(lines[idx++]);
-      const dungeonlvl = parseInt(lines[idx++]);
-      const pits = parseInt(lines[idx++]);
-      const maxpit = parseInt(lines[idx++]);
-
+    for (let i = 0; i + 30 <= lines.length; i += 30) {
+      const b = i + 2;
       episodes.push({
-        response, title, gametype,
-        beholders, bspeed, deathorb, dspeed,
-        skeletons, sspeed, mouther, mspeed, ogre, ospeed,
-        fighter, fteam, fspeed, cleric, cteam, cspeed,
-        thief, tteam, tspeed, wizard, wteam, wspeed,
-        dungeonx, dungeony, dungeonlvl, pits, maxpit
+        response: lines[i].trim(),
+        title: lines[i + 1].trim(),
+        gametype: num(b),
+        beholders: num(b + 1), bspeed: num(b + 2),
+        deathorb: num(b + 3), dspeed: num(b + 4),
+        skeletons: num(b + 5), sspeed: num(b + 6),
+        mouther: num(b + 7), mspeed: num(b + 8),
+        ogre: num(b + 9), ospeed: num(b + 10),
+        fighter: num(b + 11), fteam: num(b + 12), fspeed: num(b + 13),
+        cleric: num(b + 14), cteam: num(b + 15), cspeed: num(b + 16),
+        thief: num(b + 17), tteam: num(b + 18), tspeed: num(b + 19),
+        wizard: num(b + 20), wteam: num(b + 21), wspeed: num(b + 22),
+        dungeonx: num(b + 23), dungeony: num(b + 24), dungeonlvl: num(b + 25),
+        pits: num(b + 26), maxpit: num(b + 27)
       });
     }
+    if (episodes.length === 0) {
+      episodes.push({
+        response: 'Find the -p and return it to -k .', title: 'Episode 1', gametype: 1,
+        beholders: 1, bspeed: 2, deathorb: 0, dspeed: 1, skeletons: 4, sspeed: 2,
+        mouther: 2, mspeed: 2, ogre: 1, ospeed: 2,
+        fighter: 0, fteam: 0, fspeed: 1, cleric: 0, cteam: 0, cspeed: 1,
+        thief: 0, tteam: 0, tspeed: 1, wizard: 0, wteam: 0, wspeed: 1,
+        dungeonx: 14, dungeony: 14, dungeonlvl: 3, pits: 1, maxpit: 6
+      });
+    }
+    this.episodeCache[filename] = episodes;
+    return episodes;
+  }
 
-    const clampedIdx = Math.min(Math.max(0, episodeNum - 1), episodes.length - 1);
-    this.currentEpisodeDef = episodes[clampedIdx] || {
-      response: "Find the -p and return it home",
-      title: "Episode 1",
-      gametype: 1,
-      beholders: 1, bspeed: 2,
-      deathorb: 0, dspeed: 1,
-      skeletons: 4, sspeed: 2,
-      mouther: 2, mspeed: 2,
-      ogre: 1, ospeed: 2,
-      fighter: 0, cleric: 0, thief: 0, wizard: 0,
-      dungeonx: 14, dungeony: 14, dungeonlvl: 3,
-      pits: 1, maxpit: 6
-    };
-    return this.currentEpisodeDef;
+  getEpisode(filename, episodeNum) {
+    const eps = this.parseEpisodes(filename);
+    return eps[(Math.max(1, episodeNum) - 1) % eps.length];
   }
 
   randomNum(max) {
     return Math.floor(Math.random() * max);
   }
 
-  clearDungeon() {
-    this.dungeon = {};
-    for (let x = 0; x <= this.DUNGEONX + 2; x++) {
-      this.dungeon[x] = {};
-      for (let y = 0; y <= this.DUNGEONY + 2; y++) {
-        this.dungeon[x][y] = {};
-        for (let lvl = 0; lvl <= this.maxlevel + 2; lvl++) {
-          this.dungeon[x][y][lvl] = {
-            type: 0,
-            explored: 1,
-            item: 0,
-            image: 0,
-            mark: 0,
-            order: 0
-          };
-        }
-      }
+  // ---------- grid access ----------
+
+  inBounds(x, y) {
+    return x >= 0 && y >= 0 && x <= this.N + 1 && y <= this.N + 1;
+  }
+
+  cell(x, y, lvl) {
+    if (!this.inBounds(x, y)) return VOID_CELL;
+    const level = this.levels[lvl];
+    return level ? level[y * (this.N + 2) + x] : VOID_CELL;
+  }
+
+  walkable(x, y, lvl) {
+    const t = this.cell(x, y, lvl).type;
+    return t === 'f' || t === 's';
+  }
+
+  forEachCell(lvl, fn) {
+    for (let y = 1; y <= this.N; y++) {
+      for (let x = 1; x <= this.N; x++) fn(this.cell(x, y, lvl), x, y);
     }
   }
 
-  initDungeon() {
-    for (let lvl = 0; lvl <= this.maxlevel; lvl++) {
-      this.dimage[lvl] = this.randomNum(2) === 1 ? 1 : 2;
-    }
+  // ---------- generation ----------
 
-    for (let lvl = 1; lvl <= this.maxlevel; lvl++) {
-      for (let y = 0; y < this.DUNGEONY; y++) {
-        for (let x = 0; x < this.DUNGEONX; x++) {
-          this.dungeon[x][y][lvl].type = 'f';
-          this.dungeon[x][y][lvl].item = 0;
-        }
-      }
-
-      let work1 = 8;
-      for (let y = 1; y < 8; y++) {
-        for (let x = 1; x < work1; x++) {
-          this.dungeon[x][y][lvl].type = 'u';
-        }
-        work1--;
-      }
-
-      let work2 = 10;
-      work1 = 25;
-      for (let y = 1; y < 13; y++) {
-        for (let x = work2; x < work1; x++) {
-          if (this.dungeon[x] && this.dungeon[x][y]) {
-            this.dungeon[x][y][lvl].type = 'u';
-          }
-        }
-        work2++;
-      }
-    }
-  }
-
-  generateDungeon() {
-    const sx = Math.floor(this.DUNGEONX / 2);
-    const sy = Math.floor(this.DUNGEONY / 2);
-
-    let lvlnum = 0;
-    let stopit = 0;
-
-    while (lvlnum < this.maxlevel) {
-      lvlnum++;
-      stopit++;
-      if (stopit >= (this.DUNGEONX * this.DUNGEONY * this.maxlevel) * 3) {
-        lvlnum = 1;
-        break;
-      }
-
-      for (let y = 0; y <= this.DUNGEONY + 1; y++) {
-        for (let x = 0; x <= this.DUNGEONX + 1; x++) {
-          if (this.dungeon[x] && this.dungeon[x][y]) {
-            this.dungeon[x][y][lvlnum].type = 0;
-            this.dungeon[x][y][lvlnum].item = 0;
-          }
-        }
-      }
-
-      for (let jump = 0; jump < 4; jump++) {
-        let x = sx;
-        let y = sy;
-        this.dungeon[x][y][lvlnum].type = 'f';
-
-        for (let i = 0; i < 75; i++) {
-          let xpos = 0;
-          let ypos = 0;
-          const way = this.randomNum(4);
-          if (way === 0) xpos = -1;
-          else if (way === 1) xpos = 1;
-          else if (way === 2) ypos = -1;
-          else if (way === 3) ypos = 1;
-
-          const nx = x + xpos;
-          const ny = y + ypos;
-
-          if (nx > 0 && nx < this.DUNGEONX && ny > 0 && ny < this.DUNGEONY) {
-            if (this.dungeon[nx][ny][lvlnum].type !== 'u') {
-              this.dungeon[nx][ny][lvlnum].type = 'f';
-              x = nx;
-              y = ny;
-            }
-          }
-        }
-      }
-
-      let floorCount = 0;
-      for (let y = 1; y < this.DUNGEONY; y++) {
-        for (let x = 1; x < this.DUNGEONX; x++) {
-          if (this.dungeon[x][y][lvlnum].type === 'f') floorCount++;
-        }
-      }
-
-      if (floorCount < 25) {
-        for (let cy = Math.max(1, sy - 2); cy <= Math.min(this.DUNGEONY - 1, sy + 2); cy++) {
-          for (let cx = Math.max(1, sx - 2); cx <= Math.min(this.DUNGEONX - 1, sx + 2); cx++) {
-            this.dungeon[cx][cy][lvlnum].type = 'f';
-          }
-        }
-      }
-
-      if (lvlnum > 1) {
-        let stairsPlaced = false;
-        let tries = 0;
-        while (!stairsPlaced && tries < 300) {
-          tries++;
-          const rx = this.randomNum(this.DUNGEONX - 2) + 1;
-          const ry = this.randomNum(this.DUNGEONY - 2) + 1;
-          if (this.dungeon[rx][ry][lvlnum - 1].type === 'f' && this.dungeon[rx][ry][lvlnum].type === 'f') {
-            this.dungeon[rx][ry][lvlnum - 1].type = 's';
-            this.dungeon[rx][ry][lvlnum - 1].item = 0;
-            this.dungeon[rx][ry][lvlnum].type = 's';
-            this.dungeon[rx][ry][lvlnum].item = 1;
-            stairsPlaced = true;
-          }
-        }
-
-        if (!stairsPlaced) {
-          this.dungeon[sx][sy][lvlnum - 1].type = 's';
-          this.dungeon[sx][sy][lvlnum - 1].item = 0;
-          this.dungeon[sx][sy][lvlnum].type = 's';
-          this.dungeon[sx][sy][lvlnum].item = 1;
-        }
-      }
-    }
-  }
-
-  assignTreasures(gametype) {
-    let placed = false;
-    let tries = 0;
-    while (!placed && tries < 500) {
-      tries++;
-      const rx = this.randomNum(this.DUNGEONX - 1) + 1;
-      const ry = this.randomNum(this.DUNGEONY - 1) + 1;
-      const lvl = 1;
-      if (this.dungeon[rx][ry][lvl].type === 'f' && this.dungeon[rx][ry][lvl].item === 0) {
-        this.treasurex = rx;
-        this.treasurey = ry;
-        this.treasurelvl = lvl;
-        this.foundtreasure = 0;
-        placed = true;
-      }
-    }
-
-    placed = false;
-    tries = 0;
-    while (!placed && tries < 500) {
-      tries++;
-      const rx = this.randomNum(this.DUNGEONX - 1) + 1;
-      const ry = this.randomNum(this.DUNGEONY - 1) + 1;
-      const lvl = this.maxlevel;
-      if (this.dungeon[rx][ry][lvl].type === 'f' && this.dungeon[rx][ry][lvl].item === 0) {
-        this.treasurex2 = rx;
-        this.treasurey2 = ry;
-        this.treasurelvl2 = lvl;
-        this.foundtreasure2 = 0;
-        placed = true;
-      }
-    }
-  }
-
-  assignItems(count) {
-    for (let i = 0; i < count; i++) {
-      let placed = false;
-      let tries = 0;
-      while (!placed && tries < 200) {
-        tries++;
-        const rx = this.randomNum(this.DUNGEONX - 1) + 1;
-        const ry = this.randomNum(this.DUNGEONY - 1) + 1;
-        const lvl = this.randomNum(this.maxlevel) + 1;
-        if (this.dungeon[rx][ry][lvl].type === 'f' && this.dungeon[rx][ry][lvl].item === 0) {
-          const r = this.randomNum(5);
-          if (r === 0) this.dungeon[rx][ry][lvl].item = 'a';
-          else if (r === 1) this.dungeon[rx][ry][lvl].item = 'r';
-          else if (r === 2) this.dungeon[rx][ry][lvl].item = 's';
-          else this.dungeon[rx][ry][lvl].item = 'e';
-          placed = true;
-        }
-      }
-    }
-
-    for (let lvl = 1; lvl <= this.maxlevel; lvl++) {
-      for (let k = 0; k < 2; k++) {
-        let placed = false;
-        let tries = 0;
-        while (!placed && tries < 100) {
-          tries++;
-          const rx = this.randomNum(this.DUNGEONX - 1) + 1;
-          const ry = this.randomNum(this.DUNGEONY - 1) + 1;
-          if (this.dungeon[rx][ry][lvl].type === 'f' && this.dungeon[rx][ry][lvl].item === 0) {
-            this.dungeon[rx][ry][lvl].item = 'r';
-            placed = true;
-          }
-        }
-      }
-    }
-  }
-
-  assignPits(maxPits) {
+  build(ep) {
+    this.currentEpisodeDef = ep;
+    this.N = Math.max(8, Math.max(ep.dungeonx || 14, ep.dungeony || 14));
+    this.maxlevel = Math.max(2, ep.dungeonlvl || 3);
     this.pits = [];
-    if (!maxPits || maxPits <= 0) return;
+    this.relics = [];
+    this.tileType = [];
+    for (let l = 1; l <= this.maxlevel; l++) this.tileType[l] = ((l - 1) % 3) + 1;
 
-    for (let count = 0; count < maxPits; count++) {
-      let placed = false;
-      let tries = 0;
-      while (!placed && tries < 200) {
-        tries++;
-        const rx = this.randomNum(this.DUNGEONX - 1) + 1;
-        const ry = this.randomNum(this.DUNGEONY - 1) + 1;
-        const lvl = this.randomNum(this.maxlevel - 1) + 1;
-        if (this.dungeon[rx][ry][lvl + 1].type === 'f' &&
-            this.dungeon[rx][ry][lvl].type === 'f' &&
-            this.dungeon[rx][ry][lvl].item === 0) {
-          this.pits.push({
-            x: rx,
-            y: ry,
-            lvl: lvl,
-            frame: 1
-          });
-          placed = true;
-        }
-      }
-    }
-  }
-
-  setTileTypes() {
-    this.tile_type = [];
-    let cur = 1;
-    for (let i = 0; i < 40; i++) {
-      this.tile_type[i] = cur;
-      cur = (cur % 3) + 1;
-    }
-  }
-
-  buildNewLevel(classFileName, episodeNumber) {
-    const ep = this.parseLevelDef(classFileName, episodeNumber);
-    this.DUNGEONX = ep.dungeonx || 14;
-    this.DUNGEONY = ep.dungeony || 14;
-    this.maxlevel = ep.dungeonlvl || 3;
-
-    this.clearDungeon();
-    this.setTileTypes();
-    this.initDungeon();
-    this.generateDungeon();
-    this.assignTreasures(ep.gametype);
-    this.assignItems(12 + this.maxlevel * 2);
-    if (ep.pits) {
-      this.assignPits(ep.maxpit || 6);
+    this.levels = [];
+    for (let l = 1; l <= this.maxlevel; l++) {
+      this.levels[l] = this.carveLevel(l);
+      if (l > 1) this.linkLevels(l - 1, l);
     }
 
+    this.assignRelics(ep.gametype);
+    this.assignItems(8 + this.maxlevel * 2);
     return ep;
   }
 
-  findSpawnLocation(level = 1) {
-    for (let tries = 0; tries < 500; tries++) {
-      const rx = this.randomNum(this.DUNGEONX - 1) + 1;
-      const ry = this.randomNum(this.DUNGEONY - 1) + 1;
-      if (this.dungeon[rx][ry][level].type === 'f' && this.dungeon[rx][ry][level].item === 0) {
-        return { x: rx, y: ry, lvl: level };
+  newLevelGrid() {
+    const size = (this.N + 2) * (this.N + 2);
+    const grid = new Array(size);
+    for (let i = 0; i < size; i++) {
+      grid[i] = { type: 0, item: 0, explored: 0, pad: -1, stair: null };
+    }
+    return grid;
+  }
+
+  carveLevel(lvl) {
+    const N = this.N;
+    const W = N + 2;
+    const center = Math.floor(N / 2);
+    const jumps = 4;
+    const steps = Math.round(1.3 * 75 * (N * N) / 196);
+    let grid;
+
+    for (let attempt = 0; attempt < 30; attempt++) {
+      grid = this.newLevelGrid();
+
+      const k = Math.floor(N * 0.35);
+      for (let y = 1; y <= N; y++) {
+        for (let x = 1; x <= N; x++) {
+          if (x + y <= k || x + y >= 2 * N - k || x - y >= N - k || y - x >= N - k) {
+            grid[y * W + x].type = 'u';
+          }
+        }
+      }
+
+      for (let j = 0; j < jumps; j++) {
+        let x = center;
+        let y = center;
+        grid[y * W + x].type = 'f';
+        for (let i = 0; i < steps; i++) {
+          const v = DIR_VEC[1 + this.randomNum(4)];
+          const nx = x + v[0];
+          const ny = y + v[1];
+          if (nx <= 0 || nx >= N || ny <= 0 || ny >= N) continue;
+          const t = grid[ny * W + nx].type;
+          if (t === 'u' || t === 's') continue;
+          if (this.randomNum(30) !== 1 && this.completesBlock(grid, nx, ny)) continue;
+          grid[ny * W + nx].type = 'f';
+          x = nx;
+          y = ny;
+        }
+      }
+
+      let floors = 0;
+      for (let i = 0; i < grid.length; i++) if (grid[i].type === 'f') floors++;
+      if (floors >= Math.max(40, N * N * 0.25)) break;
+    }
+    return grid;
+  }
+
+  completesBlock(grid, x, y) {
+    const W = this.N + 2;
+    const f = (ax, ay) => grid[ay * W + ax].type === 'f';
+    for (const sx of [-1, 1]) {
+      for (const sy of [-1, 1]) {
+        if (f(x + sx, y) && f(x, y + sy) && f(x + sx, y + sy)) return true;
       }
     }
-    const sx = Math.floor(this.DUNGEONX / 2);
-    const sy = Math.floor(this.DUNGEONY / 2);
-    return { x: sx, y: sy, lvl: level };
+    return false;
+  }
+
+  linkLevels(upper, lower) {
+    const candidates = [];
+    this.forEachCell(upper, (c, x, y) => {
+      if (c.type === 'f' && this.cell(x, y, lower).type === 'f') candidates.push({ x, y });
+    });
+    for (let i = candidates.length - 1; i > 0; i--) {
+      const j = this.randomNum(i + 1);
+      [candidates[i], candidates[j]] = [candidates[j], candidates[i]];
+    }
+
+    const placed = [];
+    for (const c of candidates) {
+      if (placed.length >= 3) break;
+      if (placed.some(p => Math.abs(p.x - c.x) + Math.abs(p.y - c.y) < 4)) continue;
+      placed.push(c);
+    }
+    if (placed.length === 0 && candidates.length) placed.push(candidates[0]);
+
+    for (const p of placed) {
+      const a = this.cell(p.x, p.y, upper);
+      const b = this.cell(p.x, p.y, lower);
+      a.type = 's'; a.stair = 'down'; a.item = 0;
+      b.type = 's'; b.stair = 'up'; b.item = 0;
+    }
+  }
+
+  isFreeFloor(x, y, lvl) {
+    const c = this.cell(x, y, lvl);
+    return c.type === 'f' && c.item === 0 && c.pad < 0;
+  }
+
+  randomFloor(lvl, accept) {
+    const N = this.N;
+    for (let tries = 0; tries < 1000; tries++) {
+      const x = this.randomNum(N) + 1;
+      const y = this.randomNum(N) + 1;
+      if (this.isFreeFloor(x, y, lvl) && (!accept || accept(x, y))) return { x, y, lvl };
+    }
+    return null;
+  }
+
+  assignRelics(gametype) {
+    // Relic 1 (red chest) sits on the first floor, relic 2 (blue chest) is hidden deeper.
+    if (gametype !== 1) {
+      const p = this.randomFloor(1);
+      if (p) this.relics.push({ id: 1, x: p.x, y: p.y, lvl: 1, carrier: null });
+    }
+    const deepLvl = this.randomNum(this.maxlevel - 1) + 2;
+    const p2 = this.randomFloor(deepLvl) || this.randomFloor(this.maxlevel);
+    if (p2) this.relics.push({ id: 2, x: p2.x, y: p2.y, lvl: p2.lvl, carrier: null });
+  }
+
+  relic(id) {
+    return this.relics.find(r => r.id === id) || null;
+  }
+
+  assignItems(count) {
+    const pick = () => {
+      const r = this.randomNum(5);
+      if (r === 0) return 'a';
+      if (r === 2) return 's';
+      return 'e';
+    };
+    for (let i = 0; i < count; i++) {
+      const p = this.randomFloor(this.randomNum(this.maxlevel) + 1);
+      if (p) this.cell(p.x, p.y, p.lvl).item = pick();
+    }
+    for (let i = 0; i < 2; i++) {
+      const p = this.randomFloor(this.randomNum(this.maxlevel) + 1);
+      if (p) this.cell(p.x, p.y, p.lvl).item = 'r';
+    }
+  }
+
+  // ---------- queries ----------
+
+  // Marks nearby tunnel cells (reachable within `depth` steps) as explored; returns true if anything new appeared.
+  reveal(lvl, x, y, depth = 4) {
+    let changed = false;
+    const W = this.N + 2;
+    const seen = new Set([y * W + x]);
+    let frontier = [[x, y]];
+    const start = this.cell(x, y, lvl);
+    if (start.type !== 0 && !start.explored) { start.explored = 1; changed = true; }
+
+    for (let d = 0; d < depth && frontier.length; d++) {
+      const next = [];
+      for (const [cx, cy] of frontier) {
+        for (const dir of DIRS) {
+          const nx = cx + DIR_VEC[dir][0];
+          const ny = cy + DIR_VEC[dir][1];
+          const key = ny * W + nx;
+          if (seen.has(key) || !this.walkable(nx, ny, lvl)) continue;
+          seen.add(key);
+          const c = this.cell(nx, ny, lvl);
+          if (!c.explored) { c.explored = 1; changed = true; }
+          next.push([nx, ny]);
+        }
+      }
+      frontier = next;
+    }
+    return changed;
+  }
+
+  // Shortest walkable route from (sx,sy) to (tx,ty); `blocked(x,y)` may veto cells. Returns the steps (excluding start).
+  findPath(lvl, sx, sy, tx, ty, blocked, maxNodes = 900) {
+    if (!this.walkable(tx, ty, lvl)) return null;
+    const W = this.N + 2;
+    const prev = new Map();
+    const start = sy * W + sx;
+    prev.set(start, -1);
+    const queue = [[sx, sy]];
+    let head = 0;
+    while (head < queue.length && head < maxNodes) {
+      const [cx, cy] = queue[head++];
+      if (cx === tx && cy === ty) {
+        const path = [];
+        let k = cy * W + cx;
+        while (k !== start) {
+          path.push({ x: k % W, y: Math.floor(k / W) });
+          k = prev.get(k);
+        }
+        return path.reverse();
+      }
+      for (const dir of DIRS) {
+        const nx = cx + DIR_VEC[dir][0];
+        const ny = cy + DIR_VEC[dir][1];
+        const key = ny * W + nx;
+        if (prev.has(key) || !this.walkable(nx, ny, lvl)) continue;
+        if (blocked && !(nx === tx && ny === ty) && blocked(nx, ny)) continue;
+        prev.set(key, cy * W + cx);
+        queue.push([nx, ny]);
+      }
+    }
+    return null;
+  }
+
+  // Walks from a cell along a direction until a wall; returns the cells passed (nearest first).
+  castLine(lvl, x, y, dir, maxDist) {
+    const cells = [];
+    let cx = x;
+    let cy = y;
+    for (let i = 0; i < maxDist; i++) {
+      cx += DIR_VEC[dir][0];
+      cy += DIR_VEC[dir][1];
+      if (!this.walkable(cx, cy, lvl)) break;
+      cells.push({ x: cx, y: cy });
+    }
+    return cells;
+  }
+
+  findStairs(lvl, kind) {
+    const out = [];
+    this.forEachCell(lvl, (c, x, y) => {
+      if (c.type === 's' && c.stair === kind) out.push({ x, y });
+    });
+    return out;
   }
 }
 
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { DungeonSystem };
+  module.exports = { DungeonSystem, DIR, DIR_VEC, DIRS, VOID_CELL, dirFromDelta };
 }

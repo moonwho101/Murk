@@ -44,6 +44,17 @@ To try the game immediately:
 
 The bundled executable is intended to run on current Windows versions, including Windows 10 and Windows 11.
 
+### Play in the browser (three.js port)
+
+`web/` contains a browser port that reuses the original sprites, sounds and episode files (`web/assets/levels.json`). It has no build step; serve the folder with any static server and open it:
+
+```
+cd web
+python -m http.server 8123
+```
+
+Then browse to `http://127.0.0.1:8123/`. The port keeps the original rules (sleeping monsters, relic hunt, home pads, ladders, pits, Rings of Protection) and adds click-to-move, torch-lit fog of war, a minimap, hero levelling, allied/rival characters from the episode files and particle effects. Press `F1` in game for the controls.
+
 ## Gameplay
 
 Murk was originally described as a standalone or networkable arcade quest game. You choose a character, descend into the dungeon, fight monsters, search for treasure, collect useful items, and move between levels through stairs or ladders.
@@ -123,6 +134,7 @@ Areas of interest include:
 - `bin/`: runnable binary, config files, save data, bundled documentation
 - `artwork/`: screenshots, scans, and promotional images
 - `sound/`: audio assets
+- `web/`: three.js browser port (`js/` game code, `assets/` converted sprites, sounds and episode data)
 
 ## Historical Context
 
